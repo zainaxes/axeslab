@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, Sparkles, ArrowRight, ShieldCheck, Layers, Terminal, ChevronDown } from "lucide-react";
+import { Search, Sparkles, ArrowRight, ShieldCheck, Layers } from "lucide-react";
 
 interface HeroSectionProps {
   totalPublished: number;
@@ -10,53 +10,77 @@ interface HeroSectionProps {
 
 export function HeroSection({ totalPublished }: HeroSectionProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    // Attempt auto-play with mute fallback (handles iOS / Safari battery saver policies)
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setVideoLoaded(true))
+          .catch(() => {
+            // Autoplay blocked: video element remains visible with poster fallback
+            setVideoLoaded(true);
+          });
+      }
+    }
+  }, []);
 
   return (
-    <section className="relative w-full min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[#050508] text-white">
+    <section className="relative w-full min-h-[92vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[#06060A] text-white">
       {/* 1. Fullscreen Responsive Background Video */}
-      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
+      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          webkit-playsinline="true"
           preload="auto"
-          onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
-            videoLoaded ? "opacity-60 scale-100" : "opacity-0 scale-105"
+          onCanPlay={() => setVideoLoaded(true)}
+          onPlaying={() => setVideoLoaded(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            videoLoaded ? "opacity-65 scale-100" : "opacity-30 scale-105"
           }`}
         >
-          {/* Direct local file or custom hosted path for Pexels 27980029 */}
+          {/* 1. User local file: Place your Pexels 27980029 download here as /videos/abstract-blue-lines-dots.mp4 */}
           <source src="/videos/abstract-blue-lines-dots.mp4" type="video/mp4" />
-          <source src="/videos/abstract-neon-tunnel.mp4" type="video/mp4" />
-          {/* Fast stream fallback: futuristic blue lines/network dots */}
-          <source src="https://meez.design/web/media/bg-videos/ms-person.mp4" type="video/mp4" />
+          {/* 2. High-speed Live CDN Cybernetic Energy / Blue Motion Stream */}
+          <source src="https://meez.design/web/media/bg-videos/ms-energy.mp4" type="video/mp4" />
+          {/* 3. Deep Neural Motion Network Fallback */}
+          <source src="https://heydesign.ai/api/design-prompt-media/v1/effects/deep-neural-interface.mp4" type="video/mp4" />
+          {/* 4. Alternate 3D Cyber loop */}
+          <source src="https://meez.design/web/media/bg-videos/ms-3d.mp4" type="video/mp4" />
         </video>
 
-        {/* 2. Deep Cybernetic Gradients & Readability Protection */}
-        {/* Radial vignette keeping center clear and focusable */}
-        <div className="absolute inset-0 bg-radial-[at_center_center] from-transparent via-[#050508]/75 to-[#050508] pointer-events-none" />
+        {/* 2. Cybernetic Vignette & Readability Gradient Layers */}
+        {/* Radial center clear focus */}
+        <div className="absolute inset-0 bg-radial-[at_center_center] from-black/50 via-[#06060A]/75 to-[#06060A] pointer-events-none" />
         
-        {/* Top & bottom bleed gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050508]/85 via-transparent to-[#050508] pointer-events-none" />
+        {/* Vertical top and bottom fading gradients */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#06060A]/80 via-transparent to-[#06060A] pointer-events-none" />
         
-        {/* Subtle grid pattern overlay */}
+        {/* Micro-dot grid mesh */}
         <div
-          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, #38bdf8 1px, transparent 0)`,
-            backgroundSize: "36px 36px",
+            backgroundSize: "32px 32px",
           }}
         />
       </div>
 
-      {/* 3. Hero Centerpiece Content */}
+      {/* 3. High-Contrast Centerpiece Content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 text-center space-y-8 flex flex-col items-center">
         {/* Pill Badge */}
-        <div className="inline-flex items-center gap-2.5 rounded-full border border-sky-500/30 bg-sky-950/40 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-sky-300 shadow-[0_0_20px_rgba(14,165,233,0.2)] backdrop-blur-xl">
+        <div className="inline-flex items-center gap-2.5 rounded-full border border-sky-500/30 bg-sky-950/40 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-sky-300 shadow-[0_0_24px_rgba(14,165,233,0.25)] backdrop-blur-xl">
           <span className="flex h-2 w-2 rounded-full bg-sky-400 animate-ping" />
           <span>INDEPENDENT AI RESOURCE LIBRARY</span>
-          <span className="text-sky-500/50">•</span>
+          <span className="text-sky-500/40">•</span>
           <span className="text-white/90">AXES LAB</span>
         </div>
 
