@@ -38,59 +38,59 @@ export default function WebDesignPage() {
     .sort((a, b) => b.count - a.count);
 
   return (
-    <div className="min-h-screen bg-[#E9E9E0] text-black dark:bg-[#0A0A0A] dark:text-white">
+    <div className="min-h-screen bg-canvas text-primaryText">
       {/* Hero Section */}
-      <section className="border-b border-black/10 bg-white/40 px-4 py-16 backdrop-blur-md dark:border-white/10 dark:bg-black/40 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-subtleBorder bg-surface/50 px-4 py-16 backdrop-blur-xl sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-mono font-medium dark:border-white/10 dark:bg-white/10">
-                <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-subtleBorder bg-surface-strong px-3 py-1 text-xs font-mono font-medium text-primaryText">
+                <Sparkles className="h-3.5 w-3.5 text-state-success" />
                 <span>640+ CURATED PROMPTS</span>
                 <span>•</span>
-                <span className="text-black/60 dark:text-white/60">WEB DESIGN & UI MOTION</span>
+                <span className="text-mutedText">WEB DESIGN & UI MOTION</span>
               </div>
 
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-primaryText">
                 Web Design Prompt Library
               </h1>
 
-              <p className="text-lg text-black/70 dark:text-white/70 leading-relaxed max-w-2xl">
+              <p className="text-lg text-mutedText-secondary leading-relaxed max-w-2xl">
                 Explore 640+ production-grade web design prompts with pixel-perfect visual previews, interactive videos, motion backgrounds, and copy-ready specifications. Designed & verified by Axes Lab.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-black/60 dark:text-white/60">
+              <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-mutedText">
                 <div className="flex items-center gap-1.5">
-                  <Video className="h-4 w-4" />
+                  <Video className="h-4 w-4 text-primaryText" />
                   <span>HD Video & Looping Previews</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Layers className="h-4 w-4" />
+                  <Layers className="h-4 w-4 text-primaryText" />
                   <span>120+ UI Design Categories</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                  <ShieldCheck className="h-4 w-4 text-state-success" />
                   <span>Verified by Axes Lab</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Link Card to User Site */}
-            <div className="flex flex-col rounded-2xl border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 lg:max-w-xs">
-              <span className="font-mono text-xs uppercase tracking-wider text-black/50 dark:text-white/50">
+            <div className="flex flex-col rounded-2xl border border-subtleBorder bg-surface p-6 shadow-xl backdrop-blur-md lg:max-w-xs">
+              <span className="font-mono text-xs uppercase tracking-wider text-mutedText">
                 Official Hub
               </span>
-              <h3 className="mt-1 text-base font-bold text-black dark:text-white">
+              <h3 className="mt-1 text-base font-bold text-primaryText">
                 Axes Lab Platform
               </h3>
-              <p className="mt-1 text-xs text-black/60 dark:text-white/60">
+              <p className="mt-1 text-xs text-mutedText-secondary">
                 Full resource catalog, MCP agents, and developer documentation.
               </p>
               <a
                 href="https://axeslab.zainaxes.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center justify-between rounded-xl bg-black px-4 py-2.5 text-xs font-semibold text-white transition-all hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/90"
+                className="mt-4 inline-flex items-center justify-between rounded-xl bg-state-inverse px-4 py-2.5 text-xs font-semibold text-state-inverseText transition-all hover:opacity-90"
               >
                 <span>Visit axeslab.zainaxes.com</span>
                 <ArrowRight className="h-3.5 w-3.5" />

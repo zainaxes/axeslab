@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Bookmark, Send, Menu, X, Layers, Shield } from "lucide-react";
+import { Search, Sparkles, Terminal, Menu, X, ArrowUpRight } from "lucide-react";
 import SearchModal from "./SearchModal";
 
 export default function Header() {
@@ -11,7 +11,6 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Global keyboard shortcut '/' or 'Ctrl+K' / 'Cmd+K'
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (
@@ -33,9 +32,8 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { name: "Explore", href: "/explore" },
-    { name: "Web Design", href: "/web-design" },
-    { name: "Prompts", href: "/prompts" },
+    { name: "Prompts & UI", href: "/web-design" },
+    { name: "Explore All", href: "/explore" },
     { name: "Agent Skills", href: "/skills" },
     { name: "MCP Servers", href: "/mcp" },
     { name: "Models", href: "/models" },
@@ -44,39 +42,34 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-canvas/95 backdrop-blur-sm border-b border-subtleBorder">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between gap-4">
-          {/* Brand Wordmark */}
-          <div className="flex items-center gap-6 flex-shrink-0">
-            <Link
-              href="/"
-              className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primaryText rounded-btn p-1"
-            >
-              <div className="w-8 h-8 rounded-btn bg-state-inverse text-state-inverseText flex items-center justify-center font-bold text-base tracking-tighter shadow-sm">
-                AL
-              </div>
-              <div>
-                <span className="font-bold text-lg text-primaryText tracking-tight block leading-tight">
-                  Axes Lab
-                </span>
-                <span className="text-[10px] text-mutedText-secondary font-medium tracking-wide uppercase hidden sm:block">
-                  Discover the tools behind AI
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#07070A]/85 backdrop-blur-2xl">
+        <div className="mx-auto flex h-16 sm:h-[70px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          {/* Brand Wordmark & Live Beacon */}
+          <div className="flex items-center gap-6">
+            <Link href="/" className="group flex items-center gap-2.5">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-white/5 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-transform duration-300 group-hover:scale-105 group-hover:border-sky-400/50 group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                <Terminal className="h-4 w-4 text-sky-400" />
+              </span>
+              <div className="flex flex-col">
+                <span className="text-sm font-black tracking-wider text-white">AXES LAB</span>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 group-hover:text-sky-300 transition-colors">
+                  AI Resource Directory
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+            <nav className="hidden items-center gap-1 sm:flex pl-4 border-l border-white/10">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+                const isActive = pathname === link.href || pathname?.startsWith(link.href + "/");
                 return (
                   <Link
-                    key={link.href}
+                    key={link.name}
                     href={link.href}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-btn transition-colors ${
+                    className={`rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition-all ${
                       isActive
-                        ? "bg-state-selected text-primaryText font-bold"
-                        : "text-mutedText-secondary hover:text-primaryText hover:bg-state-hover"
+                        ? "bg-white/10 text-white font-semibold shadow-xs"
+                        : "text-zinc-400 hover:bg-white/5 hover:text-white"
                     }`}
                   >
                     {link.name}
@@ -86,100 +79,78 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Search Trigger (Center/Right) */}
-          <div className="flex-1 max-w-md mx-2 sm:mx-4">
+          {/* Right Action Suite */}
+          <div className="flex items-center gap-3">
+            {/* Search Trigger */}
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
-              className="w-full h-10 px-3 sm:px-4 rounded-input border border-subtleBorder bg-surface-strong text-mutedText text-xs sm:text-sm flex items-center justify-between hover:border-subtleBorder-strong transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primaryText"
-              aria-label="Open search dialog"
+              className="hidden sm:inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs text-zinc-300 hover:border-white/30 hover:bg-white/10 transition-all shadow-xs"
+              title="Search directory (Cmd+K)"
             >
-              <div className="flex items-center gap-2 truncate">
-                <Search className="w-4 h-4 text-mutedText flex-shrink-0" />
-                <span className="truncate">Search prompts, skills, MCP servers...</span>
-              </div>
-              <kbd className="hidden sm:inline-block font-mono text-[10px] bg-canvas border border-subtleBorder px-1.5 py-0.5 rounded text-mutedText-secondary">
-                /
+              <Search className="h-3.5 w-3.5 text-zinc-400" />
+              <span>Search</span>
+              <kbd className="rounded border border-white/15 bg-black/40 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400">
+                ⌘K
               </kbd>
             </button>
-          </div>
 
-          {/* Right Action Links */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <Link
-              href="/saved"
-              className="p-2 text-mutedText-secondary hover:text-primaryText hover:bg-state-hover rounded-btn transition-colors flex items-center gap-1.5 text-xs font-medium"
-              title="Saved Resources"
-              aria-label="Saved Resources"
+            {/* Platform Official Link CTA */}
+            <a
+              href="https://axeslab.zainaxes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-sky-500/30 bg-sky-950/40 px-3.5 py-1.5 font-mono text-xs font-semibold text-sky-300 shadow-[0_0_15px_rgba(14,165,233,0.15)] backdrop-blur-md transition-all hover:bg-sky-900/40 hover:border-sky-400/50 hover:shadow-[0_0_20px_rgba(14,165,233,0.3)]"
             >
-              <Bookmark className="w-4 h-4" />
-              <span className="hidden md:inline">Saved</span>
-            </Link>
+              <span>axeslab.zainaxes.com</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            </a>
 
-            <Link
-              href="/submit"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-btn bg-surface border border-subtleBorder hover:bg-state-hover text-primaryText transition-colors"
-            >
-              <Send className="w-3.5 h-3.5" />
-              Submit
-            </Link>
-
-            <Link
-              href="/admin"
-              className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-2 rounded-btn text-mutedText-secondary hover:text-primaryText hover:bg-state-hover transition-colors"
-              title="Admin Panel"
-            >
-              <Shield className="w-3.5 h-3.5" />
-            </Link>
-
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Trigger */}
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-primaryText hover:bg-state-hover rounded-btn transition-colors"
-              aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+              className="rounded-lg p-2 text-zinc-400 hover:bg-white/10 hover:text-white sm:hidden"
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-subtleBorder bg-surface px-4 py-4 space-y-2">
-            <div className="grid grid-cols-2 gap-2 pb-3 border-b border-subtleBorder">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-3 py-2 text-xs font-semibold rounded-btn bg-surface-strong border border-subtleBorder text-primaryText"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-            <div className="flex items-center justify-between pt-2 text-xs">
+          <div className="border-t border-white/10 bg-[#07070A] p-4 sm:hidden space-y-2">
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsSearchOpen(true);
+              }}
+              className="flex w-full items-center justify-between rounded-xl border border-white/15 bg-white/5 p-3 text-xs text-zinc-300"
+            >
+              <span className="flex items-center gap-2">
+                <Search className="h-4 w-4" />
+                Search Directory
+              </span>
+              <kbd className="rounded border border-white/15 px-1.5 py-0.5 font-mono text-[10px]">⌘K</kbd>
+            </button>
+
+            {navLinks.map((link) => (
               <Link
-                href="/submit"
+                key={link.name}
+                href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-1.5 py-2 text-primaryText font-medium"
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-zinc-300 hover:bg-white/10 hover:text-white"
               >
-                <Send className="w-3.5 h-3.5" /> Submit Resource
+                {link.name}
               </Link>
-              <Link
-                href="/admin"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-1.5 py-2 text-mutedText-secondary font-medium"
-              >
-                <Shield className="w-3.5 h-3.5" /> Admin Panel
-              </Link>
-            </div>
+            ))}
           </div>
         )}
       </header>
 
-      {/* Global Search Palette */}
+      {/* Global Command Palette / Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );

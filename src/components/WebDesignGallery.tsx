@@ -48,10 +48,10 @@ export function WebDesignGallery({
             placeholder="Search prompts (e.g., Hero, SaaS, Glassmorphism, 3D)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 pl-10 text-sm backdrop-blur-md outline-none transition-all placeholder:text-black/40 focus:border-black/30 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:placeholder:text-white/40 dark:focus:border-white/30 dark:focus:bg-black"
+            className="w-full rounded-xl border border-subtleBorder bg-surface/80 px-4 py-2.5 pl-10 text-sm text-primaryText backdrop-blur-md outline-none transition-all placeholder:text-mutedText focus:border-subtleBorder-strong focus:bg-surface-strong"
           />
           <svg
-            className="absolute left-3.5 top-3 h-4 w-4 text-black/40 dark:text-white/40"
+            className="absolute left-3.5 top-3 h-4 w-4 text-mutedText"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -66,8 +66,8 @@ export function WebDesignGallery({
         </div>
 
         {/* Counter */}
-        <div className="font-mono text-xs text-black/50 dark:text-white/50">
-          Showing <span className="font-bold text-black dark:text-white">{filteredResources.length}</span> of {resources.length} Prompts
+        <div className="font-mono text-xs text-mutedText">
+          Showing <span className="font-bold text-primaryText">{filteredResources.length}</span> of {resources.length} Prompts
         </div>
       </div>
 
@@ -76,10 +76,10 @@ export function WebDesignGallery({
         <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-2">
           <button
             onClick={() => setActiveCategory("all")}
-            className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-mono font-medium transition-colors ${
+            className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-mono font-medium transition-all ${
               activeCategory === "all"
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-black/5 text-black/70 hover:bg-black/10 dark:bg-white/10 dark:text-white/70 dark:hover:bg-white/20"
+                ? "bg-state-inverse text-state-inverseText shadow-sm"
+                : "bg-surface border border-subtleBorder text-mutedText hover:text-primaryText hover:bg-surface-strong"
             }`}
           >
             All Categories ({resources.length})
@@ -88,10 +88,10 @@ export function WebDesignGallery({
             <button
               key={cat.slug}
               onClick={() => setActiveCategory(cat.name)}
-              className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-mono font-medium transition-colors ${
+              className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-mono font-medium transition-all ${
                 activeCategory.toLowerCase() === cat.name.toLowerCase()
-                  ? "bg-black text-white dark:bg-white dark:text-black"
-                  : "bg-black/5 text-black/70 hover:bg-black/10 dark:bg-white/10 dark:text-white/70 dark:hover:bg-white/20"
+                  ? "bg-state-inverse text-state-inverseText shadow-sm"
+                  : "bg-surface border border-subtleBorder text-mutedText hover:text-primaryText hover:bg-surface-strong"
               }`}
             >
               {cat.name} ({cat.count})
