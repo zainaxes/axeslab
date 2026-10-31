@@ -8,13 +8,13 @@ import { Sparkles, Layers, Video, ShieldCheck, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Web Design Prompts & UI Components — Axes Lab",
   description:
-    "Curated collection of 350+ production-grade web design prompts, hero components, full landing pages, and interactive UI animations. Explore at axeslab.zainaxes.com.",
+    "Curated collection of 640+ production-grade web design prompts, hero sections, full landing pages, motion backgrounds, and interactive UI animations. Explore at axeslab.zainaxes.com.",
 };
 
 export default function WebDesignPage() {
   const result = getResources({
     categorySlug: "web-design",
-    limit: 500, // retrieve all 350 prompts
+    limit: 1000, // retrieve all 640+ prompts
     sort: "recent",
   });
 
@@ -46,9 +46,9 @@ export default function WebDesignPage() {
             <div className="max-w-3xl space-y-4">
               <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-mono font-medium dark:border-white/10 dark:bg-white/10">
                 <Sparkles className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>350+ CURATED PROMPTS</span>
+                <span>640+ CURATED PROMPTS</span>
                 <span>•</span>
-                <span className="text-black/60 dark:text-white/60">WEB DESIGN</span>
+                <span className="text-black/60 dark:text-white/60">WEB DESIGN & UI MOTION</span>
               </div>
 
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -56,7 +56,7 @@ export default function WebDesignPage() {
               </h1>
 
               <p className="text-lg text-black/70 dark:text-white/70 leading-relaxed max-w-2xl">
-                Explore 350 production-grade web design prompts with pixel-perfect visual previews, interactive videos, and copy-ready specifications. Designed & verified by Axes Lab.
+                Explore 640+ production-grade web design prompts with pixel-perfect visual previews, interactive videos, motion backgrounds, and copy-ready specifications. Designed & verified by Axes Lab.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-black/60 dark:text-white/60">
@@ -66,7 +66,7 @@ export default function WebDesignPage() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Layers className="h-4 w-4" />
-                  <span>95 UI Design Categories</span>
+                  <span>120+ UI Design Categories</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
