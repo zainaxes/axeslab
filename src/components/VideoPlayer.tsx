@@ -1,5 +1,8 @@
-import React from "react";
-import { getYouTubeEmbedUrl, isYouTubeUrl } from "@/lib/video-utils";
+"use client";
+
+import React, { useState } from "react";
+import { getYouTubeEmbedUrl, getYouTubeThumbnailUrl, isYouTubeUrl } from "@/lib/video-utils";
+import { Play } from "lucide-react";
 
 interface VideoPlayerProps {
   posterUrl?: string;
@@ -7,7 +10,6 @@ interface VideoPlayerProps {
   youtubeUrl?: string;
   title: string;
   aspectRatio?: string;
-  autoPlayOnHover?: boolean;
   controls?: boolean;
   className?: string;
 }
@@ -21,36 +23,73 @@ export function VideoPlayer({
   controls = true,
   className = "",
 }: VideoPlayerProps) {
-  // If a YouTube URL or Video ID is provided, render high-performance YouTube iframe
-  const ytEmbed = getYouTubeEmbedUrl(youtubeUrl);
-  if (ytEmbed) {
+  const [isPlayingYouTube, setIsPlayingYouTube] = useState(false);
+
+  const isYT = isYouTubeUrl(youtubeUrl);
+  const ytThumb = isYT ? getYouTubeThumbnailUrl(youtubeUrl) : null;
+  const effectivePoster = posterUrl || ytThumb || undefined;
+
+  // 1. YouTube Facade (Lightweight click-to-load)
+  if (isYT && youtubeUrl) {
+    if (isPlayingYouTube) {
+      const ytEmbed = getYouTubeEmbedUrl(youtubeUrl, true);
+      return (
+        <div className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}>
+          <iframe
+            src={ytEmbed || ""}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        </div>
+      );
+    }
+
     return (
       <div
-        className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}
+        onClick={() => setIsPlayingYouTube(true)}
+        className={`group relative w-full cursor-pointer overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}
       >
-        <iframe
-          src={ytEmbed}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="absolute inset-0 h-full w-full border-0"
-        />
+        {effectivePoster ? (
+          <img
+            src={effectivePoster}
+            alt={title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="h-full w-full bg-zinc-900" />
+        )}
+
+        {/* Ambient Overlay & Play Facade Button */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] transition-colors group-hover:bg-black/20">
+          <button
+            type="button"
+            aria-label={`Play video for ${title}`}
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-black shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-white"
+          >
+            <Play className="ml-1 h-6 w-6 fill-current" />
+          </button>
+        </div>
+
+        <div className="absolute bottom-3 left-3 rounded-md bg-black/70 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-white backdrop-blur-md">
+          Click to Play Video
+        </div>
       </div>
     );
   }
 
-  // If standard MP4 video URL is provided
+  // 2. Standard MP4 / WebM with preload="none" (Zero initial network overhead)
   if (videoUrl) {
     return (
-      <div
-        className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}
-      >
+      <div className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}>
         <video
           src={videoUrl}
-          poster={posterUrl}
+          poster={effectivePoster}
           controls={controls}
           playsInline
-          preload="metadata"
+          preload="none"
           className="h-full w-full object-cover"
         >
           Your browser does not support the video tag.
@@ -59,14 +98,12 @@ export function VideoPlayer({
     );
   }
 
-  // Fallback to poster image if no video available
-  if (posterUrl) {
+  // 3. Fallback to lightweight poster
+  if (effectivePoster) {
     return (
-      <div
-        className={`relative w-full overflow-hidden rounded-xl bg-black/5 dark:bg-white/5 ${aspectRatio} ${className}`}
-      >
+      <div className={`relative w-full overflow-hidden rounded-xl bg-black/5 dark:bg-white/5 ${aspectRatio} ${className}`}>
         <img
-          src={posterUrl}
+          src={effectivePoster}
           alt={title}
           loading="lazy"
           className="h-full w-full object-cover"
@@ -76,10 +113,8 @@ export function VideoPlayer({
   }
 
   return (
-    <div
-      className={`flex items-center justify-center rounded-xl bg-black/5 dark:bg-white/5 font-mono text-xs text-black/40 dark:text-white/40 ${aspectRatio} ${className}`}
-    >
-      Preview Media Available Soon
+    <div className={`flex items-center justify-center rounded-xl bg-black/5 font-mono text-xs text-black/40 dark:bg-white/5 dark:text-white/40 ${aspectRatio} ${className}`}>
+      Media Preview Coming Soon
     </div>
   );
 }

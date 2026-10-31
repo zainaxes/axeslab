@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { getDb } from "@/lib/db";
+import { getYouTubeThumbnailUrl, isYouTubeUrl } from "@/lib/video-utils";
 
 const MAPPINGS_PATH = path.join(process.cwd(), "data", "video_mappings.json");
 
@@ -50,11 +51,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Set or remove
-    mappings[slug] = typeof videoUrl === "string" ? videoUrl.trim() : "";
+    const cleanVideoUrl = typeof videoUrl === "string" ? videoUrl.trim() : "";
+    mappings[slug] = cleanVideoUrl;
     fs.writeFileSync(MAPPINGS_PATH, JSON.stringify(mappings, null, 2), "utf8");
 
-    // Also update SQLite metadata_json if resource exists
+    // Automatically sync to SQLite metadata_json
     try {
       const db = getDb();
       const row = db.prepare("SELECT metadata_json FROM resources WHERE slug = ?").get(slug) as
@@ -62,8 +63,17 @@ export async function POST(req: NextRequest) {
         | undefined;
       if (row) {
         const meta = row.metadata_json ? JSON.parse(row.metadata_json) : {};
-        meta.youtube_video_id = mappings[slug];
-        meta.custom_video_url = mappings[slug];
+        meta.youtube_video_id = cleanVideoUrl;
+        meta.custom_video_url = cleanVideoUrl;
+
+        // If it's a YouTube link, automatically set high-res poster fallback if poster is absent
+        if (cleanVideoUrl && isYouTubeUrl(cleanVideoUrl)) {
+          const ytThumb = getYouTubeThumbnailUrl(cleanVideoUrl);
+          if (ytThumb && (!meta.posterUrl || meta.posterUrl.includes("via.placeholder"))) {
+            meta.posterUrl = ytThumb;
+          }
+        }
+
         db.prepare(
           "UPDATE resources SET metadata_json = ?, updated_at = ? WHERE slug = ?"
         ).run(JSON.stringify(meta), new Date().toISOString(), slug);
@@ -76,7 +86,7 @@ export async function POST(req: NextRequest) {
       success: true,
       slug,
       video: mappings[slug],
-      message: `Video mapping for ${slug} updated successfully.`,
+      message: `Video preview mapping for ${slug} updated successfully.`,
     });
   } catch (error) {
     return NextResponse.json(

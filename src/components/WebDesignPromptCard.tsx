@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { Resource } from "@/types";
 import { Copy, Check, Eye } from "lucide-react";
-import { getYouTubeEmbedUrl } from "@/lib/video-utils";
+import { getYouTubeThumbnailUrl, isYouTubeUrl } from "@/lib/video-utils";
 
 interface WebDesignPromptCardProps {
   resource: Resource;
@@ -22,23 +22,23 @@ export function WebDesignPromptCard({
   const metadata = resource.parsed_metadata || {};
   const videoUrl = metadata.custom_video_url || metadata.effectUrl || metadata.default_video_url;
   const youtubeUrl = metadata.youtube_video_id || metadata.custom_video_url;
-  const posterUrl = metadata.posterUrl;
+  const rawPoster = metadata.posterUrl;
   const categoryName = metadata.categoryName || resource.subcategory_name || "Web Design";
 
-  const isYouTube = Boolean(getYouTubeEmbedUrl(youtubeUrl));
+  const isYT = isYouTubeUrl(youtubeUrl);
+  // Auto-resolve YouTube high-res thumbnail if poster is not explicitly set
+  const posterUrl = rawPoster || (isYT ? getYouTubeThumbnailUrl(youtubeUrl) : null);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current && !isYouTube) {
-      videoRef.current.play().catch(() => {
-        // Autoplay policy prevented playback
-      });
+    if (videoRef.current && !isYT) {
+      videoRef.current.play().catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (videoRef.current && !isYouTube) {
+    if (videoRef.current && !isYT) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
@@ -52,9 +52,7 @@ export function WebDesignPromptCard({
       await navigator.clipboard.writeText(resource.content_body);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Fallback
-    }
+    } catch {}
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
@@ -71,26 +69,27 @@ export function WebDesignPromptCard({
       onClick={handleCardClick}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-xl dark:border-white/10 dark:bg-[#111111] dark:hover:border-white/20 cursor-pointer"
     >
-      {/* 16/10 Media Container */}
+      {/* 16/10 Ultra-Light Media Container */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/5 dark:bg-black">
-        {/* Poster Image */}
+        {/* Lightweight Poster Image (Always visible first, 0 video weight) */}
         {posterUrl && (
           <img
             src={posterUrl}
             alt={resource.title}
             loading="lazy"
+            decoding="async"
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-              isHovered && videoUrl && !isYouTube ? "opacity-0" : "opacity-100"
+              isHovered && videoUrl && !isYT ? "opacity-0" : "opacity-100"
             }`}
           />
         )}
 
-        {/* Looping Hover Video (standard MP4) */}
-        {videoUrl && !isYouTube && (
+        {/* Looping Hover Video (Strictly preload="none" - only streams on active mouse hover) */}
+        {videoUrl && !isYT && (
           <video
             ref={videoRef}
             src={videoUrl}
-            poster={posterUrl}
+            poster={posterUrl || undefined}
             muted
             loop
             playsInline
