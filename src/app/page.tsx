@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { getCategories, getResources, getCollections, getStats } from "@/lib/queries";
 import ResourceCard from "@/components/ResourceCard";
+import { HeroSection } from "@/components/HeroSection";
 import {
   Terminal,
   Boxes,
@@ -46,52 +47,22 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16 py-4">
-      {/* 1. Above-the-fold Search & Browse Intro */}
-      <section className="pt-6 sm:pt-10 pb-8 text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-btn bg-surface border border-subtleBorder text-xs font-semibold text-mutedText-secondary mb-4">
-          <span className="w-2 h-2 rounded-full bg-state-success" />
-          Independent AI Resource Library
-        </div>
+      {/* 1. Above-the-fold Rebuilt Hero with Vibrant Abstract Video & High-Contrast Typography */}
+      <HeroSection totalPublished={stats.totalPublished} />
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
-          Discover the tools behind AI.
-        </h1>
-
-        <p className="text-sm sm:text-base text-mutedText-secondary leading-relaxed mb-8 max-w-2xl mx-auto">
-          A calm, precise reference library of verified prompts, agent skills, MCP servers,
-          workflows, and open-source models. Free to search, inspect, and evaluate.
-        </p>
-
-        {/* Global Search Bar (prominent) */}
-        <div className="relative max-w-xl mx-auto mb-4">
+      {/* Quick Search Suggestions */}
+      <div className="-mt-8 flex items-center justify-center gap-2 flex-wrap text-xs text-mutedText">
+        <span className="text-[11px] uppercase tracking-wider font-semibold">Popular queries:</span>
+        {["Postgres MCP", "Code review skill", "Product photography", "SWE-bench", "Local model", "Web design"].map((term) => (
           <Link
-            href="/explore"
-            className="w-full h-12 px-4 rounded-input border border-subtleBorder bg-surface-strong text-mutedText text-sm flex items-center justify-between hover:border-subtleBorder-strong shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primaryText"
+            key={term}
+            href={`/explore?q=${encodeURIComponent(term)}`}
+            className="px-3 py-1 rounded-full bg-surface border border-subtleBorder hover:bg-state-hover text-primaryText transition-colors font-medium shadow-2xs"
           >
-            <div className="flex items-center gap-3">
-              <Search className="w-4 h-4 text-primaryText" />
-              <span>Search {stats.totalPublished} verified resources by task, client, or protocol...</span>
-            </div>
-            <kbd className="font-mono text-xs bg-canvas border border-subtleBorder px-2 py-0.5 rounded text-mutedText-secondary">
-              /
-            </kbd>
+            {term}
           </Link>
-        </div>
-
-        {/* Example Search Chips */}
-        <div className="flex items-center justify-center gap-2 flex-wrap text-xs text-mutedText">
-          <span className="text-[11px] uppercase tracking-wider font-semibold">Try:</span>
-          {["Postgres MCP", "Code review skill", "Product photography", "SWE-bench", "Local model"].map((term) => (
-            <Link
-              key={term}
-              href={`/explore?q=${encodeURIComponent(term)}`}
-              className="px-2.5 py-1 rounded bg-surface border border-subtleBorder hover:bg-state-hover text-primaryText transition-colors font-medium"
-            >
-              {term}
-            </Link>
-          ))}
-        </div>
-      </section>
+        ))}
+      </div>
 
       {/* 2. Browse by Resource Type */}
       <section>
