@@ -1,4 +1,4 @@
-const BASE = "http://localhost:3005";
+const BASE = "http://127.0.0.1:3000";
 
 async function runTests() {
   console.log("=== AXES LAB ROUTE & SPECIFICATION VERIFICATION ===\n");
@@ -6,6 +6,9 @@ async function runTests() {
   const routes = [
     { path: "/", expectContent: "Discover the tools behind AI" },
     { path: "/explore", expectContent: "Explore All Resources" },
+    { path: "/web-design", expectContent: "Web Design Prompt Library" },
+    { path: "/resource/digital-director", expectContent: "Digital Director" },
+    { path: "/resource/relocation-card", expectContent: "Relocation Card" },
     { path: "/prompts", expectContent: "Prompts" },
     { path: "/prompts/image-generation", expectContent: "Image Generation" },
     { path: "/mcp", expectContent: "MCP Servers" },

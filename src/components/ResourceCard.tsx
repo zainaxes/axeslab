@@ -88,6 +88,18 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
           </Link>
         </h3>
 
+        {/* Poster / Video Thumbnail for Web Design prompts */}
+        {resource.parsed_metadata?.posterUrl && (
+          <div className="relative mb-3 aspect-[16/10] w-full overflow-hidden rounded-lg border border-subtleBorder bg-black/5 dark:bg-white/5">
+            <img
+              src={resource.parsed_metadata.posterUrl}
+              alt={resource.title}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+        )}
+
         {/* Concise Plain-Language Summary */}
         <p className="text-xs text-mutedText-secondary leading-relaxed line-clamp-3 mb-4">
           {resource.summary}

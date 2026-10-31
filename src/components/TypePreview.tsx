@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { Resource } from "@/types";
-import { Copy, Check, Terminal, ShieldAlert, Cpu, Box, Server, FolderTree, AlertTriangle } from "lucide-react";
+import { Copy, Check, Terminal, ShieldAlert, Cpu, Box, Server, FolderTree, AlertTriangle, ExternalLink } from "lucide-react";
+import { VideoPlayer } from "./VideoPlayer";
 
 export default function TypePreview({ resource }: { resource: Resource }) {
   const [copied, setCopied] = useState(false);
@@ -17,8 +18,44 @@ export default function TypePreview({ resource }: { resource: Resource }) {
 
   // 1. Prompts
   if (resource.resource_type === "prompt") {
+    const videoUrl = metadata.custom_video_url || metadata.effectUrl || metadata.default_video_url;
+    const youtubeUrl = metadata.youtube_video_id || metadata.custom_video_url;
+    const posterUrl = metadata.posterUrl;
+    const hasMedia = Boolean(videoUrl || youtubeUrl || posterUrl);
+
     return (
       <div className="space-y-6">
+        {/* Visual / Video Preview Player */}
+        {hasMedia && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono uppercase tracking-wider text-mutedText">
+                Interactive Preview & Video Demonstration
+              </span>
+              <a
+                href="https://axeslab.zainaxes.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-mono text-mutedText hover:text-primaryText"
+              >
+                <span>axeslab.zainaxes.com</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+
+            <div className="overflow-hidden rounded-panel border border-subtleBorder shadow-sm">
+              <VideoPlayer
+                posterUrl={posterUrl}
+                videoUrl={videoUrl}
+                youtubeUrl={youtubeUrl}
+                title={resource.title}
+                aspectRatio="aspect-[16/10]"
+                controls={true}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Main Prompt Body */}
         {resource.content_body && (
           <div className="rounded-panel border border-subtleBorder-strong bg-surface-strong overflow-hidden">

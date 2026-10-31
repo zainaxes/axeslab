@@ -119,6 +119,19 @@ export interface ResourceMetadata {
   // Tools & Utilities
   deployment_model?: string;
   account_requirement?: string;
+
+  // Web Design & Video Player Media
+  posterUrl?: string;
+  effectUrl?: string;
+  mediaKind?: string;
+  aspectRatio?: string;
+  categoryName?: string;
+  accessLevel?: string;
+  youtube_video_id?: string;
+  custom_video_url?: string;
+  default_video_url?: string;
+  officialSiteUrl?: string;
+  brand?: string;
 }
 
 export interface Resource {

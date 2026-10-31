@@ -34,6 +34,7 @@ export default function Header() {
 
   const navLinks = [
     { name: "Explore", href: "/explore" },
+    { name: "Web Design", href: "/web-design" },
     { name: "Prompts", href: "/prompts" },
     { name: "Agent Skills", href: "/skills" },
     { name: "MCP Servers", href: "/mcp" },

@@ -1,4 +1,6 @@
 import { getDb } from "./db";
+import fs from "node:fs";
+import path from "node:path";
 import {
   Category,
   Resource,
@@ -8,6 +10,37 @@ import {
   AuditLogEntry,
   Source,
 } from "@/types";
+
+const MAPPINGS_PATH = path.join(process.cwd(), "data", "video_mappings.json");
+
+function getLiveVideoMapping(slug: string): string | null {
+  try {
+    if (fs.existsSync(MAPPINGS_PATH)) {
+      const data = JSON.parse(fs.readFileSync(MAPPINGS_PATH, "utf8"));
+      if (data && typeof data[slug] === "string" && data[slug].trim().length > 0) {
+        return data[slug].trim();
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+function attachMetadataAndVideo(resource: Resource) {
+  try {
+    resource.parsed_metadata = resource.metadata_json ? JSON.parse(resource.metadata_json) : {};
+  } catch {
+    resource.parsed_metadata = {};
+  }
+
+  // Check if live video_mappings.json has an override for this slug
+  const overrideVideo = getLiveVideoMapping(resource.slug);
+  if (overrideVideo && resource.parsed_metadata) {
+    resource.parsed_metadata.youtube_video_id = overrideVideo;
+    resource.parsed_metadata.custom_video_url = overrideVideo;
+  }
+}
 
 function toPlain<T>(data: T): T {
   return JSON.parse(JSON.stringify(data));
@@ -217,11 +250,7 @@ export function getResources(options: ResourceFilterOptions = {}) {
       )
       .all(row.id) as Array<{ name: string }>;
     row.tags = tags.map((t) => t.name);
-    try {
-      row.parsed_metadata = row.metadata_json ? JSON.parse(row.metadata_json) : {};
-    } catch {
-      row.parsed_metadata = {};
-    }
+    attachMetadataAndVideo(row);
   }
 
   return toPlain({
@@ -260,11 +289,7 @@ export function getResourceBySlug(slug: string): Resource | null {
     .all(row.id) as Array<{ name: string }>;
   row.tags = tags.map((t) => t.name);
 
-  try {
-    row.parsed_metadata = row.metadata_json ? JSON.parse(row.metadata_json) : {};
-  } catch {
-    row.parsed_metadata = {};
-  }
+  attachMetadataAndVideo(row);
 
   return toPlain(row);
 }
@@ -301,11 +326,7 @@ export function getRelatedResources(resourceId: string, categoryId: string, subc
       )
       .all(row.id) as Array<{ name: string }>;
     row.tags = tags.map((t) => t.name);
-    try {
-      row.parsed_metadata = row.metadata_json ? JSON.parse(row.metadata_json) : {};
-    } catch {
-      row.parsed_metadata = {};
-    }
+    attachMetadataAndVideo(row);
   }
   return toPlain(rows);
 }
