@@ -84,6 +84,7 @@ export function PromptModal({ resource, isOpen, onClose }: PromptModalProps) {
               title={resource.title}
               aspectRatio="aspect-[16/10]"
               controls={true}
+              categoryName={categoryName}
             />
           </div>
 

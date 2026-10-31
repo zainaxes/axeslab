@@ -4,7 +4,12 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { Resource } from "@/types";
 import { Copy, Check, Eye } from "lucide-react";
-import { getYouTubeThumbnailUrl, isYouTubeUrl } from "@/lib/video-utils";
+import {
+  getYouTubeThumbnailUrl,
+  isYouTubeUrl,
+  getProxiedMediaUrl,
+  getCategoryFallbackPoster,
+} from "@/lib/video-utils";
 
 interface WebDesignPromptCardProps {
   resource: Resource;
@@ -20,14 +25,16 @@ export function WebDesignPromptCard({
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const metadata = resource.parsed_metadata || {};
-  const videoUrl = metadata.custom_video_url || metadata.effectUrl || metadata.default_video_url;
+  const rawVideoUrl = metadata.custom_video_url || metadata.effectUrl || metadata.default_video_url;
   const youtubeUrl = metadata.youtube_video_id || metadata.custom_video_url;
   const rawPoster = metadata.posterUrl;
   const categoryName = metadata.categoryName || resource.subcategory_name || "Web Design";
 
   const isYT = isYouTubeUrl(youtubeUrl);
-  // Auto-resolve YouTube high-res thumbnail if poster is not explicitly set
-  const posterUrl = rawPoster || (isYT ? getYouTubeThumbnailUrl(youtubeUrl) : null);
+  // Resolve reliable poster (either direct poster, youtube thumb, or category fallback)
+  const posterCandidate = rawPoster || (isYT ? getYouTubeThumbnailUrl(youtubeUrl) : null) || getCategoryFallbackPoster(categoryName, resource.title);
+  const posterUrl = posterCandidate ? getProxiedMediaUrl(posterCandidate) : null;
+  const videoUrl = rawVideoUrl ? getProxiedMediaUrl(rawVideoUrl) : null;
 
   const handleMouseEnter = () => {
     setIsHovered(true);

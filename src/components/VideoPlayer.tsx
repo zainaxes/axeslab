@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { getYouTubeEmbedUrl, getYouTubeThumbnailUrl, isYouTubeUrl } from "@/lib/video-utils";
+import {
+  getYouTubeEmbedUrl,
+  getYouTubeThumbnailUrl,
+  isYouTubeUrl,
+  getProxiedMediaUrl,
+  getCategoryFallbackPoster,
+} from "@/lib/video-utils";
 import { Play } from "lucide-react";
 
 interface VideoPlayerProps {
@@ -12,6 +18,7 @@ interface VideoPlayerProps {
   aspectRatio?: string;
   controls?: boolean;
   className?: string;
+  categoryName?: string;
 }
 
 export function VideoPlayer({
@@ -22,12 +29,15 @@ export function VideoPlayer({
   aspectRatio = "aspect-[16/10]",
   controls = true,
   className = "",
+  categoryName,
 }: VideoPlayerProps) {
   const [isPlayingYouTube, setIsPlayingYouTube] = useState(false);
 
   const isYT = isYouTubeUrl(youtubeUrl);
   const ytThumb = isYT ? getYouTubeThumbnailUrl(youtubeUrl) : null;
-  const effectivePoster = posterUrl || ytThumb || undefined;
+  const rawPoster = posterUrl || ytThumb || getCategoryFallbackPoster(categoryName, title);
+  const effectivePoster = rawPoster ? getProxiedMediaUrl(rawPoster) : undefined;
+  const effectiveVideo = videoUrl ? getProxiedMediaUrl(videoUrl) : undefined;
 
   // 1. YouTube Facade (Lightweight click-to-load)
   if (isYT && youtubeUrl) {
@@ -81,11 +91,11 @@ export function VideoPlayer({
   }
 
   // 2. Standard MP4 / WebM with preload="none" (Zero initial network overhead)
-  if (videoUrl) {
+  if (effectiveVideo) {
     return (
       <div className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}>
         <video
-          src={videoUrl}
+          src={effectiveVideo}
           poster={effectivePoster}
           controls={controls}
           playsInline
