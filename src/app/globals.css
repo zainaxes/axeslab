@@ -2,23 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Premium Dark Mode Foundation for Axes Lab */
 :root {
-  --color-canvas: #E9E9E0;
-  --color-text: #000000;
-  --color-surface: #F7F7F2;
-  --color-surface-strong: #FFFFFF;
-  --color-text-secondary: #46463F;
-  --color-text-muted: #66665E;
-  --color-border: #C9C9BF;
-  --color-border-strong: #99998F;
-  --color-hover: #DEDED5;
-  --color-selected: #D5D5CA;
-  --color-inverse: #000000;
-  --color-inverse-text: #E9E9E0;
-  --color-success: #245A3A;
-  --color-warning: #76500B;
-  --color-danger: #A12828;
-  --color-info: #244F70;
+  --color-canvas: #09090B;
+  --color-text: #F4F4F5;
+  --color-surface: #121215;
+  --color-surface-strong: #18181B;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
+  --color-border: #27272A;
+  --color-border-strong: #3F3F46;
+  --color-hover: #1F1F23;
+  --color-selected: #27272A;
+  --color-inverse: #FFFFFF;
+  --color-inverse-text: #09090B;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #0EA5E9;
 }
 
 body {
@@ -31,7 +32,7 @@ body {
 
 /* Accessible focus styling */
 :focus-visible {
-  outline: 2px solid #000000;
+  outline: 2px solid #FFFFFF;
   outline-offset: 2px;
 }
 
@@ -41,24 +42,22 @@ pre::-webkit-scrollbar {
   width: 6px;
 }
 pre::-webkit-scrollbar-track {
-  background: #F7F7F2;
+  background: #121215;
 }
 pre::-webkit-scrollbar-thumb {
-  background: #C9C9BF;
+  background: #27272A;
   border-radius: 3px;
 }
 pre::-webkit-scrollbar-thumb:hover {
-  background: #99998F;
+  background: #3F3F46;
 }
 
-/* Reduced motion respect */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

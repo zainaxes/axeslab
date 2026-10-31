@@ -9,29 +9,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#E9E9E0",
-        primaryText: "#000000",
+        canvas: "#09090B",
+        primaryText: "#F4F4F5",
         surface: {
-          DEFAULT: "#F7F7F2",
-          strong: "#FFFFFF",
+          DEFAULT: "#121215",
+          strong: "#18181B",
         },
         mutedText: {
-          DEFAULT: "#66665E",
-          secondary: "#46463F",
+          DEFAULT: "#71717A",
+          secondary: "#A1A1AA",
         },
         subtleBorder: {
-          DEFAULT: "#C9C9BF",
-          strong: "#99998F",
+          DEFAULT: "#27272A",
+          strong: "#3F3F46",
         },
         state: {
-          hover: "#DEDED5",
-          selected: "#D5D5CA",
-          inverse: "#000000",
-          inverseText: "#E9E9E0",
-          success: "#245A3A",
-          warning: "#76500B",
-          danger: "#A12828",
-          info: "#244F70",
+          hover: "#1F1F23",
+          selected: "#27272A",
+          inverse: "#FFFFFF",
+          inverseText: "#09090B",
+          success: "#10B981",
+          warning: "#F59E0B",
+          danger: "#EF4444",
+          info: "#0EA5E9",
         },
       },
       fontFamily: {
@@ -52,18 +52,17 @@ const config: Config = {
           "monospace",
         ],
       },
-      maxWidth: {
-        container: "1440px",
-      },
       borderRadius: {
-        card: "11px",
+        card: "12px",
+        panel: "16px",
         btn: "8px",
         input: "8px",
-        panel: "12px",
+      },
+      maxWidth: {
+        container: "1280px",
       },
     },
   },
   plugins: [],
 };
-
 export default config;
