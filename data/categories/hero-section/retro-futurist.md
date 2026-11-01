@@ -7,123 +7,87 @@ categorySlug: "hero-section"
 routeCollection: "sections"
 videoUrl: "/media/videos/retro-futurist.mp4"
 posterUrl: "/media/posters/retro-futurist.webp"
-chars: 5556
+chars: 5713
+sha256: "77349f561dcf23cb8d0dfc0b45f8acedd3505bff78a5eae8aa3be73f95768e4c"
 tier: "premium"
 likes: 101
 ---
 
-# Build Prompt: Retro-Futurist — Hero Section Experience
-Comprehensive Production Web Application Specification
+Build a full-screen hero landing page for a creative agency called "Mainframe" using React, TypeScript, Vite, and Tailwind CSS. Here is every detail:
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a full-screen hero landing page for a creative agency called "Mainframe" using React, TypeScript, Vite, and Tailwind CSS. Here is every detail: --- …
+---
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+FONTS
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+Load two fonts in `index.html` via these stylesheet links:
+- Heading: `https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium`
+- Body: `https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg`
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
-
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
-
-export interface RetroFuturistSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
+In `index.css`, define CSS variables:
+```css
+:root {
+  --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
 }
-
-export function RetroFuturistSection({
-  headline = "Retro-Futurist",
-  tagline = "Build a full-screen hero landing page for a creative agency called 'Mainframe' using React, TypeScript, Vite, and Tailwind CSS. Here is every detail: --- …",
-  onExplore
-}: RetroFuturistSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero Section
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
+body {
+  font-family: var(--font-body);
 }
 ```
 
+The entire page uses `var(--font-body)` except the logo text which uses `var(--font-heading)`.
+
+---
+
+BACKGROUND VIDEO (mouse-scrub controlled)
+
+- A full-screen `` element is `position: fixed; inset: 0; z-index: 0; object-fit: cover; object-position: 70% center;`.
+- Video source URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4`
+- The video is `muted`, `playsInline`, `preload="auto"`. It does NOT autoplay.
+- The video scrubs forward/backward based on horizontal mouse movement. Use a `mousemove` event listener on `window`. Track `prevX`, compute `delta = currentX - prevX`, convert to a time offset: `(delta / window.innerWidth)  SENSITIVITY  video.duration` where `SENSITIVITY = 0.8`. Clamp `targetTime` between 0 and `video.duration`. Use `video.currentTime` to seek, and an `onSeeked` handler to queue the next seek if `targetTime` has moved, preventing seek-flooding.
+
+---
+
+**NAVBAR (fixed, z-index: 10)**
+
+- Fixed to top, full width. Padding: `px-5 sm:px-8 py-4 sm:py-5`. Flex row, `justify-between`, `items-center`.
+- **Logo (left):** Flex row with `gap-3`. Text "Mainframe(R)" (use the registered trademark symbol) at `text-[21px] sm:text-[26px]`, `tracking-tight`, black, using `var(--font-heading)`. Beside it, a decorative asterisk character `✳︎` at `text-[25px] sm:text-[30px]`, black, `select-none`, `letter-spacing: -0.02em`.
+- **Desktop nav links (center, hidden below md):** Flex row, `text-[23px]`, black. Links: "Labs", "Studio", "Openings", "Shop" separated by commas rendered as `, `. Each link has `hover:opacity-60 transition-opacity`.
+- **Desktop CTA (right, hidden below md):** An anchor "Get in touch" at `text-[23px]`, black, `underline underline-offset-2`, `hover:opacity-60 transition-opacity`.
+- **Mobile hamburger (visible below md):** A button with 3 horizontal bars (each `w-6 h-[2px] bg-black`), spaced with `gap-[5px]`. On toggle, the top bar rotates 45deg and translates down 7px, middle bar fades to opacity 0, bottom bar rotates -45deg and translates up 7px. All transitions are `duration-300`.
+- **Mobile overlay (z-index: 9):** `fixed inset-0 bg-white/95 backdrop-blur-sm`, flex column, vertically centered, left-aligned with `px-8 gap-8`. Same links at `text-[32px] font-medium`, plus "Get in touch" underlined. Fades in/out with `opacity` and `pointerEvents` toggled. Hidden on md+.
+
+---
+
+**HERO SECTION (z-index: 1)**
+
+- Full `h-screen`, flex column. On mobile: `justify-end pb-12`. On `md:`: `justify-center pb-0`. Horizontal padding: `px-5 sm:px-8 md:px-10`. `overflow-hidden`.
+- Content container: `max-w-xl`, `relative z-10`.
+
+**1. Blurred intro label:**
+- `pointer-events-none`, `select-none`, `mb-5 sm:mb-6`.
+- Font size: `clamp(18px, 4vw, 26px)`, `line-height: 1.3`, `font-weight: 400`, `color: #000`, `filter: blur(4px)`.
+- Two lines of text:
+  - Line 1: "Hey there, meet A.R.I.A,"
+  - Line 2: "Mainframe's Adaptive Response Interface Agent"
+- Separated by a `
+`.
+
+**2. Typewriter text:**
+- Text: `"Glad you stopped in. Good taste tends to find us. Now, what are we building?"`
+- Custom `useTypewriter` hook: takes `text`, `speed` (default 38ms per character), `startDelay` (default 600ms). After the delay, an interval reveals one character at a time. Returns `{ displayed, done }`.
+- Rendered in a `
+
+` tag, black, `mb-5 sm:mb-6`, font size `clamp(18px, 4vw, 26px)`, `line-height: 1.35`, `font-weight: 400`, `min-height: 54px`.
+- While typing, show a blinking cursor: `inline-block w-[2px] h-[1.1em] bg-black align-middle ml-[2px]` with CSS animation `blink 1s step-end infinite` (`opacity: 1 at 0%/100%, 0 at 50%`). Cursor disappears when `done` is true.
+
+**3. Action pill buttons:**
+- Appear with a fade-in + slide-up animation (`opacity 0->1`, `translateY(8px)->0`, `transition: opacity 0.4s ease, transform 0.4s ease`). They become visible 400ms after page load, independent of the typewriter animation (do NOT wait for typing to finish).
+- Container: `flex flex-wrap gap-y-1`.
+- **4 white pill buttons:** Labels: "Pitch us an idea", "Come work here", "Send a brief hello", "See how we operate". Each is `inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] white-space: nowrap`. Hover: `bg-black text-white`, `transition-colors duration-200`.
+- **1 outline pill button:** Text "Reach us: hello@mainframe.co" (email is underlined with `underline-offset-1`), followed by a small 12x12 copy icon (inline SVG of two overlapping rectangles). Styled: `text-white bg-transparent border border-white rounded-full`, same sizing as above, with `gap-2 sm:gap-3` between text and icon. Hover: `bg-white text-black`. On click, copies "hello@mainframe.co" to clipboard via `navigator.clipboard.writeText()`.
+
+---
+
+DEPENDENCIES
+
+Only React, ReactDOM, Tailwind CSS, and Vite. No other UI libraries. Lucide-react is available but not used in this component.

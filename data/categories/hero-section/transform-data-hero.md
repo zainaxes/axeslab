@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/transform-data-hero.mp4"
 posterUrl: "/media/posters/transform-data-hero.jpg"
 chars: 3605
+sha256: "677d3fcb3c1f2fe378d9d463a05925f39951c343dbb3a22920cc0f604fe73f6b"
 tier: "premium"
 likes: 24
 ---

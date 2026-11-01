@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/design-rocket-email-hero.mp4"
 posterUrl: "/media/posters/design-rocket-email-hero.jpg"
 chars: 7971
+sha256: "4f0a14eaff1d21a3e4e703371e0afa825c1e0924f569fee01426c65746bf0cf6"
 tier: "premium"
 likes: 105
 ---

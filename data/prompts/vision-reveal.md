@@ -7,7 +7,8 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/vision-reveal.mp4"
 posterUrl: "/media/posters/vision-reveal.jpg"
-chars: 16616
+chars: 16723
+sha256: "e41755ecba41e0dbf5e3d55ce5da3460b733c903b91688335849269693bf8508"
 tier: "free"
 likes: 194
 ---
@@ -290,7 +291,7 @@ html, body {
 <div class="logo-wrapper">
   <div class="inner">
     <a href="/" aria-label="Home">
-      <img src="https://meez.design/web/media/ext/d903b3ffd22625df.svg" alt=""/>
+      <img src="https://framerusercontent.com/images/VMcS7YYTM5PXfXvlHc9u3hSCMM.svg" alt=""/>
     </a>
   </div>
 </div>
@@ -342,13 +343,13 @@ html, body {
 
   <!-- Base image -->
   <div class="hero-base-img hero-image-animate"
-       style="background-image:url('https://meez.design/web/media/ext/3e3e091d9b7dc534.png');">
+       style="background-image:url('https://soft-zoom-63098134.figma.site/_assets/v11/5c9f982199fde1d9b85a20e5396f0fa7bacaf9a3.png?w=2560');">
   </div>
 
   <!-- Reveal layer -->
   <canvas id="reveal-canvas"></canvas>
   <div class="hero-reveal-img" id="reveal-img"
-       style="background-image:url('https://meez.design/web/media/ext/e948533167791aef.png');">
+       style="background-image:url('https://soft-zoom-63098134.figma.site/_assets/v11/6be2165e31648955b4e071f4cf2a50bc572b9bfd.png?w=1536');">
   </div>
 
   <!-- Content -->

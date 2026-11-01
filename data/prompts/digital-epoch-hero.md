@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/digital-epoch-hero.mp4"
 posterUrl: "/media/posters/digital-epoch-hero.jpg"
 chars: 4594
+sha256: "98a578e9d85ce3e6d4a80b5fc09a94e31a8796088975de98245db90e56bfd3fb"
 tier: "premium"
 likes: 35
 ---

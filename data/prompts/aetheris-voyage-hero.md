@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/aetheris-voyage-hero.mp4"
 posterUrl: "/media/posters/aetheris-voyage-hero.jpg"
 chars: 10190
+sha256: "aa5f58f6ac4d3806dcbc1d54c34773bfaa8d8e37d80579513ccaad8135239694"
 tier: "premium"
 likes: 174
 ---

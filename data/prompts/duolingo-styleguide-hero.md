@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/duolingo-styleguide-hero.mp4"
 posterUrl: "/media/posters/duolingo-styleguide-hero.png"
 chars: 10776
+sha256: "899c74629c7ea16cca2c2d3e418b5c360b4138d9a810fe21f1281d10fa4c3f9e"
 tier: "premium"
 likes: 182
 ---

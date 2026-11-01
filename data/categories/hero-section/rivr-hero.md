@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/rivr-hero.mp4"
 posterUrl: "/media/posters/rivr-hero.jpg"
 chars: 8089
+sha256: "44771c0ba6fedb5aec274e001a93b1569b743749f45fa49a1c990c84efb6b1e9"
 tier: "premium"
 likes: 144
 ---

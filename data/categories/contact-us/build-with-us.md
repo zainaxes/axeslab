@@ -7,123 +7,87 @@ categorySlug: "contact-us"
 routeCollection: "prompts"
 videoUrl: "/media/videos/build-with-us.mp4"
 posterUrl: "/media/posters/build-with-us.jpg"
-chars: 5552
+chars: 6253
+sha256: "41b8f5989fa746155e0d44c72cc4378eb0ec03411a87495fc25524d61c1e167d"
 tier: "premium"
 likes: 98
 ---
 
-# Build Prompt: Build With Us — Contact us Experience
-Comprehensive Production Web Application Specification
+Build a single-page React + TypeScript + Vite + Tailwind site that is a full-screen video-background landing page with a contact form. Use `lucide-react` for icons.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a single-page React + TypeScript + Vite + Tailwind site that is a full-screen video-background landing page with a contact form. Use `lucide-react` for …
+**Layout & Sizing**
+- Root: `min-h-screen` white background with padding `p-3 sm:p-4 md:p-6`.
+- Inside the root, one large rounded card with `rounded-2xl sm:rounded-3xl`, `overflow-hidden`. Heights: `min-h-[calc(100vh-24px)] sm:min-h-[calc(100vh-32px)] md:min-h-[calc(100vh-48px)] lg:h-[calc(100vh-48px)]`. On desktop it locks to viewport; on tablet/mobile it expands to content.
+- Background video fills the card (`absolute inset-0 w-full h-full object-cover`). The video element has `autoPlay muted loop playsInline`. Use this exact URL:
+  ```
+  https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260602_150901_c45b90ec-18d7-42ff-90e2-b95d7109e330.mp4
+  ```
+- Content layer: `relative z-10 flex flex-col` with the same min-height ladder as the card and `lg:h-full`, padding `p-4 sm:p-6 md:p-8`, `gap-6`.
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+**Fonts**
+- Import from Google Fonts in `index.css`: `Inter` (weights 300–700) and `Instrument Serif` (italic + regular).
+- Set `* { font-family: 'Inter', sans-serif; }` globally.
+- Use `Instrument Serif` italic for one accent word inline (see headline below).
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+**Navbar (top)**
+- Pill bar with `bg-white/60 backdrop-blur-md rounded-2xl shadow-sm`, padding `pl-3 sm:pl-4 pr-2 py-2`, `w-full sm:w-auto`, `flex items-center gap-3 sm:gap-6`.
+- Logo: 32x32 inline SVG (`viewBox="0 0 256 256"`) with two black filled paths forming a stylized "M":
+  `M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z`.
+- Links (hidden on mobile, shown `sm:flex`): `Our story`, `Expertise`, `Our work`, `Journal` — class `text-gray-800 text-sm font-medium hover:opacity-60 transition-opacity whitespace-nowrap`.
+- CTA button on the right: black pill `bg-black text-white text-sm font-medium px-4 sm:px-5 py-2 rounded-xl hover:bg-gray-800` with label `Start a project`. On mobile it floats right with `ml-auto`.
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+**Spacer**
+- A `<div className="flex-1 min-h-[2rem]" />` between nav and the bottom row.
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+**Bottom row (headline + form)**
+- Container: `flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6`.
 
-export interface BuildWithUsSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
+**Headline (left)**
+- `<p>` with white text, `text-3xl sm:text-4xl xl:text-5xl font-medium leading-tight drop-shadow-lg lg:max-w-lg xl:max-w-2xl shrink-0`.
+- Content (with `<br />`):
+  `We craft bold ideas` / `and ship them as *products*`
+- The word `products` is wrapped in a `<span>` with inline style: `fontFamily: "'Instrument Serif', serif"`, `fontStyle: 'italic'`, `fontWeight: 400`.
 
-export function BuildWithUsSection({
-  headline = "Build With Us",
-  tagline = "Build a single-page React + TypeScript + Vite + Tailwind site that is a full-screen video-background landing page with a contact form. Use `lucide-react` for …",
-  onExplore
-}: BuildWithUsSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+**Contact form card (right)**
+- Outer: `w-full lg:w-[min(480px,45%)] shrink-0`.
+- Card: `bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden`, inner padding `p-4 sm:p-6`, `flex flex-col gap-4`.
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+1. **Heading:** `Say hello! 👋` — `text-xl sm:text-2xl font-semibold text-black tracking-tight`.
 
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Contact us
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
+2. **Email + socials row** (always horizontal): `flex flex-row items-center justify-between gap-3 bg-gray-50 rounded-2xl px-4 py-2.5`.
+   - Left: small grey label `Drop us a line`, then mailto link `hello@forma.co` in `text-blue-600 font-semibold hover:underline truncate`.
+   - Right: four 32x32 rounded-xl buttons (`w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity`) using lucide icons size 13:
+     - Twitter — `bg-gray-100 text-gray-800`
+     - Circle — `bg-pink-100 text-pink-500`
+     - Instagram — `bg-orange-100 text-orange-400`
+     - Linkedin — `bg-blue-100 text-blue-600`
+   - Extract this into a small `SocialBtn` helper component.
 
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+3. **OR divider:** horizontal lines on either side of the word `OR` (`text-gray-400 font-medium text-sm`, lines `flex-1 h-px bg-gray-200`).
 
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+4. **Form** (`flex flex-col gap-4`):
+   - Label `Tell us about your vision` (`text-sm font-medium text-black`).
+   - Name + Email inputs side by side on `sm:` (`flex flex-col sm:flex-row gap-2`), placeholders `Full name` and `Email`. Input style: `flex-1 min-w-0 text-sm px-3 py-2.5 rounded-xl border border-gray-200 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition`.
+   - Textarea, 4 rows, placeholder `What are you looking to build or improve...`, same input style plus `resize-none`.
+   - Service tags section: label `I need help with...`. Tags wrap (`flex flex-wrap gap-1.5`). Each tag is a button `text-xs font-medium px-3 py-2 rounded-lg border transition-all`. Inactive: `bg-white text-gray-700 border-gray-200 hover:border-gray-400`. Active (selected): `bg-gray-100 text-black border-black`. Multi-select toggle via state.
+     - Services list (exact order): `Website`, `Mobile App`, `Web App`, `E-Commerce`, `Visual Identity`, `3D & Motion`, `Digital Marketing`, `Growth & Consulting`, `Other`.
+   - Submit button: `w-full bg-black text-white text-sm font-semibold py-3 rounded-2xl hover:bg-gray-800 transition-colors disabled:opacity-60`. Label: `Send my message` (or `Sending...` while submitting).
 
+5. **Submit behavior:** On submit, set `sending=true`, await a 1-second fake delay (`new Promise(r => setTimeout(r, 1000))`), then show a success state in place of the form: centered column with `py-6 gap-3`, a 48x48 green check pill (`w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-xl` containing `✓`), heading `You're all set!` (`text-base font-semibold text-gray-900`), and subtext `Expect a reply within 24 hours.` (`text-sm text-gray-500`).
+
+**State (useState)**
+- `selected: string[]` (toggled service chips)
+- `name`, `email`, `message`: strings
+- `sending`, `sent`: booleans
+
+**Transitions/animations**
+- All interactive elements use Tailwind `transition-*` utilities (opacity, colors, all).
+- No external animation library; rely on Tailwind hover/focus transitions and `backdrop-blur-md` on the navbar.
+
+**Constants at the top of the file**
+- `VIDEO_URL` (the CloudFront URL above) and `SERVICES` array.
+
+**Files**
+- `src/App.tsx` — entire component plus `SocialBtn` helper.
+- `src/index.css` — Google Fonts import + Tailwind directives + global `* { font-family: 'Inter', sans-serif; }`.
+- Standard Vite + Tailwind config (`tailwind.config.js` scanning `./index.html` and `./src/**/*.{ts,tsx}`).

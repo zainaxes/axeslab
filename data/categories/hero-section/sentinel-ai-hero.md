@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/sentinel-ai-hero.mp4"
 posterUrl: "/media/posters/sentinel-ai-hero.jpg"
 chars: 5940
+sha256: "e52bab7ddad4744ce9c3e7058c7af3cab4dc95a53bd6c08964b5df55e00504ea"
 tier: "premium"
 likes: 46
 ---

@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/dot-hero.mp4"
 posterUrl: "/media/posters/dot-hero.jpg"
 chars: 3870
+sha256: "b59eeeb35cb978cb5c1d6a264a8e1bb32229b11c452f022a477ebf09500462d5"
 tier: "premium"
 likes: 42
 ---

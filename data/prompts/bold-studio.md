@@ -7,123 +7,86 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/bold-studio.mp4"
 posterUrl: "/media/posters/bold-studio.jpg"
-chars: 5533
+chars: 6067
+sha256: "7a7a7632a6a6cf5a7b33662151552eac3d8c335d70c7da85cb0180dba4946ab1"
 tier: "premium"
 likes: 98
 ---
 
-# Build Prompt: Bold Studio — Hero Experience
-Comprehensive Production Web Application Specification
+Build a fullscreen hero landing page for a creative agency called "VANGUARD" using React, Tailwind CSS, and Vite. The page should be a single viewport-height section with a looping background video and all content overlaid on top.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a fullscreen hero landing page for a creative agency called "VANGUARD" using React, Tailwind CSS, and Vite. The page should be a single viewport-height …
-
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
-
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
-
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
-
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
-
-export interface BoldStudioSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
-
-export function BoldStudioSection({
-  headline = "Bold Studio",
-  tagline = "Build a fullscreen hero landing page for a creative agency called 'VANGUARD' using React, Tailwind CSS, and Vite. The page should be a single viewport-height …",
-  onExplore
-}: BoldStudioSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
+**Background video:**
+Use this exact CloudFront URL as a fullscreen `<video>` element with `autoPlay`, `muted`, `loop`, and `playsInline` attributes, set to `object-cover` to fill the entire viewport:
+```
+https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4
 ```
 
+**Fonts (loaded in index.html):**
+1. "FSP DEMO - PODIUM Sharp 4.11" from `https://db.onlinewebfonts.com/c/8b75d9dcff6a48c35a46656192adf019?family=FSP+DEMO+-+PODIUM+Sharp+4.11` -- used for the brand name and main heading. Create a `.font-podium` utility class for it and register it in tailwind.config.js as `fontFamily.podium`.
+2. "Inter" from Google Fonts (weights 400, 500, 600, 700) -- used for body text, nav links, stats, and CTAs. Register it in tailwind.config.js as `fontFamily.inter`.
+
+**Icons:** Use `lucide-react` for all icons: `ArrowUpRight`, `Award`, `Crown`, and `X`.
+
+**Navbar:**
+- Horizontal bar at the top with responsive padding (`px-6 sm:px-10 lg:px-16`, `py-5 lg:py-7`).
+- Left: brand name "VANGUARD" in `font-podium`, white, bold, uppercase, `text-2xl sm:text-3xl`, `tracking-wider`.
+- Center (hidden below `md`): four nav links -- "Projects", "Studio", "Offerings", "Inquire" -- in `font-inter`, `text-sm`, `text-white/80`, `tracking-widest`, uppercase, with `hover:text-white` transition.
+- Right (hidden below `md`): a "GET IN TOUCH" link with an `ArrowUpRight` icon, styled as a bordered button (`border border-white/30 hover:border-white/60`, `px-6 py-3`, `text-xs`, `tracking-widest`, uppercase, `hover:bg-white/10`).
+- Right (visible below `md`): a hamburger button made of three white `div` bars (`w-6 h-0.5`, `w-6 h-0.5`, `w-4 h-0.5` with `space-y-1.5`).
+
+**Mobile Menu Overlay (below `md` only):**
+- Fixed fullscreen overlay (`fixed inset-0 z-50`) with `bg-black/95 backdrop-blur-sm`.
+- Toggles visibility via React `useState` -- when open: `opacity-100 visible`, when closed: `opacity-0 invisible`, with `transition-all duration-500`.
+- Header row matches the navbar: brand name on left, `X` close icon on right.
+- Centered vertically: each of the 4 nav links rendered in `font-podium`, `text-4xl sm:text-5xl`, white, uppercase, with staggered entrance animations using inline `style` -- each item gets `transitionDelay: i * 80 + 100ms`, `opacity` and `translateY(20px)` transitions based on the open state.
+- Below the links: a "GET IN TOUCH" bordered button with the same staggered animation pattern.
+- All links call `setMenuOpen(false)` on click.
+
+**Hero Content (vertically centered, left-aligned):**
+All hero elements use staggered `animate-fade-up` animations (defined in CSS as `@keyframes fade-up` translating from `translateY(30px), opacity:0` to `translateY(0), opacity:1` over `0.8s ease-out`). Each successive element has an additional `0.2s` delay. Elements start with `opacity: 0` and use `animation-fill-mode: forwards`.
+
+1. **Tagline:** A `Crown` icon (lucide, `w-4 h-4`, `text-white/70`) followed by "World-Class Digital Collective" in `text-white/70`, `text-xs sm:text-sm`, `font-inter`, `tracking-[0.3em]`, uppercase. Uses `animate-fade-up` (no delay). Has `mb-6 lg:mb-8`.
+
+2. **Main Heading:** Three lines in `font-podium`, white, uppercase, `leading-[0.92]`, `tracking-tight`, each using `text-[clamp(2.8rem,8vw,7rem)]`:
+   - "Design."
+   - "Disrupt."
+   - "Conquer."
+   Uses `animate-fade-up-delay-1` (0.2s delay).
+
+3. **Subtext:** "We build fierce brand identities" (line break) "that don't just turn heads --" then bold white "they lead." in `text-white/70`, `text-sm sm:text-base`, `font-inter`, `leading-relaxed`, `max-w-md`. Uses `animate-fade-up-delay-2` (0.4s delay). `mt-6 lg:mt-8`.
+
+4. **CTA Row:** Uses `animate-fade-up-delay-3` (0.6s delay), `mt-8 lg:mt-10`, `flex flex-wrap items-center gap-4 sm:gap-6`.
+   - Black button "SEE OUR WORK" with `ArrowUpRight` icon. `bg-black hover:bg-neutral-900`, `px-5 sm:px-7 py-3 sm:py-4`, `text-[11px] sm:text-xs`, `tracking-widest`, uppercase. Arrow has `group-hover:translate-x-0.5 group-hover:-translate-y-0.5` transition.
+   - Beside it (hidden on mobile, `hidden sm:flex`): an `Award` icon (`w-8 h-8`, `text-white/50`) with two lines of text: "Top-Rated" / "Brand Studio" in `text-white/60`, `text-xs`, `tracking-wider`, uppercase.
+
+5. **Stats Row:** Uses `animate-fade-up-delay-4` (0.8s delay), `mt-8 sm:mt-10 lg:mt-14`, `flex flex-wrap gap-6 sm:gap-12 lg:gap-16`. Three stats:
+   - "250+" / "Brands Transformed"
+   - "95%" / "Client Retention"
+   - "10+" / "Years in the Game"
+   Values in `font-inter`, white, `text-2xl sm:text-4xl lg:text-5xl`, bold, `tracking-tight`. Labels in `text-white/50`, `text-[9px] sm:text-xs`, `tracking-widest`, uppercase, `mt-1`.
+
+**CSS Animations (defined in index.css under `@layer utilities`):**
+```css
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+```
+With classes: `.animate-fade-up` (0s delay), `.animate-fade-up-delay-1` through `.animate-fade-up-delay-4` (0.2s increments, starting `opacity: 0`), `.animate-fade-in`, `.animate-fade-in-delay`.
+
+**Responsive behavior:**
+- Full layout is mobile-first with breakpoints at `sm` (640px), `md` (768px), and `lg` (1024px).
+- Nav links and "GET IN TOUCH" button show at `md`+; hamburger shows below `md`.
+- Award badge hides on mobile (`hidden sm:flex`).
+- All text sizes, paddings, gaps, and margins scale up through `sm:` and `lg:` prefixes.
+- Stats and CTA row use `flex-wrap` to prevent overflow on small screens.
+
+Make everything fully mobile responsive. Use a single `App.tsx` component with `useState` for the menu toggle. No routing needed.

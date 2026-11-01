@@ -7,123 +7,120 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: ""
 posterUrl: "/media/posters/network-hero.webp"
-chars: 5532
+chars: 7543
+sha256: "545c5a935972609e32ac1c272ffe2d398d98a0d6330b9f7e25bd22a60d936abf"
 tier: "premium"
 likes: 119
 ---
 
-# Build Prompt: Network Hero — Hero Experience
-Comprehensive Production Web Application Specification
+Create a single-page React + Vite landing page for "Marketeam" -- a marketing talent platform. Use Inter (400, 500, 600, 700) and Urbanist (600, 700) from Google Fonts. The page is a full-viewport hero with a header, left content area, right animated circles visualization, and a bottom logo ticker strip.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Create a single-page React + Vite landing page for "Marketeam" -- a marketing talent platform. Use Inter (400, 500, 600, 700) and Urbanist (600, 700) from …
+---
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+### Background
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
-
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
-
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
-
-export interface NetworkHeroSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
-
-export function NetworkHeroSection({
-  headline = "Network Hero",
-  tagline = "Create a single-page React + Vite landing page for 'Marketeam' -- a marketing talent platform. Use Inter (400, 500, 600, 700) and Urbanist (600, 700) from …",
-  onExplore
-}: NetworkHeroSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
+Full-page background image covering the entire viewport:
 ```
+https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_111401_56af5012-2263-45d3-849a-8688084d7c2a.png&w=1280&q=85
+```
+Applied as `background: url(...) center center / cover no-repeat` on the root `.app` container.
 
+---
+
+### Header
+
+- Flexbox row, `justify-content: space-between`, padding `24px 64px`, max-width `1920px`, centered.
+- **Left side**: Logo image + nav links
+  - Logo: `<img>` with height 32px from: `https://polo-pecan-73837341.figma.site/_assets/v11/17ae538989a509947a8de3892c644664895e69b1.png`
+  - Nav links: "Your Team", "Solutions", "Blog", "Pricing" -- color `#000000`, 15px, font-weight 400, with underline animation on hover (scaleX from 0 to 1, transform-origin left, 0.3s ease).
+- **Right side**: "Log In" link + "Join Now" button
+  - Log In: color `#ffffff`, 15px, weight 500, same underline hover as nav but white.
+  - Join Now: pill button (border-radius 50px), black bg (`#000000`), white text, padding `12px 26px`, 15px, weight 500. On hover a `#A068FF` fill slides in from left using `::after` with `translateX(-100%)` to `translateX(0)`, cubic-bezier(0.22, 1, 0.36, 1), 0.4s. Button uses `overflow: hidden`.
+  - The button is wrapped in a `.btn-border-wrap` div that has a rotating conic-gradient border using `::before` with `inset: -3px`, `padding: 3px`, mask technique for border-only effect. The gradient is: `conic-gradient(from var(--border-angle), #A068FF, #070319, #A068FF, #070319, #A068FF)`. It rotates via CSS `@property --border-angle` from `0deg` to `360deg` in 3s linear infinite.
+
+---
+
+### Hero Left
+
+- `flex: 0 1 600px`, `padding-top: 40px`
+- **Heading**: Typewriter effect, font Urbanist, 64px, weight 600, line-height 64px, letter-spacing -1.5px. Text: "Unlock Top Marketing Talent You Thought Was Out of Reach -- Now Just One Click Away!". The first 67 characters are colored `#000000`, the rest `#ffffff`. A blinking purple cursor (`#A068FF`) appears during typing. Typing speed: 35ms per character, starts after 400ms delay.
+- **"Start Project" button**: Same pill style as Join Now but slightly larger (padding `14px 28px`, 16px), bg `#060218`. Has a right-arrow chevron SVG icon (18x18). Hover fill slides from right (`translateX(100%)` to `translateX(0)`). Also wrapped in `.btn-border-wrap` with the same rotating gradient border. Appears after typing finishes (animation-delay 3.2s).
+- **Cursor element**: A purple cursor icon (SVG: pointer arrow filled `#A068FF`) + "David" label (pill badge, bg `#A068FF`, white text, 16px, weight 500, padding `8px 16px`, border-radius 20px). Positioned `margin-left: 290px`, `margin-top: 40px`. Appears with animation-delay 3.6s.
+
+---
+
+### Hero Right -- Circles Visualization
+
+- Container: `720x720px`, centered.
+- 4 concentric circles (orbits), each rotating slowly:
+  - Orbit 1 (innermost): 353px diameter, spins left (counterclockwise) 30s
+  - Orbit 2: 501px diameter, spins right 40s
+  - Orbit 3: 649px diameter, spins right 50s
+  - Orbit 4 (outermost): 797px diameter, spins left 60s
+- Each circle has a 1px gradient border: `linear-gradient(180deg, rgba(217, 161, 255, 0) 0%, rgba(217, 161, 255, 1) 43%, rgba(217, 161, 255, 0) 100%)` applied via the mask technique.
+- **Center circle (orbit-1)**: Displays an animated count-up number "20k+" (Urbanist 64px, weight 500) and "Specialists" label (Urbanist 16px, weight 600). Counter-rotates to stay upright.
+- **Avatars** placed on orbits using `transform: translate(-50%, -50%) rotate(Xdeg) translate(radius) rotate(-Xdeg)`:
+  - Avatar images (58px default, some 78px/88px) from these URLs:
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/aa51718fb3af3637e6d666b6543fc27a175fada6.png` (orbit 1, at 270deg, 177px radius, square with border-radius 20px, purple glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/ca755f7f93c1126fb8bdbf99ab364a33aa9ab272.png` (orbit 2, at 60deg, 251px, round, yellow glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/dc01064c7093dcc32674876ee3cf5e41c4a485c6.png` (orbit 2, at 180deg, 251px, 78px, pink glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/d5470a58b02388336141575048720f19a50de832.png` (orbit 2, at 300deg, 251px, square border-radius 20px, blue glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/018736aa5d0275c4ce56cfebaf2ae3007d81ca1e.png` (orbit 3, at 130deg, 325px, 88px, pink glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/c76d8a0b99676de31c014344bfaf75bad090758d.png` (orbit 4, at 30deg, 399px, purple glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/7b1b5f039de7b54cc9913e96c1923c3b15a157fa.png` (orbit 4, at 95deg, 399px, 88px, square border-radius 24px, orange glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/9ae171d8895199349755c43fbff00e122221a027.png` (orbit 4, at 220deg, 399px, 88px, square border-radius 24px, pink glow)
+    - `https://polo-pecan-73837341.figma.site/_assets/v11/926c9eb7b4bc1df846fa0e39f0b0dc3fefd80671.png` (orbit 4, at 320deg, 399px, purple glow)
+  - Each avatar has a staggered fly-in animation (scale 0.3 + rotate -180deg + blur -> normal), delays from 0.6s to 2.3s.
+
+---
+
+### Logo Ticker (Bottom)
+
+- Horizontal infinitely scrolling strip of partner logos, `gap: 64px`, 20s animation.
+- Fade masks on left/right edges (linear-gradient mask).
+- 5 unique SVG logos repeated 4x for seamless loop:
+  - `https://polo-pecan-73837341.figma.site/_assets/v11/1e7b0e6fcc016cd28aec5c68990118b8c54c35a5.svg`
+  - `https://polo-pecan-73837341.figma.site/_assets/v11/3eac03c183db2ae080d910159211c14843398b61.svg`
+  - `https://polo-pecan-73837341.figma.site/_assets/v11/17705a4c0023a0e5a99154dfb10582adbbf4260b.svg`
+  - `https://polo-pecan-73837341.figma.site/_assets/v11/0e5f442b09dc5c248e3e60d40a65505fb1887228.svg`
+  - `https://polo-pecan-73837341.figma.site/_assets/v11/63f99030ceb459e3c9ab9e429cfa2353491d3816.svg`
+- Each logo: `width: 137px`, `height: 40px`, `object-fit: contain`.
+
+---
+
+### Entrance Animations
+
+- Header: fade-down (translateY -20px to 0, 0.8s)
+- Hero left: fade-up (translateY 40px to 0, 1s)
+- Hero right circles: scale-in (scale 0.85 to 1 + opacity, 1.2s, delay 0.3s)
+- Logos section: fade-up, delay 0.6s
+- All using `cubic-bezier(0.22, 1, 0.36, 1)` easing.
+
+---
+
+### Responsive Breakpoints
+
+- **1280px**: circles scale 0.85
+- **1024px**: stack layout (flex-direction column), heading 48px, circles scale 0.7, nav gap shrinks
+- **768px**: hide nav, heading 36px, circles scale 0.5
+- **480px**: heading 28px, circles scale 0.4, smaller buttons/logos
+
+---
+
+### Key Colors
+
+- Primary accent: `#A068FF`
+- Background dark: `#060218` / `#070319`
+- Text dark: `#000000`
+- Text light: `#ffffff`
+- Body bg fallback: `#0a0a0a`
+
+---
+
+### Technical Details
+
+- React (useState, useEffect, useRef), Vite build
+- Custom `useCountUp` hook: animates 0 to 20 over 2s with easeOutCubic, starts after 1.2s delay
+- `TypewriterHeading` component: types char by char at configurable speed
+- CSS `@property --border-angle` for the animated border gradient
+- No external animation libraries -- pure CSS animations + JS for typewriter/counter

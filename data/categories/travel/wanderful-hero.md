@@ -7,123 +7,85 @@ categorySlug: "travel"
 routeCollection: "prompts"
 videoUrl: "/media/videos/wanderful-hero.mp4"
 posterUrl: "/media/posters/wanderful-hero.webp"
-chars: 5516
+chars: 4223
+sha256: "a88ec2d864bdaff152230391d1725468982663d6abec1fe71ee124ed306e4a98"
 tier: "premium"
 likes: 165
 ---
 
-# Build Prompt: Wanderful Hero — Travel Experience
-Comprehensive Production Web Application Specification
+Build a full-viewport cinematic hero section for a travel brand called "Wanderful" using React + TypeScript + Vite + Tailwind CSS. Use GSAP for animation and `lucide-react` for icons.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a full-viewport cinematic hero section for a travel brand called "Wanderful" using React + TypeScript + Vite + Tailwind CSS. Use GSAP …
-
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
-
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
-
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
-
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
-
-export interface WanderfulHeroSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
+**Fonts (load via Google Fonts in `src/index.css`):**
+```css
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+```
+Also load a custom display font:
+```css
+@font-face {
+  font-family: 'Dirtyline';
+  src: url('https://fonts.cdnfonts.com/s/15011/Dirtyline36DaysofType.woff') format('woff');
+  font-weight: normal; font-style: normal; font-display: swap;
 }
+```
+Body font: `Barlow`. Hero headings: `Inter`. Body background: `#000`.
 
-export function WanderfulHeroSection({
-  headline = "Wanderful Hero",
-  tagline = "Build a full-viewport cinematic hero section for a travel brand called 'Wanderful' using React + TypeScript + Vite + Tailwind CSS. Use GSAP …",
-  onExplore
-}: WanderfulHeroSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+**Video background (fixed, full screen, z-0):**
+- Use this exact CloudFront URL as the `<video>` src:
+  `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260510_060007_60275ce7-030c-4668-a160-8f364ec537d3.mp4`
+- Attributes: `autoPlay muted loop playsInline`, `object-cover`, wrapper scaled `scale-[1.08]` with `origin-center`.
+- On `onLoadedMetadata`, set `playbackRate = 1.25`.
+- Add GSAP-driven mouse parallax: listen to `mousemove`, compute `targetX/Y = ((clientX - cx)/cx) * 20`, lerp `currentX/Y += (target - current) * 0.06` inside `requestAnimationFrame`, and apply via `gsap.set(videoBg, { x, y })`.
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Travel
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
+**Liquid-glass utility (add to `index.css`):**
+```css
+.liquid-glass {
+  background: rgba(255,255,255,0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%,
+    rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 ```
 
+**Header (fixed top, z-50, `px-10 py-8`, flex justify-between items-center):**
+- Left: wordmark `Wanderful` followed by `<sup>TM</sup>`, `text-[17px] font-semibold tracking-tight`.
+- Center: `<nav>` using `.liquid-glass rounded-full px-2 py-2 flex items-center gap-1`. Links: `JOURNEY`, `BENEFITS`, `JOURNAL`, `GUIDEBOOK`. Each link: `text-[11px] font-medium tracking-[0.12em] text-white/90 hover:text-white px-4 py-1.5 rounded-full transition-colors duration-200`.
+- Right: "GET ROAMING" anchor with same `.liquid-glass rounded-full px-5 py-2.5 text-[11px] font-medium tracking-[0.12em] text-white/90 hover:text-white`.
+
+**Hero headline (fixed, `top: 120px`, centered, z-20):**
+Two lines, both centered, `Inter` 400, `font-size: clamp(40px, 5.4vw, 72px)`, `line-height: 1.1`, `letter-spacing: -0.02em`:
+- Line 1 (white): `Venture without edges.`
+- Line 2 (`rgba(255,255,255,0.55)`): `Uncover with keen instinct.`
+
+Fade-in on mount: `opacity 0 → 100` and `translate-y-6 → 0` with `transition-all duration-1000`.
+
+**Bottom block (fixed `bottom-14`, z-20, flex-col items-center gap-6), fade-in with `delay-300`:**
+1. Paragraph, `max-w-[620px] text-[15px] leading-relaxed` centered:
+   - White: "Our smart itineraries shape around you — your rhythm, your vibe, your hunger for adventure."
+   - `text-white/55`: " Each getaway is tailored, seamless, and wholly yours."
+2. Button: white bg, black text, `text-[15px] font-medium rounded-full px-8 py-3.5`, hover `scale-[1.03]` + `shadow-[0_0_32px_4px_rgba(255,255,255,0.2)]`, active `scale-[0.97]`. Label: `Plan my escape today`.
+3. Row: `Lock` icon from lucide-react (`size={13} strokeWidth={1.5}`) + `text-[11px] font-medium tracking-[0.14em] text-white/70`, text: `SECURE BY DESIGN. ZERO DATA LEAKS.`
+
+**Root container:** `min-h-screen bg-black text-white overflow-x-hidden` with inline `fontFamily: "'Inter', sans-serif"`.
+
+Dependencies: `gsap`, `lucide-react`, `react`, `react-dom`, tailwind configured with content globs `./index.html` and `./src/**/*.{js,ts,jsx,tsx}`.

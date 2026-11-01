@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/convix-software-hero.mp4"
 posterUrl: "/media/posters/convix-software-hero.jpg"
 chars: 5587
+sha256: "dc2d0b83448511268b39ce955990f46888b439028d37d3c80dd993aa4ee1cac8"
 tier: "premium"
 likes: 146
 ---

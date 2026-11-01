@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/power-ai-hero.mp4"
 posterUrl: "/media/posters/power-ai-hero.jpg"
 chars: 3838
+sha256: "7da85cb611a91bdb080434dce20716b4efe5bd97224849594446e19d697ff009"
 tier: "premium"
 likes: 171
 ---

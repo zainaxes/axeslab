@@ -7,7 +7,8 @@ categorySlug: "mobile-app"
 routeCollection: "apps"
 videoUrl: "/media/videos/cross-border.mp4"
 posterUrl: "/media/posters/cross-border.jpg"
-chars: 6294
+chars: 6698
+sha256: "51277206ad60741d5f96ec0838c26ed6c92e63858b03f07c9975fe05bb62214b"
 tier: "free"
 likes: 129
 ---
@@ -33,7 +34,7 @@ The body background is #111111. The scrollable container uses `container-type: s
 
 **Background:** Autoplaying, muted, looping video:
 ```
-https://meez.design/web/media/ext/597d53d9b15f2d2d.mp4
+https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260620_185230_f7f71ef4-6655-469f-b9c6-efbdc1f7684a.mp4
 ```
 
 **Navbar (absolute, top):**
@@ -63,7 +64,7 @@ https://meez.design/web/media/ext/597d53d9b15f2d2d.mp4
 - "shaped by scale" / "powered by precision" in Helvetica, clamp(18px, 5vw, 26px), color #1a1a1a
 
 **World Map:**
-- Background map image: `https://meez.design/web/media/ext/f9ce5f887859208d.png`
+- Background map image: `https://polo-pecan-73837341.figma.site/_assets/v11/b6d561167283e799453232309bd13dd78b2d1afa.png`
 - Aspect ratio 435/340, extends 20px beyond container edges
 - SVG overlay (viewBox 0 0 299.037 142.509) at left:10%, top:18%, width:80% with 4 curved route paths in yellow (#FFDA00, 2.5 stroke):
   ```
@@ -76,9 +77,9 @@ https://meez.design/web/media/ext/597d53d9b15f2d2d.mp4
 - Animated yellow arrow polygons (points="0,-4 8,0 0,4") using SVG `<animateMotion>` along each path, rotating automatically
 - 5 stop dots at coordinates: [9.519,15.519], [289.519,59.518], [220.519,9.519], [125.518,78.519], [19.519,104.519] - each is a yellow circle r=9.519 with dark center r=3.389 (#002A35). They pop in with scale animation.
 - 3 floating transport icons (white circle bg, 16% width, rounded-full, box-shadow):
-  - Ship: `https://meez.design/web/media/ext/0d3cbcc042a65ea1.png` at left:26%, top:28.9%
-  - Car: `https://meez.design/web/media/ext/457552dcad941164.png` at left:70.8%, top:15.6%, rotate(9.73deg)
-  - Plane: `https://meez.design/web/media/ext/c4fe9416e8e5502f.png` at left:55.2%, top:52.1%, rotate(180deg) scaleY(-1)
+  - Ship: `https://image-bottom-92901062.figma.site/_components/v2/142c6a6f3074dd8aee013fa440ff4ff369649d48/08d6a37375d428e07c59e24a8529de89bfee157e.08d6a373.png` at left:26%, top:28.9%
+  - Car: `https://image-bottom-92901062.figma.site/_components/v2/142c6a6f3074dd8aee013fa440ff4ff369649d48/7d6f50a87e1427d9b4d1a9c9f1c064ff04b2b3f9.7d6f50a8.png` at left:70.8%, top:15.6%, rotate(9.73deg)
+  - Plane: `https://image-bottom-92901062.figma.site/_components/v2/142c6a6f3074dd8aee013fa440ff4ff369649d48/0e0282ab1c70db03d437b0d01875ce45557d49f6.0e0282ab.png` at left:55.2%, top:52.1%, rotate(180deg) scaleY(-1)
   - Icons pop in (scale 0.5 -> 1), then continuously float up/down with infinite y animation
 
 **Stats** (scroll-triggered, slide in from opposite sides):

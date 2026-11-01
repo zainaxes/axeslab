@@ -7,123 +7,118 @@ categorySlug: "agency"
 routeCollection: "prompts"
 videoUrl: "/media/videos/creative-studio.mp4"
 posterUrl: "/media/posters/creative-studio.webp"
-chars: 5551
+chars: 5481
+sha256: "3520f044ab716f4599c9c6e0a7e8558c6bab0d83c0964030b7af41e14ca52f82"
 tier: "premium"
 likes: 112
 ---
 
-# Build Prompt: Creative Studio — Agency Experience
-Comprehensive Production Web Application Specification
+Build a full-screen hero section using React, Tailwind CSS, Framer Motion, and Lucide React icons. Use the Inter font. The page is fully mobile-responsive. Here are the exact specifications:
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a full-screen hero section using React, Tailwind CSS, Framer Motion, and Lucide React icons. Use the Inter font. The page is fully mobile-responsive …
+---
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+**BACKGROUND:**
+- A full-screen autoplaying, looping, muted video covering the entire viewport as a background.
+- Video URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260517_222138_3e3205be-3364-417b-a64a-bfe087acbec4.mp4`
+- The video is positioned absolute, inset-0, with `object-cover` to fill the viewport.
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+---
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+**COLOR:**
+- Accent color: `#5E0ED7` (deep purple). Used for the logo dot, the "+" symbols in stats, and the CTA link text.
+- All body text is black (#000).
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+---
 
-export interface CreativeStudioSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
+**FONT:**
+- Font family: `'Inter', sans-serif` applied to the root container.
+- All text is uppercase with wide letter-spacing (`tracking-widest` or `tracking-wide`).
+- Font weights: 600 (semibold) throughout.
 
-export function CreativeStudioSection({
-  headline = "Creative Studio",
-  tagline = "Build a full-screen hero section using React, Tailwind CSS, Framer Motion, and Lucide React icons. Use the Inter font. The page is fully mobile-responsive …",
-  onExplore
-}: CreativeStudioSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+---
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+**LAYOUT (flex column, min-h-screen):**
+The page is a flex column with three vertical sections:
+1. **Nav** (top, fixed height)
+2. **Stats row** (flex-1, vertically centered, right-aligned)
+3. **Bottom content** (pinned to bottom with padding)
 
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Agency
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
+---
 
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+**NAVIGATION BAR:**
+- Horizontal flex, items centered, justified between. Padding: `px-5 sm:px-8 md:px-12 pt-5 md:pt-6`.
+- **Left:** A circular logo — 32px round div with 2px border in accent color, containing a 10px solid circle in accent color.
+- **Center (hidden on mobile, visible md+):** Four nav links: "Story", "Expertise", "Studios", "Feedback". Text: 14px, font-semibold, tracking-widest, uppercase, black.
+- **Right:** A 36px round black button with three horizontal white lines (hamburger icon — three `span` elements, each `w-4 h-0.5 bg-white` with `gap-1`). This opens the mobile menu on click.
 
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+---
 
+**MOBILE MENU OVERLAY:**
+- Triggered by hamburger click. Fixed, full-screen, z-50, white background.
+- Top row: same logo (left) and a 36px round black close button with an X icon (right).
+- Below: vertical list of the 4 nav links at `text-3xl`, font-semibold, tracking-widest, uppercase, with `gap-8` and `mt-16`.
+- Bottom (mt-auto): "Work With Us" CTA in accent color with ArrowUpRight icon, `text-xl`.
+
+---
+
+**STATS ROW (middle section):**
+- Container: `flex-1 flex items-center justify-end`, with same horizontal padding. `py-8 md:py-0`.
+- Three stat items in a horizontal row with `gap-5 sm:gap-8 md:gap-10`, each right-aligned:
+  - **+300** / CRAFTED BRANDS
+  - **+200** / DIGITAL PRODUCTS
+  - **+100** / VENTURES FUNDED
+- Number styling: `fontSize: clamp(1.5rem, 5vw, 3.5rem)`, weight 600. The "+" is rendered separately in accent color at 0.5em size. The number is black.
+- Label: `text-[10px] sm:text-xs md:text-sm`, font-semibold, tracking-widest, uppercase, black, `whitespace-pre-line leading-tight` (each label has a line break between the two words).
+
+---
+
+**BOTTOM SECTION:**
+- Padding: `px-5 sm:px-8 md:px-12 pb-8 md:pb-12`. Flex column with `gap-6 md:gap-12`.
+
+**Row A (tagline + CTA):**
+- Flex row, items-center, justify-between, gap-4.
+- **Left:** Small uppercase tagline paragraph: "Shaping Bold / Visions Into Power / For Your Tribe" (with `<br />` line breaks). Text: `text-[10px] sm:text-xs md:text-sm`, font-semibold, tracking-widest, max-width `130px sm:160px md:max-w-xs`.
+- **Right:** CTA link "Work With Us" with ArrowUpRight icon. Text: `text-base sm:text-xl md:text-2xl`, accent color, weight 600, `whitespace-nowrap`. Icon: 18px on mobile, 22px on sm+.
+
+**Row B (description + main heading):**
+- Flex row, `items-end`, justify-between, `gap-3 sm:gap-4`.
+- **Left:** A fixed-width container (`w-[120px] sm:w-[180px] md:w-[280px]`, shrink-0) containing a paragraph: "Creative Studios Built Around Elevating Your Vision Into Striking Reality". Text: `text-[9px] sm:text-xs md:text-sm`, font-semibold, tracking-widest, uppercase, `text-left md:text-right`.
+- **Right:** The main heading — three words stacked vertically: "Fearless", "Vision", "Delivered". Each word in its own `overflow-hidden` wrapper. Text: `fontSize: clamp(2rem, 9vw, 9rem)`, `lineHeight: 0.88`, weight 600, uppercase, black, text-right.
+
+---
+
+**ANIMATIONS (Framer Motion):**
+
+All animations fire on page load (initial -> animate).
+
+1. **fadeDown variant** (nav elements):
+   - From: `{ opacity: 0, y: -20 }`
+   - To: `{ opacity: 1, y: 0 }`
+   - Each element has a custom stagger index. Delay: `index * 0.1s`. Duration: 0.5s. Ease: `[0.22, 1, 0.36, 1]`.
+   - Applied to: logo (custom=0), each nav link (custom=1-4), hamburger (custom=5).
+
+2. **fadeUp variant** (stats + bottom content):
+   - From: `{ opacity: 0, y: 32 }`
+   - To: `{ opacity: 1, y: 0 }`
+   - Delay: `index * 0.12s`. Duration: 0.6s. Ease: `[0.22, 1, 0.36, 1]`.
+   - Applied to: each stat card (custom=2,3,4), tagline paragraph (custom=5), CTA link (custom=6), description block (custom=7).
+
+3. **Heading slide-up** (main heading words):
+   - Each word slides up from `y: "110%"` to `y: 0` within its overflow-hidden parent (clip reveal effect).
+   - Delay: `0.4 + wordIndex * 0.14` (so 0.4s, 0.54s, 0.68s). Duration: 0.7s. Ease: `[0.22, 1, 0.36, 1]`.
+
+---
+
+**RESPONSIVE BREAKPOINTS:**
+- Mobile-first. Three tiers: default (mobile), `sm:` (640px), `md:` (768px).
+- Nav links hidden on mobile, shown md+.
+- Spacing, font sizes, and widths scale up at each breakpoint.
+- Mobile menu provides full navigation on small screens.
+
+---
+
+**DEPENDENCIES:**
+- React 18
+- Tailwind CSS 3
+- framer-motion
+- lucide-react (ArrowUpRight, X icons)

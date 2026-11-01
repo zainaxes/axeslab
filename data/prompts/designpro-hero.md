@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/designpro-hero.mp4"
 posterUrl: "/media/posters/designpro-hero.jpg"
 chars: 3038
+sha256: "06a79839ee295e9e0a8b7819fdb59d007c91062f0210f6955156bcf0662912aa"
 tier: "premium"
 likes: 96
 ---

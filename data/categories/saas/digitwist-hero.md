@@ -7,7 +7,8 @@ categorySlug: "saas"
 routeCollection: "prompts"
 videoUrl: "/media/videos/digitwist-hero.mp4"
 posterUrl: "/media/posters/digitwist-hero.jpg"
-chars: 6003
+chars: 6001
+sha256: "22db40a74f053015edad3376029e3c7233ebd8d714909980d3fcb867fefc4a26"
 tier: "premium"
 likes: 185
 ---
@@ -86,7 +87,7 @@ Create a fixed, transparent navbar with:
 - Size: text-3xl (mobile), sm:text-5xl, lg:text-[48px]
 - Line height: leading-[1.1]
 - Color: white
-- Animation: Motion fade up (opacity 0→1, y 20���0, duration 0.6s)
+- Animation: Motion fade up (opacity 0→1, y 20→0, duration 0.6s)
 
 **Main Headline:**
 - Text: "Build Faster"

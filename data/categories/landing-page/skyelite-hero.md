@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/skyelite-hero.mp4"
 posterUrl: "/media/posters/skyelite-hero.jpg"
 chars: 2285
+sha256: "ecfa79a15e0566ef1308a639507f2c8e1107364074a514ee3b413c301d86f015"
 tier: "premium"
 likes: 179
 ---

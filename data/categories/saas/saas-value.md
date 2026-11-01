@@ -7,123 +7,199 @@ categorySlug: "saas"
 routeCollection: "prompts"
 videoUrl: ""
 posterUrl: "/media/posters/saas-value.jpg"
-chars: 5520
+chars: 8755
+sha256: "a6c22889377337439e88083be916adadfdbbb8ee67ec379be3923eeb65394095"
 tier: "premium"
 likes: 152
 ---
 
-# Build Prompt: SaaS Value — SaaS Experience
-Comprehensive Production Web Application Specification
+Build a full-viewport hero section for a SaaS landing page called "Questly" using React, TypeScript, Tailwind CSS 3, and Vite. Use `lucide-react` for all icons. No other UI libraries.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a full-viewport hero section for a SaaS landing page called "Questly" using React, TypeScript, Tailwind CSS 3, and Vite. Use `lucide-react` for all …
+---
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+FONT
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+Use the font "Nimbus Sans TW01" loaded from this stylesheet in `index.html`:
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
-
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
-
-export interface SaaSValueSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
-
-export function SaaSValueSection({
-  headline = "SaaS Value",
-  tagline = "Build a full-viewport hero section for a SaaS landing page called 'Questly' using React, TypeScript, Tailwind CSS 3, and Vite. Use `lucide-react` for all …",
-  onExplore
-}: SaaSValueSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            SaaS
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
+```
+https://db.onlinewebfonts.com/c/bb5de19d87c09a95216dc6ccd96e37c6?family=Nimbus+Sans+TW01
 ```
 
+Set the font stack in both `tailwind.config.js` and `index.css`:
+
+```
+'Nimbus Sans TW01', 'Helvetica Neue', Helvetica, Arial, sans-serif
+```
+
+Enable `-webkit-font-smoothing: antialiased` and `-moz-osx-font-smoothing: grayscale` on `html`.
+
+---
+
+BACKGROUND IMAGE
+
+The full hero section uses this image as a `background-image` (cover, centered):
+
+```
+https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260611_133301_d5f2a94a-b22e-4e4a-a6b6-eacdddf1f5b0.png&w=1280&q=85
+```
+
+Applied via inline `style={{ backgroundImage: url(...) }}` on the `
+
+`. The section is `relative min-h-[100svh] overflow-hidden bg-cover bg-center flex flex-col`.
+
+---
+
+GRASS OVERLAY
+
+An absolutely positioned grass PNG sits at the bottom of the section, full width, `z-10`, pointer-events-none, select-none:
+
+```
+https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1781191264/grass_eam204.png
+```
+
+Classes: `pointer-events-none absolute bottom-0 left-0 z-10 w-full select-none`
+
+---
+
+LOGO (SVG Component)
+
+A custom SVG logo component used in the navbar and dashboard sidebar. It uses `currentColor` for fill so it inherits text color. ViewBox: `0 0 256 256`. Path data:
+
+```
+M 144 256 L 27.598 256 L 144 139.598 Z M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z M 0 204.402 L 0 112 L 92.402 112 Z
+```
+
+---
+
+NAVBAR
+
+- Positioned with `animate-fade-down relative z-20`
+- Flex row: logo left, nav links center, CTA + hamburger right
+- Horizontal padding: `px-5 sm:px-8 lg:px-10`, vertical: `py-4 sm:py-5`
+- Logo: `text-gray-900`, icon sized `w-5 h-5 sm:w-6 sm:h-6`
+- Desktop nav links (hidden below `md`): `text-[13px] text-gray-700`, hover `text-gray-900`, gap-8. Items: "Toolkit" (with `ChevronDown` icon `w-3.5 h-3.5`), "Plans", "News"
+- CTA button: `bg-gray-900 text-white text-[13px] font-medium px-4 sm:px-5 py-2 rounded-full hover:bg-gray-800`
+- Hamburger (md:hidden): `w-9 h-9 rounded-full text-gray-900 hover:bg-gray-900/10`, toggles `Menu`/`X` icons (`w-5 h-5`)
+- Mobile dropdown (when open): `absolute left-4 right-4 top-full rounded-2xl bg-white/80 backdrop-blur-xl ring-1 ring-gray-200 px-5 py-3 animate-fade-up`. Links: `text-[15px] text-gray-700 hover:text-gray-900 border-b border-gray-200 last:border-b-0`
+
+---
+
+HERO CONTENT (centered, text-center)
+
+Spacing between navbar and content uses a flex spacer: `flex-1 min-h-8 sm:min-h-12 lg:min-h-16 shrink-0`
+
+Headline (h1)
+- `text-gray-900 font-normal leading-[1.05] tracking-tight`
+- Sizes: `text-[40px] min-[400px]:text-[44px] sm:text-6xl lg:text-7xl xl:text-[80px]`
+- Two lines, each a `` with staggered `animate-fade-up`:
+  - Line 1: "Get cited." (no delay)
+  - Line 2: "Effortlessly." (`[animation-delay:100ms]`)
+
+### Search Bar (form)
+- `animate-fade-up [animation-delay:220ms] mt-5 sm:mt-6 w-full max-w-xl`
+- Pill container: `flex items-center gap-3 rounded-full bg-white/60 backdrop-blur-md ring-1 ring-gray-200 pl-5 pr-1.5 py-1.5`
+- Input: `flex-1 bg-transparent text-sm sm:text-base text-gray-900 placeholder-gray-500 outline-none py-2`, placeholder: "What makes content rank in AI search?"
+- Submit button: `w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-900 text-white hover:scale-105 active:scale-95 transition-transform shrink-0`, contains `ArrowUp` icon `w-4 h-4 sm:w-[18px] sm:h-[18px]`
+
+### Description
+- `animate-fade-up [animation-delay:340ms] mt-4 sm:mt-5 text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-md`
+- Text: "Ship articles that answer actual customer questions -- and be seen on [Sparkles icon] ChatGPT"
+- Line break `
+` before the dash
+- `Sparkles` icon: `inline w-4 h-4 -mt-1`
+
+### CTA Buttons
+- `animate-fade-up [animation-delay:460ms] mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-3`
+- **Primary**: `bg-gray-900 text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 hover:shadow-lg transition-all` -- "Try It Free"
+- **Secondary**: `text-gray-700 text-sm font-medium px-6 py-2.5 rounded-full ring-1 ring-gray-300 hover:bg-gray-100 transition-colors` -- "Talk to sales"
+
+---
+
+## DASHBOARD MOCKUP (below the hero content)
+
+Another flex spacer (`flex-1 min-h-10 sm:min-h-12 lg:min-h-16 shrink-0`) separates the content from the dashboard.
+
+### Container
+- `animate-hero-rise [animation-delay:620ms] relative z-0 w-[92%] sm:w-[84%] lg:w-[72%] max-w-4xl mx-auto shrink-0 -mb-10 sm:-mb-20 lg:-mb-32`
+- Uses a **ScaledDashboard** wrapper: a `ResizeObserver`-based component that renders the mockup at a fixed design width of **896px** and scales it down via CSS `transform: scale()` to fit its container, with `transformOrigin: 'top left'`. The outer div's height is set to `inner.offsetHeight * scale` to prevent layout overflow.
+
+### Mockup Chrome
+- Outer: `rounded-t-2xl overflow-hidden bg-[#1a1a1c] shadow-[0_-20px_80px_rgba(0,0,0,0.35)] ring-1 ring-white/10 text-left`
+- **Title bar**: `bg-[#242427] border-b border-white/5 px-4 py-2.5`
+  - Traffic lights: three spans `w-2.5 h-2.5 rounded-full` colored `#ff5f57`, `#febc2e`, `#28c840`
+  - Icons (all `w-3.5 h-3.5 text-white/40`): `PanelLeft`, `ChevronLeft`, `ChevronRight` (text-white/25)
+  - Center URL bar: `bg-[#1a1a1c] rounded-md px-6 py-1 text-[10px] text-white/60` with `Monitor` icon -- text "questly.ai"
+  - Right icons: `RotateCw`, `Share`, `Plus`, `Copy`
+
+### Sidebar (22% width)
+- `border-r border-white/5 bg-[#1e1e21] px-3 py-3.5`
+- Logo icon `w-4 h-4 text-white/70` + `Grid` icon `w-3.5 h-3.5 text-white/30`
+- Workspace badge: `w-4 h-4 rounded bg-[#e8553f]` with "C" letter, label "CareNest" `text-[10px] text-white/80`
+- Nav items: Compass/Uncover, Layers/Subjects, ListTodo/Inbox -- `text-[10px] text-white/60`
+- Recent articles list with "Ready to Release" green dots `text-[#28c840]/70`
+
+### Main Content Area
+- Header: workspace icon (larger `w-9 h-9 rounded-lg bg-[#e8553f]`), "CareNest" `text-sm font-medium text-white`, subtitle `text-[10px] text-white/45`, and a "Generate" button with `Sparkles` icon
+- **Stats grid** (4 columns): `grid-cols-4 divide-x divide-white/5 rounded-xl bg-white/[0.03] ring-1 ring-white/5`
+  - RELEASED: 62 / Posts indexed
+  - BREADTH: 12 / Subject groups
+  - REMAINING: 412 / Ready to draft
+  - MAX REACH: 3,156,200 / Searches a month
+  - Values: `text-xl font-medium text-white`, labels: `text-[8px] tracking-wider text-white/35`
+- **Subject cards** (3 columns): Elder Care, Mobility, Home Safety -- `rounded-lg bg-white/[0.03] ring-1 ring-white/5`
+- **Drafting inbox** table: 5 rows with question, volume, difficulty, status columns. "Drafting" status colored `text-[#febc2e]/80`
+
+---
+
+## ANIMATIONS (defined in index.css)
+
+```css
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(64px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fade-up { animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-down { animation: fade-down 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-hero-rise { animation: hero-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+```
+
+Staggered delays applied via inline `[animation-delay:Xms]` Tailwind arbitrary values. Respect `prefers-reduced-motion: reduce` by disabling all three animations.
+
+---
+
+RESPONSIVE BREAKPOINTS SUMMARY
+
+| Element | Mobile (<640) | SM (640+) | MD (768+) | LG (1024+) | XL (1280+) |
+|---|---|---|---|---|---|
+| Headline | 40px / 44px@400 | 60px | -- | 70px | 80px |
+| Nav links | Hidden (hamburger) | -- | Visible | -- | -- |
+| Search bar width | full | -- | -- | -- | max-w-xl |
+| Dashboard width | 92% | 84% | -- | 72% | -- |
+| Dashboard bottom overlap | -mb-10 | -mb-20 | -- | -mb-32 | -- |
+
+---
+
+FILE STRUCTURE
+
+```
+src/
+  App.tsx            -- renders <Hero />
+  main.tsx           -- ReactDOM.createRoot
+  index.css          -- Tailwind directives + custom keyframes
+  components/
+    Hero.tsx          -- main section with bg image, content, ScaledDashboard, grass overlay
+    Navbar.tsx        -- top nav with mobile drawer
+    Logo.tsx          -- SVG logo component
+    DashboardMockup.tsx -- full browser-chrome dashboard mockup
+```

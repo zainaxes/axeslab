@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { PromptItem } from '@/lib/real-prompts';
 import { Copy, Check, Heart, Play } from 'lucide-react';
 import { toast } from 'sonner';
-import Hls from 'hls.js';
 
 interface PromptCardProps {
   item: PromptItem;
@@ -31,22 +30,27 @@ export function PromptCard({ item }: PromptCardProps) {
     const video = videoRef.current;
     if (!video || !item.videoUrl || isAnimatedWebp) return;
 
-    let hls: Hls | null = null;
+    let hlsInstance: any = null;
+    let isCancelled = false;
 
     if (isM3u8) {
-      if (Hls.isSupported()) {
-        hls = new Hls({ enableWorker: true, lowLatencyMode: true });
-        hls.loadSource(item.videoUrl);
-        hls.attachMedia(video);
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = item.videoUrl;
-      }
+      import('hls.js').then(({ default: Hls }) => {
+        if (isCancelled || !videoRef.current) return;
+        if (Hls.isSupported()) {
+          hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
+          hlsInstance.loadSource(item.videoUrl!);
+          hlsInstance.attachMedia(videoRef.current);
+        } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+          videoRef.current.src = item.videoUrl!;
+        }
+      });
     } else {
       video.src = item.videoUrl;
     }
 
     return () => {
-      if (hls) hls.destroy();
+      isCancelled = true;
+      if (hlsInstance) hlsInstance.destroy();
     };
   }, [item.videoUrl, isM3u8, isAnimatedWebp]);
 

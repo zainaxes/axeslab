@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/vex-ventures-hero.mp4"
 posterUrl: "/media/posters/vex-ventures-hero.jpg"
 chars: 5051
+sha256: "5b43ab2865b587b541447a0ac44d601d0b10fb80eabaf72f11b8e799a5953a7b"
 tier: "premium"
 likes: 127
 ---

@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/nexora-hero.mp4"
 posterUrl: "/media/posters/nexora-hero.jpg"
 chars: 5344
+sha256: "74c6b26bd78c1b439dc2eb30bbb16a70f4d22d42c3acd3999616d2e8d8822f84"
 tier: "premium"
 likes: 202
 ---

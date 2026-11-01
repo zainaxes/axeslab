@@ -7,123 +7,58 @@ categorySlug: "signup"
 routeCollection: "prompts"
 videoUrl: ""
 posterUrl: "/media/posters/aurora-onboard.jpg"
-chars: 5534
+chars: 4770
+sha256: "04bbd8d1a7479031fc455c2df4f01cf1d52e23ed0172e488f670fd8f217c3b0f"
 tier: "premium"
 likes: 74
 ---
 
-# Build Prompt: Aurora Onboard — Signup Experience
-Comprehensive Production Web Application Specification
+Please build a modern, two-column registration interface called "Aurora Sign Up". Use React, Tailwind CSS (v4), `motion/react` (for animations), and `lucide-react` (for icons). The app should be contained entirely in `App.tsx` and `index.css`.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Please build a modern, two-column registration interface called "Aurora Sign Up". Use React, Tailwind CSS (v4), `motion/react` (for animations), and …
+### 1. Global Setup & CSS (`index.css`)
+- Import the "Inter" font from Google Fonts (weights 300, 400, 500, 600, 700).
+- Extend the Tailwind theme with `--font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;` and a custom color: `--color-brand-gray: #1A1A1A`.
+- Apply base styles to the `body`: `@apply font-sans bg-black text-white antialiased;`.
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+### 2. Main Layout (`App.tsx` container)
+- The `<main>` element should have: `flex min-h-screen w-full bg-black selection:bg-white/30 p-2 transition-all duration-500`. 
+- On `lg` breakpoints: `lg:h-screen lg:overflow-hidden lg:p-4`.
+- Split this container into a Left Column (Hero) and a Right Column (Form).
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+### 3. Left Column (Hero & Background Video)
+- Width on large screens should be exactly `w-[52%]`. It should be hidden on mobile/tablet and only visible `lg:flex`.
+- Styles: `relative flex-col items-center justify-end pb-32 px-12 rounded-3xl overflow-hidden shadow-2xl h-full`.
+- **Background Video**: Add an absolutely positioned `<video>` tag (`inset-0`, `w-full`, `h-full`, `object-cover`). It must have `autoPlay`, `muted`, `loop`, and `playsInline`. 
+- **CRITICAL**: The `<source>` MUST be exactly `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260506_081238_406ed0e3-5d83-436e-a512-0bbff7ec5b95.mp4` (`type="video/mp4"`).
+- **CRITICAL**: Do NOT add any dark overlay, gradient, or tint mask over the video. Let it play purely without overlays.
+- **Hero Content Container**: Place content over the video (`z-10 w-full max-w-xs space-y-8`).
+- **Animations**: Use `motion.div` for a staggered reveal. The container should transition `opacity: 0` to `1` with `staggerChildren: 0.15` and `delayChildren: 0.2`. Every child element inside should fade in and slide up (`y: 10` to `y: 0`, duration `0.5`).
+- **Brand/Logo**: A flex row with the `Circle` icon from Lucide (fill-white text-white) and the text "Aurora" (`text-xl font-semibold tracking-tight`).
+- **Heading Block**: "Join Aurora" (`text-4xl font-medium tracking-tight whitespace-nowrap`). Below it, a description: "Follow these 3 quick phases to activate your space." (`text-white/60 text-sm leading-relaxed px-4`).
+- **Steps**: Render a custom `<StepItem>` component three times. 
+  1: "Register your identity" (active state)
+  2: "Configure your studio"
+  3: "Finalize your profile"
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+### 4. Right Column (Sign Up Form)
+- A container with `flex-1 flex flex-col items-center justify-center py-12 lg:py-6 px-4 sm:px-12 lg:px-16 xl:px-24 overflow-y-auto lg:overflow-hidden`.
+- **Animation**: Wrap the interior content in a `motion.div` that fades in (`opacity: 0` to `1`, `duration: 0.8`, `ease: "easeOut"`). Inner width `w-full max-w-xl`, spacing `space-y-8 lg:space-y-6 sm:space-y-10`.
+- **Header**: "Create New Profile" (`text-3xl font-medium tracking-tight`). Subtitle: "Input your basic details to begin the journey." (`text-white/40 text-sm`).
+- **Social Buttons**: A 2-column grid (`grid grid-cols-2 gap-4`). Render Google (`Chrome` icon) and Github (`Github` icon) using a `<SocialButton>` component.
+- **Divider**: A horizontal line (`border-white/10`) with the text "Or" in the center (`bg-black px-4 text-xs font-medium text-white/40 uppercase tracking-widest`).
+- **Form Layout**: 
+  - First Name and Last Name in a 2-column grid.
+  - Email (full width).
+  - Password (full width) with a custom `lucide-react` `Eye` toggle icon in the absolute right of the input, and a tiny helper text "Requires at least 8 symbols."
+  - **Submit Button**: "Create Account" (`w-full h-14 bg-white text-black font-semibold rounded-xl hover:bg-white/90 active:scale-[0.98] mt-4`).
+  - **Footer Link**: "Member of the team? Log in".
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+### 5. Reusable Components to Create
+Create these exact functional components at the bottom of the file:
+1. **`<StepItem>`**: Takes `number`, `text`, and an optional `active` boolean.
+   - If active: Apply `bg-white text-black border border-white`. The number circle is `bg-black text-white`.
+   - If inactive: Apply `bg-brand-gray text-white border-none`. The number circle is `bg-white/10 text-white/40`.
+2. **`<SocialButton>`**: Takes `icon` and `label`. Button has `bg-black border border-white/10 rounded-xl hover:bg-white/5`.
+3. **`<InputGroup>`**: Takes `label`, `placeholder`, and `type`. The label is `text-sm font-medium text-white`. The input is `bg-brand-gray border-none rounded-xl h-11 px-4 text-white placeholder:text-white/20 focus:ring-2 focus:ring-white/20`.
 
-export interface AuroraOnboardSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
-
-export function AuroraOnboardSection({
-  headline = "Aurora Onboard",
-  tagline = "Please build a modern, two-column registration interface called 'Aurora Sign Up'. Use React, Tailwind CSS (v4), `motion/react` (for animations), and …",
-  onExplore
-}: AuroraOnboardSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Signup
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-```
-
+Ensure the final code uses `export default function App()` at the top.

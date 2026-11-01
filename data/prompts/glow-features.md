@@ -7,59 +7,123 @@ categorySlug: "features-section"
 routeCollection: "sections"
 videoUrl: ""
 posterUrl: "/media/posters/glow-features.jpg"
-chars: 3072
+chars: 5567
 tier: "premium"
 likes: 129
 ---
 
-Create a React web application using Vite and Tailwind CSS v4 that perfectly replicates a dark-themed glowing feature card section.
+# Build Prompt: Glow Features — Features Section Experience
+Comprehensive Production Web Application Specification
 
-**Libraries Required:**
-- React 19, Vite, Tailwind CSS v4
-- `lucide-react` for icons
-- `motion/react` (Framer Motion) for animations
+════════════════════════════════════════════════════════════════════════
+1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
+════════════════════════════════════════════════════════════════════════
+Create a React web application using Vite and Tailwind CSS v4 that perfectly replicates a dark-themed glowing feature card section. **Libraries Required:** - …
 
-**Global Page Layout:**
-- Set the main wrapper to `min-h-screen bg-[#0A0A0B] flex flex-col items-center justify-center p-6 md:p-12 font-sans`.
-- Create a CSS grid to hold the cards: `grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-3 lg:gap-3 w-full max-w-[936px]`.
+The page architecture consists of:
+• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
+• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
+• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
+• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
 
-**The Feature Card Component Requirements:**
-- Build a reusable `<FeatureCard />` component taking `title`, `description`, `icon`, `gradient`, and `delay` props.
-- Wrap the entire card in a `<motion.div>`.
-- Card size restrictions wrapper: `relative flex flex-col justify-start items-start w-full max-w-[260px] md:max-w-[300px] group mx-auto`.
-- **Glow Background (Crucial):** Create an absolute positioned `div` behind the card content with `w-full h-[260px] md:h-[300px] opacity-60 rounded-[40px] pointer-events-none`. Apply inline styles: `background: gradient` and `filter: "blur(45px)"`.
-- **Foreground Card with Gradient Border (Crucial):** On top of the glow, create a relative container with `self-stretch h-[260px] md:h-[300px] rounded-[40px] z-10 overflow-hidden`.
-- Apply an 8px solid transparent border to this foreground card.
-- Use the background-clip technique strictly for the border gradient via inline styles:
-  `background: linear-gradient(#1A1A1C, #1A1A1C) padding-box, ${gradient} border-box;`
-- Content Inner Layout: Inside the foreground, use `w-full h-full p-7 flex flex-col justify-between`.
-- Icons should have `size={32}` and `strokeWidth={2.5}`, wrapped in a `text-white/90` div.
-- Titles: `text-white font-medium text-xl mb-3 tracking-tight`.
-- Descriptions: `text-gray-400 text-[14px] leading-[1.6] font-normal selection:bg-white/20`.
+════════════════════════════════════════════════════════════════════════
+2. TECHNICAL SPECIFICATIONS & STACK
+════════════════════════════════════════════════════════════════════════
+• Framework: React 19 + TypeScript + Vite / Next.js
+• Styling: Tailwind CSS v4 with fluid spacing tokens
+• Icons: lucide-react (pure SVG icons with zero layout shift)
+• Motion: Framer Motion / CSS Transitions with hardware acceleration
+• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
 
-**Animations (Framer Motion):**
-- The main `<motion.div>` wrapper should animate as follows:
-  - Initial state: `{ opacity: 0, y: 30 }`
-  - Animate state: `{ opacity: 1, y: 0 }`
-  - Transition: `{ duration: 0.8, ease: "easeOut", delay }`
+════════════════════════════════════════════════════════════════════════
+3. DESIGN SYSTEM & COLOR TOKENS
+════════════════════════════════════════════════════════════════════════
+• Canvas Background: Deep Obsidian `#050507`
+• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
+• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
+• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
+• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
 
-**Data for the 3 Cards:**
-Instantiate three of these cards inside the main grid with the following exact data:
+════════════════════════════════════════════════════════════════════════
+4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
+════════════════════════════════════════════════════════════════════════
+```tsx
+import React, { useState } from 'react';
+import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
 
-1. **Card 1 ("Hardware"):** 
-   - Icon: `<Monitor />` from lucide-react. 
-   - Delay: `0.1`
-   - Description: "My entire desktop setup is built for power. It is silent, durable, and holds my focus."
-   - Gradient: `linear-gradient(137deg, #FF3D77 0%, #FFB1CE 45%, #FF9D3C 100%)`
+export interface GlowFeaturesSectionProps {
+  headline?: string;
+  tagline?: string;
+  onExplore?: () => void;
+}
 
-2. **Card 2 ("Studio"):** 
-   - Icon: `<Palette />` from lucide-react. 
-   - Delay: `0.2`
-   - Description: "Studio is where I define every single pixel. It is the hub for each canvas I deliver."
-   - Gradient: `linear-gradient(137deg, #FFFFFF 0%, #7DD3FC 45%, #06B6D4 100%)`
+export function GlowFeaturesSection({
+  headline = "Glow Features",
+  tagline = "Create a React web application using Vite and Tailwind CSS v4 that perfectly replicates a dark-themed glowing feature card section. **Libraries Required:** - …",
+  onExplore
+}: GlowFeaturesSectionProps) {
+  const [isHovered, setIsHovered] = useState(false);
 
-3. **Card 3 ("Motion"):** 
-   - Icon: `<Zap />` from lucide-react. 
-   - Delay: `0.3`
-   - Description: "I use Motion to build lively prototypes, bridging the gap between views and code."
-   - Gradient: `linear-gradient(137deg, #4361EE 0%, #E0AEFF 45%, #F72585 100%)`
+  return (
+    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
+      {/* Ambient background glow */}
+      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+
+      {/* Top Header Row */}
+      <div className="flex items-center justify-between border-b border-white/5 pb-6">
+        <div className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
+            <Zap className="h-4 w-4 text-indigo-400" />
+          </span>
+          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
+            Features Section
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
+            <Shield className="h-3 w-3 text-emerald-400" />
+            Verified Specification
+          </span>
+        </div>
+      </div>
+
+      {/* Center Main Content */}
+      <div className="my-12 max-w-2xl space-y-6">
+        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
+          {headline}
+        </h1>
+        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
+          {tagline}
+        </p>
+        <div className="flex flex-wrap items-center gap-4 pt-4">
+          <button
+            onClick={onExplore}
+            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
+          >
+            <span>Explore Experience</span>
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Footer Feature Badges */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
+        <div className="flex items-center gap-2">
+          <Globe className="h-4 w-4 text-indigo-400" />
+          <span>Universal Responsive Layout</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-amber-400" />
+          <span>Framer Motion Ready</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Shield className="h-4 w-4 text-emerald-400" />
+          <span>Production TypeScript</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+

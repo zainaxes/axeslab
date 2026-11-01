@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/mindloop-landing.mp4"
 posterUrl: "/media/posters/mindloop-landing.jpg"
 chars: 7242
+sha256: "e37b73d4812519e3362aa46a9c05e8e4b8361dc55a41afad413789b0e1d3b0bf"
 tier: "premium"
 likes: 92
 ---

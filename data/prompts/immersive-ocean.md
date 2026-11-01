@@ -7,123 +7,80 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: ""
 posterUrl: "/media/posters/immersive-ocean.webp"
-chars: 5539
+chars: 4030
+sha256: "6a98189c77fd23768ae75e00b114a4953224a867931729ad8c5adaba63cbc5be"
 tier: "premium"
 likes: 112
 ---
 
-# Build Prompt: Immersive Ocean — Hero Experience
-Comprehensive Production Web Application Specification
+Create a fullscreen hero landing page for a creative studio called "Foldcraft" using React, Tailwind CSS, and Lucide React icons. The page is a single viewport-height section with a looping background video, a responsive navbar, a mobile menu, and staggered-animated hero text.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Create a fullscreen hero landing page for a creative studio called "Foldcraft" using React, Tailwind CSS, and Lucide React icons. The page is a single …
+**Video Background:**
+- URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_204221_5339e40b-e73d-4ab0-9c65-79c18c66fd50.mp4`
+- Attributes: autoPlay, muted, loop, playsInline
+- Styling: absolute positioned, full width/height, object-cover, object-position at 70% horizontal center
+- The video sits behind all content (no z-index or z-0)
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+**Font:**
+- Google Fonts: Geist (weights 300-700), loaded via `<link>` in index.html
+- Tailwind config extends fontFamily with `geist: ['Geist', 'sans-serif']`
+- Applied as `font-geist` on the root container
+- Body CSS: `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale`
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+**Root Container:**
+- `relative h-screen w-full overflow-hidden bg-black font-geist`
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+**Navbar (z-30):**
+- Flex, space-between, padding: `px-6 py-5 md:px-12 lg:px-16`
+- Left side: Logo text "Foldcraft" (`text-lg font-semibold tracking-tight text-white sm:text-xl`) followed by desktop nav links (hidden on mobile, flex on md+)
+- Nav links: Home, Projects, Studio, Reach Us (`text-sm text-white/80 hover:text-white transition-colors`)
+- Right side (desktop): "Let's Talk" button (`rounded-lg bg-white px-5 py-2 text-sm font-medium text-black hover:scale-105 transition-transform`)
+- Right side (mobile): hamburger toggle button (40x40, z-50) with animated Menu/X icons from lucide-react. Menu rotates 90deg out and X rotates in with opacity and scale transitions (duration-300). Button has `active:scale-90`.
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+**Mobile Menu (z-20):**
+- Absolute, `inset-x-0 top-0`, full-screen overlay with `bg-black/98 backdrop-blur-xl`
+- Transition: `duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]` toggling between `h-screen opacity-100` and `h-0 opacity-0 pointer-events-none`
+- Inner content: centered vertically (`flex h-full flex-col justify-center px-8`), with a delayed fade + translate animation (delay-100, translate-y-8)
+- Links: Home, Projects, Studio, Reach Us (`text-3xl font-medium text-white/90 hover:text-white`)
+- Button: "Let's Talk" (`mt-6 rounded-full bg-white px-8 py-3.5 text-base font-medium text-black hover:scale-105`)
+- All links/button call `setMobileMenuOpen(false)` on click
 
-export interface ImmersiveOceanSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
+**Hero Content (z-10):**
+- Flex column, justify-between, fills remaining height: `h-[calc(100vh-80px)]`
+- Padding: `px-6 pb-10 pt-12 sm:pb-12 sm:pt-16 md:px-12 md:pb-16 md:pt-20 lg:px-16`
 
-export function ImmersiveOceanSection({
-  headline = "Immersive Ocean",
-  tagline = "Create a fullscreen hero landing page for a creative studio called 'Foldcraft' using React, Tailwind CSS, and Lucide React icons. The page is a single …",
-  onExplore
-}: ImmersiveOceanSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+**Top Section (max-w-3xl):**
+- Badge: "Brand & Visual Storytelling" (`text-xs sm:text-sm text-white/90`), with `animate-[fadeSlideUp_0.8s_ease_0.2s_both]`, margin-bottom 4 (sm:6)
+- Heading h1: "Shaping visual / narratives, / one pixel at a time." with `<br/>` line breaks
+  - Sizing: `text-3xl sm:text-5xl md:text-6xl lg:text-7xl`
+  - Style: `font-medium leading-[1.1] tracking-tight text-white`
+  - Animation: `animate-[fadeSlideUp_0.8s_ease_0.4s_both]`
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+**Bottom Section:**
+- Paragraph: "Turning vision into reality through craft, motion, and an endless pursuit of beauty."
+  - Style: `text-sm sm:text-base md:text-lg leading-relaxed text-white/60 max-w-sm sm:max-w-lg mb-5 sm:mb-6`
+  - Animation: `animate-[fadeSlideUp_0.8s_ease_0.7s_both]`
+- CTA Button: "Explore Work" with ArrowRight icon (size 16)
+  - Style: `rounded-lg bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-sm font-medium text-black hover:scale-105 transition-transform inline-flex items-center gap-2`
+  - Animation: `animate-[fadeSlideUp_0.8s_ease_0.9s_both]`
 
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
+**CSS Animation (in index.css):**
+```css
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 ```
 
+**CSS Reset (in index.css):**
+```css
+* { margin: 0; padding: 0; box-sizing: border-box; }
+```
+
+**Dependencies:** React, lucide-react (ArrowRight, Menu, X), Tailwind CSS, Google Fonts Geist.

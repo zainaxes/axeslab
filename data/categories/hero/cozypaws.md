@@ -7,7 +7,8 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/cozypaws.mp4"
 posterUrl: "/media/posters/cozypaws.jpg"
-chars: 6143
+chars: 6443
+sha256: "bafa6b2af5f0a290f17c922f798f46e2e7a6fdfbb7c25208c3ccae1c73e74074"
 tier: "free"
 likes: 176
 ---
@@ -44,13 +45,13 @@ Apply with CSS utility class `.font-serif-display { font-family: 'DM Serif Displ
 
 | Asset | URL |
 |-------|-----|
-| Logo SVG | `https://meez.design/web/media/ext/ab0d6bb118afd817.svg` |
-| Avatar | `https://meez.design/web/media/ext/e1bfa0032b38f8ac.png` |
-| Product card (Cat House) | `https://meez.design/web/media/ext/1cd4210c98104a0f.png` |
-| Video card (TikTok/YouTube) | `https://meez.design/web/media/ext/4dd3e255a6ec95c0.png` |
-| Bottom left image | `https://meez.design/web/media/ext/3d988fce282cf6c2.png` |
-| Bottom center image (tallest) | `https://meez.design/web/media/ext/9f19000c199d73da.png` |
-| Bottom right image | `https://meez.design/web/media/ext/a1ca55f91181f111.png` |
+| Logo SVG | `https://polo-pecan-73837341.figma.site/_assets/v11/0ae29d6d9628bede667f90d57bebe81b8f1ec2bf.svg` |
+| Avatar | `https://polo-pecan-73837341.figma.site/_assets/v11/e62173d41f91350a59628e8a9a55ae078a886fb9.png?w=128` |
+| Product card (Cat House) | `https://polo-pecan-73837341.figma.site/_assets/v11/3e5158dad63d392ade022e81890edc9f54d750bc.png` |
+| Video card (TikTok/YouTube) | `https://polo-pecan-73837341.figma.site/_assets/v11/76be6ec3a93a703b15e9cc01e764a4e3f9d7d2c0.png` |
+| Bottom left image | `https://polo-pecan-73837341.figma.site/_assets/v11/8d44b25186ef45a5789c74668fb781cea4e1ff49.png` |
+| Bottom center image (tallest) | `https://polo-pecan-73837341.figma.site/_assets/v11/96745c4e72ad5c5208e53a885df797fd82cd854a.png?h=1024` |
+| Bottom right image | `https://polo-pecan-73837341.figma.site/_assets/v11/81bd2e7a66b58f3d8f3ad78fd1ebf01af8dfdee1.png` |
 
 ---
 

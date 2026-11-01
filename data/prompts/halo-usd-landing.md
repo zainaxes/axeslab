@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: ""
 posterUrl: "/media/posters/halo-usd-landing.jpg"
 chars: 8531
+sha256: "304fc87864be5186bb31beec502153a80b7f18c4f915b3479c0a430d5c3fd6aa"
 tier: "free"
 likes: 169
 ---

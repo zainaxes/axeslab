@@ -7,7 +7,8 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/subscription-agency.mp4"
 posterUrl: "/media/posters/subscription-agency.jpg"
-chars: 5850
+chars: 6172
+sha256: "a1c407a9c4090191ddb3cd175d22d7c90c0c42715d3c7235a2c6a08022e24120"
 tier: "free"
 likes: 71
 ---
@@ -53,7 +54,7 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
 - Min-height: `850px`, padding: `160px 36px`, centered flex column.
 - **Background image** (via `::before` pseudo-element, covers full section):
   ```
-  https://meez.design/web/media/ext/883823797a81fd1e.webp
+  https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260626_041422_4a459e05-abce-4150-9fb7-4ededc423cd1.png&w=1280&q=85
   ```
   Background-size: cover, background-position: center.
 
@@ -89,7 +90,7 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
 - **CTA row** (flex, gap 16px, centered):
   - **Primary button** "View Plans": height 56px, padding `18px 30px`, rounded-full, black bg, white text, 15px weight 600 Inter. Hover: translateY(-1px) + box-shadow `0 4px 20px rgba(0,0,0,0.12)`.
   - **Book button** "Chat for 15 minutes": white bg, `4px solid rgb(248,248,248)` border, rounded-full, padding `8px 24px 8px 8px`. Contains:
-    - Avatar image (40px circle): `https://meez.design/web/media/ext/6be23d90a43b4ca1.png`
+    - Avatar image (40px circle): `https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png`
     - Text stack: primary "Chat for 15 minutes" (14px, weight 600, black) and secondary "Pick a slot" (12px, weight 500, `rgb(152,152,152)`) with a green dot (`rgb(29, 204, 93)`, 8px circle).
 
 - **Progressive blur** at bottom: absolute, full width, height 178px, gradient from transparent to `rgba(255,255,255,0.4)` at 40% to solid white.
@@ -132,11 +133,11 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
 
 The hero background image URL (exact):
 ```
-https://meez.design/web/media/ext/883823797a81fd1e.webp
+https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260626_041422_4a459e05-abce-4150-9fb7-4ededc423cd1.png&w=1280&q=85
 ```
 
 The book button avatar URL (exact):
 ```
-https://meez.design/web/media/ext/6be23d90a43b4ca1.png
+https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png
 ```
 ]

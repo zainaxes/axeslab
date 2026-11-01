@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/prisma-landing.mp4"
 posterUrl: "/media/posters/prisma-landing.jpg"
 chars: 8432
+sha256: "4fc7f6c5021dfbf0662047d5ca32bd83291f7d06645f539c0ec99766c56c5128"
 tier: "premium"
 likes: 30
 ---

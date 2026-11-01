@@ -7,123 +7,57 @@ categorySlug: "hero-section"
 routeCollection: "sections"
 videoUrl: "/media/videos/equilibrium.mp4"
 posterUrl: "/media/posters/equilibrium.webp"
-chars: 5514
+chars: 4787
+sha256: "5da5c38222bf3e71733675c23d39e98f2f156684febef1e6b0821faade0c27e0"
 tier: "premium"
 likes: 92
 ---
 
-# Build Prompt: Equilibrium — Hero Section Experience
-Comprehensive Production Web Application Specification
+Build a full-screen, single-page React + TypeScript + Vite + Tailwind CSS hero section with a "liquid glass" aesthetic on top of a looping background video. Use `lucide-react` for icons. No other UI libraries.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a full-screen, single-page React + TypeScript + Vite + Tailwind CSS hero section with a "liquid glass" aesthetic on top of a looping …
+**Font & Global CSS (`src/index.css`):**
+- Import Geist from Google Fonts: `https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap`
+- Apply `Geist` globally via `* { font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }`
+- Include `@tailwind base; @tailwind components; @tailwind utilities;`
+- Define a `.liquid-glass` class:
+  - `background: rgba(255,255,255,0.01);`
+  - `background-blend-mode: luminosity;`
+  - `backdrop-filter: blur(4px);` plus `-webkit-backdrop-filter`
+  - `border: none;`
+  - `box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);`
+  - `position: relative; overflow: hidden;`
+- Add a `.liquid-glass::before` pseudo-element creating a gradient border via mask compositing:
+  - `content:''; position:absolute; inset:0; border-radius:inherit; padding:1.4px;`
+  - `background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);`
+  - `-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none;`
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+**Component (`src/App.tsx`):**
+- Import from `lucide-react`: `ChevronDown`, `Infinity`, `Menu`, `X`. Import `useState` from React.
+- Constant `BG_VIDEO = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_230229_7c9bc431-46cf-489a-948d-e8144d8eb5d4.mp4'`
+- `navLinks` array: `{ label: 'Home', active: true }`, `{ label: 'Wellness', dropdown: true }`, `{ label: 'Routine' }`, `{ label: 'Our Team' }`.
+- `menuOpen` state via `useState(false)`.
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+**Layout:**
+- Root: `<div class="relative w-full h-screen overflow-hidden">`.
+- Background `<video>` absolutely positioned, `w-full h-full object-cover`, `autoPlay muted loop playsInline`, `src={BG_VIDEO}`.
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+**Navbar** (`absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 sm:px-8 py-5`):
+- Logo (left): flex with `gap-2 text-white font-medium text-base`. `<Infinity size={22} strokeWidth={1.5} />` followed by `<span>Equilibrium</span>`.
+- Nav pill (center, `hidden md:flex`): `liquid-glass items-center gap-1 rounded-xl px-2 py-2`. Map `navLinks`. Each button: `flex items-center gap-0.5 px-3 py-1.5 rounded-md text-sm transition-colors`; active gets `bg-white/15 text-white`, others `text-white/70 hover:text-white`. Dropdown items render a `<ChevronDown size={13} class="mt-px" />`.
+- CTAs (right, `hidden md:flex items-center gap-3`):
+  - "Log in": `liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors`
+  - "Begin Now": `bg-white text-black text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/90 transition-colors`
+- Mobile toggle (`md:hidden`): `liquid-glass text-white p-2 rounded-lg`; shows `X` when open else `Menu` (size 18).
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+**Mobile menu** (when `menuOpen`): `absolute top-[72px] left-4 right-4 z-30 md:hidden liquid-glass rounded-2xl p-4 flex flex-col gap-1`. Same nav links as buttons `flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm`. Bottom CTA row: `flex gap-2 mt-2 pt-3 border-t border-white/10` with two `flex-1` buttons ("Log in", "Begin Now") matching desktop styles.
 
-export interface EquilibriumSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
+**Hero content (bottom-left)** `absolute bottom-0 left-0 z-20 px-6 sm:px-12 pb-10 sm:pb-16 max-w-2xl`:
+- `<h1>`: `text-white text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight tracking-tight mb-4` — text: `Live Better, Feel Whole Every Day`.
+- `<p>`: `text-white/60 text-sm leading-relaxed mb-7 max-w-md` — text: `Take charge of how you feel with a companion built for your journey—build routines, follow your growth, and unlock tailored insights for a steadier, more vibrant life each day.`
+- Buttons row `flex flex-wrap items-center gap-3`:
+  - "Start Today": `bg-white text-black text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/90 transition-colors`
+  - "Discover How": `liquid-glass text-white text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/5 transition-colors`
 
-export function EquilibriumSection({
-  headline = "Equilibrium",
-  tagline = "Build a full-screen, single-page React + TypeScript + Vite + Tailwind CSS hero section with a 'liquid glass' aesthetic on top of a looping …",
-  onExplore
-}: EquilibriumSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+**Animations/interactions:** all buttons use Tailwind `transition-colors`; liquid-glass effect uses `backdrop-filter: blur(4px)` plus the animated-looking gradient border pseudo. No additional keyframe animations. The background video itself provides motion.
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero Section
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-```
-
+**Dependencies:** `react`, `react-dom`, `lucide-react`, `tailwindcss`, `vite`, `@vitejs/plugin-react`, TypeScript. Tailwind configured with default content globs for `./index.html` and `./src/**/*.{ts,tsx}`.

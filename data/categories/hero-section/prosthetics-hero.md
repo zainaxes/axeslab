@@ -7,123 +7,49 @@ categorySlug: "hero-section"
 routeCollection: "sections"
 videoUrl: "/media/videos/prosthetics-hero.mp4"
 posterUrl: "/media/posters/prosthetics-hero.webp"
-chars: 5564
+chars: 3421
+sha256: "43dc54544e666fcf232cd251a9caf081cbbde86436f5eeff6d5ecdc484e73948"
 tier: "premium"
 likes: 79
 ---
 
-# Build Prompt: Prosthetics Hero — Hero Section Experience
-Comprehensive Production Web Application Specification
+Build a React + TypeScript + Tailwind CSS single-page hero section using Vite. The entire page lives in `src/App.tsx`. No extra libraries beyond `react`, `react-dom`, `lucide-react`, and Tailwind.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a React + TypeScript + Tailwind CSS single-page hero section using Vite. The entire page lives in `src/App.tsx`. No extra libraries beyond `react` …
+**Background:**
+- A fullscreen autoplaying, muted, looping, `playsInline` background `<video>` element absolutely positioned `inset-0 w-full h-full object-cover`.
+- Video URL (exact): `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4`
+- Root wrapper: `relative min-h-screen overflow-hidden bg-[#f0f0ee]`.
+- Foreground content wrapper: `relative z-10 flex flex-col min-h-screen`.
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+**Logo (inline SVG component):**
+- `width="18" height="18"`, `viewBox="0 0 256 256"`, `fill="none"`.
+- Single path with `fill="rgb(84, 84, 84)"` and `d="M 160 88 L 194 34 L 216 0 L 256 0 L 256 40 L 221.5 93.5 L 200 128 L 256 128 L 256 256 L 96 256 L 96 168 L 64.246 220 L 40 256 L 0 256 L 0 216 L 34 162 L 56 128 L 0 128 L 0 0 L 160 0 Z"`.
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+**Navbar (centered, pill-style, two separate pills):**
+- `<nav>` classes: `flex items-center justify-center pt-4 sm:pt-6 px-4 sm:px-8 gap-2 sm:gap-3`.
+- Left circular logo container: `flex items-center justify-center rounded-full w-10 h-10 sm:w-11 sm:h-11 shrink-0`, inline style `backgroundColor: '#EDEDED'`, contains the Logo.
+- Right pill container: `flex items-center gap-4 sm:gap-10 rounded-xl px-4 sm:px-8 py-2.5 sm:py-3`, inline style `backgroundColor: '#EDEDED'`.
+- Nav links array: `['Story', 'Products', 'Help', 'Support']`. Each anchor: `text-[12px] sm:text-[14px] font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200`.
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+**Hero content (bottom-left aligned):**
+- Outer: `flex-1 flex items-end pb-10 sm:pb-16 lg:pb-20 px-6 sm:px-12 md:px-20 lg:px-28`.
+- Inner: `max-w-xs`. Four stacked elements, each with `mb-3`:
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+1. Badge link: `inline-flex items-center gap-1.5 text-[11.5px] font-medium text-blue-500 hover:text-blue-600 transition-colors mb-3 group`. Text: `Seen on Shark Tank in India` followed by an arrow `→` in a span with `inline-block transition-transform duration-200 group-hover:translate-x-0.5`.
 
-export interface ProstheticsHeroSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
+2. Headline `<h1>`: `text-[1.5rem] sm:text-[1.75rem] leading-[1.15] font-medium text-gray-900 tracking-tight mb-3`. Text: `Simple, smart prosthetics made for people who keep fighting.`
 
-export function ProstheticsHeroSection({
-  headline = "Prosthetics Hero",
-  tagline = "Build a React + TypeScript + Tailwind CSS single-page hero section using Vite. The entire page lives in `src/App.tsx`. No extra libraries beyond `react` …",
-  onExplore
-}: ProstheticsHeroSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+3. Subtext `<p>`: `text-[13px] text-gray-400 font-normal mb-3`. Text: `Reclaim your movement now.`
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+4. CTA anchor: `inline-flex items-center gap-2 text-[13px] font-medium text-blue-500 border border-blue-400 rounded-full px-5 py-2.5 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-200 group`. Text: `Try a free fitting` plus arrow `→` in span with `transition-transform duration-200 group-hover:translate-x-0.5`.
 
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero Section
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
+**Animations / micro-interactions:**
+- Arrow spans translate right by `0.5` on group hover (`group-hover:translate-x-0.5`).
+- CTA fills blue on hover (bg + text + border transitions, 200ms).
+- Nav links shift from gray-700 to gray-900 on hover.
 
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+**Fonts:** Default Tailwind sans-serif system font stack (no custom font). All sizes are exact pixel/rem values above (`11.5px`, `12px`, `13px`, `14px`, `1.5rem`, `1.75rem`).
 
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+**Colors:** Page background `#f0f0ee`; pill backgrounds `#EDEDED`; accent `blue-500/600/400`; text `gray-900/700/400`.
 
+Do not add any other sections, no Supabase wiring, no routing. Only the single hero page as described.

@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/aethera-hero.mp4"
 posterUrl: "/media/posters/aethera-hero.jpg"
 chars: 3169
+sha256: "e4f05b30ecfb52ada93f551f0e9cafbc259fa57c791408c412107e23e5ccdf32"
 tier: "premium"
 likes: 153
 ---

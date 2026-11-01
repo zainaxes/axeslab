@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/portal-hero.mp4"
 posterUrl: "/media/posters/portal-hero.jpg"
 chars: 6663
+sha256: "177583fa25c2aa3e8b4ab12ca26c88a60e7d09dc7d98cd0e9557d90fe640f278"
 tier: "premium"
 likes: 157
 ---

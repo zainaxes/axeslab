@@ -7,7 +7,8 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/wellbeing-os.mp4"
 posterUrl: "/media/posters/wellbeing-os.jpg"
-chars: 4962
+chars: 5051
+sha256: "6883361e5addea9ca09740bb047d4050683b32312c5b97dbc43811c530f95662"
 tier: "free"
 likes: 100
 ---
@@ -15,11 +16,11 @@ likes: 100
 Create a fullscreen hero section for a SaaS product called "flowpath" using React, Tailwind CSS, and Lucide React icons. The section should be a single `<section>` filling the viewport (`h-screen w-full overflow-hidden`).
 
 **Background:**
-- A looping, muted, autoplaying `<video>` element covering the full section with `object-cover`. Video URL: `https://meez.design/web/media/ext/00e8673d6c0cdef2.mp4`
+- A looping, muted, autoplaying `<video>` element covering the full section with `object-cover`. Video URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260703_053131_1ec3dd1c-d627-44fb-ab20-6e1fce41b0d5.mp4`
 - A subtle dark overlay on top of the video: `bg-black/10`
 
 **Font:**
-- Use "Helvetica Now Text" as the primary font, loaded from: `(self-host this face — no free CDN; substitute a close match if unavailable)`
+- Use "Helvetica Now Text" as the primary font, loaded from: `https://db.onlinewebfonts.com/c/08e020de1811ec4489f82d1247a42c09?family=Helvetica+Now+Text`
 - Fallback stack: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
 - Applied globally via `* { font-family: ... }` in CSS
 

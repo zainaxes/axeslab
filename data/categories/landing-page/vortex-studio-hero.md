@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/vortex-studio-hero.mp4"
 posterUrl: "/media/posters/vortex-studio-hero.png"
 chars: 11374
+sha256: "fb1552ead43495f98fb88a2f373682ba29229afc7686017589149ba0220cb632"
 tier: "premium"
 likes: 42
 ---

@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/velorah-hero.mp4"
 posterUrl: "/media/posters/velorah-hero.jpg"
 chars: 3788
+sha256: "b79f787da8bad026b0a783abfe2445ed6317caa898764fb61046a58122721a2f"
 tier: "premium"
 likes: 80
 ---

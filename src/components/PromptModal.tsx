@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ALL_REAL_PROMPTS, PromptItem } from '@/lib/real-prompts';
-import Hls from 'hls.js';
 import {
   X,
   Copy,
@@ -43,24 +42,29 @@ export function PromptModal() {
     const video = modalVideoRef.current;
     if (!video || !item?.videoUrl) return;
 
-    let hls: Hls | null = null;
+    let hlsInstance: any = null;
+    let isCancelled = false;
     const isM3u8 = item.videoUrl.includes('.m3u8');
     const isWebp = item.videoUrl.includes('.webp');
 
     if (isM3u8) {
-      if (Hls.isSupported()) {
-        hls = new Hls({ enableWorker: true, lowLatencyMode: true });
-        hls.loadSource(item.videoUrl);
-        hls.attachMedia(video);
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = item.videoUrl;
-      }
+      import('hls.js').then(({ default: Hls }) => {
+        if (isCancelled || !modalVideoRef.current) return;
+        if (Hls.isSupported()) {
+          hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
+          hlsInstance.loadSource(item.videoUrl!);
+          hlsInstance.attachMedia(modalVideoRef.current);
+        } else if (modalVideoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+          modalVideoRef.current.src = item.videoUrl!;
+        }
+      });
     } else if (!isWebp) {
       video.src = item.videoUrl;
     }
 
     return () => {
-      if (hls) hls.destroy();
+      isCancelled = true;
+      if (hlsInstance) hlsInstance.destroy();
     };
   }, [item?.videoUrl]);
 

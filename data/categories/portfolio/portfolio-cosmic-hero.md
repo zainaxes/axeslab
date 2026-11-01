@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/portfolio-cosmic-hero.mp4"
 posterUrl: "/media/posters/portfolio-cosmic-hero.jpg"
 chars: 8253
+sha256: "4f53cb27436233bf7799ac3a425d39b808f46a6da6928b099b11f9d3ad31d8e3"
 tier: "premium"
 likes: 46
 ---

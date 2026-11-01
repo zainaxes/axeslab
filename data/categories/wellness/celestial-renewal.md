@@ -7,7 +7,8 @@ categorySlug: "wellness"
 routeCollection: "prompts"
 videoUrl: "/media/videos/celestial-renewal.mp4"
 posterUrl: "/media/posters/celestial-renewal.jpg"
-chars: 7188
+chars: 7343
+sha256: "6ee7a251064e1c8bbd3dd8436a81fe4c358c545c31247a2dce7146b2567efebb"
 tier: "free"
 likes: 141
 ---
@@ -116,7 +117,7 @@ A full-viewport (`h-screen`) section with:
 
 1. **Background video** -- autoplays, muted, loops, playsInline, covers the full section with `object-cover`:
    ```
-   https://meez.design/web/media/ext/54f99e047eb75657.mp4
+   https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67.mp4
    ```
 
 2. **Dark overlay** -- `absolute inset-0 bg-black/20`
@@ -157,12 +158,12 @@ progress = clamp(0, 1, (windowHeight - rect.top) / (windowHeight + rect.height))
 
 1. **Rainbow image** -- full-width, positioned `absolute inset-x-0 top-0 z-30`. Parallax: moves vertically from +120px to -160px based on scroll progress. Lerp factor: 0.06.
    ```
-   https://meez.design/web/media/ext/7ec95e7fa7e81bbe.png
+   https://soft-zoom-63098134.figma.site/_assets/v11/8d520a7515d06cbfc403d0125e3d05b1a7ccd29c.png
    ```
 
 2. **Left cloud** -- `absolute left-0 bottom-[10%] z-10`, hidden on mobile (`hidden sm:block`). Width: `w-[500px] md:w-[650px]`. Has `marginLeft: '-50%'` to let it overflow left. Slides in from -200px on X when in view (progress 0.12-0.92), slides back out when not. Also drifts up (cloudY = progress * -50). Opacity tied to X distance. Lerp factor: 0.04.
    ```
-   https://meez.design/web/media/ext/0d654f08e102decb.png
+   https://soft-zoom-63098134.figma.site/_assets/v11/0d6dfd3f90b930f21726f2ed56a3320d79b7a797.png
    ```
 
 3. **Right cloud** -- same image as left but `scale-x-[-1]` (flipped), `absolute right-0 bottom-[15%] z-10`. Has `marginRight: '-75%'`. Slides in from +200px. Same lerp/timing as left cloud.

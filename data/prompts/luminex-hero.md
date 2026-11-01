@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/luminex-hero.mp4"
 posterUrl: "/media/posters/luminex-hero.jpg"
 chars: 5394
+sha256: "d0acf3c4f3d521af4b44ed5b7fc036f4d002aa435d2bea497fb5d2455a633550"
 tier: "premium"
 likes: 143
 ---

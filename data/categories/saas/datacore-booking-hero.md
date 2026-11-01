@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/datacore-booking-hero.mp4"
 posterUrl: "/media/posters/datacore-booking-hero.jpg"
 chars: 2826
+sha256: "3e6ecfa439ad3dd2e86ea3294f8bd2454593c659a1922379237241ac42fd0aa8"
 tier: "premium"
 likes: 130
 ---

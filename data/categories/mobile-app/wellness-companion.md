@@ -7,7 +7,8 @@ categorySlug: "mobile-app"
 routeCollection: "apps"
 videoUrl: "/media/videos/wellness-companion.mp4"
 posterUrl: "/media/posters/wellness-companion.jpg"
-chars: 3935
+chars: 4095
+sha256: "9f1ff2f86e0f36eea841fac041fbb1f942f84e16084e713ef84c3197f1062ff0"
 tier: "free"
 likes: 136
 ---
@@ -22,12 +23,12 @@ Build a mobile wellness quiz screen inside a realistic phone frame mockup, cente
 - A black pill-shaped Dynamic Island at the top center: 120px wide, 32px tall, fully rounded, z-index 50
 
 **Background:**
-- Full-bleed background image using this exact URL: `https://meez.design/web/media/ext/6034ecdbf191b497.webp`
+- Full-bleed background image using this exact URL: `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260704_143500_a76b8e64-2c69-4683-80e7-2bb060a921d6.png&w=1280&q=85`
 - Apply `blur(12px)` and `scale(1.1)` to the background image
 - Semi-transparent overlay: `#8a9aaa` at 30% opacity on top
 
 **Font:**
-- Load "Helvetica Now Var" from: `(self-host this face — no free CDN; substitute a close match if unavailable)`
+- Load "Helvetica Now Var" from: `https://db.onlinewebfonts.com/c/e66905e07608167a84e6ad52f638c3c6?family=Helvetica+Now+Var`
 - Fallback stack: 'Helvetica Neue', Helvetica, Arial, sans-serif
 - Apply globally to all elements
 

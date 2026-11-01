@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/codenest-hero.mp4"
 posterUrl: "/media/posters/codenest-hero.jpg"
 chars: 2581
+sha256: "aecd9a57ef07ea90a50e99364f6fc1c2eb9cbaaa6de4cb6853f62bb7643697ec"
 tier: "premium"
 likes: 62
 ---

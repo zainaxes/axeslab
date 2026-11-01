@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/no-code-waitlist.mp4"
 posterUrl: "/media/posters/no-code-waitlist.webp"
 chars: 6532
+sha256: "601cc396470b69406eaa041848e3ec2eebf0bacb86394ff2f1261d7f7d038a63"
 tier: "premium"
 likes: 93
 ---

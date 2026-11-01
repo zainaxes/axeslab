@@ -8,6 +8,7 @@ routeCollection: "prompts"
 videoUrl: "/media/videos/orbis-nft-landing.mp4"
 posterUrl: "/media/posters/orbis-nft-landing.jpg"
 chars: 8276
+sha256: "014b9381a9779a6acdf1e8f1c03acbe30689afe2d1ce2c2f0b48f0df87a28acc"
 tier: "premium"
 likes: 202
 ---

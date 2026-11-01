@@ -7,7 +7,8 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/stillmind.mp4"
 posterUrl: "/media/posters/stillmind.jpg"
-chars: 5685
+chars: 6025
+sha256: "8caa5f53a90ef80f9a7e28e6664037a22b2ea2e732792476ee40b95fd862fe3b"
 tier: "free"
 likes: 138
 ---
@@ -32,10 +33,10 @@ Set `font-family: 'Instrument Serif', serif` on html/body. Use `system-ui, sans-
 Stack 4 fullscreen looping videos absolutely positioned. Only the active one has `opacity-100`; others have `opacity-0`. Transition opacity over 1000ms ease-in-out. Videos autoPlay, muted, loop, playsInline.
 
 **Video URLs (in order):**
-1. `https://meez.design/web/bg-previews/299_trainmove1.mp4`
-2. `https://meez.design/web/media/ext/37c6543a9e3b1bac.mp4`
-3. `https://meez.design/web/media/ext/a14ef13297c1a6d7.mp4`
-4. `https://meez.design/web/media/ext/680d661e1cefa0b3.mp4`
+1. `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_081127_0992a171-d3c6-4978-8213-0ec5df8b6d63.mp4`
+2. `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_092026_dd05b805-ea0f-40b2-8c52-332b88502592.mp4`
+3. `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_081042_df7202bf-bd80-4b2b-bbc6-1f09ba2870e9.mp4`
+4. `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_080959_4cac5234-3573-464e-a5b7-76b94b8a7d61.mp4`
 
 **Labels:** Golden Hour, Still Water, Deep Woods, Quiet Dawn
 
@@ -45,7 +46,7 @@ Stack 4 fullscreen looping videos absolutely positioned. Only the active one has
 
 Place this image over the videos as an absolutely positioned overlay covering the full viewport:
 ```
-https://meez.design/web/media/ext/979624a2a689c9e3.png
+https://soft-zoom-63098134.figma.site/_assets/v11/0b4a435b2df2747593c43d7a1c9b4578f7d8d90c.png
 ```
 
 Apply a continuous "train-bob" animation: translateY oscillates between 0 and -6px over 3s ease-in-out infinite, with a constant scale(1.03) to prevent edges from showing during the motion.

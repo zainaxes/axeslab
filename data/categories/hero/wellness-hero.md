@@ -7,123 +7,105 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/wellness-hero.mp4"
 posterUrl: "/media/posters/wellness-hero.webp"
-chars: 5539
+chars: 4719
+sha256: "404e516e0ad9365a2ff6890cd206886e0621e770dd637bd1172eabcafb389ec1"
 tier: "premium"
 likes: 114
 ---
 
-# Build Prompt: Wellness Hero — Hero Experience
-Comprehensive Production Web Application Specification
+Build a full-screen hero section landing page for "Aurai" - an always-on AI wellness companion. The page is a single viewport-height section with a looping background video and overlaid content.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Build a full-screen hero section landing page for "Aurai" - an always-on AI wellness companion. The page is a single viewport-height section with a looping …
+## Video Background
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+- Full-screen `<video>` element with `autoPlay`, `loop`, `muted`, `playsInline` attributes
+- Video URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260618_174853_aac61aa2-0f3f-4cf1-bc78-7f657dd11164.mp4`
+- Video covers entire viewport with `object-cover`
+- Focal point positioning:
+  - Mobile (default): `object-position: 80% center`
+  - Tablet (md breakpoint): `object-position: right center`
+  - Desktop (lg breakpoint): `object-position: center center`
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+## Fonts
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+- **Askan Light** loaded from: `https://db.onlinewebfonts.com/c/304a6edcec9f8858eeaafc2ac18243f4?family=Askan+Light` - used for the brand name and heading
+- **Inter** (weights 300, 400, 500, 600) from Google Fonts - used as the body/UI font
+- Tailwind config extends fontFamily with `askan: ['"Askan Light"', 'serif']` and `inter: ['Inter', 'sans-serif']`
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+## Layout Structure
 
-export interface WellnessHeroSectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
-}
+The content is layered on top of the video using `absolute inset-0 z-10` with a flex column layout. Padding: `px-4 sm:px-10 lg:px-12 py-4 sm:py-8`.
 
-export function WellnessHeroSection({
-  headline = "Wellness Hero",
-  tagline = "Build a full-screen hero section landing page for 'Aurai' - an always-on AI wellness companion. The page is a single viewport-height section with a looping …",
-  onExplore
-}: WellnessHeroSectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+## Navigation (Top)
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+A `<nav>` with `flex items-center justify-between`:
 
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
+**Left nav pill (glassmorphism):**
+- `bg-black/20 backdrop-blur-md rounded-2xl border border-white/10`
+- Padding: `px-4 py-2.5 sm:px-6 sm:py-4`
+- Contains:
+  - A custom SVG logo (4-petal pinwheel shape, `w-5 h-5 sm:w-7 sm:h-7`, white)
+  - Brand text "Aurai" in `font-askan text-white text-base sm:text-xl tracking-wide`
+  - Hamburger menu icon (lucide-react `Menu`/`X`) with left margin: `ml-4 sm:ml-32 md:ml-64 lg:ml-96`
 
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+**Right button (desktop only):**
+- `hidden sm:block bg-white text-gray-900 font-medium text-sm px-6 py-3 rounded-full`
+- Text: "Join the list"
 
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
-}
+## Mobile Menu (shown on toggle)
+
+- `sm:hidden`, positioned `absolute top-[4.5rem] left-4 right-4`
+- `bg-black/30 backdrop-blur-xl rounded-2xl p-5 border border-white/10`
+- Contains links: "Story", "Benefits", "Connect" (white text) and a full-width "Join the list" button
+
+## Main Content (Bottom-aligned)
+
+On mobile: a spacer `flex-1 sm:hidden` pushes content to the bottom.
+
+The content container: `flex flex-col sm:flex-1 sm:flex-row sm:items-end pb-4 sm:pb-12 lg:pb-16 sm:mt-auto`
+
+**Left column:**
+
+1. **Heading:** `font-askan text-white text-[2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] leading-[1.05] tracking-tight max-w-[700px]`
+   - Text: "Your calm is always within."
+
+2. **Subtitle:** `text-white/70 text-xs sm:text-base md:text-lg max-w-[520px] leading-relaxed`
+   - Text: "Aurai is your always-on wellness companion. Built by leading therapists, it brings you the care and clarity right when you need it."
+
+3. **Email form:** A rounded pill input with inline submit button
+   - Container: `bg-black/30 backdrop-blur-md rounded-full border border-white/10`
+   - Input: transparent background, white text, placeholder "Your email address", `px-4 sm:px-6 py-3 sm:py-4 text-sm`
+   - Submit button (absolute right-1.5): `bg-white text-gray-900 text-xs sm:text-sm font-medium px-3 sm:px-6 py-2 sm:py-3 rounded-full`
+   - Text: "Join the list"
+   - On submit: shows alert with entered email
+
+4. **Feature pills (mobile only):** `flex sm:hidden flex-wrap gap-2 mt-2`
+   - Three pills with `bg-black/30 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/10`
+   - Labels: "Smart Therapy", "Real-time Healing", "Insights into outcomes"
+
+**Right column (desktop only):**
+- `hidden sm:flex flex-col items-end gap-2 self-end`
+- Same three feature pills as mobile but with `text-xs sm:text-sm px-4 py-2`
+
+## Custom SVG Logo
+
+A pinwheel/4-quadrant shape with this path:
+```
+M 228 0 C 172.772 0 128 44.772 128 100 L 128 0 L 0 0 L 0 28 C 0 83.228 44.772 128 100 128 L 0 128 L 0 256 L 28 256 C 83.228 256 128 211.228 128 156 L 128 256 L 256 256 L 256 228 C 256 172.772 211.228 128 156 128 L 256 128 L 256 0 Z
+```
+ViewBox: `0 0 256 256`, fill: `currentColor`
+
+## Global CSS
+
+```css
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 ```
 
+## Key Design Principles
+
+- No dark overlay on the video - content relies on glassmorphism pills and text contrast
+- All interactive glass elements use `bg-black/20` or `bg-black/30` with `backdrop-blur-md` or `backdrop-blur-xl`
+- Borders are `border-white/10` throughout
+- White text with `/70` opacity for secondary text
+- Rounded-full for buttons and inputs, rounded-2xl for containers
+- Page title: "Aurai - Always-On Wellness Companion"

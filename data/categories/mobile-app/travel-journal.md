@@ -7,7 +7,8 @@ categorySlug: "mobile-app"
 routeCollection: "apps"
 videoUrl: "/media/videos/travel-journal.mp4"
 posterUrl: "/media/posters/travel-journal.jpg"
-chars: 4563
+chars: 5151
+sha256: "01075eaea7b5b8bdc28ba157b588d4f60797cbd0c00e55fe0ce0b32039b10f88"
 tier: "free"
 likes: 60
 ---
@@ -72,16 +73,16 @@ Each card:
 **Card data with exact image URLs:**
 
 1. **Tokyo** - 23 moments
-   `https://meez.design/web/media/ext/bf4221c9788892cc.webp`
+   `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260704_101902_e8f0f37b-18b7-4c14-bb5c-99f0724d2646.png&w=1280&q=85`
 
 2. **Seoul** - 18 moments
-   `https://meez.design/web/media/ext/266bc9680f31a324.webp`
+   `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260704_101935_4b17f250-8ddb-4ff2-b63d-dfd3497d4428.png&w=1280&q=85`
 
 3. **Bali** - 29 moments
-   `https://meez.design/web/media/ext/4111355756d31bad.webp`
+   `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260704_101958_7116d6bf-fd6f-496f-b3cf-007688cd5123.png&w=1280&q=85`
 
 4. **Rome** - 15 moments
-   `https://meez.design/web/media/ext/17f0095a938bcda0.webp`
+   `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260704_143008_72ee7299-04a8-474c-ae73-220d45b24a20.png&w=1280&q=85`
 
 ---
 

@@ -7,123 +7,115 @@ categorySlug: "hero"
 routeCollection: "prompts"
 videoUrl: "/media/videos/organic-odyssey.mp4"
 posterUrl: "/media/posters/organic-odyssey.webp"
-chars: 5547
+chars: 4802
+sha256: "c46de546ac824599e6e63ea95c34729ece6e09c7322f2b427a2902a6074f12c4"
 tier: "premium"
 likes: 42
 ---
 
-# Build Prompt: Organic Odyssey — Hero Experience
-Comprehensive Production Web Application Specification
+Create a full-screen cinematic hero section using React, Tailwind CSS, and Framer Motion. Use Vite with TypeScript. The dependencies required are: `react`, `react-dom`, `framer-motion`, `lucide-react`, and `tailwindcss`.
 
-════════════════════════════════════════════════════════════════════════
-1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
-════════════════════════════════════════════════════════════════════════
-Create a full-screen cinematic hero section using React, Tailwind CSS, and Framer Motion. Use Vite with TypeScript. The dependencies required are: `react` …
+**VIDEO BACKGROUND:**
+- Full-screen looping background video, absolutely positioned to fill the viewport
+- Video URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260619_191346_9d19d66e-86a4-47f7-8dc6-712c1788c3b2.mp4`
+- Properties: autoPlay, muted, loop, playsInline, object-cover, object-center
+- Page background: `#010101`, full viewport height, overflow hidden
 
-The page architecture consists of:
-• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
-• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
-• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
-• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
+**FONTS (load via index.html link tags):**
+- Garamond from: `https://db.onlinewebfonts.com/c/2bf40ab72ea4897a3fd9b6e48b233a19?family=Garamond`
+- Geist from Google Fonts: weights 300, 400, 500
+- Body font: `'Geist', -apple-system, BlinkMacSystemFont, sans-serif`
+- Heading font class `.font-garamond`: `'Garamond', 'Times New Roman', serif`
 
-════════════════════════════════════════════════════════════════════════
-2. TECHNICAL SPECIFICATIONS & STACK
-════════════════════════════════════════════════════════════════════════
-• Framework: React 19 + TypeScript + Vite / Next.js
-• Styling: Tailwind CSS v4 with fluid spacing tokens
-• Icons: lucide-react (pure SVG icons with zero layout shift)
-• Motion: Framer Motion / CSS Transitions with hardware acceleration
-• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
+**NAVIGATION:**
+- Relative positioned, z-20, flexbox centered on desktop, space-between on mobile
+- Brand name "Organic Visions" -- white, uppercase, letter-spacing 0.25em (mobile) / 0.3em (desktop), font-light
+- Desktop nav links: "Wander", "Archive", "Story", "Connect" -- white/80, uppercase, 0.2em tracking, hover to white, 300ms transition
+- Mobile: hamburger toggle using lucide-react `Menu` and `X` icons (size 22)
 
-════════════════════════════════════════════════════════════════════════
-3. DESIGN SYSTEM & COLOR TOKENS
-════════════════════════════════════════════════════════════════════════
-• Canvas Background: Deep Obsidian `#050507`
-• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
-• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
-• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
-• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
+**MOBILE MENU (hamburger dropdown):**
+- Fixed position, top-16, left-4, right-4, z-50, hidden on md+
+- Uses `AnimatePresence` from framer-motion for mount/unmount animation
+- Animation: fade in from y:-10 to y:0, duration 0.3s, ease 'easeOut'; reverse on exit
+- Each link staggers in with opacity 0 to 1, y:-8 to 0, delay 0.05 + index*0.06
+- Links: white/90, 0.25em tracking, uppercase, font-light, hover to white
+- Custom glass class `.mobile-menu-glass`:
+  ```css
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  ```
+- Rounded-2xl, py-8, gap-5, flex-col centered
 
-════════════════════════════════════════════════════════════════════════
-4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
-════════════════════════════════════════════════════════════════════════
-```tsx
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
+**HERO CONTENT:**
+- Relative z-10, flex-col centered, text-center
+- Padding: px-5 (sm:px-8), pt-12 (sm:pt-16, md:pt-24)
+- Heading: Two lines -- "WITNESS THE" and "HIDDEN REALM"
+- Font: Garamond, sizes 4xl/6xl/8xl/9xl responsive, font-normal, white, line-height 1.08, tracking-tight, mb-6 (sm:mb-8)
+- Each line uses a `StaggeredFade` component that splits text into individual characters and animates each with 0.07s stagger delay (opacity 0 to 1), triggered once when in view
 
-export interface OrganicOdysseySectionProps {
-  headline?: string;
-  tagline?: string;
-  onExplore?: () => void;
+**STAGGERED FADE COMPONENT:**
+- Accepts `text` string prop
+- Splits into individual `<motion.span>` characters
+- Uses `useInView` hook (once: true) to trigger animation
+- Variants: hidden = opacity 0; show = opacity 1, y:0, with delay `i * 0.07` per character
+
+**SUBTITLE:**
+- Framer Motion animated paragraph, initial opacity:0 y:20, animate opacity:1 y:0, duration 0.8s, delay 1.6s
+- Text: "An odyssey through delicate living forms," (line break hidden on mobile, visible sm+) "revealed by lens and curiosity."
+- White/70, font-light, leading-relaxed, max-w-xs (sm:max-w-md), mb-8 (sm:mb-10)
+- Responsive sizes: text-sm / text-base / text-lg
+
+**CTA BUTTON:**
+- Framer Motion animated, initial opacity:0 y:20, animate opacity:1 y:0, duration 0.8s, delay 2.0s
+- Text: "Begin the Experience"
+- Uses `.liquid-glass` class, rounded-full, responsive padding px-7/px-10 py-3.5/py-4
+- White/90, uppercase, tracking 0.18em/0.2em responsive
+
+**LIQUID GLASS CSS (.liquid-glass):**
+```css
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-export function OrganicOdysseySection({
-  headline = "Organic Odyssey",
-  tagline = "Create a full-screen cinematic hero section using React, Tailwind CSS, and Framer Motion. Use Vite with TypeScript. The dependencies required are: `react` …",
-  onExplore
-}: OrganicOdysseySectionProps) {
-  const [isHovered, setIsHovered] = useState(false);
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
 
-  return (
-    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+.liquid-glass:hover {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15);
+}
 
-      {/* Top Header Row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-6">
-        <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
-            <Zap className="h-4 w-4 text-indigo-400" />
-          </span>
-          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Hero
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
-            <Shield className="h-3 w-3 text-emerald-400" />
-            Verified Specification
-          </span>
-        </div>
-      </div>
-
-      {/* Center Main Content */}
-      <div className="my-12 max-w-2xl space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
-          {headline}
-        </h1>
-        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
-          {tagline}
-        </p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
-          <button
-            onClick={onExplore}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
-          >
-            <span>Explore Experience</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Feature Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-indigo-400" />
-          <span>Universal Responsive Layout</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-400" />
-          <span>Framer Motion Ready</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-emerald-400" />
-          <span>Production TypeScript</span>
-        </div>
-      </div>
-    </section>
-  );
+.liquid-glass:active {
+  transform: scale(0.98);
 }
 ```
 
+**GLOBAL CSS:**
+- Reset: margin 0, padding 0, box-sizing border-box on all elements
+- Body: antialiased font smoothing, white text, #010101 background
+- Uses Tailwind directives: @tailwind base/components/utilities
+
+**PAGE TITLE:** "Synthetic Nature"

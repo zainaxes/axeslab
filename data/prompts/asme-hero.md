@@ -8,6 +8,7 @@ routeCollection: "sections"
 videoUrl: "/media/videos/asme-hero.mp4"
 posterUrl: "/media/posters/asme-hero.jpg"
 chars: 4360
+sha256: "1127da6eb24f5c40f392c09df4ecc39dd435fee5475f28b4aa64a91472a46a2c"
 tier: "premium"
 likes: 129
 ---
