@@ -138,7 +138,7 @@ function normalizeCategory(cat) {
   return c;
 }
 
-// 2. Build final catalog records
+// 2. Build final catalog records with exact verified local media assets
 const finalCatalog = master.map((item, idx) => {
   const cat = normalizeCategory(item.category);
   const catSlug = cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -149,6 +149,26 @@ const finalCatalog = master.map((item, idx) => {
   else if (cat.toLowerCase().includes('app')) routeCol = 'apps';
   else if (cat.toLowerCase().includes('background')) routeCol = 'backgrounds';
   else if (cat.toLowerCase().includes('section')) routeCol = 'sections';
+
+  // Check exact local poster
+  let resolvedPoster = null;
+  for (const ext of ['.webp', '.jpg', '.png']) {
+    if (fs.existsSync(path.join(__dirname, '..', 'public', 'media', 'posters', `${item.slug}${ext}`))) {
+      resolvedPoster = `/media/posters/${item.slug}${ext}`;
+      break;
+    }
+  }
+  if (!resolvedPoster && item.poster_url) {
+    resolvedPoster = item.poster_url;
+  }
+
+  // Check exact local video
+  let resolvedVideo = null;
+  if (fs.existsSync(path.join(__dirname, '..', 'public', 'media', 'videos', `${item.slug}.mp4`))) {
+    resolvedVideo = `/media/videos/${item.slug}.mp4`;
+  } else if (item.video_url && !item.video_url.startsWith('/media/videos/')) {
+    resolvedVideo = item.video_url;
+  }
 
   return {
     id: id,
@@ -162,8 +182,8 @@ const finalCatalog = master.map((item, idx) => {
     page_type: 'full',
     likes_count: 45 + (idx * 7) % 150,
     is_free: true,
-    preview_video_url: item.video_url || `/media/videos/${item.slug}.mp4`,
-    preview_poster_url: item.poster_url || `/media/posters/${item.slug}.jpg`,
+    preview_video_url: resolvedVideo,
+    preview_poster_url: resolvedPoster,
     summary: `${item.title} — ${cat} prompt with visual preview, responsive layout & production ready code.`,
     chars: item.prompt.length,
     tier: 'free',
