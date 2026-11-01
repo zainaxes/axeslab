@@ -4,109 +4,64 @@ slug: "codenest-hero"
 title: "CodeNest Coding Platform"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/codenest-hero.mp4"
+posterUrl: "/media/posters/codenest-hero.jpg"
+chars: 2581
+tier: "premium"
 likes: 62
-tier: "free"
-chars: 4463
-preview_video: "/media/videos/codenest-hero.mp4"
-preview_poster: "/media/posters/codenest-hero.jpg"
 ---
 
-# CodeNest Coding Platform (Landing Page)
+Create a high-end, dark-themed hero section for a coding education platform called 'CodeNest' using React and Tailwind CSS. The design must be responsive and follow these precise specifications:
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+1. Background & Layout:
 
-Recreate this exact high-converting Landing Page design — pixel-perfect match.
+Background: Implement a full-screen background video using the HLS stream: https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8. Use hls.js and set enableWorker: false to ensure stability in sandboxed environments.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/codenest-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/codenest-hero-preview.mp4
+Overlays: Set the video to 60% opacity. Add a dark linear gradient from the left (#070b0a to transparent) and a bottom-up gradient for readability.
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Grid System: Add three thin vertical grid lines (white/10 opacity) at the 25%, 50%, and 75% marks across the screen (visible on desktop).
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Central Glow: Place a large horizontal SVG ellipse glow in the center-top area with a cyan/dark green hue, using a 25px Gaussian blur filter.
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+2. The Liquid Glass Card:
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Component: Create a 200x200px floating card positioned above the main headline, shifted exactly 50px upwards using translate-y-[-50px].
 
-export interface CodeNestCodingPlatformProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+CSS Styling (Liquid Glass):
 
-export function CodeNestCodingPlatform({
-  headline = "CodeNest Coding Platform",
-  subheadline = "Create a high-end, dark-themed hero section for a coding education platform called 'CodeNest' using React and Tailwind CSS. The design must be responsive and …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: CodeNestCodingPlatformProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>LANDING PAGE</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/codenest-hero-poster-c.jpg"
-            alt="CodeNest Coding Platform"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+background: rgba(255, 255, 255, 0.01) with background-blend-mode: luminosity.
+
+backdrop-filter: blur(4px).
+
+box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1).
+
+Border Effect: A ::before pseudo-element with inset: 0, padding: 1.4px, and a 180-degree white linear gradient. Use -webkit-mask-composite: xor and mask-composite: exclude to create a sharp, high-end border frame.
+
+Content: '[ 2025 ]' tag (14px), 'Taught by Industry Professionals' headline (18px, using Instrument Serif italic for 'Industry'), and a small description (11px).
+
+3. Hero Content & Typography:
+
+Eyebrow: 'Career-Ready Curriculum' in Plus Jakarta Sans, bold, 11px, color #5ed29c.
+
+Main Headline: 'LAUNCH YOUR CODING CAREER.' in Inter Extra Bold, uppercase, tracking-tight. Scale from 40px (mobile) to 72px (desktop). The final period must be green (#5ed29c).
+
+Description: 'Master in-demand coding skills...' in Inter, 14px, 70% white opacity, max-width 512px.
+
+Primary CTA: 'Get Started' button with an ArrowRight icon. Rounded-full, background #5ed29c, text #070b0a, uppercase, bold.
+
+4. Global Navigation:
+
+Header: Sticky/Absolute header with a white minimalist logo.
+
+Desktop Menu: Links for 'PROJECTS', 'BLOG', 'ABOUT', 'RESUME' in Inter, 16px. Hover state: #5ed29c.
+
+Mobile Menu: A functional hamburger menu that toggles a full-screen dark overlay.
+
+5. Required Imports:
+
+Fonts: Inter, Plus Jakarta Sans, and Instrument Serif (italic).
+
+Icons: lucide-react (ArrowRight, Menu, X).
+
+Library: hls.js for video streaming.

@@ -4,15 +4,13 @@ slug: "wellness-device"
 title: "Wellness Device"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 42
+routeCollection: "prompts"
+videoUrl: "/media/videos/wellness-device.mp4"
+posterUrl: "/media/posters/wellness-device.webp"
+chars: 6652
 tier: "free"
-chars: 6695
-preview_video: "/media/videos/wellness-device.mp4"
-preview_poster: "/media/posters/wellness-device.webp"
+likes: 42
 ---
-
-# Wellness Device (Landing Page)
 
 Build a single-page hero section for a product called "Measured" — a health/wellness wearable device landing page. The page is fullscreen (100vh), dark/moody aesthetic with layered imagery, a cursor-following spotlight reveal effect, and a frosted-glass navigation. Use React + Vite + Tailwind CSS + TypeScript.
 
@@ -28,9 +26,9 @@ Build a single-page hero section for a product called "Measured" — a health/we
 
 ## Asset URLs (exact)
 
-- **Background Image (BG_IMAGE_1):** `https://axeslab.zainaxes.com/web/media/ext/b3101a323e5a3897.webp`
-- **Front Video (FRONT_VIDEO):** `https://axeslab.zainaxes.com/web/media/prompt-media/v/eecd18ba5aa24812.mp4`
-- **Overlay Image (OVERLAY_IMAGE):** `https://axeslab.zainaxes.com/web/media/ext/204e1738460ecf88.png`
+- **Background Image (BG_IMAGE_1):** `https://meez.design/web/media/ext/b3101a323e5a3897.webp`
+- **Front Video (FRONT_VIDEO):** `https://meez.design/web/media/prompt-media/v/eecd18ba5aa24812.mp4`
+- **Overlay Image (OVERLAY_IMAGE):** `https://meez.design/web/media/ext/204e1738460ecf88.png`
 
 ---
 
@@ -47,7 +45,7 @@ Build a single-page hero section for a product called "Measured" — a health/we
 - Close button: top-right, `.liquid-glass` rounded-full with X made of two rotated white lines (+45deg, -45deg)
 - Nav items stacked vertically, centered, `text-3xl sm:text-4xl`, white/90, font-medium
 - "Reserve Yours" CTA at bottom with green dot, `.liquid-glass` pill
-- Staggered entry animations: each item slides up from 24px with opacity 0->1, delays incremented by Axes Lab (@zainaxes) starting at 100ms. Uses `cubic-bezier(0.77, 0, 0.18, 1)` easing. Close button rotates in from -90deg with scale 0.8.
+- Staggered entry animations: each item slides up from 24px with opacity 0->1, delays incremented by 60ms starting at 100ms. Uses `cubic-bezier(0.77, 0, 0.18, 1)` easing. Close button rotates in from -90deg with scale 0.8.
 
 ### Hero Section (100vh, overflow hidden)
 

@@ -4,109 +4,174 @@ slug: "vortex-studio-hero"
 title: "AI Designer Portfolio"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/vortex-studio-hero.mp4"
+posterUrl: "/media/posters/vortex-studio-hero.png"
+chars: 11374
+tier: "premium"
 likes: 42
-tier: "free"
-chars: 4454
-preview_video: "/media/videos/vortex-studio-hero.mp4"
-preview_poster: "/media/posters/vortex-studio-hero.png"
 ---
 
-# AI Designer Portfolio (Landing Page)
+Create a single-page landing page for a creative design studio called "Zainaxes" using React, TypeScript, Vite, and Tailwind CSS. Use lucide-react for icons. The page has a white background throughout and uses two custom fonts: "PP Neue Montreal" (body text, loaded from Webflow CDN) and "PP Mondwest" (serif accent font, loaded from a local /PPMondwest-Regular.woff2 file). The body default font is PP Neue Montreal with system fallbacks.
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+The page consists of these sections in order:
 
-Recreate this exact high-converting Landing Page design — pixel-perfect match.
+1. HERO SECTION (centered, narrow column max-w-[440px], px-6, pt-12 md:pt-16)
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/vortex-studio-hero-poster.png
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/vortex-studio-hero-preview.mp4
+Logo text: "Zainaxes" in PP Mondwest serif font, text-[32px] md:text-[40px] lg:text-[44px], font-semibold, color #051A24, tracking-tight, mb-4. Fades in with staggered animation (delay 0.1s).
+Tagline: "The creative studio of Zainaxes" in monospace font (font-mono), text-xs md:text-sm, color #051A24, mb-2. Animation delay 0.2s.
+Main Heading: Two lines: "Build the next wave," and "the bold way." where "next wave" and "bold way." are in PP Mondwest serif. Text is text-[32px] md:text-[40px] lg:text-[44px], leading-[1.1], color #0D212C, tracking-tight, whitespace-nowrap. Animation delay 0.3s.
+Description: Three paragraphs in a flex-col gap-6 container, text-sm md:text-base, color #051A24, leading-relaxed, mt-5 md:mt-6. Animation delay 0.4s.
+Paragraph 1: "I spent seven years at Apple crafting products used by over a billion people. I founded Vortex Studio to bring that same level of thinking to innovators shaping what comes next."
+Paragraph 2: "The studio is deliberately small. I guide the creative vision on every project, backed by a veteran design crew that moves fast without cutting corners."
+Paragraph 3: "Projects start at $5,000 per month."
+Two buttons in flex-col sm:flex-row, gap-3 md:gap-4, mt-5 md:mt-6. Animation delay 0.5s:
+"Start a chat" (primary: bg-[#051A24], text white, rounded-full, px-7 py-3, with a complex multi-layered box-shadow including an inset highlight)
+"View projects" (secondary: bg-white, text #051A24, no border, with subtle shadow)
+2. INFINITE MARQUEE (full width, mt-16 md:mt-20, mb-16)
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Horizontally scrolling image strip. Uses 8 GIF images duplicated (total 16) in a flex row with animate-marquee CSS animation (translateX(0) to translateX(-50%), 30s linear infinite on desktop, 10s on mobile). Images are h-[280px] md:h-[500px], object-cover, mx-3, rounded-2xl, shadow-lg.
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Image URLs (all from Axes Lab):
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+https://Axes Lab/assets/hero-space-voyage-preview-eECLH3Yc.gif
+https://Axes Lab/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif
+https://Axes Lab/assets/hero-velorah-preview-CJNTtbpd.gif
+https://Axes Lab/assets/hero-asme-preview-B_nGDnTP.gif
+https://Axes Lab/assets/hero-transform-data-preview-Cx5OU29N.gif
+https://Axes Lab/assets/hero-aethera-preview-DknSlcTa.gif
+https://Axes Lab/assets/hero-orbit-web3-preview-BXt4OttD.gif
+https://Axes Lab/assets/hero-nexora-preview-cx5HmUgo.gif
+3. TESTIMONIAL QUOTE SECTION (py-12, px-6, max-w-2xl, centered)
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+A quote icon (lucide-react Quote, w-6 h-6, text-slate-900). Animation delay 0.1s.
+Large quote text: 'I left Apple to build the studio I always wanted to work with' where "Apple" is in PP Mondwest serif. Text sizing: text-[32px] md:text-[40px] lg:text-[44px], leading-[1.1], color #0D212C, tracking-tight. Animation delay 0.2s.
+Author: "Zainaxes" in italic, text-sm, color #273C46. Animation delay 0.3s.
+Three company logo names displayed as text: "Apple" (80px wide, 24px font), "IDEO" (83px wide, 24px font), "Polygon" (110px wide, 24px font). Font-medium, text-slate-900. Animation delay 0.4s.
+Below logos: A parallax image (scrolls with a parallax effect based on viewport position, max offset 200px). The image URL is: https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260330_103804_7aa5494f-4d5b-432e-9dc7-20715275f143.png&w=1280&q=85. Alt text "Chris Halaska". w-full max-w-xs rounded-2xl shadow-lg. Animation delay 0.5s. The parallax uses IntersectionObserver + scroll listener with requestAnimationFrame.
+4. PRICING SECTION (full width, py-12, px-6)
 
-export interface AIDesignerPortfolioProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
+Two cards in a grid (grid-cols-1 md:grid-cols-2, gap-8), aligned right on desktop (md:justify-end, md:max-w-4xl). Each card has rounded-[40px], pl-10 pr-10 md:pr-24 pt-3 pb-10.
+
+Card 1 (Dark): bg-[#051A24], inset shadow. Text color #F6FCFF / #E0EBF0. Animation delay 0.1s.
+
+Title: "Monthly Partnership" (text-[22px], font-medium)
+Description: "A dedicated creative design team. / You work directly with Viktor."
+Price: "$5,000" (text-2xl, color #F6FCFF), "Monthly" below
+Two buttons: "Start a chat" (primary) + "How it works" (secondary), both linking to https://halaskastudio.com/./book
+Card 2 (Light): bg-white, shadow-[0_4px_16px_rgba(0,0,0,0.08)]. Animation delay 0.2s.
+
+Title: "Custom Project" (text-[22px], font-medium)
+Description: "Fixed scope, fixed timeline. / Same team, same standards."
+Price: "$5,000" (text-2xl, color #0D212C), "Minimum" below
+One button: "Start a chat" (tertiary variant: white bg with combined shadow)
+5. TESTIMONIAL CAROUSEL (full width, py-20)
+
+Header row (md:max-w-4xl, md:ml-auto): Title "What builders say" (where "builders" is in PP Mondwest serif, same large heading size) on left. On the right: 5 filled black star icons (lucide-react Star, w-5 h-5, fill-black) + "Clutch 5/5" text.
+Auto-scrolling carousel (3s interval, pauses on hover) with prev/next circular buttons (w-12 h-12 rounded-full, border border-[#0D212C]/20, lucide ChevronLeft/ChevronRight).
+Cards are 427.5px wide on desktop (full width minus 48px on mobile), gap-6, with exit animation (opacity fade + scale down). Each card: bg-white, rounded-[32px] md:rounded-[40px], shadow-[0_4px_16px_rgba(0,0,0,0.08)], px-6 md:pl-10 md:pr-24 py-8.
+Card content: SVG quote mark icon (custom path), quote text (text-base, color #0D212C, leading-relaxed), author row with circular avatar (w-12 h-12), name (font-semibold, text-sm), role/company with arrow prefix.
+Testimonials array uses Pexels avatar images. The testimonials are tripled for infinite scroll effect. Transform uses cubic-bezier(0.4, 0, 0.2, 1) with 0.8s transition.
+5 testimonials:
+
+Marcus Anderson, CEO, Data.storage - "With very little guidance team delivered designs that were consistently spot on..."
+alexwu, Founder, Nexgate - "Viktor led the creation of our best fundraising deck to date!..."
+James Mitchell, VP Product, LaunchPad - "Working with Viktor transformed our product vision..."
+Rachel Foster, Co-founder, Nexus Labs - "The design quality exceeded our expectations..."
+David Zhang, Head of Design, Paradigm Labs - "Incredible work from start to finish..."
+6. PROJECTS SECTION (max-w-[1200px], px-6, py-12)
+
+Vertical stack of 3 project items (gap-16 md:gap-20). Each has:
+
+Text block offset left (ml-20 md:ml-28): Project name in PP Mondwest serif (text-2xl md:text-3xl, font-semibold, color #051A24) + description (text-sm md:text-base, color #051A24/70)
+Full-width image below (rounded-2xl, shadow-lg, object-cover)
+Each item independently triggers fade-in animation via IntersectionObserver.
+Projects:
+
+"evr" - "From idea to millions raised for a web3 AI product" - https://Axes Lab/assets/hero-evr-ventures-preview-DZxeVFEX.gif
+"Automation Machines" - "Streamlining industrial automation processes" - https://Axes Lab/assets/hero-automation-machines-preview-DlTveRIN.gif
+"xPortfolio" - "Modern portfolio management platform" - https://Axes Lab/assets/hero-xportfolio-preview-D4A8maiC.gif
+7. PARTNER SECTION (full width, py-12, px-6)
+
+Large white container (max-w-7xl, py-48, rounded-[40px], subtle shadow). On mouse hover, GIF thumbnails (from the marquee images array) spawn at cursor position with random rotation (-10 to +10 deg), fade out over 1000ms with scale-down, spawning every 80ms minimum. Uses requestAnimationFrame-style cleanup.
+
+Centered heading: "Partner with us" in PP Mondwest serif, text-[48px] md:text-[64px] lg:text-[80px], color #0D212C, mb-12.
+CTA button: Dark pill with circular avatar image (Pexels photo 415829, w-10 h-10 rounded-full) + "Start chat with Viktor". Same primary button shadow style.
+8. FOOTER (full width, py-12, px-6, max-w-[1200px])
+
+Flex row (md:flex-row). Left side: "Start a chat" primary button. Right side: ArrowUpRight icon (lucide-react), then two columns of links:
+
+Column 1: Services, Work, About (anchor links)
+Column 2: x.com, LinkedIn (external links, target _blank)
+All links: text-base, color #051A24, hover:opacity-70 transition.
+
+9. COPYRIGHT BAR (max-w-[1200px], px-6, py-4)
+
+Flex row justify-between: "Vortex Studio Limited" on left, "Austin, USA" on right. Text-sm, color #051A24.
+
+10. FIXED BOTTOM NAV (z-50, centered)
+
+Floating pill fixed to bottom (bottom-6, centered via left-1/2 -translate-x-1/2). White bg, rounded-full, px-8 py-2, complex layered shadow. Contains: "V" letter in PP Mondwest serif (text-2xl, font-semibold, color #051A24) + "Start a chat" primary button.
+
+ANIMATIONS:
+
+All sections use a custom useInViewAnimation hook (IntersectionObserver with threshold 0.1, triggers once). Elements get class animate-fade-in-up when in view (otherwise opacity-0). The animation is defined in CSS:
+
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-
-export function AIDesignerPortfolio({
-  headline = "AI Designer Portfolio",
-  subheadline = "Create a single-page landing page for a creative design studio called \"Zainaxes\" using React, TypeScript, Vite, and Tailwind CSS. Use lucide-react for …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: AIDesignerPortfolioProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>LANDING PAGE</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/vortex-studio-hero-poster.png"
-            alt="AI Designer Portfolio"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
-```
+Each element within a section has staggered animationDelay values (0.1s, 0.2s, 0.3s, etc.).
+
+COLOR PALETTE:
+
+Primary dark: #051A24
+Secondary dark: #0D212C
+Light text on dark: #F6FCFF, #E0EBF0
+Body text: #051A24
+Muted text: #273C46
+Background: white throughout
+BUTTON SHADOWS (critical for the design feel):
+
+Primary: 0_1px_2px_0_rgba(5,26,36,0.1), 0_4px_4px_0_rgba(5,26,36,0.09), 0_9px_6px_0_rgba(5,26,36,0.05), 0_17px_7px_0_rgba(5,26,36,0.01), 0_26px_7px_0_rgba(5,26,36,0), inset_0_2px_8px_0_rgba(255,255,255,0.5)
+Secondary: 0_0_0_0.5px_rgba(0,0,0,0.05), 0_4px_30px_rgba(0,0,0,0.08)
+FONTS (CSS):
+
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Mondwest';
+  src: url('/PPMondwest-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+FILE STRUCTURE:
+
+src/App.tsx - Main layout with hero, marquee, and section composition
+src/components/Button.tsx - Reusable button (primary/secondary/tertiary variants)
+src/components/TestimonialSection.tsx - Quote with parallax image
+src/components/PricingSection.tsx - Two pricing cards
+src/components/TestimonialCarousel.tsx - Auto-scrolling testimonial cards
+src/components/ProjectsSection.tsx - Project showcase items
+src/components/PartnerSection.tsx - Interactive mouse-trail CTA section
+src/components/Footer.tsx - Footer with links
+src/components/CopyrightBar.tsx - Copyright line
+src/components/BottomNav.tsx - Fixed floating bottom nav
+src/hooks/useInViewAnimation.ts - IntersectionObserver scroll-trigger hook
+src/index.css - Font faces, marquee animation, fade-in-up animation

@@ -4,109 +4,68 @@ slug: "datacore-booking-hero"
 title: "Datacore Booking"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/datacore-booking-hero.mp4"
+posterUrl: "/media/posters/datacore-booking-hero.jpg"
+chars: 2826
+tier: "premium"
 likes: 130
-tier: "free"
-chars: 4433
-preview_video: "/media/videos/datacore-booking-hero.mp4"
-preview_poster: "/media/posters/datacore-booking-hero.jpg"
 ---
 
-# Datacore Booking (SaaS)
+Create a responsive, full-screen hero section for a web application using React and Tailwind CSS.
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Design System & Assets:
 
-Recreate this exact high-converting SaaS design — pixel-perfect match.
+Fonts: Load and use 'Manrope' (for UI/Nav), 'Cabin' (for buttons/tags), 'Instrument Serif' (for headlines), and 'Inter' (for body text).
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/datacore-booking-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/datacore-booking-hero-preview.mp4
+Primary Color: Purple #7b39fc
+Secondary/Dark Color: Dark Purple #2b2344
+Background: Use a full-screen, absolute-positioned HTML5 video background. The video should autoplay, loop, mute, and play inline. Ensure it covers the viewport (min-h-screen, object-cover) without an overlay (keep it opaque).
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Video URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260210_031346_d87182fb-b0af-4273-84d1-c6fd17d6bf0f.mp4
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+1. Navbar Component (Top Overlay)
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+Layout: Full width, transparent background, z-20 relative positioning.
+Padding: px-6 (mobile) to px-[120px] (desktop), py-[16px].
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Logo (Left): Use this specific SVG path filled with white:
+Path: M1.04356 6.35771L13.6437 0.666504... (Future logo shape).
 
-export interface DatacoreBookingProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+Navigation Links (Center-Left, Desktop Only):
+Items: "Home", "Services" (with a ChevronDown icon), "Reviews", "Contact us".
+Style: Manrope font, Medium weight, 14px size, White.
+Hover effect: opacity-80.
 
-export function DatacoreBooking({
-  headline = "Datacore Booking",
-  subheadline = "Create a responsive, full-screen hero section for a web application using React and Tailwind CSS. Design System & Assets: Fonts: Load and use 'Manrope' (for …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: DatacoreBookingProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>SAAS</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/datacore-booking-hero-poster-c.jpg"
-            alt="Datacore Booking"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Action Buttons (Right, Desktop Only):
+Sign In: White background, thin gray border (#d4d4d4), rounded 8px, Black text (#171717), Manrope Semibold 14px.
+Get Started: Primary Purple background (#7b39fc), rounded 8px, White text (#fafafa), Manrope Semibold 14px, subtle shadow.
+
+Mobile: Hide links/buttons and show a White Menu icon (hamburger) that toggles a full-screen black overlay menu.
+
+2. Hero Content (Centered)
+
+Container: Centered vertically and horizontally (flex-col items-center text-center), z-10 relative, top margin mt-32.
+
+Tagline Pill:
+Style: Glassmorphism effect (bg-[rgba(85,80,110,0.4)], backdrop-blur, border rgba(164,132,215,0.5)).
+Shape: Rounded 10px, Height 38px.
+Content: A small inner badge (#7b39fc bg, rounded 6px) saying "New" followed by text "Say Hello to Datacore v3.2".
+Font: Cabin, Medium, 14px, White.
+
+Headline:
+Text: "Book your perfect stay instantly and hassle-free".
+Typography: Instrument Serif font, White.
+Size: 5xl (mobile) to 96px (desktop).
+Styling: Line-height 1.1. The word "and" should be italicized with specific spacing.
+
+Subtext:
+Text: "Discover handpicked hotels, resorts, and stays across your favorite destinations. Enjoy exclusive deals, fast booking, and 24/7 support."
+Typography: Inter font, Normal weight, 18px.
+Color: White with 70% opacity (text-white/70).
+Width: Max width 662px.
+
+Call to Action Buttons (Row):
+Button 1: "Book a Free Demo" — Primary Purple (#7b39fc), rounded 10px, Cabin Medium 16px, White.
+Button 2: "Get Started Now" — Dark Purple (#2b2344), rounded 10px, Cabin Medium 16px, Off-white (#f6f7f9).
+Hover effects: Slightly lighten backgrounds on hover.

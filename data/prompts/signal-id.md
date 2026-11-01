@@ -4,15 +4,13 @@ slug: "signal-id"
 title: "Signal ID"
 category: "Technology"
 categorySlug: "technology"
-collection: "prompts"
-likes: 76
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/signal-id.jpg"
+chars: 11271
 tier: "free"
-chars: 11316
-preview_video: ""
-preview_poster: "/media/posters/signal-id.jpg"
+likes: 76
 ---
-
-# Signal ID (Technology)
 
 Recreate this exact full-viewport dark hero landing page for “ECHOID” — a voice-identity product for the E network. Match every detail below precisely. Do not invent extra sections, cards, stats, or decorative overlays. Desktop composition: full-bleed cinematic background video on the left/center with a right-aligned signup panel; black negative space on the left; UI pinned top (nav), right (form), and bottom (legal).
 
@@ -29,15 +27,15 @@ PAGE META
 EXACT MEDIA URLS (CloudFront — use these verbatim)
 ═══════════════════════════════════════
 Background video (MP4):
-https://axeslab.zainaxes.com/web/media/ext/ef332df5da921818.mp4
+https://meez.design/web/media/ext/ef332df5da921818.mp4
 
 Poster / fallback still (PNG):
-https://axeslab.zainaxes.com/web/media/ext/71d89c5b89d722c9.png
+https://meez.design/web/media/ext/71d89c5b89d722c9.png
 
 Video attributes: autoPlay, muted, loop, playsInline, preload="auto"
 Video CSS: width/height 100%, object-fit: cover, object-position: center
 Media layer: position absolute, inset 0, z-index -1, black background behind video
-Preconnect to: https://axeslab.zainaxes.com
+Preconnect to: https://meez.design
 
 Video content (for reference): dark cinematic AI/surreal face sequence — abstract metallic/glass facial forms, cool dark palette, motion graphic identity vibe. Full-bleed edge-to-edge; never inset, never in a card.
 
@@ -277,6 +275,6 @@ React + plain CSS (or equivalent). No Tailwind utility look required — custom 
 
 **Media URLs to keep verbatim:**
 
-- Video: `https://axeslab.zainaxes.com/web/media/ext/ef332df5da921818.mp4`
-- Poster: `https://axeslab.zainaxes.com/web/media/ext/71d89c5b89d722c9.png`
+- Video: `https://meez.design/web/media/ext/ef332df5da921818.mp4`
+- Poster: `https://meez.design/web/media/ext/71d89c5b89d722c9.png`
 - Fonts: **Sora** (200/300/400) + **JetBrains Mono** (300/400/500)

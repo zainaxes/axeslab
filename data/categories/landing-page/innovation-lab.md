@@ -4,15 +4,13 @@ slug: "innovation-lab"
 title: "Innovation Lab"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 133
+routeCollection: "prompts"
+videoUrl: "/media/videos/innovation-lab.mp4"
+posterUrl: "/media/posters/innovation-lab.webp"
+chars: 6847
 tier: "free"
-chars: 6873
-preview_video: "/media/videos/innovation-lab.mp4"
-preview_poster: "/media/posters/innovation-lab.webp"
+likes: 133
 ---
-
-# Innovation Lab (Landing Page)
 
 Create a full-screen immersive landing page for a fictional creative-tech studio called "VortxLab Creations" (brand: "V O R T X"). The page features a looping background video, a glassmorphism-cut button aesthetic with octagonal clip-path shapes, and staggered fade-up entrance animations on every element.
 
@@ -35,7 +33,7 @@ clip-path: polygon(
 );
 ```
 
-**`.btn-cut-border`** (outline variant): `position: relative; background: white;` same clip-path as above. A `::before` pseudo-element with `inset: 1px; background: black;` and the same clip-path but offset by Axes Lab (@zainaxes) (11px values), `z-index: 0`. Direct children get `position: relative; z-index: 1;` so text shows on black.
+**`.btn-cut-border`** (outline variant): `position: relative; background: white;` same clip-path as above. A `::before` pseudo-element with `inset: 1px; background: black;` and the same clip-path but offset by 1px (11px values), `z-index: 0`. Direct children get `position: relative; z-index: 1;` so text shows on black.
 
 **`.btn-cut-sm`** (small social buttons, 8px cut): same polygon but with 8px values.
 
@@ -62,7 +60,7 @@ clip-path: polygon(
 ### Background Video
 Use this exact CloudFront URL as the `<video src>`:
 ```
-https://axeslab.zainaxes.com/web/media/prompt-media/v/b262bf61e731668b.mp4
+https://meez.design/web/media/prompt-media/v/b262bf61e731668b.mp4
 ```
 Attributes: `autoPlay loop muted playsInline`, class `absolute inset-0 w-full h-full object-cover anim-fade` with `animationDelay: '0.2s'`.
 

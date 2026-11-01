@@ -4,109 +4,56 @@ slug: "skyelite-hero"
 title: "SkyElite Private Jets"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/skyelite-hero.mp4"
+posterUrl: "/media/posters/skyelite-hero.jpg"
+chars: 2285
+tier: "premium"
 likes: 179
-tier: "free"
-chars: 4434
-preview_video: "/media/videos/skyelite-hero.mp4"
-preview_poster: "/media/posters/skyelite-hero.jpg"
 ---
 
-# SkyElite Private Jets (Landing Page)
+Create a premium private jet landing page hero section with the following specifications:
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Video Background:
+Use this exact CloudFront video URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4
+Video should autoplay, be muted, loop continuously, and include playsInline attribute
+Video covers entire viewport (100vh) using object-cover
 
-Recreate this exact high-converting Landing Page design — pixel-perfect match.
+Navigation Bar:
+Brand name "SkyElite" on the left (text-2xl, font-semibold, text-gray-900)
+Desktop menu items (hidden on mobile, visible md:flex): Start, Story, Rates, Benefits, FAQ
+Navigation links in gray-900 with hover:text-gray-700 transition
+Mobile hamburger menu button using Lucide React icons (Menu/X)
+Mobile menu appears as dropdown with white/95 opacity background, backdrop blur, rounded corners, shadow
+Max width 7xl, centered with px-8 py-6
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/skyelite-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/skyelite-hero-preview.mp4
+Hero Content (centered, -mt-80 to pull up):
+Small uppercase label: "PRIVATE JETS" (text-sm, font-semibold, gray-600, tracking-wider, mb-4)
+Large two-line heading with overlapping effect:
+Line 1: "Premium." (text-6xl md:text-7xl lg:text-8xl, font-normal, text-gray-500, leading-none, tracking-tighter)
+Line 2: "Accessible." (same size, color: #202A36, negative margin-top: -12px for overlap)
+Subtitle: "Your dedication deserves recognition." (text-lg md:text-xl, gray-600, mb-6, max-w-2xl)
+Two call-to-action buttons (gap-4, centered):
+"Discover" button: px-4 py-2, rounded-full, bg-gray-300, text-gray-800, font-medium, hover:bg-gray-400
+"Book Now" button: px-4 py-2, rounded-full, white text, bg-color #202A36, hover color #1a2229 with smooth transitions
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Typography:
+Use Inter font (import from Google Fonts: 400, 500, 600, 700 weights)
+Apply to entire body via CSS
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Technical Setup:
+React with TypeScript
+Tailwind CSS for styling
+Lucide React for icons
+useState hook for mobile menu toggle
+Full screen height container (h-screen)
+Responsive breakpoints: mobile-first, md, lg
+All transitions use transition-colors class
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+Layout Structure:
+Outer container: min-h-screen, bg-gray-50
+Hero section: relative, h-screen, overflow-hidden
+Content wrapper: relative, h-full, flex flex-col
+Main content area: flex-1, flex items-center justify-center
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
-
-export interface SkyElitePrivateJetsProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
-
-export function SkyElitePrivateJets({
-  headline = "SkyElite Private Jets",
-  subheadline = "Create a premium private jet landing page hero section with the following specifications: Video Background: Use this exact CloudFront video URL …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: SkyElitePrivateJetsProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>LANDING PAGE</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/skyelite-hero-poster-c.jpg"
-            alt="SkyElite Private Jets"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Make it clean, modern, and premium-looking with smooth interactions.

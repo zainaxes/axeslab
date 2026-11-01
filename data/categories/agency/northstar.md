@@ -4,15 +4,13 @@ slug: "northstar"
 title: "Northstar"
 category: "Agency"
 categorySlug: "agency"
-collection: "prompts"
-likes: 147
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/northstar.jpg"
+chars: 30394
 tier: "free"
-chars: 30443
-preview_video: ""
-preview_poster: "/media/posters/northstar.jpg"
+likes: 147
 ---
-
-# Northstar (Agency)
 
 Build a single-file standalone HTML page (index.html) that recreates this Nexeus landing page PIXEL-EXACTLY. Do not invent extra sections, nav bars, extra CTAs, or restyle anything. One full-viewport cinematic page: looping background video + left-aligned hero + glass footer. No frameworks. No build step. Inline CSS and JS only.
 
@@ -20,10 +18,10 @@ Build a single-file standalone HTML page (index.html) that recreates this Nexeus
 EXACT MEDIA (must use these URLs, no substitutes)
 ==================================================
 Background video (CloudFront):
-https://axeslab.zainaxes.com/web/media/ext/45790b279ed922a2.mp4
+https://meez.design/web/media/ext/45790b279ed922a2.mp4
 
 Poster (CloudFront WebP, shown before/while video loads):
-https://axeslab.zainaxes.com/web/media/ext/ec27534816f88643.webp
+https://meez.design/web/media/ext/ec27534816f88643.webp
 
 Video attributes: autoplay muted loop playsinline
 aria-label: "Painted alpine panorama: a lone hiker with a pink backpack faces a snow-capped peak above a sea of clouds"
@@ -96,7 +94,7 @@ width calc(1668 * var(--u)); height calc(1037 * var(--u));
 min-width 100%; min-height calc(100% + 45 * var(--u));
 object-fit cover; object-position right bottom
 
-.scrim: absolute left/right/top 0; height 0 by Axes Lab (@zainaxes); pointer-events none
+.scrim: absolute left/right/top 0; height 0 by default; pointer-events none
 Aspect-ratio scrims (only these):
 - min-aspect-ratio 17/10: height 450u, gradient rgba(4,20,32) .48 → .25 → 0
 - min-aspect-ratio 19/10: height 470u, .58 → .31 → 0
@@ -445,7 +443,7 @@ html.js-enter .lede,html.js-enter .col{will-change:transform,opacity}
 </head>
 <body>
 <div class="viewport">
-  <div class="bg"><video src="https://axeslab.zainaxes.com/web/media/ext/45790b279ed922a2.mp4" poster="https://axeslab.zainaxes.com/web/media/ext/ec27534816f88643.webp" autoplay muted loop playsinline aria-label="Painted alpine panorama: a lone hiker with a pink backpack faces a snow-capped peak above a sea of clouds"></video></div>
+  <div class="bg"><video src="https://meez.design/web/media/ext/45790b279ed922a2.mp4" poster="https://meez.design/web/media/ext/ec27534816f88643.webp" autoplay muted loop playsinline aria-label="Painted alpine panorama: a lone hiker with a pink backpack faces a snow-capped peak above a sea of clouds"></video></div>
   <div class="scrim"></div>
   <div class="stage">
     <p class="abs eyebrow">Ready when you are</p>

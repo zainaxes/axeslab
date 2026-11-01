@@ -4,15 +4,13 @@ slug: "skybridge-404"
 title: "Skybridge 404"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 161
+routeCollection: "prompts"
+videoUrl: "/media/videos/skybridge-404.mp4"
+posterUrl: "/media/posters/skybridge-404.webp"
+chars: 7060
 tier: "free"
-chars: 7087
-preview_video: "/media/videos/skybridge-404.mp4"
-preview_poster: "/media/posters/skybridge-404.webp"
+likes: 161
 ---
-
-# Skybridge 404 (Landing Page)
 
 Create a single-page, full-viewport 404 error screen in React + Vite + Tailwind CSS v4. Match this composition precisely.
 
@@ -25,7 +23,7 @@ PAGE / CANVAS
 
 BACKGROUND VIDEO
 - Add this exact MP4 as the full-page background:
-  `https://axeslab.zainaxes.com/web/media/prompt-media/v/dfa127b9f2c26b08.mp4`
+  `https://meez.design/web/media/prompt-media/v/dfa127b9f2c26b08.mp4`
 - Use a semantic `<video>` element, placed as the first child inside the page.
 - Required video attributes:
   - `autoPlay`
@@ -45,7 +43,7 @@ FONT
   - Weight: `600`
   - Style: `normal`
   - Format: `woff2`
-  - Source URL: `https://axeslab.zainaxes.com/web/media/ext/e10735933456b0d4.webp`
+  - Source URL: `https://meez.design/web/media/ext/e10735933456b0d4.webp`
 - Declare it using:
   ```css
   @font-face {
@@ -53,7 +51,7 @@ FONT
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url("https://axeslab.zainaxes.com/web/media/ext/e10735933456b0d4.webp") format("woff2");
+    src: url("https://meez.design/web/media/ext/e10735933456b0d4.webp") format("woff2");
   }
 Use this font for the large “404” and the message text.
 Preserve its compact mono character and semibold weight.

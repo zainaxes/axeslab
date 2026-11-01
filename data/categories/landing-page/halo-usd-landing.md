@@ -4,15 +4,13 @@ slug: "halo-usd-landing"
 title: "USD Halo"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 169
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/halo-usd-landing.jpg"
+chars: 8531
 tier: "free"
-chars: 8315
-preview_video: ""
-preview_poster: "/media/posters/halo-usd-landing.jpg"
+likes: 169
 ---
-
-# USD Halo (Landing Page)
 
 Build a premium, fintech-style landing page for a stablecoin product called "Halo / USD Halo" using React + TypeScript + Vite + Tailwind CSS, with lucide-react for icons. No other UI libraries. Background color of the page is #F5F5F5.
 
@@ -36,13 +34,13 @@ Right: black pill button "Open Wallet" — bg-black text-white text-base font-me
 Outer: flex-1 px-6 pt-20 pb-6 flex items-end.
 Inner card: relative w-full rounded-2xl overflow-hidden, inline style height: calc(100vh - 96px).
 Background video (autoplay, muted, loop, playsInline, object-cover absolute inset-0 w-full h-full): 
-https://axeslab.zainaxes.com/web/media/ext/96b0a69bacbd9f05.mp4
+https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4
 
 Content overlay: relative z-10 flex flex-col items-start justify-start h-full p-12 pt-36.
 h1: "Your Wealth\nWorks" (with <br/>) — text-black text-5xl md:text-6xl font-medium leading-tight max-w-xl mb-4, inline letterSpacing: '-0.04em'.
 p: "An automated, reward-powered digital dollar built for native passive earnings and effortless connection into DeFi." — text-black/70 text-base md:text-lg max-w-md mb-8 leading-relaxed, inline fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif".
 Pill button "Join us" with arrow circle: inline-flex items-center gap-3 bg-black text-white text-base md:text-lg font-medium pl-8 pr-2 py-2 rounded-full hover:bg-gray-800. Trailing arrow inside bg-white rounded-full p-2, using ArrowRight w-5 h-5 text-black from lucide-react.
-Followed by Axes Lab (@zainaxes) Brand Marquee below.
+Followed by the Brand Marquee below.
 Brand Marquee (inside hero, below button)
 Container: mt-24 w-full max-w-md overflow-hidden.
 Inject scoped <style> with keyframes marquee translating 0 → -50%, applied to .marquee-track { display:flex; width:max-content; animation: marquee 22s linear infinite; }.
@@ -62,14 +60,14 @@ Left: h2 "Meet USD Halo." — text-black text-4xl md:text-5xl font-medium leadin
 Right: paragraph "USD Halo is a reward-earning dollar coin that lets your savings grow while remaining tied to the U.S. dollar." — text-black/70 text-2xl md:text-3xl leading-relaxed.
 Row 2 — 4-col card grid (grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4):
 Card 1 (spans 2 cols on lg): rounded-2xl with background image: 
-https://axeslab.zainaxes.com/web/media/ext/1ff5172230c90957.png
+https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260423_164207_f243351d-ed59-48ec-83a0-a5e996bdbe3c.png&w=1280&q=85
 
  backgroundSize: cover; backgroundPosition: center. Inside: p-7 min-h-80 flex flex-col justify-between. Title (top): "Savings that bloom" — text-black text-2xl font-medium leading-snug letterSpacing -0.02em. Body (bottom): "Gain steady returns as your dollar tokens are routed into top-performing DeFi strategies." — text-black/70 text-base max-w-xs.
 Card 2: solid #2B2644, rounded-2xl, p-7, min-h-80, flex-col-justify-between. White heading "Always fluid,\nalways pegged." text-2xl font-medium, body "Keep fully dollar-anchored with on-demand access to funds — no lockups or waits." text-white/60 text-base.
 Card 3: same #2B2644 styling. Heading "Fully\nautomated". Body "Skip the task of tuning positions yourself. USD Halo runs in the background for you."
-4. Backed by Axes Lab (@zainaxes) (marquee row)
+4. Backed By Section (marquee row)
 section bg-[#F5F5F5] px-6 with inner max-w-[88rem] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-center.
-Left col (1/4): text-black/70 text-base leading-relaxed — "Funded by Axes Lab (@zainaxes) partners\nand forward-thinking leaders."
+Left col (1/4): text-black/70 text-base leading-relaxed — "Funded by premier partners\nand forward-thinking leaders."
 Right col (3/4): infinite marquee (same pattern as hero marquee but 30s linear infinite, class .backers-track, keyframes backers-marquee). Items use mx-10 shrink-0 text-black/50 whitespace-nowrap with these inline styles:
 Fundamental Labs — Times New Roman serif, 400, ls 0.02em, 14px
 KUCOIN — Arial Black, 900, ls 0.08em, 16px
@@ -87,11 +85,11 @@ Eyebrow: "USD Halo in Practice" — text-black/60 text-sm mb-2.
 h2 "Use modes" — text-5xl md:text-6xl font-medium leading-none mb-6, ls -0.04em.
 Paragraph: "USD Halo powers a wide range of modes for builders, companies and treasuries wanting safe and rewarding stablecoin integrations plus more" — text-black/60 text-base leading-relaxed max-w-sm.
 Right column: large relative rounded-3xl overflow-hidden min-h-[720px] with background video (autoplay/muted/loop/playsInline, object-cover absolute inset-0): 
-https://axeslab.zainaxes.com/web/media/ext/6ca06be4279f8beb.mp4
+https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_183428_ab5e672a-f608-4dcb-b319-f3e040f02e2d.mp4
 
 Overlay content relative z-10 p-10 md:p-12:
 h3 "Commerce" — text-4xl md:text-5xl font-medium leading-tight mb-5, ls -0.03em.
-Paragraph: "Lift customer retention by Axes Lab (@zainaxes) USD Halo, a trusted dollar-backed stablecoin with strong yields, letting your patrons earn with zero effort on your platform." — text-black/70 text-base max-w-md mb-8.
+Paragraph: "Lift customer retention by offering USD Halo, a trusted dollar-backed stablecoin with strong yields, letting your patrons earn with zero effort on your platform." — text-black/70 text-base max-w-md mb-8.
 Inline-flex link "Know more" with leading circular icon: w-9 h-9 rounded-full bg-white/80 backdrop-blur flex items-center justify-center group-hover:bg-white transition-colors containing ArrowRight w-4 h-4 text-black.
 Animations & Interactions
 Two CSS keyframe marquees (22s for hero brands, 30s for backers), both translating 0 → -50% on a duplicated track for seamless looping.

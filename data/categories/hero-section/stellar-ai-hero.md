@@ -4,109 +4,55 @@ slug: "stellar-ai-hero"
 title: "Stellar AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/stellar-ai-hero.mp4"
+posterUrl: "/media/posters/stellar-ai-hero.jpg"
+chars: 3973
+tier: "premium"
 likes: 83
-tier: "free"
-chars: 4386
-preview_video: "/media/videos/stellar-ai-hero.mp4"
-preview_poster: "/media/posters/stellar-ai-hero.jpg"
 ---
 
-# Stellar AI (Hero Section)
+Create a "Stellar.ai" landing page hero section using React, Tailwind CSS, and Lucide React icons. Use the Inter font (imported from Google Fonts). The page has a white background (bg-white), max-width max-w-7xl, and is centered with mx-auto.
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Font: Import Inter (weights 400, 500, 600, 700) from Google Fonts. Set font-family: 'Inter', sans-serif on the body.
 
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
+Custom CSS animations (in index.css):
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/stellar-ai-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/stellar-ai-hero-preview.mp4
+@keyframes fadeInUp -- from opacity: 0; transform: translateY(30px) to opacity: 1; transform: translateY(0). Class .animate-fade-in-up uses this with 0.6s ease-out forwards.
+@keyframes fadeInOverlay -- from opacity: 0 to opacity: 1. Class .animate-fade-in-overlay uses this with 0.4s ease-out forwards.
+@keyframes fadeInDialog -- from opacity: 0 to opacity: 1. Class .animate-slide-up-overlay uses this with 0.5s ease-out forwards and has transform: translate(-50%, -50%).
+Every major section uses .animate-fade-in-up with staggered animationDelay inline styles (starting at 0.1s and incrementing by 0.1s). Each element starts with opacity: 0 inline so the animation fills it to visible.
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Tailwind config: Default config with no custom theme extensions. Uses standard content paths.
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+NAVIGATION (animationDelay: 0.1s):
+px-6 py-4 flex items-center justify-between max-w-7xl mx-auto
+Left: Lucide Star icon (w-5 h-5, fill-black) + "Stellar.ai" text (text-lg font-semibold)
+Center (hidden on mobile, hidden md:flex items-center gap-8): "Solutions" with ChevronDown, "For Teams" with ChevronDown, "About Us", "Learn Hub" -- all text-sm text-gray-700 hover:text-black
+Right: "Login" link (text-sm text-gray-700) + "Get started free" button (bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors)
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+HERO SECTION (px-6 pt-24 pb-32 max-w-7xl mx-auto text-center):
+Reviews Badge (delay: 0.2s): inline-flex items-center gap-2 mb-8. Contains a bordered square (w-6 h-6 border border-gray-300 rounded) with a filled Star icon inside, plus "4.9 rating from 18.3K+ users" (text-sm font-medium text-black).
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Main Heading (delay: 0.3s): text-6xl md:text-7xl lg:text-[80px] font-normal leading-[1.1] tracking-tight mb-5. First line: "Work Smarter. Move Faster." Second line: "AI Powers You Up." with gradient text (bg-gradient-to-r from-black via-gray-500 to-gray-400 bg-clip-text text-transparent).
 
-export interface StellarAIProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+Subheading (delay: 0.4s): text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto. Text: "Intelligent automation syncs with the tools you love to streamline tasks, boost output, and save time."
 
-export function StellarAI({
-  headline = "Stellar AI",
-  subheadline = "Create a \"Stellar.ai\" landing page hero section using React, Tailwind CSS, and Lucide React icons. Use the Inter font (imported from Google …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: StellarAIProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/stellar-ai-hero-poster-c.jpg"
-            alt="Stellar AI"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+CTA Button (delay: 0.5s): bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-800 transition-colors mb-12. Text: "Begin Free Trial".
+
+Tab Bar (delay: 0.6s): Centered bg-gray-100 rounded-lg p-1 container.
+Mobile (md:hidden): 2x2 grid with 4 buttons: Analyse (BarChart3), Train (BookOpen), Testing (Users), Deploy (Rocket). Active: bg-white text-black shadow-sm. Inactive: text-gray-600.
+Desktop (hidden md:flex): Same 4 buttons in row with vertical dividers (w-px h-5 bg-gray-300).
+Tabs auto-cycle every 4s using setInterval. State: useState('analyse').
+
+Video + Overlay Section (delay: 0.7s):
+Container: relative rounded-3xl overflow-hidden h-[400px] md:h-[500px]
+Video: src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_165750_358b1e72-c921-48b7-aaac-f200994f32fb.mp4", autoPlay, loop, muted, playsInline, w-full h-full object-cover.
+
+4 Conditional Overlays per tab with animate-fade-in-overlay outer and animate-slide-up-overlay inner card:
+a. Analyse: "Set Up Your AI Workspace" wizard with purple progress bar at 25%, 4 steps
+b. Train: "AI Model Training" with orange progress at 67%, 4 metrics
+c. Testing: "Test Suite Results" with green success, 127/127 tests
+d. Deploy: "Deploy to Production" with 4 checklist items, Deploy Now button
+
+Company Logos (delay: 0.8s): mt-24 flex with INTERSCOPE, SPOTIFY, Nexera (dot grid), M3 (serif italic), LAURA COLE (LC circle), vertex (dots)

@@ -4,15 +4,13 @@ slug: "digital-director"
 title: "Digital Director"
 category: "Portfolio"
 categorySlug: "portfolio"
-collection: "prompts"
-likes: 111
+routeCollection: "prompts"
+videoUrl: "/media/videos/digital-director.mp4"
+posterUrl: "/media/posters/digital-director.webp"
+chars: 8864
 tier: "free"
-chars: 8882
-preview_video: "/media/videos/digital-director.mp4"
-preview_poster: "/media/posters/digital-director.webp"
+likes: 111
 ---
-
-# Digital Director (Portfolio)
 
 Recreate this exact full-viewport portfolio landing page — pixel-perfect match.
 
@@ -35,7 +33,7 @@ Load in <head>:
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 2) basis33 (pixel/bitmap monospace) — for `.font-pixel`:
-<link href="https://axeslab.zainaxes.com/web/media/ext/47a28c1e2fef21f6.woff2" rel="stylesheet">
+<link href="https://meez.design/web/media/ext/47a28c1e2fef21f6.woff2" rel="stylesheet">
 
 CSS:
 - body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -57,7 +55,7 @@ Page title: "Adam Roberts - Design & Engineering"
 BACKGROUND VIDEO (exact URL — do not substitute)
 ═══════════════════════════════════════
 Full-bleed background <video>:
-src="https://axeslab.zainaxes.com/web/media/prompt-media/v/5198a3596261af2f.mp4"
+src="https://meez.design/web/media/prompt-media/v/5198a3596261af2f.mp4"
 
 Attributes: autoPlay muted loop playsInline
 Classes: absolute inset-0 h-full w-full object-cover lg:scale-[1.2]

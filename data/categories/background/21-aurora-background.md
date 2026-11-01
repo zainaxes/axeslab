@@ -4,109 +4,100 @@ slug: "21-aurora-background"
 title: "Aurora Background"
 category: "Background"
 categorySlug: "background"
-collection: "backgrounds"
+routeCollection: "backgrounds"
+videoUrl: "/media/videos/21-aurora-background.mp4"
+posterUrl: "/media/posters/21-aurora-background.jpg"
+chars: 3666
+tier: "premium"
 likes: 199
-tier: "free"
-chars: 4326
-preview_video: "/media/videos/21-aurora-background.mp4"
-preview_poster: "/media/posters/21-aurora-background.jpg"
 ---
 
-# Aurora Background (Background)
+# Aurora Background Component Specification
+Interactive Glowing Light Rays with Smooth CSS/Canvas Blend Modes
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+════════════════════════════════════════════════════════════════════════
+1. OVERVIEW & VISUAL BEHAVIOR
+════════════════════════════════════════════════════════════════════════
+The Aurora Background creates an ethereal, fluid northern-lights ambient glow behind page content. It utilizes multi-layered radial color gradients blending over a deep midnight background with smooth CSS animation loops.
 
-Recreate this exact high-converting Background design — pixel-perfect match.
+Features:
+• Zero external 3D engine overhead (pure modern CSS keyframes and backdrop filters).
+• Dark mode optimized with high dynamic range color stops (#3b82f6, #8b5cf6, #ec4899, #10b981).
+• Content slot isolation with high contrast legibility.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/prompt-media/fe4d485830d9c0e7.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4
+════════════════════════════════════════════════════════════════════════
+2. CSS KEYFRAME SPECIFICATION
+════════════════════════════════════════════════════════════════════════
+```css
+@keyframes aurora {
+  0% {
+    background-position: 50% 50%, 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%;
+  }
+  100% {
+    background-position: 50% 50%, 50% 50%;
+  }
+}
+.aurora-layer {
+  background-image: 
+    repeating-linear-gradient(100deg, var(--aurora-1) 10%, var(--aurora-2) 15%, var(--aurora-3) 20%, var(--aurora-4) 25%, var(--aurora-1) 30%),
+    repeating-linear-gradient(200deg, var(--aurora-2) 10%, var(--aurora-3) 15%, var(--aurora-4) 20%, var(--aurora-1) 25%, var(--aurora-2) 30%);
+  background-size: 300%, 200%;
+  animation: aurora 60s linear infinite;
+  filter: blur(60px);
+  opacity: 0.5;
+}
+```
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
+════════════════════════════════════════════════════════════════════════
+3. PRODUCTION REACT IMPLEMENTATION
+════════════════════════════════════════════════════════════════════════
 ```tsx
 import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
 
-export interface AuroraBackgroundProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
+export interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
+  children?: React.ReactNode;
+  showRadialGradient?: boolean;
 }
 
 export function AuroraBackground({
-  headline = "Aurora Background",
-  subheadline = "A subtle Aurora or Southern Lights …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
+  className = "",
+  children,
+  showRadialGradient = true,
+  ...props
 }: AuroraBackgroundProps) {
   return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>BACKGROUND</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/prompt-media/fe4d485830d9c0e7.jpg"
-            alt="Aurora Background"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
+    <div
+      className={`relative flex flex-col h-[100vh] items-center justify-center bg-zinc-950 text-slate-100 transition-bg ${className}`}
+      {...props}
+    >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className={`
+            [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
+            [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
+            [--aurora:repeating-linear-gradient(100deg,#3b82f6_10%,#a855f7_15%,#ec4899_20%,#06b6d4_25%,#3b82f6_30%)]
+            [background-image:var(--dark-gradient),var(--aurora)]
+            [background-size:300%,_200%]
+            [background-position:50%_50%,50%_50%]
+            filter blur-[10px] invert dark:invert-0
+            after:content-[""] after:absolute after:inset-0 
+            after:[background-image:var(--dark-gradient),var(--aurora)]
+            after:[background-size:200%,_100%] 
+            after:animate-aurora after:[background-attachment:fixed] after:mix-blend-difference
+            pointer-events-none
+            absolute -inset-[10px] opacity-50 will-change-transform
+            ${showRadialGradient ? '[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]' : ''}
+          `}
+        />
       </div>
-    </section>
+      <div className="relative z-10 w-full max-w-5xl px-6 text-center">
+        {children}
+      </div>
+    </div>
   );
 }
 ```
+

@@ -4,36 +4,34 @@ slug: "church-community"
 title: "Church Community"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 127
+routeCollection: "apps"
+videoUrl: "/media/videos/church-community.mp4"
+posterUrl: "/media/posters/church-community.jpg"
+chars: 5245
 tier: "free"
-chars: 5359
-preview_video: "/media/videos/church-community.mp4"
-preview_poster: "/media/posters/church-community.jpg"
+likes: 127
 ---
-
-# Church Community (Mobile App)
 
 Create a mobile app showcase page displaying 3 iPhone mockups for "Christ Family Church" -- a church website mobile design. Use React Native with Expo Router, react-native-reanimated, and Manrope font (weights: Light, Regular, Medium).
 
 **General layout:**
 - Background color: `#5A4C41`
-- 3 iPhone frames shown side by Axes Lab (@zainaxes) on desktop (horizontal scroll), stacked vertically on mobile (<900px) with scale-to-fit
+- 3 iPhone frames shown side by side on desktop (horizontal scroll), stacked vertically on mobile (<900px) with scale-to-fit
 - Desktop: 40px padding, 48px gap between phones
 - Mobile: 20px padding, 32px gap, phones scale down to fit screen width
 - Each phone frame: 375x812 artboard inside a black rounded frame (borderRadius 50, borderWidth 2, borderColor `#2a2a2a`), with dynamic island notch (126x36, black, borderRadius 18) and home indicator bar (134x5, white 30% opacity)
 - Soft shadow on frames: `shadowColor: #000, offset: {0, 12}, opacity: 0.3, radius: 24`
 
 **Assets (all from our CDN):**
-- Portrait photo: `https://axeslab.zainaxes.com/web/media/ext/a48cb56bb7c165fb.png`
-- Logo (cross icon): `https://axeslab.zainaxes.com/web/media/ext/9c92417d3cd1ae53.png`
-- Quote mark icon: `https://axeslab.zainaxes.com/web/media/ext/8bf0eae040f2e969.png`
-- Star/compass decorative icon: `https://axeslab.zainaxes.com/web/media/ext/512a309ede976899.png`
-- Hero image (hands raised worship): `https://axeslab.zainaxes.com/web/media/ext/d73c0ce69a6957dd.png`
-- Avatars row: `https://axeslab.zainaxes.com/web/media/ext/e10b38cafd253935.png`
-- Arrow icon: `https://axeslab.zainaxes.com/web/media/ext/45c106e2d5aa9422.png`
-- Screen 3 hero (preacher): `https://axeslab.zainaxes.com/web/media/ext/e825edc63e4b9ced.png`
-- Play button icon: `https://axeslab.zainaxes.com/web/media/ext/ca4555fb83ce7262.png`
+- Portrait photo: `https://meez.design/web/media/ext/a48cb56bb7c165fb.png`
+- Logo (cross icon): `https://meez.design/web/media/ext/9c92417d3cd1ae53.png`
+- Quote mark icon: `https://meez.design/web/media/ext/8bf0eae040f2e969.png`
+- Star/compass decorative icon: `https://meez.design/web/media/ext/512a309ede976899.png`
+- Hero image (hands raised worship): `https://meez.design/web/media/ext/d73c0ce69a6957dd.png`
+- Avatars row: `https://meez.design/web/media/ext/e10b38cafd253935.png`
+- Arrow icon: `https://meez.design/web/media/ext/45c106e2d5aa9422.png`
+- Screen 3 hero (preacher): `https://meez.design/web/media/ext/e825edc63e4b9ced.png`
+- Play button icon: `https://meez.design/web/media/ext/ca4555fb83ce7262.png`
 
 **Color palette:**
 - Dark background: `rgb(29, 25, 26)`
@@ -60,7 +58,7 @@ Create a mobile app showcase page displaying 3 iPhone mockups for "Christ Family
 
 **Animations:**
 - Each iPhone frame fades in with `FadeIn.duration(600)` using react-native-reanimated
-- All text uses a typewriter effect (characters appear one by Axes Lab (@zainaxes)) with configurable delay and speed
+- All text uses a typewriter effect (characters appear one by one) with configurable delay and speed
 - Menu overlay fades in with `FadeIn.duration(200)`
 
 **Screen 1 - Testimonial:**

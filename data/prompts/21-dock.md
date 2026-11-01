@@ -1,112 +1,96 @@
 ---
 id: "res_meez_21_dock"
 slug: "21-dock"
-title: "Dock"
+title: "macOS Dock"
 category: "Navigation"
 categorySlug: "navigation"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/21-dock.mp4"
+posterUrl: "/media/posters/21-dock.jpg"
+chars: 3370
+tier: "premium"
 likes: 59
-tier: "free"
-chars: 4301
-preview_video: "/media/videos/21-dock.mp4"
-preview_poster: "/media/posters/21-dock.jpg"
 ---
 
-# Dock (Navigation)
+# macOS Interactive Floating Dock Specification
+Magnification Physics, Spring Transitions & Accessible Floating Dock
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+════════════════════════════════════════════════════════════════════════
+1. OVERVIEW & INTERACTION MODEL
+════════════════════════════════════════════════════════════════════════
+The macOS style floating dock provides an icon bar that expands seamlessly as the cursor hovers across neighboring items, mimicking Apple's legendary macOS Cocoa magnification physics.
 
-Recreate this exact high-converting Navigation design — pixel-perfect match.
+Features:
+• Cursor proximity distance curve calculation (`useMotionValue`, `useTransform`).
+• Smooth Framer Motion spring damping (`stiffness: 400`, `damping: 25`).
+• Glassmorphic dock shelf with subtle border reflection and backdrop blur.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/prompt-media/1f715a4c130a422b.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/prompt-media/fa34212e5c3ec2cc.mp4
-
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
+════════════════════════════════════════════════════════════════════════
+2. PRODUCTION REACT & FRAMER MOTION IMPLEMENTATION
+════════════════════════════════════════════════════════════════════════
 ```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, MotionValue } from 'framer-motion';
+import { Home, Compass, Layers, MessageSquare, Terminal, Settings } from 'lucide-react';
 
-export interface DockProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
+export function FloatingDock() {
+  const mouseX = useMotionValue(Infinity);
+
+  const items = [
+    { title: 'Home', icon: <Home className="w-5 h-5 text-neutral-300" /> },
+    { title: 'Explore', icon: <Compass className="w-5 h-5 text-neutral-300" /> },
+    { title: 'Components', icon: <Layers className="w-5 h-5 text-neutral-300" /> },
+    { title: 'Chat', icon: <MessageSquare className="w-5 h-5 text-neutral-300" /> },
+    { title: 'Terminal', icon: <Terminal className="w-5 h-5 text-neutral-300" /> },
+    { title: 'Settings', icon: <Settings className="w-5 h-5 text-neutral-300" /> },
+  ];
+
+  return (
+    <motion.div
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+      className="mx-auto flex h-16 items-end gap-3 rounded-2xl border border-white/10 bg-neutral-900/80 px-4 pb-3 backdrop-blur-xl shadow-2xl"
+    >
+      {items.map((item, idx) => (
+        <DockIcon key={idx} mouseX={mouseX} icon={item.icon} title={item.title} />
+      ))}
+    </motion.div>
+  );
 }
 
-export function Dock({
-  headline = "Dock",
-  subheadline = "A versatile UI element that provides a flexible and customizable way to …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: DockProps) {
+function DockIcon({ 
+  mouseX, 
+  icon, 
+  title 
+}: { 
+  mouseX: MotionValue; 
+  icon: React.ReactNode; 
+  title: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const widthSync = useTransform(distance, [-150, 0, 150], [40, 72, 40]);
+  const width = useSpring(widthSync, { mass: 0.1, stiffness: 180, damping: 14 });
+
   return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>NAVIGATION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/prompt-media/1f715a4c130a422b.jpg"
-            alt="Dock"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
+    <motion.div
+      ref={ref}
+      style={{ width, height: width }}
+      className="relative flex aspect-square items-center justify-center rounded-xl bg-neutral-800/80 border border-white/10 hover:bg-neutral-700 transition-colors shadow-lg cursor-pointer group"
+    >
+      <div className="flex items-center justify-center pointer-events-none">
+        {icon}
       </div>
-    </section>
+      <span className="absolute -top-8 left-1/2 -translate-x-1/2 rounded bg-neutral-950 px-2 py-0.5 text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none whitespace-nowrap border border-white/10">
+        {title}
+      </span>
+    </motion.div>
   );
 }
 ```
+

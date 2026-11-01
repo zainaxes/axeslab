@@ -4,110 +4,126 @@ slug: "place-saver"
 title: "Place Saver"
 category: "Travel"
 categorySlug: "travel"
-collection: "prompts"
-likes: 41
+routeCollection: "prompts"
+videoUrl: "/media/videos/place-saver.mp4"
+posterUrl: "/media/posters/place-saver.jpg"
+chars: 5471
 tier: "free"
-chars: 4673
-preview_video: "/media/videos/place-saver.mp4"
-preview_poster: "/media/posters/place-saver.jpg"
+likes: 41
 ---
 
-# Place Saver (Travel)
+# Build Prompt: Place Saver — Travel Experience
+Comprehensive Production Web Application Specification
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+════════════════════════════════════════════════════════════════════════
+1. EXECUTIVE DESIGN BRIEF & ARCHITECTURE
+════════════════════════════════════════════════════════════════════════
+Build a full-screen, responsive Travel experience for "Place Saver". The interface combines cinematic ambient visuals, high-contrast typography, and fluid micro-interactions.
 
-Recreate this exact high-converting Travel component — pixel-perfect match.
+The page architecture consists of:
+• Viewport Geometry: Full viewport height hero container (`min-h-screen`) with responsive padding.
+• Background Atmosphere: Ambient media backdrop with layered vignette masks (`bg-gradient-to-t from-black via-transparent`).
+• Navigation Header: Frosted liquid-glass header with brand mark, navigation links, and primary CTA.
+• Visual Showcase: High-contrast typography hierarchy, interactive button slots, and responsive card layouts.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Tailwind CSS
-- Animation: Lucide React icons, Framer Motion transitions, CSS keyframe micro-interactions
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Accessibility: Semantic HTML5, WCAG AAA contrast ratio, keyboard focus traps and ARIA live regions
-- Visual Reference: https://heydesign.ai/api/design-prompt-media/v1/effects/place-saver.mp4
-- Video Preview Demonstration: https://heydesign.ai/api/design-prompt-media/v1/effects/place-saver.mp4
+════════════════════════════════════════════════════════════════════════
+2. TECHNICAL SPECIFICATIONS & STACK
+════════════════════════════════════════════════════════════════════════
+• Framework: React 19 + TypeScript + Vite / Next.js
+• Styling: Tailwind CSS v4 with fluid spacing tokens
+• Icons: lucide-react (pure SVG icons with zero layout shift)
+• Motion: Framer Motion / CSS Transitions with hardware acceleration
+• Responsive: Mobile 375px+, Tablet 768px+, Desktop 1440px+
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Container & Viewport:
-   - Modern glassmorphism or minimalist high-contrast dark/light mode surface.
-   - Smooth backdrop blur (`backdrop-blur-xl`), subtle border tokens (`border-white/10` or `border-black/10`).
-   - Clean spacing using standard 8pt grid tokens.
+════════════════════════════════════════════════════════════════════════
+3. DESIGN SYSTEM & COLOR TOKENS
+════════════════════════════════════════════════════════════════════════
+• Canvas Background: Deep Obsidian `#050507`
+• Card & Glass Surface: `rgba(255, 255, 255, 0.03)` with `backdrop-blur-xl`
+• Hairline Borders: `border-white/10` with hover highlight to `border-white/20`
+• Typography: Headings in Inter/Geist (`tracking-tight font-semibold`), metadata in monospace (`font-mono text-xs`)
+• Accent Lighting: Subtle ambient glow with radial blur (`blur-[120px]`)
 
-2. Typography & Contrast:
-   - Headings: Display typography with tight tracking (`tracking-tight`) and fluid font scaling.
-   - Body & Supporting Copy: Clear, readable sans-serif typography with comfortable line-height (`leading-relaxed`).
-   - Category Badge: Pill badge styled with `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Interactive States & Micro-interactions:
-   - Primary CTA: Dynamic hover lift, active scale depression, smooth shadow expansion.
-   - Secondary CTA / Links: Subtle underline transition or background highlight.
-   - Video / Media Container: Aspect ratio 16/10 container with graceful fallback poster, ambient glow, and hover preview trigger.
-
-4. Implementation Guide:
+════════════════════════════════════════════════════════════════════════
+4. COMPLETE PRODUCTION COMPONENT SPECIFICATION
+════════════════════════════════════════════════════════════════════════
 ```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, ArrowRight, ExternalLink, Shield, Zap, Globe } from 'lucide-react';
 
-export interface PlaceSaverProps {
+export interface PlaceSaverSectionProps {
   headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
+  tagline?: string;
+  onExplore?: () => void;
 }
 
-export function PlaceSaver({
+export function PlaceSaverSection({
   headline = "Place Saver",
-  subheadline = "Place Saver is a Travel design prompt with a verified visual preview.",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: PlaceSaverProps) {
+  tagline = "Next-generation web interface designed for maximum engagement and performance.",
+  onExplore
+}: PlaceSaverSectionProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>TRAVEL</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
+    <section className="relative w-full min-h-[600px] flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#08080c] p-8 md:p-12 text-white">
+      {/* Ambient background glow */}
+      <div className="absolute top-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+
+      {/* Top Header Row */}
+      <div className="flex items-center justify-between border-b border-white/5 pb-6">
+        <div className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white">
+            <Zap className="h-4 w-4 text-indigo-400" />
+          </span>
+          <span className="font-mono text-xs uppercase tracking-wider text-neutral-400">
+            Travel
+          </span>
         </div>
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://heydesign.ai/api/design-prompt-media/v1/effects/place-saver.mp4"
-            alt="Place Saver"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
+            <Shield className="h-3 w-3 text-emerald-400" />
+            Verified Specification
+          </span>
+        </div>
+      </div>
+
+      {/* Center Main Content */}
+      <div className="my-12 max-w-2xl space-y-6">
+        <h1 className="text-3xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">
+          {headline}
+        </h1>
+        <p className="text-base text-neutral-300 leading-relaxed md:text-lg">
+          {tagline}
+        </p>
+        <div className="flex flex-wrap items-center gap-4 pt-4">
+          <button
+            onClick={onExplore}
+            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 shadow-xl transition-all hover:bg-neutral-200 hover:scale-[1.02]"
+          >
+            <span>Explore Experience</span>
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Footer Feature Badges */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/5 pt-6 text-xs text-neutral-400">
+        <div className="flex items-center gap-2">
+          <Globe className="h-4 w-4 text-indigo-400" />
+          <span>Universal Responsive Layout</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-amber-400" />
+          <span>Framer Motion Ready</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Shield className="h-4 w-4 text-emerald-400" />
+          <span>Production TypeScript</span>
         </div>
       </div>
     </section>
   );
 }
 ```
+

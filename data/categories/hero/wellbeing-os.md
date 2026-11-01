@@ -4,20 +4,18 @@ slug: "wellbeing-os"
 title: "Wellbeing OS"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 100
+routeCollection: "prompts"
+videoUrl: "/media/videos/wellbeing-os.mp4"
+posterUrl: "/media/posters/wellbeing-os.jpg"
+chars: 4962
 tier: "free"
-chars: 5004
-preview_video: "/media/videos/wellbeing-os.mp4"
-preview_poster: "/media/posters/wellbeing-os.jpg"
+likes: 100
 ---
-
-# Wellbeing OS (Hero)
 
 Create a fullscreen hero section for a SaaS product called "flowpath" using React, Tailwind CSS, and Lucide React icons. The section should be a single `<section>` filling the viewport (`h-screen w-full overflow-hidden`).
 
 **Background:**
-- A looping, muted, autoplaying `<video>` element covering the full section with `object-cover`. Video URL: `https://axeslab.zainaxes.com/web/media/ext/00e8673d6c0cdef2.mp4`
+- A looping, muted, autoplaying `<video>` element covering the full section with `object-cover`. Video URL: `https://meez.design/web/media/ext/00e8673d6c0cdef2.mp4`
 - A subtle dark overlay on top of the video: `bg-black/10`
 
 **Font:**
@@ -27,7 +25,7 @@ Create a fullscreen hero section for a SaaS product called "flowpath" using Reac
 
 **Navigation (top, not fixed/sticky):**
 - Full-width with responsive horizontal padding (`px-5 sm:px-6 md:px-12 lg:px-16`) and vertical padding (`py-4 sm:py-5`)
-- Logo: An inline SVG diamond shape (28x28) with two overlapping diamond paths at 0.9 and 0.5 opacity, followed by Axes Lab (@zainaxes) text "flowpath" in white, `text-lg sm:text-xl font-medium tracking-tight`
+- Logo: An inline SVG diamond shape (28x28) with two overlapping diamond paths at 0.9 and 0.5 opacity, followed by the text "flowpath" in white, `text-lg sm:text-xl font-medium tracking-tight`
 - Desktop nav (hidden on mobile): horizontal flex with items "Product" (dropdown: Connections, Workflows, Insights), "Solutions" (dropdown: Guides, Use cases, API reference), "About" (dropdown: Our story, Open roles, Reach us), "Plans" (no dropdown)
 - Nav buttons: `text-white/90 hover:text-white text-sm font-medium`, with a `ChevronDown` icon (3.5x3.5) that rotates 180 degrees when dropdown is open
 - Dropdowns open on hover (onMouseEnter/onMouseLeave), positioned `absolute top-full left-0`, using a custom `.liquid-glass` class, `rounded-xl py-3 px-2 min-w-[160px] shadow-xl`. Dropdown items: `text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5`
@@ -47,7 +45,7 @@ Create a fullscreen hero section for a SaaS product called "flowpath" using Reac
     ```
 - Subheading `<p>`: `text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-md mx-auto mt-6 sm:mt-8`
   - Text: "Flowpath unifies your complete wellness tools, so your crew spends less energy plugging gaps and more on real progress."
-- Two CTA buttons side by Axes Lab (@zainaxes) (`flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8`):
+- Two CTA buttons side by side (`flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8`):
   1. "Begin your journey" - solid white button: `px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-gray-900 text-sm font-semibold rounded-full hover:bg-white/90`
   2. "See it live" - glass button: `px-5 sm:px-6 py-2.5 sm:py-3 liquid-glass rounded-full text-white text-sm font-semibold hover:bg-white/10`
 

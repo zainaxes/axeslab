@@ -4,15 +4,13 @@ slug: "stillmind"
 title: "Stillmind"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 138
+routeCollection: "prompts"
+videoUrl: "/media/videos/stillmind.mp4"
+posterUrl: "/media/posters/stillmind.jpg"
+chars: 5685
 tier: "free"
-chars: 5730
-preview_video: "/media/videos/stillmind.mp4"
-preview_poster: "/media/posters/stillmind.jpg"
+likes: 138
 ---
-
-# Stillmind (Hero)
 
 Create a fullscreen cinematic hero section for a mindfulness/focus app called "Lumora" using React, Tailwind CSS, and Lucide React icons.
 
@@ -34,10 +32,10 @@ Set `font-family: 'Instrument Serif', serif` on html/body. Use `system-ui, sans-
 Stack 4 fullscreen looping videos absolutely positioned. Only the active one has `opacity-100`; others have `opacity-0`. Transition opacity over 1000ms ease-in-out. Videos autoPlay, muted, loop, playsInline.
 
 **Video URLs (in order):**
-1. `https://axeslab.zainaxes.com/web/bg-previews/299_trainmove1.mp4`
-2. `https://axeslab.zainaxes.com/web/media/ext/37c6543a9e3b1bac.mp4`
-3. `https://axeslab.zainaxes.com/web/media/ext/a14ef13297c1a6d7.mp4`
-4. `https://axeslab.zainaxes.com/web/media/ext/680d661e1cefa0b3.mp4`
+1. `https://meez.design/web/bg-previews/299_trainmove1.mp4`
+2. `https://meez.design/web/media/ext/37c6543a9e3b1bac.mp4`
+3. `https://meez.design/web/media/ext/a14ef13297c1a6d7.mp4`
+4. `https://meez.design/web/media/ext/680d661e1cefa0b3.mp4`
 
 **Labels:** Golden Hour, Still Water, Deep Woods, Quiet Dawn
 
@@ -47,7 +45,7 @@ Stack 4 fullscreen looping videos absolutely positioned. Only the active one has
 
 Place this image over the videos as an absolutely positioned overlay covering the full viewport:
 ```
-https://axeslab.zainaxes.com/web/media/ext/979624a2a689c9e3.png
+https://meez.design/web/media/ext/979624a2a689c9e3.png
 ```
 
 Apply a continuous "train-bob" animation: translateY oscillates between 0 and -6px over 3s ease-in-out infinite, with a constant scale(1.03) to prevent edges from showing during the motion.

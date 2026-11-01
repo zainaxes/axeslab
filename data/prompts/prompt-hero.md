@@ -4,15 +4,13 @@ slug: "prompt-hero"
 title: "PROMPT"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 47
+routeCollection: "prompts"
+videoUrl: "/media/videos/prompt-hero.mp4"
+posterUrl: "/media/posters/prompt-hero.jpg"
+chars: 42191
 tier: "free"
-chars: 42478
-preview_video: "/media/videos/prompt-hero.mp4"
-preview_poster: "/media/posters/prompt-hero.jpg"
+likes: 47
 ---
-
-# PROMPT (Landing Page)
 
 ### Overview
 
@@ -37,20 +35,20 @@ Build a full-screen, scroll-driven fashion/archive landing page for a brand call
 ### Asset URLs
 
 **Videos (CloudFront):**
-- LEFT video: `https://axeslab.zainaxes.com/web/media/bg-videos/ms-person.mp4`
-- RIGHT video: `https://axeslab.zainaxes.com/web/media/bg-videos/ms-nature-nice.mp4`
+- LEFT video: `https://meez.design/web/media/bg-videos/ms-person.mp4`
+- RIGHT video: `https://meez.design/web/media/bg-videos/ms-nature-nice.mp4`
 
 **Gallery Images (10 total, in order):**
-1. `https://axeslab.zainaxes.com/web/bg-previews/279_lbwkwb5v5i.jpg`
-2. `https://axeslab.zainaxes.com/web/bg-previews/280_lf367owp8b.jpg`
-3. `https://axeslab.zainaxes.com/web/bg-previews/281_mag4s8xjit.jpg`
-4. `https://axeslab.zainaxes.com/web/bg-previews/282_mb0vljq6ea.jpg`
-5. `https://axeslab.zainaxes.com/web/bg-previews/283_mpstfz9kkw.jpg`
-6. `https://axeslab.zainaxes.com/web/bg-previews/284_o1br1hvec4.jpg`
-7. `https://axeslab.zainaxes.com/web/bg-previews/285_o3pg4ceknu.jpg`
-8. `https://axeslab.zainaxes.com/web/bg-previews/286_or36kux95o.jpg`
-9. `https://axeslab.zainaxes.com/web/bg-previews/287_p3d3ubxsst.jpg`
-10. `https://axeslab.zainaxes.com/web/bg-previews/288_pac5rafgvq.jpg`
+1. `https://meez.design/web/bg-previews/279_lbwkwb5v5i.jpg`
+2. `https://meez.design/web/bg-previews/280_lf367owp8b.jpg`
+3. `https://meez.design/web/bg-previews/281_mag4s8xjit.jpg`
+4. `https://meez.design/web/bg-previews/282_mb0vljq6ea.jpg`
+5. `https://meez.design/web/bg-previews/283_mpstfz9kkw.jpg`
+6. `https://meez.design/web/bg-previews/284_o1br1hvec4.jpg`
+7. `https://meez.design/web/bg-previews/285_o3pg4ceknu.jpg`
+8. `https://meez.design/web/bg-previews/286_or36kux95o.jpg`
+9. `https://meez.design/web/bg-previews/287_p3d3ubxsst.jpg`
+10. `https://meez.design/web/bg-previews/288_pac5rafgvq.jpg`
 
 ---
 
@@ -58,7 +56,7 @@ Build a full-screen, scroll-driven fashion/archive landing page for a brand call
 
 #### Root Container
 - `id="scroll-spacer"`, `position: relative`, `user-select: none`, `background: white`
-- Height is dynamically calculated (initially `500vh`, then overridden by Axes Lab (@zainaxes) to `vh + maxScroll + 2*vh`)
+- Height is dynamically calculated (initially `500vh`, then overridden by GSAP to `vh + maxScroll + 2*vh`)
 - Custom cursor hidden on desktop (`cursor: none`), default on touch devices
 
 #### 1A. Custom Cursor (Desktop Only)
@@ -107,7 +105,7 @@ Build a full-screen, scroll-driven fashion/archive landing page for a brand call
 - **Desktop**: right: 32px, bottom: 80px, width: 330px, flex-column, align center
 - **Mobile**: left: 0, right: 0, bottom: 48px, flex-column, align center
 - Motion animation: opacity 0->1, delay 0.45s
-- `data-outro-offset`: 166 (desktop), 132 (mobile) -- used by Axes Lab (@zainaxes) animation
+- `data-outro-offset`: 166 (desktop), 132 (mobile) -- used by scroll animation
 - Contains:
   - Top block (flex-column, align flex-start, width 100% desktop / 252px mobile, margin-bottom 32px desktop / 12px mobile):
     - Circle icon: relative div (30x30 desktop, 20x20 mobile) containing:
@@ -145,7 +143,7 @@ Build a full-screen, scroll-driven fashion/archive landing page for a brand call
 - If cursor moves right of dead zone: show LEFT video, scrub it based on distance from center+deadzone to right edge
 - `activeSideRef` tracks which side was last active, only changes when cursor exceeds dead zone
 - Progress calculation: `(distance from dead zone edge) / (available range)` mapped to `0...video.duration`
-CRITICAL: Only update currentTime when !video.seeking -- this prevents jittery playback by Axes Lab (@zainaxes) for the browser to finish rendering the previous seek before requesting a new one.
+CRITICAL: Only update currentTime when !video.seeking -- this prevents jittery playback by waiting for the browser to finish rendering the previous seek before requesting a new one.
 #### 1H. Video Interaction Logic
 
 **Mobile/Tablet (touch):**
@@ -154,12 +152,12 @@ CRITICAL: Only update currentTime when !video.seeking -- this prevents jittery p
 
 #### 1I. White Overlay
 - `id="outro-overlay"`, `position: fixed, inset: 0`, `pointer-events-none`, `z-index: 12`
-- Background: #fff, opacity: 0 (controlled by Axes Lab (@zainaxes))
+- Background: #fff, opacity: 0 (controlled by scroll)
 
 #### 1J. Footer
 - `id="outro-footer"`, `position: fixed`, `pointer-events-none`
 - Left: 16px, bottom: 32px (desktop) / 24px (mobile)
-- `mix-blend-mode: exclusion`, opacity: 0 (controlled by Axes Lab (@zainaxes))
+- `mix-blend-mode: exclusion`, opacity: 0 (controlled by scroll)
 - Flex row, gap: 80px (desktop) / space-between (mobile)
 - Two spans: "PRMPT (R) 2026" and "PRIVACY POLICY"
 - Font: Inter Tight, 500, 13px (desktop) / 11px (mobile), letter-spacing -0.02em, uppercase, white
@@ -618,8 +616,8 @@ body { background: #fff; }
 
   <!-- Videos -->
   <div id="main-canvas">
-    <video id="video-left" src="https://axeslab.zainaxes.com/web/media/bg-videos/ms-3d.mp4" muted playsinline preload="auto" style="display:none;"></video>
-    <video id="video-right" src="https://axeslab.zainaxes.com/web/media/bg-videos/ms-nature.mp4" muted playsinline preload="auto" style="display:block;"></video>
+    <video id="video-left" src="https://meez.design/web/media/bg-videos/ms-3d.mp4" muted playsinline preload="auto" style="display:none;"></video>
+    <video id="video-right" src="https://meez.design/web/media/bg-videos/ms-nature.mp4" muted playsinline preload="auto" style="display:block;"></video>
   </div>
 
   <!-- White Overlay -->
@@ -641,16 +639,16 @@ body { background: #fff; }
 <script>
 (function() {
   const CARDS = [
-    "https://axeslab.zainaxes.com/web/bg-previews/289_plamsa01.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/290_q6hngyn3py.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/291_qdtgbvr3ub.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/292_qso92q9g2q.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/293_r1oz50l9u7.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/294_rmvdwxm12d.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/295_rud2yybgvx.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/296_rxdsigezgx.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/297_t4ighh6oxw.jpg",
-    "https://axeslab.zainaxes.com/web/bg-previews/298_td7tvnvili.jpg",
+    "https://meez.design/web/bg-previews/289_plamsa01.jpg",
+    "https://meez.design/web/bg-previews/290_q6hngyn3py.jpg",
+    "https://meez.design/web/bg-previews/291_qdtgbvr3ub.jpg",
+    "https://meez.design/web/bg-previews/292_qso92q9g2q.jpg",
+    "https://meez.design/web/bg-previews/293_r1oz50l9u7.jpg",
+    "https://meez.design/web/bg-previews/294_rmvdwxm12d.jpg",
+    "https://meez.design/web/bg-previews/295_rud2yybgvx.jpg",
+    "https://meez.design/web/bg-previews/296_rxdsigezgx.jpg",
+    "https://meez.design/web/bg-previews/297_t4ighh6oxw.jpg",
+    "https://meez.design/web/bg-previews/298_td7tvnvili.jpg",
   ];
 
   // Responsive helpers

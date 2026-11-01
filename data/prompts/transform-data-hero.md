@@ -4,109 +4,190 @@ slug: "transform-data-hero"
 title: "Transform Data"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/transform-data-hero.mp4"
+posterUrl: "/media/posters/transform-data-hero.jpg"
+chars: 3605
+tier: "premium"
 likes: 24
-tier: "free"
-chars: 4422
-preview_video: "/media/videos/transform-data-hero.mp4"
-preview_poster: "/media/posters/transform-data-hero.jpg"
 ---
 
-# Transform Data (Hero Section)
+HERO SECTION CREATION PROMPT
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Create a modern hero section with a looping video background and the following specifications:
 
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
+Video Background:
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/transform-data-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/transform-data-hero-preview.mp4
+URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260329_050842_be71947f-f16e-4a14-810c-06e83d23ddb5.mp4
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Size: 115% width and height
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Position: Centered horizontally, anchored to top with object-top focal point
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+Custom JavaScript fade system (NO CSS transitions):
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+250ms requestAnimationFrame-based fade-in on load/loop start
 
-export interface TransformDataProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+250ms fade-out when 0.55 seconds remain before video end
 
-export function TransformData({
-  headline = "Transform Data",
-  subheadline = "HERO SECTION CREATION PROMPT Create a modern hero section with a looping video background and the following specifications: Video Background: URL …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: TransformDataProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/transform-data-hero-poster-c.jpg"
-            alt="Transform Data"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+fadingOutRef boolean prevents re-triggering fade-out from repeated timeUpdate events
+
+On ended: opacity set to 0, 100ms delay, reset to currentTime = 0, play, fade back in
+
+Each new fade cancels running animation frames to prevent competing animations
+
+Fades resume from current opacity (no snapping)
+
+Fonts Required:
+
+Schibsted Grotesk (weights: 400, 500, 600, 700)
+
+Inter (weights: 400, 500, 600, 700)
+
+Noto Sans (weights: 400, 500, 600, 700)
+
+Fustat (weights: 400, 500, 600, 700)
+
+Navigation Bar:
+
+Logo: "Logoipsum" (Schibsted Grotesk SemiBold, 24px, -1.44px tracking)
+
+Menu items (Schibsted Grotesk Medium, 16px, -0.2px tracking):
+
+Platform
+
+Features (with dropdown chevron icon)
+
+Projects
+
+Community
+
+Contact
+
+Right side buttons:
+
+"Sign Up" (transparent background, 82px width)
+
+"Log In" (black background, white text, 101px width)
+
+Padding: 120px horizontal, 16px vertical
+
+Hero Content (moved up 50px with -mt-[50px]):
+
+Badge Component:
+
+Dark badge with star icon + "New" text
+
+Light background with text: "Discover what's possible"
+
+Font: Inter Regular, 14px
+
+Rounded corners with subtle shadow
+
+Main Headline:
+
+Text: "Transform Data Quickly"
+
+Font: Fustat Bold, 80px, -4.8px tracking, line-height: none
+
+Color: Black, center-aligned
+
+Subtitle:
+
+Text: "Upload your information and get powerful insights right away. Work smarter and achieve goals effortlessly."
+
+Font: Fustat Medium, 20px, -0.4px tracking
+
+Color: #505050
+
+Max-width: 736px, width: 542px
+
+Search Input Box:
+
+Backdrop blur with dark transparent background (rgba(0,0,0,0.24))
+
+Dimensions: 728px max-width, 200px height, rounded 18px
+
+Top row: Credit info
+
+Left: "60/450 credits" with green "Upgrade" button
+
+Right: AI icon + "Powered by GPT-4o"
+
+Font: Schibsted Grotesk Medium, 12px, white text
+
+Main input area:
+
+White background, rounded 12px, shadow
+
+Placeholder: "Type question..." (16px, rgba(0,0,0,0.6))
+
+Black circular submit button with up arrow icon (36px size)
+
+Bottom row:
+
+Left: Three action buttons (gray backgrounds, rounded 6px):
+
+"Attach" with paperclip icon
+
+"Voice" with microphone icon
+
+"Prompts" with search icon
+
+Right: Character counter "0/3,000" (12px, gray)
+
+Icons (SVG paths from imported file):
+
+Chevron down arrow
+
+Up arrow
+
+Star icon
+
+AI sparkle icon
+
+Attach/paperclip icon
+
+Voice/microphone icon
+
+Search icon
+
+Spacing:
+
+Gap between navigation and hero: 60px
+
+Gap between header and search box: 44px
+
+Gap within header elements: 34px (badge to title, title to subtitle)
+
+Hero content moved up: 50px negative margin
+
+Horizontal padding: 120px
+
+Color Scheme:
+
+Black text: #000000
+
+Gray text: #505050
+
+Light gray backgrounds: #f8f8f8
+
+Green upgrade button: rgba(90,225,76,0.89)
+
+Dark badge: #0e1311
+
+White: #ffffff
+
+Transparent overlay: rgba(0,0,0,0.24)
+
+Component Structure:
+
+VideoBackground component with custom fade logic
+
+Navigation bar (fixed spacing, horizontal layout)
+
+Hero content container (centered, max-width constraints)
+
+Nested components for badge, header, and search input
+
+All elements positioned over full-screen video background

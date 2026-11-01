@@ -4,109 +4,50 @@ slug: "digital-epoch-hero"
 title: "Digital Epoch"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/digital-epoch-hero.mp4"
+posterUrl: "/media/posters/digital-epoch-hero.jpg"
+chars: 4594
+tier: "premium"
 likes: 35
-tier: "free"
-chars: 4425
-preview_video: "/media/videos/digital-epoch-hero.mp4"
-preview_poster: "/media/posters/digital-epoch-hero.jpg"
 ---
 
-# Digital Epoch (Hero Section)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
-
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
-
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/digital-epoch-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/digital-epoch-hero-preview.mp4
-
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
-
-export interface DigitalEpochProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
-
-export function DigitalEpoch({
-  headline = "Digital Epoch",
-  subheadline = "Build a modern, high-performance landing page section using React, TypeScript, Tailwind CSS v4, and Motion. The application should match the following exact …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: DigitalEpochProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/digital-epoch-hero-poster-c.jpg"
-            alt="Digital Epoch"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Build a modern, high-performance landing page section using React, TypeScript, Tailwind CSS v4, and Motion. The application should match the following exact specifications:
+1. Dependencies & Setup
+Libraries: Install lucide-react, motion, clsx, and tailwind-merge.
+Fonts & CSS: In index.css, import the Inter and Outfit fonts from Google Fonts: @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap');
+Configure the Tailwind theme in your CSS to use Inter as --font-sans and Outfit as --font-display.
+The global body background should be #f9fafb.
+2. Main Hero Container & Video Background
+Create a hero section container with these exact classes: relative w-full max-w-[1400px] mx-auto rounded-[48px] bg-white border border-slate-200/50 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.03)] overflow-hidden h-[600px] flex flex-col.
+Inside, add an absolutely positioned underlying layer (absolute inset-0 pointer-events-none z-0 overflow-hidden select-none) for the background video.
+The video tag must point to exactly this URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260505_101331_74f9b798-3f00-4e86-8a01-377aa16ffeaa.mp4. It must include autoPlay, loop, muted, and playsInline attributes, with the classes: w-full h-full object-cover scale-105 transition-transform duration-1000. No overlays.
+3. Hero Text Content
+Create a content wrapper positioned relative (z-20 flex-1 px-8 md:px-16 pt-12 md:pt-16 flex flex-col items-start).
+Use motion.div from motion/react to animate the text layer in (fade in, slide up slightly).
+Headline: "Foundation of the<br />new digital epoch". Should use the font-display font, sizes text-[42px] md:text-[56px], medium weight, tight tracking, color #0a1b33.
+Subheadline: "Designing products, powering ecosystems and laying the foundation of a decentralized web for enterprises, builders and communities alike." Should use font-sans, sizes text-[14px] md:text-[15px], color #64748b.
+Contact Button: Text "Contact Us", using a dark background (bg-[#0a152d]), white text, rounded-full, with hover scale animations via motion.button.
+4. Floating Bottom Navbar
+Create an absolutely positioned navbar wrapper at the bottom center of the hero: absolute bottom-10 left-1/2 -translate-x-1/2 z-30.
+The nav element should use motion.nav to fade in and slide up (delayed after the text). It must have the classes: flex items-center bg-white/90 backdrop-blur-2xl px-1.5 py-1.5 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-slate-200/40.
+Nav Elements:
+A small circular logo placeholder on the left (w-9 h-9 bg-white border-slate-100 shadow-sm) containing the star character "✦".
+Two standard text buttons: "Products" and "Docs" (text-[12px] font-semibold text-slate-500 hover:text-[#0a1b33]).
+A "Get in touch" button on the right containing the text and a small ChevronRight (from lucide-react). Styled identically to the marquee cards: bg-white px-5 py-2 rounded-full text-[12px] font-semibold text-[#0a1b33] border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all.
+5. Seamless Marquee Logo Scroller Component
+Below the hero container (mt-10), add a custom highly-performant Marquee Scroller component.
+The scroller must use a pure CSS @keyframes animation (transform: translateX(0) to translateX(-50%)) for infinite scrolling, pausing on hover. It needs a left/right masking gradient (maskImage linear-gradient fading to transparent on the edges). No title or description text above the scroller.
+The Logos List: Supply an array of 8 objects with src URLs from svgl.app, alt names, and hex gradient objects:
+Procure (procure.svg, blue gradient)
+Shopify (shopify.svg, yellow gradient)
+Blender (blender.svg, blue gradient)
+Figma (figma.svg, purple gradient)
+Spotify (spotify.svg, pink/red gradient)
+Lottielab (lottielab.svg, yellow/green)
+Google Cloud (google-cloud.svg, light blue)
+Bing (bing.svg, cyan/teal)
+Render the list twice inline to ensure a seamless loop.
+Card Design: Make each logo's container card exactly match the "Get in touch" navbar button's styling. The container classes must be exactly: group relative h-24 w-40 shrink-0 flex items-center justify-center rounded-full bg-white border border-slate-200/60 shadow-sm hover:border-slate-300 transition-all overflow-hidden.
+Inside the card, add an absolute div using the specific gradient colors, scaled at 1.5 and 0 opacity, which drops to scale 1 and opacity 100 on group-hover.
+The image tag should invert/turn black on hover (group-hover:brightness-0 group-hover:invert).

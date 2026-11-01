@@ -4,109 +4,177 @@ slug: "digitwist-hero"
 title: "Digitwist AI Builder"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/digitwist-hero.mp4"
+posterUrl: "/media/posters/digitwist-hero.jpg"
+chars: 6003
+tier: "premium"
 likes: 185
-tier: "free"
-chars: 4426
-preview_video: "/media/videos/digitwist-hero.mp4"
-preview_poster: "/media/posters/digitwist-hero.jpg"
 ---
 
-# Digitwist AI Builder (SaaS)
+Create a dark mode hero section for an AI website builder with the following exact specifications:
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+## Technical Setup
 
-Recreate this exact high-converting SaaS design — pixel-perfect match.
+### Required Packages
+Install these packages:
+- `motion` (version 12.23.24 or later) - for animations
+- `hls.js` (version 1.6.15 or later) - for video streaming
+- `lucide-react` (version 0.487.0 or later) - for icons
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/digitwist-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/digitwist-hero-preview.mp4
-
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
-
-export interface DigitwistAIBuilderProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
-
-export function DigitwistAIBuilder({
-  headline = "Digitwist AI Builder",
-  subheadline = "Create a dark mode hero section for an AI website builder with the following exact specifications: ## Technical Setup ### Required Packages Install these …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: DigitwistAIBuilderProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>SAAS</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/digitwist-hero-poster-c.jpg"
-            alt="Digitwist AI Builder"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
+### Fonts
+Import these Google Fonts:
+```css
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap');
 ```
+
+## Layout Structure
+
+### Navbar Component
+Create a fixed, transparent navbar with:
+
+**Position & Styling:**
+- Fixed to top, full width, z-index 50
+- Background: fully transparent (bg-transparent)
+- Padding: px-6 py-4
+- Flexbox layout: items-center justify-between
+
+**Left Section:**
+- Sunburst icon (24x24px SVG) in white color
+
+**Center Section** (hidden on mobile, visible md:flex):
+- Navigation links: "Products" (with ChevronDown icon), "Customer Stories", "Resources", "Pricing"
+- Font: Instrument Sans, text-sm, font-medium
+- Color: text-white/80, hover:text-white
+- Gap: gap-8
+
+**Right Section:**
+- "Book A Demo" link (hidden on small screens, sm:block)
+- "Get Started" button: white background, black text, rounded-full, px-5 py-2.5, font-semibold
+
+### Hero Section Component
+
+**Container:**
+- Relative positioning, full width, min-h-screen
+- Background color: #000000 (pure black)
+- Text color: white
+- Overflow hidden
+
+**Background Video Layer:**
+- Video URL: https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8
+- Video implementation using HLS.js with Safari fallback
+- Video properties: muted, loop, playsInline
+- Object-fit: cover, opacity: 60%
+- Poster image fallback: https://images.unsplash.com/photo-1647356191320-d7a1f80ca777?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhcmslMjB0ZWNobm9sb2d5JTIwbmV1cmFsJTIwbmV0d29ya3xlbnwxfHx8fDE3Njg5NzIyNTV8MA&ixlib=rb-4.1.0&q=80&w=1080
+
+**Video Overlay:**
+- Black overlay: bg-black/60 with backdrop-blur-[2px]
+
+**Decorative Gradients:**
+- Top-left gradient: position top-[-20%] left-[20%], size 600x600px, bg-blue-900/20, blur-[120px], mix-blend-screen
+- Bottom-right gradient: position bottom-[-10%] right-[20%], size 500x500px, bg-indigo-900/20, blur-[120px], mix-blend-screen
+
+**Content Container:**
+- Max-width: 5xl (max-w-5xl)
+- Center aligned (mx-auto, items-center, text-center)
+- Z-index: 10, top margin: mt-20
+- Vertical spacing: space-y-12
+
+**Pre-headline:**
+- Text: "Design at the speed of thought"
+- Font: Instrument Serif
+- Size: text-3xl (mobile), sm:text-5xl, lg:text-[48px]
+- Line height: leading-[1.1]
+- Color: white
+- Animation: Motion fade up (opacity 0→1, y 20���0, duration 0.6s)
+
+**Main Headline:**
+- Text: "Build Faster"
+- Font: Instrument Sans, font-semibold
+- Size: text-6xl (mobile), sm:text-8xl, lg:text-[136px]
+- Line height: leading-[0.9], letter spacing: tracking-tighter
+- Gradient: bg-gradient-to-b from-white via-white to-[#b4c0ff]
+- Text effect: bg-clip-text text-transparent
+- Animation: Motion scale (opacity 0→1, scale 0.9→1, delay 0.2s, duration 0.6s)
+
+**Subheadline:**
+- Text: "Create fully functional, SEO-optimized websites in seconds with our advanced AI engine."
+- Font: Instrument Sans
+- Size: text-lg (mobile), sm:text-[20px]
+- Line height: leading-[1.65]
+- Color: white, opacity-70
+- Max width: max-w-xl
+- Animation: Motion fade (opacity 0→0.7, delay 0.4s, duration 0.6s)
+
+**CTA Buttons:**
+
+Primary Button:
+- Style: White pill-shaped with blue arrow
+- Layout: pl-6 pr-2 py-2, rounded-full
+- Background: white
+- Text: "Start Building Free" (font-medium, text-lg, Instrument Sans, color #0a0400)
+- Arrow container: 40x40px circle, bg-[#3054ff], hover:bg-[#2040e0]
+- Icon: ArrowRight (lucide-react), white, 20x20px
+- Hover effect: shadow-[0_0_20px_rgba(255,255,255,0.3)], scale-105
+
+Secondary Button:
+- Text: "See Examples"
+- Style: text link with arrow
+- Color: text-white/70, hover:text-white
+- Background: backdrop-blur-sm, hover:bg-white/5
+- Padding: px-4 py-2, rounded-lg
+- Icon: ArrowRight with group-hover:translate-x-1 transition
+
+Button Container:
+- Layout: flex-col (mobile), sm:flex-row
+- Gap: gap-6, items centered
+- Animation: Motion fade up (opacity 0→1, y 20→0, delay 0.6s, duration 0.5s)
+
+## HLS.js Video Implementation
+```tsx
+import { useEffect, useRef } from "react";
+import Hls from "hls.js";
+
+const videoRef = useRef<HTMLVideoElement>(null);
+const videoSrc = "https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8";
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      video.play().catch((e) => console.log("Auto-play prevented:", e));
+    });
+    return () => {
+      hls.destroy();
+    };
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = videoSrc;
+    video.addEventListener("loadedmetadata", () => {
+      video.play().catch((e) => console.log("Auto-play prevented:", e));
+    });
+  }
+}, []);
+```
+
+## Motion Animations
+Import: `import { motion } from "motion/react"`
+
+- Pre-headline: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+- Main headline: initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.6 }}
+- Subheadline: initial={{ opacity: 0 }} animate={{ opacity: 0.7 }} transition={{ delay: 0.4, duration: 0.6 }}
+- Buttons: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.5 }}
+
+## Color Palette
+- Background: #000000
+- Primary text: white
+- Secondary text: white/80, white/70
+- Primary button background: white
+- Primary button text: #0a0400
+- Primary button accent: #3054ff, hover #2040e0
+- Gradient end color: #b4c0ff
+- Decorative gradients: blue-900/20, indigo-900/20

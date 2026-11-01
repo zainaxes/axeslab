@@ -4,109 +4,82 @@ slug: "aethera-hero"
 title: "Aethera Studio"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/aethera-hero.mp4"
+posterUrl: "/media/posters/aethera-hero.jpg"
+chars: 3169
+tier: "premium"
 likes: 153
-tier: "free"
-chars: 4413
-preview_video: "/media/videos/aethera-hero.mp4"
-preview_poster: "/media/posters/aethera-hero.jpg"
 ---
 
-# Aethera Studio (Hero Section)
+Prompt: Cinematic Hero Section with Looping Video Background
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Create a fullscreen single-page hero section using React + Vite + Tailwind CSS + TypeScript with the following specifications:
 
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
+Fonts:
+Display text (headings, logo): Instrument Serif
+Body text (navigation, descriptions): Inter
+Import both fonts in /src/styles/fonts.css
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/aethera-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/aethera-hero-preview.mp4
+Video Background:
+URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4
+Position: top: '300px' with inset: 'auto 0 0 0'
+Implement custom fade-in/fade-out loop logic using React useEffect and useRef:
+Use requestAnimationFrame to continuously monitor currentTime and duration
+Fade in over 0.5s at the start (opacity 0 to 1)
+Fade out over 0.5s before the end (opacity 1 to 0)
+On ended event: set opacity to 0, wait 100ms, reset currentTime = 0, then play() again
+This creates a seamless manual loop with smooth fade transitions
+Add gradient overlays: absolute inset-0 bg-gradient-to-b from-background via-transparent to-background positioned over the video
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Navigation Bar:
+Logo: "Aethera®" (with registered trademark symbol as superscript)
+Logo styling: text-3xl, tracking-tight, Instrument Serif, color #000000
+Menu items: Home (color #000000), Studio, About, Journal, Reach Us (all others #6F6F6F)
+Menu items: text-sm with transition-colors
+CTA button: "Begin Journey", rounded-full, px-6 py-2.5, text-sm, black background (#000000), white text, hover scale 1.03
+Layout: flex justify-between, px-8 py-6, max-w-7xl mx-auto
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Hero Section:
+Positioning: paddingTop: 'calc(8rem - 75px)', pb-40
+Layout: centered (flex flex-col items-center justify-center text-center), px-6
+Headline:
+Text: "Beyond silence, we build the eternal."
+Styling: text-5xl sm:text-7xl md:text-8xl, max-w-7xl, font-normal
+Font: Instrument Serif
+Line height: 0.95
+Letter spacing: -2.46px
+Color: #000000 for main text, #6F6F6F for italic emphasized words ("silence," and "the eternal.")
+Animation: animate-fade-rise
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+Description:
+Text: "Building platforms for brilliant minds, fearless makers, and thoughtful souls. Through the noise, we craft digital havens for deep work and pure flows."
+Styling: text-base sm:text-lg, max-w-2xl, mt-8, leading-relaxed
+Color: #6F6F6F
+Animation: animate-fade-rise-delay
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Hero CTA Button:
+Text: "Begin Journey"
+Styling: rounded-full, px-14 py-5, text-base, mt-12
+Colors: black background (#000000), white text (#FFFFFF)
+Hover: scale 1.03
+Animation: animate-fade-rise-delay-2
 
-export interface AetheraStudioProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+Colors:
+Background: white (#FFFFFF)
+Headlines/logos/buttons: black (#000000)
+Descriptions/menu items: gray (#6F6F6F)
+Button text: white (#FFFFFF)
 
-export function AetheraStudio({
-  headline = "Aethera Studio",
-  subheadline = "Prompt: Cinematic Hero Section with Looping Video Background Create a fullscreen single-page hero section using React + Vite + Tailwind CSS + TypeScript with …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: AetheraStudioProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/aethera-hero-poster-c.jpg"
-            alt="Aethera Studio"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Animations (in /src/styles/theme.css):
+fade-rise: opacity 0 to 1, translateY 20px to 0, duration 0.8s, ease-out
+fade-rise-delay: same as fade-rise but with 0.2s delay
+fade-rise-delay-2: same as fade-rise but with 0.4s delay
+
+Layout Structure:
+Container: relative min-h-screen w-full overflow-hidden
+Background video layer (z-0)
+Gradient overlay on video
+Navigation bar (z-10)
+Hero section (z-10)
+All elements should be responsive and maintain the glassmorphic aesthetic with the specified padding, positioning, and smooth animations.

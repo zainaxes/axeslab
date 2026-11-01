@@ -4,109 +4,55 @@ slug: "dot-hero"
 title: "Dot"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/dot-hero.mp4"
+posterUrl: "/media/posters/dot-hero.jpg"
+chars: 3870
+tier: "premium"
 likes: 42
-tier: "free"
-chars: 4281
-preview_video: "/media/videos/dot-hero.mp4"
-preview_poster: "/media/posters/dot-hero.jpg"
 ---
 
-# Dot (Hero Section)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
-
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
-
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/dot-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/dot-hero-preview.mp4
-
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
-
-export interface DotProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
-
-export function Dot({
-  headline = "Dot",
-  subheadline = "Build a React landing page exactly as specified below. Use React 19, Tailwind CSS v4, and …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: DotProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/dot-hero-poster-c.jpg"
-            alt="Dot"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Build a React landing page exactly as specified below. Use React 19, Tailwind CSS v4, and motion/react for animations.
+1. Fonts & Global CSS Setup:
+In index.html, import these Google Fonts:
+Instrument Serif (weights 400, italic 400)
+Inter (weights 100 to 900)
+In src/index.css, import this custom font for the Nokia text:
+@import url('https://db.onlinewebfonts.com/c/440b53b1a1c65037f944ff19259d8014?family=Nokia+Cellphone+FC+Small');
+Configure the Tailwind theme variables in index.css:
+--font-instrument: "Instrument Serif", serif;
+--font-serif: "Instrument Serif", serif;
+--font-sans: "Inter", sans-serif;
+--font-nokia: "Nokia Cellphone FC Small", monospace;
+Create a @utility font-instrument { font-family: "Instrument Serif", serif; }
+Set the root font-family to var(--font-sans) and apply anti-aliasing.
+2. Component Structure:
+Create one main App.tsx file containing 4 components: TypingMessages, Navbar, Hero, and App.
+3. Navbar Component:
+Container: Fixed to the top top-6, centered horizontally left-1/2 -translate-x-1/2, width 95% w-[95%] max-w-5xl. z-50, pointer-events-none.
+Nav Tag: pointer-events-auto, backdrop blur, rounded full pill shape, transparent background with border border-black/10. Flex between items.
+Logo: Text "dot." using font-instrument text-[28px] tracking-tight text-[#1a1a1a].
+Links: "Philosophy", "Trust", "Access", "Tribe". Hidden on mobile, flex on desktop (gap-10). font-sans text-[14px] text-[#1a1a1a] with hover opacity fading.
+CTA Button ("Link up"):
+Background #0871E7, rounded full, white text font-sans text-[14px].
+Shadow: shadow-[inset_0_-4px_4px_rgba(255,255,255,0.39)] outline-1 outline-[#0871E7] -outline-offset-1.
+Add a subtle top glint effect using an absolutely positioned rectangle inside the button: w-[80%] h-4 left-[10%] top-[1px] bg-gradient-to-b from-[#DEF0FC] to-transparent rounded-[12px]. Make it scale wider on group hover (group-hover:scale-x-105).
+4. Hero Component:
+Container: min-h-screen bg-[#F3F4ED] pt-24 md:pt-32 flex column centered.
+Video Background: Absolute positioning inset-0 z-0. Use an HTML5 <video> set to autoplay, loop, muted, playsInline, scaling with object-cover.
+Video Source: EXACTLY https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_054418_a6d194f0-ac86-4df9-abe5-ded73e596d7c.mp4. Add an overlaid empty div with bg-white/5 for a slight tint.
+Hero Text Container: Relative z-20, pointer-events-none, text-centered layout.
+Main Headline: "Short notes. <br /> Daily calm."
+Animate using motion.div (from opacity: 0, scale: 0.95 to opacity: 1, scale: 1 over 1.5s with ease [0.16, 1, 0.3, 1]).
+Style: font-instrument text-[38px] md:text-[56px] lg:text-[72px] leading-[0.85] tracking-tight text-[#1a1a1a] mb-6.
+Sub-headline: "Linked with a single anonymous peer. One message every day. A quiet rhythm in the digital noise."
+Animate using motion.div (from opacity: 0, y: 20 to opacity: 1, y: 0 over 1.2s, delay: 0.3, ease [0.16, 1, 0.3, 1]).
+Style: font-sans text-[16px] md:text-[18px] text-[#1a1a1a]/70 leading-relaxed font-normal max-w-xl mx-auto.
+Include the TypingMessages component inside the hero to overlap on the phone screen in the video.
+5. TypingMessages Component:
+Logic: Cycle through an array of messages: ["Are you here?", "Yes, I am.", "Speak soon."].
+Typing speed: 100ms. Deleting speed: 50ms. Pause before deleting: 2000ms.
+Positioning: Absolute position it to sit perfectly on the phone screen inside the video:
+absolute left-[48.5%] md:left-[47.5%] lg:left-[48.5%] -translate-x-1/2 bottom-[32%] z-30 w-[110px] sm:w-[130px] flex justify-start text-left.
+Text Style: font-nokia text-[#2A3616] text-[10px] sm:text-[14px] leading-tight break-words min-h-[1.5em].
+Cursor: Add a blinking Framer Motion cursor motion.span (w-1.5 h-3 bg-[#2A3616] ml-1 align-middle) animating opacity from 0 to 1 to 0 over 0.8s, repeating infinitely, linearly.

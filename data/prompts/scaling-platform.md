@@ -4,15 +4,13 @@ slug: "scaling-platform"
 title: "Scaling Platform"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 37
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/scaling-platform.jpg"
+chars: 5081
 tier: "free"
-chars: 5099
-preview_video: ""
-preview_poster: "/media/posters/scaling-platform.jpg"
+likes: 37
 ---
-
-# Scaling Platform (SaaS)
 
 # Prompt: Recreate the Targo hero + about sections
 
@@ -21,7 +19,7 @@ Build a single-page site with exactly two sections. Font: **Quantico** (Google F
 ## Section 1 — Hero (min-height: 100svh, background #F2F1F0, overflow hidden)
 
 **Background video** (absolutely positioned, pointer-events none, no crop — objectFit: contain, height auto):
-`https://axeslab.zainaxes.com/web/media/ext/91c8885f71aa1e73.mp4`
+`https://meez.design/web/media/ext/91c8885f71aa1e73.mp4`
 - Desktop: top 0, right -20%, width 99%.
 - Mobile (≤700px): top 0, left -12%, width 119%.
 - Attributes: autoplay, muted, loop, playsinline, preload auto. Robustness: retry `video.play()` every 1s and on first document click/touchstart (always set muted before play, swallow rejections).
@@ -60,7 +58,7 @@ Background: `linear-gradient(180deg, #F2F1F0 0%, #F7F6F8 18%, #F7F6F8 100%)` (sm
 
 **Right column** (flex 1 1 360px, min-width 280px, justify-content flex-end, position relative):
 - Video, width 100%, max-width 644px, height auto, flush to the right edge:
-  `https://axeslab.zainaxes.com/web/media/ext/8244e1a58b5e3d46.mp4`
+  `https://meez.design/web/media/ext/8244e1a58b5e3d46.mp4`
   Same attributes + autoplay-retry logic as the hero video.
 - Overlay rectangle exactly covering the video (absolute, top 0, right 0, width 100%, max-width 644px, height 100%): background **#15BCDF** with `mix-blend-mode: hue`, pointer-events none, z-index 1 (tints the video cyan).
 

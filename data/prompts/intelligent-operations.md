@@ -4,15 +4,13 @@ slug: "intelligent-operations"
 title: "Intelligent Operations"
 category: "Agency"
 categorySlug: "agency"
-collection: "prompts"
-likes: 46
+routeCollection: "prompts"
+videoUrl: "/media/videos/intelligent-operations.mp4"
+posterUrl: "/media/posters/intelligent-operations.webp"
+chars: 10236
 tier: "free"
-chars: 10266
-preview_video: "/media/videos/intelligent-operations.mp4"
-preview_poster: "/media/posters/intelligent-operations.webp"
+likes: 46
 ---
-
-# Intelligent Operations (Agency)
 
 # Exact recreation prompt — NovaAI landing page
 
@@ -32,7 +30,7 @@ Recreate this page **pixel-faithfully**. Stack: React + TypeScript + Vite + Tail
 
 **Hero scroll video (CloudFront — required):**
 ```
-https://axeslab.zainaxes.com/web/media/prompt-media/v/256a995befea43be.mp4
+https://meez.design/web/media/prompt-media/v/256a995befea43be.mp4
 ```
 Video content: abstract 3D forms (hanging white cables with glowing gold tips → organic white spherical / brain-like folds with warm orange core), soft blue-grey mist / grain background, floating bokeh particles. 1920×1080.
 
@@ -40,7 +38,7 @@ Video content: abstract 3D forms (hanging white cables with glowing gold tips �
 
 **Portrait (“Talk with Mitha”) — exact URL:**
 ```
-https://axeslab.zainaxes.com/web/media/ext/7c6fb70f3e54bac9.webp
+https://meez.design/web/media/ext/7c6fb70f3e54bac9.webp
 ```
 Display as `h-24 w-20` (`96×80px`), `rounded-lg`, `object-cover`. Alt: `Mitha, co-founder of NovaAI`.
 
@@ -93,7 +91,7 @@ Fixed full-bleed layer `z-0`, bg `#0a0a0a`, `overflow-hidden`, `pointer-events-n
 - Offscreen video loads same URL
 - Extract up to **90** frames (or `duration * 12`, min 24), max width **960px**
 - Wait until visible video has `loadeddata` + 300ms yield before extraction starts
-- On ready, canvas draws cached `ImageBitmap`s by Axes Lab (@zainaxes) progress index
+- On ready, canvas draws cached `ImageBitmap`s by smoothed progress index
 
 **Fallback:** seek the visible `<video>` to `smoothed * (duration - 0.05)` when frames aren’t ready (seek if delta > 0.04s)
 

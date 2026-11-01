@@ -4,109 +4,72 @@ slug: "21-tilted-scroll"
 title: "Tilted Scroll"
 category: "Scroll"
 categorySlug: "scroll"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/21-tilted-scroll.mp4"
+posterUrl: "/media/posters/21-tilted-scroll.jpg"
+chars: 2525
+tier: "premium"
 likes: 24
-tier: "free"
-chars: 4407
-preview_video: "/media/videos/21-tilted-scroll.mp4"
-preview_poster: "/media/posters/21-tilted-scroll.jpg"
 ---
 
-# Tilted Scroll (Scroll)
+# Tilted Scroll Component Specification
+Production Component Implementation & Interactive Layout Model
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+════════════════════════════════════════════════════════════════════════
+1. COMPONENT ARCHITECTURE & INTERACTION MODEL
+════════════════════════════════════════════════════════════════════════
+A tilted infinite scroll component with a 3D perspective effect. Features smooth scrolling animation and interactive hover states for each item …
 
-Recreate this exact high-converting Scroll design — pixel-perfect match.
+Key features:
+• Full responsive fluid geometry across 375px mobile, 768px tablet, and 1440px desktop.
+• Clean state management and interaction feedback with Tailwind CSS and modern React hooks.
+• Zero performance jank: Hardware-accelerated GPU transforms (`translate3d`, `will-change-transform`).
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/prompt-media/86668c9172c160a1.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/prompt-media/fd8d6a10e0fb281a.mp4
-
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
+════════════════════════════════════════════════════════════════════════
+2. PRODUCTION REACT & TAILWIND IMPLEMENTATION
+════════════════════════════════════════════════════════════════════════
 ```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, ArrowRight, Check } from 'lucide-react';
 
 export interface TiltedScrollProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
+  title?: string;
+  subtitle?: string;
+  className?: string;
 }
 
 export function TiltedScroll({
-  headline = "Tilted Scroll",
-  subheadline = "A tilted infinite scroll component with a 3D perspective effect. Features smooth scrolling animation and interactive hover states for each item …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
+  title = "Tilted Scroll",
+  subtitle = "High-performance interactive component designed with modern web standards.",
+  className = ""
 }: TiltedScrollProps) {
+  const [isActive, setIsActive] = useState(false);
+
   return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>SCROLL</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
+    <div className={`relative w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/90 p-8 backdrop-blur-xl ${className}`}>
+      <div className="flex flex-col gap-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-neutral-300 w-fit">
+          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          <span>SCROLL</span>
         </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/prompt-media/86668c9172c160a1.jpg"
-            alt="Tilted Scroll"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
+        <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+          {title}
+        </h3>
+        <p className="max-w-xl text-sm leading-relaxed text-neutral-400">
+          {subtitle}
+        </p>
+        <div className="pt-2">
+          <button
+            onClick={() => setIsActive(!isActive)}
+            className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-all hover:bg-neutral-200"
+          >
+            <span>{isActive ? "Active State" : "Interact"}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 ```
+

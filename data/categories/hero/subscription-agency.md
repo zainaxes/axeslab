@@ -4,15 +4,13 @@ slug: "subscription-agency"
 title: "Subscription Agency"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 71
+routeCollection: "prompts"
+videoUrl: "/media/videos/subscription-agency.mp4"
+posterUrl: "/media/posters/subscription-agency.jpg"
+chars: 5850
 tier: "free"
-chars: 5915
-preview_video: "/media/videos/subscription-agency.mp4"
-preview_poster: "/media/posters/subscription-agency.jpg"
+likes: 71
 ---
-
-# Subscription Agency (Hero)
 
 **Create a single-page landing hero section for a creative agency called "Alwayzz" with a React + Vite + Tailwind CSS setup. Use custom CSS (not Tailwind utilities) for all styling. The design should be minimal, clean, black-and-white, with tight negative letter-spacing throughout.**
 
@@ -55,7 +53,7 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
 - Min-height: `850px`, padding: `160px 36px`, centered flex column.
 - **Background image** (via `::before` pseudo-element, covers full section):
   ```
-  https://axeslab.zainaxes.com/web/media/ext/883823797a81fd1e.webp
+  https://meez.design/web/media/ext/883823797a81fd1e.webp
   ```
   Background-size: cover, background-position: center.
 
@@ -63,7 +61,7 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
   - 20 lines on left side, 20 on right side, absolutely positioned.
   - Each line is a tall rectangle with one-sided border-radius (80%) and `2.5px solid #FCFAF8` border.
   - Left lines: no left border, radius on right. Right lines: no right border, radius on left.
-  - Staggered `animationDelay: i * 0.25s`, widths from 60px increasing by Axes Lab (@zainaxes) per line.
+  - Staggered `animationDelay: i * 0.25s`, widths from 60px increasing by 10px per line.
   - Animation: `line-pulse` 5s ease-in-out infinite (fade in to 0.9 opacity, then back to 0 with slight scale).
   - On mobile (<810px): hide side lines, show top horizontal lines instead (same animation, horizontal orientation with bottom border-radius).
 
@@ -91,12 +89,12 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
 - **CTA row** (flex, gap 16px, centered):
   - **Primary button** "View Plans": height 56px, padding `18px 30px`, rounded-full, black bg, white text, 15px weight 600 Inter. Hover: translateY(-1px) + box-shadow `0 4px 20px rgba(0,0,0,0.12)`.
   - **Book button** "Chat for 15 minutes": white bg, `4px solid rgb(248,248,248)` border, rounded-full, padding `8px 24px 8px 8px`. Contains:
-    - Avatar image (40px circle): `https://axeslab.zainaxes.com/web/media/ext/6be23d90a43b4ca1.png`
+    - Avatar image (40px circle): `https://meez.design/web/media/ext/6be23d90a43b4ca1.png`
     - Text stack: primary "Chat for 15 minutes" (14px, weight 600, black) and secondary "Pick a slot" (12px, weight 500, `rgb(152,152,152)`) with a green dot (`rgb(29, 204, 93)`, 8px circle).
 
 - **Progressive blur** at bottom: absolute, full width, height 178px, gradient from transparent to `rgba(255,255,255,0.4)` at 40% to solid white.
 
-**3. Trustedby Axes Lab (@zainaxes)**
+**3. TrustedBy Section**
 - Padding: 36px, max-width 1200px centered.
 - Left: label "Partnered with top-tier companies globally" (max-width 163px, 14px, weight 500, muted color).
 - Right: horizontal marquee (30s) of company names styled as text logos (16px, weight 600, black, each with distinct font-family):
@@ -134,11 +132,11 @@ Preconnect to `fonts.googleapis.com` and `fonts.gstatic.com`.
 
 The hero background image URL (exact):
 ```
-https://axeslab.zainaxes.com/web/media/ext/883823797a81fd1e.webp
+https://meez.design/web/media/ext/883823797a81fd1e.webp
 ```
 
 The book button avatar URL (exact):
 ```
-https://axeslab.zainaxes.com/web/media/ext/6be23d90a43b4ca1.png
+https://meez.design/web/media/ext/6be23d90a43b4ca1.png
 ```
 ]

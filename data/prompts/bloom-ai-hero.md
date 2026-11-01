@@ -4,109 +4,74 @@ slug: "bloom-ai-hero"
 title: "Bloom AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/bloom-ai-hero.mp4"
+posterUrl: "/media/posters/bloom-ai-hero.jpg"
+chars: 3900
+tier: "premium"
 likes: 173
-tier: "free"
-chars: 4384
-preview_video: "/media/videos/bloom-ai-hero.mp4"
-preview_poster: "/media/posters/bloom-ai-hero.jpg"
 ---
 
-# Bloom AI (Hero Section)
+Create a full-screen hero landing page for "Bloom" — an AI-powered plant/floral design platform. The design uses a liquid glass morphism aesthetic over a looping video background.
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Background
+Full-screen autoplaying, looping, muted video background: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4
+Video covers entire viewport with object-cover, sits at z-0. All content floats above at z-10.
 
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
+Fonts
+Display/Body: Poppins (Google Fonts) — used for headings and body text
+Serif accent: Source Serif 4 (Google Fonts) — used only for italic/emphasis text inside headings (e.g., <em>, <i>, .italic inside h1-h3)
+Headings use font-weight: 500
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/bloom-ai-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/bloom-ai-hero-preview.mp4
+Color Palette
+Strict grayscale only — all CSS variables are 0 0% X% HSL values
+Text is text-white, text-white/80, text-white/60, text-white/50 for hierarchy
+No colored accents whatsoever
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Liquid Glass CSS (two tiers)
+Define under @layer components:
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+.liquid-glass (light)
+background: rgba(255,255,255,0.01);
+background-blend-mode: luminosity;
+backdrop-filter: blur(4px);
+border: none;
+box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+position: relative; overflow: hidden;
+::before pseudo-element: gradient border using linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, transparent 40%, transparent 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%) with padding: 1.4px, masked via -webkit-mask-composite: xor; mask-composite: exclude;
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+.liquid-glass-strong (heavy, for CTA/panels)
+Same structure but backdrop-filter: blur(50px), box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15), and ::before uses 0.5/0.2 alpha instead of 0.45/0.15.
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Layout — Two-Panel Split
+Flex row, min-h-screen. Left panel w-[52%], right panel w-[48%] (hidden on mobile lg:flex).
 
-export interface BloomAIProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+Left Panel
+Has a liquid-glass-strong overlay (absolute inset-4 lg:inset-6 rounded-3xl)
+Nav: Logo image (/logo.png, 32×32) + "bloom" text (semibold, 2xl, tracking-tighter, white) on left. "Menu" button with Menu icon on right, liquid-glass pill.
+Hero center (flex-1, centered):
+Logo image again (80×80)
+h1: "Innovating the / spirit of bloom AI" — text-6xl lg:text-7xl, tracking-[-0.05em], white. The italic part uses font-serif text-white/80
+CTA button: "Explore Now" with Download icon in a w-7 h-7 rounded-full bg-white/15 circle. Button is liquid-glass-strong, rounded-full, hover:scale-105 active:scale-95
+Three pills: "Artistic Gallery", "AI Generation", "3D Structures" — liquid-glass, rounded-full, text-xs text-white/80
+Bottom quote:
+"VISIONARY DESIGN" label (text-xs tracking-widest uppercase text-white/50)
+Quote: "We imagined a realm with no ending." — mixed font-display/font-serif italic spans
+Author: "MARCUS AURELIO" with horizontal lines on each side
 
-export function BloomAI({
-  headline = "Bloom AI",
-  subheadline = "Create a full-screen hero landing page for \"Bloom\" — an AI-powered plant/floral design platform. The design uses a liquid glass morphism aesthetic over a …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: BloomAIProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/bloom-ai-hero-poster-c.jpg"
-            alt="Bloom AI"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Right Panel (desktop only)
+Top bar: Social icons (Twitter, LinkedIn, Instagram) in a liquid-glass pill with ArrowRight. Account button with Sparkles icon button, both liquid-glass.
+Community card: Small liquid-glass card (w-56), "Enter our ecosystem" title + description
+Bottom feature section (mt-auto): Outer liquid-glass container with rounded-[2.5rem]
+Two side-by-side cards: "Processing" (Wand2 icon) and "Growth Archive" (BookOpen icon), each liquid-glass rounded-3xl
+Bottom card: flower image thumbnail (from @/assets/hero-flowers.png, 96×64), "Advanced Plant Sculpting" title + description, and a "+" button. All liquid-glass.
+
+Icons
+All from lucide-react: Sparkles, Download, Wand2, BookOpen, ArrowRight, Twitter, Linkedin, Instagram, Menu
+
+Key Details
+All interactive elements: hover:scale-105 transition-transform
+Social icon links: text-white hover:text-white/80 transition-colors
+Icon containers: w-8 h-8 rounded-full bg-white/10 flex items-center justify-center
+No border classes anywhere — glass effect handles all borders via ::before
+border-radius token: --radius: 1rem

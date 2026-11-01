@@ -4,15 +4,13 @@ slug: "rare-gallery"
 title: "Rare Gallery"
 category: "Curated"
 categorySlug: "curated"
-collection: "prompts"
-likes: 151
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/rare-gallery.jpg"
+chars: 16834
 tier: "free"
-chars: 16852
-preview_video: ""
-preview_poster: "/media/posters/rare-gallery.jpg"
+likes: 151
 ---
-
-# Rare Gallery (Curated)
 
 Build a single-page luxury brand landing (navbar + full-viewport hero only). Stack: React 18 + TypeScript + Vite + Tailwind CSS 3. No extra UI kits. Use lucide-react only for the Flower2 icon. Page title: Aurevon. Root wrapper: bg-black. html, body { overflow-x: hidden }. Global reset: margin: 0; padding: 0; box-sizing: border-box.
 
@@ -66,7 +64,7 @@ HERO (full viewport)
 
 Background video (must be this exact URL)
 
-https://axeslab.zainaxes.com/web/media/ext/098ffe06644e148a.mp4
+https://meez.design/web/media/ext/098ffe06644e148a.mp4
 Wrapper: absolute inset-0. Starts scale-105 opacity-0, after 300ms mounted becomes scale-100 opacity-100. Transition duration-[1400ms] + entrance easing.
 
 <video>: that src, autoPlay muted loop playsInline, class="w-full h-full object-cover". No overlay gradient. Video is the only background.
@@ -486,7 +484,7 @@ No other sections, footer, or extra chrome. No video controls, no poster, no ext
   <section class="hero" id="hero">
     <div class="hero-video-wrap">
       <video
-        src="https://axeslab.zainaxes.com/web/media/ext/098ffe06644e148a.mp4"
+        src="https://meez.design/web/media/ext/098ffe06644e148a.mp4"
         autoplay
         muted
         loop

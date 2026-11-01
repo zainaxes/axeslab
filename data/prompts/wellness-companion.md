@@ -4,15 +4,13 @@ slug: "wellness-companion"
 title: "Wellness Companion"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 136
+routeCollection: "apps"
+videoUrl: "/media/videos/wellness-companion.mp4"
+posterUrl: "/media/posters/wellness-companion.jpg"
+chars: 3935
 tier: "free"
-chars: 3944
-preview_video: "/media/videos/wellness-companion.mp4"
-preview_poster: "/media/posters/wellness-companion.jpg"
+likes: 136
 ---
-
-# Wellness Companion (Mobile App)
 
 Build a mobile wellness quiz screen inside a realistic phone frame mockup, centered on a white page. Use React with Tailwind CSS and Lucide React icons.
 
@@ -24,7 +22,7 @@ Build a mobile wellness quiz screen inside a realistic phone frame mockup, cente
 - A black pill-shaped Dynamic Island at the top center: 120px wide, 32px tall, fully rounded, z-index 50
 
 **Background:**
-- Full-bleed background image using this exact URL: `https://axeslab.zainaxes.com/web/media/ext/6034ecdbf191b497.webp`
+- Full-bleed background image using this exact URL: `https://meez.design/web/media/ext/6034ecdbf191b497.webp`
 - Apply `blur(12px)` and `scale(1.1)` to the background image
 - Semi-transparent overlay: `#8a9aaa` at 30% opacity on top
 

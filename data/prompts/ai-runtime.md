@@ -4,15 +4,13 @@ slug: "ai-runtime"
 title: "AI Runtime"
 category: "AI"
 categorySlug: "ai"
-collection: "prompts"
-likes: 121
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/ai-runtime.jpg"
+chars: 9502
 tier: "free"
-chars: 9543
-preview_video: ""
-preview_poster: "/media/posters/ai-runtime.jpg"
+likes: 121
 ---
-
-# AI Runtime (AI)
 
 Rebuild this as a **single-viewport, full-bleed video-background landing page** using static **HTML + CSS + vanilla JS** (no framework). Match the current implementation exactly. File structure:
 
@@ -36,7 +34,7 @@ Full-viewport cover video behind all UI (`position: absolute; inset: 0; object-f
 ```html
 <video class="bg-video" autoplay muted loop playsinline>
   <source
-    src="https://axeslab.zainaxes.com/web/media/ext/bad3dfa080f05e3f.mp4"
+    src="https://meez.design/web/media/ext/bad3dfa080f05e3f.mp4"
     type="video/mp4"
   />
 </video>
@@ -139,7 +137,7 @@ Header: `slideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both`
 
 Column, text-center, max-width `900px`.
 
-### Trust row (“Trusted by Axes Lab (@zainaxes)+ Enterprises”)
+### Trust row (“Trusted by 2000+ Enterprises”)
 - Inline flex; `--trust-size: clamp(36px, 4.5vw, 42px)` (34px at ≤420px)
 - Margin-bottom `clamp(16px, 2.5vh, 26px)`
 - Stagger delay `--d: 0.05s`
@@ -157,7 +155,7 @@ Column, text-center, max-width `900px`.
 **Trust pill** (overlaps last avatar):
 - Same height as avatars, bg `#28282a`, border same as avatars, radius 999
 - Left margin `-0.42 * trust-size`; left padding `0.58 * trust-size` so text clears overlap
-- Text: `Trusted by Axes Lab (@zainaxes)+ Enterprises` — Inter 500, `#c4c2c3`, size `clamp(12px, 1.4vw, 13.5px)` (12px on mobile)
+- Text: `Trusted by 2000+ Enterprises` — Inter 500, `#c4c2c3`, size `clamp(12px, 1.4vw, 13.5px)` (12px on mobile)
 
 ### Headline
 Exact two lines (each a `<span>` block):

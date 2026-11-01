@@ -4,109 +4,53 @@ slug: "taskly-hero"
 title: "Taskly"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/taskly-hero.mp4"
+posterUrl: "/media/posters/taskly-hero.jpg"
+chars: 2465
+tier: "premium"
 likes: 89
-tier: "free"
-chars: 4370
-preview_video: "/media/videos/taskly-hero.mp4"
-preview_poster: "/media/posters/taskly-hero.jpg"
 ---
 
-# Taskly (Hero Section)
+System Prompt: High-Fidelity "Liquid Glass" Hero Section
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Core Layout: Create a 1600px max-width landing page hero section. The background should be pure white with a subtle, layered gradient glow in the top-left (using blurred ellipses in light blue #60B1FF and #319AFF). The design must be fully responsive, transitioning from a single-column mobile view to a dual-column desktop layout.
 
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
+Typography:
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/taskly-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/taskly-hero-preview.mp4
+Headlines & Brand: Use Fustat (Bold).
+Body & UI: Use Inter (Normal/Medium).
+Hero Headline: "Work smarter, achieve faster" (75px, 1.05 line-height, -2px tracking).
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+The "Strong Liquid Glass" Navbar:
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Position: Sticky at top-[30px], centered, w-fit.
+Visuals: backdrop-blur-[50px], background rgba(255,255,255,0.3), rounded-[16px].
+Fidelity Details:
+Outer Stroke: 1px solid rgba(0,0,0,0.1).
+Inner Highlight Shadow: inset 0px 4px 4px 0px rgba(255,255,255,0.25).
+Items: Logo "Taskly" (Fustat), Nav links (Home, Features, Company, Pricing), and a glassy "SignUp" button with an arrow icon.
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+The Glassy Orb (Hero Right):
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Source URL: https://future.co/images/homepage/glassy-orb/orb-purple.webm
+Blending Mode: Must use mix-blend-screen to filter the black background.
+Scaling: scale-125 to make it massive and bleed slightly off-center.
+Exact Color Grade (CSS Filter): hue-rotate(-55deg) saturate(250%) brightness(1.2) contrast(1.1). This transforms the purple asset into a vibrant, high-end "Electric Brand Blue" that matches the primary CTA.
 
-export interface TasklyProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+Hero Content (Hero Left):
 
-export function Taskly({
-  headline = "Taskly",
-  subheadline = "System Prompt: High-Fidelity \"Liquid Glass\" Hero Section Core Layout: Create a 1600px max-width landing page hero section. The background should be pure …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: TasklyProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/taskly-hero-poster-c.jpg"
-            alt="Taskly"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Social Proof: A "Rated 4.9/5 by 2700+ customers" badge with five orange #FF801E stars.
+Subheadline: "Effortlessly manage your projects, collaborate with your team, and achieve your goals with our intuitive task management tool." (18px, Inter, -1px tracking).
+Primary CTA: "Get Started Now" button.
+Color: rgba(0,132,255,0.8) with backdrop-blur-[2px].
+Details: rounded-[16px], white text, inner highlight shadow inset 0px 4px 4px 0px rgba(255,255,255,0.35), and a white circular arrow icon.
+Animation: Scale 1.02 on hover with a smooth transition.
+
+Footer Logos: Include a "Trusted by Top-tier product companies" section at the bottom with 5 grayscale SVG logos (e.g., placeholder logos for tech companies) spaced at gap-[100px].
+
+Key Technical Specs for the Developer:
+
+Video Tag: autoPlay loop muted playsInline.
+Container: Use a relative wrapper for the background glow and a z-10 main container for the content.
+Smoothing: Apply -webkit-font-smoothing: antialiased for the sharpest typography.

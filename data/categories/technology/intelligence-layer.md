@@ -4,15 +4,13 @@ slug: "intelligence-layer"
 title: "Intelligence Layer"
 category: "Technology"
 categorySlug: "technology"
-collection: "prompts"
-likes: 43
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/intelligence-layer.jpg"
+chars: 11750
 tier: "free"
-chars: 11759
-preview_video: ""
-preview_poster: "/media/posters/intelligence-layer.jpg"
+likes: 43
 ---
-
-# Intelligence Layer (Technology)
 
 Recreate a single-file dark cinematic AI-infrastructure landing page EXACTLY as specified. Deliver one self-contained index.html (inline CSS + JS, no build step). Pixel-faithful to a measured Figma-style comp. No cards, no purple, no glow orbs, no decorative abstract gradients as the main visual — the hero visual is a full-bleed looping video.
 
@@ -75,7 +73,7 @@ Portrait / narrow (max-aspect-ratio: 11/10):
 BACKGROUND — CLOUDFRONT VIDEO (MANDATORY URL)
 ════════════════════════════════════════
 Exact video URL (must use this, not a substitute):
-https://axeslab.zainaxes.com/web/media/ext/13c2dff571bad2e4.mp4
+https://meez.design/web/media/ext/13c2dff571bad2e4.mp4
 
 Markup inside absolute .plate covering the stage:
 <video class="plate-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">

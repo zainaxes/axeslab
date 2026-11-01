@@ -4,109 +4,247 @@ slug: "velorix-iic"
 title: "Velorix IIC"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/velorix-iic.mp4"
+posterUrl: "/media/posters/velorix-iic.webp"
+chars: 9255
+tier: "premium"
 likes: 107
-tier: "free"
-chars: 4292
-preview_video: "/media/videos/velorix-iic.mp4"
-preview_poster: "/media/posters/velorix-iic.webp"
 ---
 
-# Velorix IIC (Hero Section)
+## File: `src/App.tsx`
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
-
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
-
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/velorix-iic-poster.webp
-- Video Motion Demonstration: https://meez.design/web/media/preview_videos/velorix-iic.mp4
-
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
 ```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
-export interface VelorixIICProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
+const BG_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_155101_f2540600-6fe9-433e-8e48-b3f4b72f0727.mp4";
+
+const NAV_ITEMS = ['Platform', 'How it works', 'AI Defense', 'Connections', 'Insights'];
+
+function HamburgerButton({ open, onClick }: { open: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="lg:hidden relative w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300"
+      style={{ backgroundColor: open ? '#1a1a1a' : 'transparent' }}
+      aria-label="Toggle menu"
+    >
+      <span
+        className="absolute transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]"
+        style={{ opacity: open ? 0 : 1, transform: open ? 'rotate(-90deg) scale(0.5)' : 'rotate(0deg) scale(1)' }}
+      >
+        <Menu size={20} color="white" strokeWidth={1.5} />
+      </span>
+      <span
+        className="absolute transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]"
+        style={{ opacity: open ? 1 : 0, transform: open ? 'rotate(0deg) scale(1)' : 'rotate(90deg) scale(0.5)' }}
+      >
+        <X size={20} color="white" strokeWidth={1.5} />
+      </span>
+    </button>
+  );
 }
 
-export function VelorixIIC({
-  headline = "Velorix IIC",
-  subheadline = "Premium component — sign in and unlock to copy the full spec.",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: VelorixIICProps) {
+function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
+    <>
+      <div
+        className="fixed inset-0 z-30 lg:hidden transition-all duration-500"
+        style={{
+          backdropFilter: open ? 'blur(12px)' : 'blur(0px)',
+          backgroundColor: open ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0)',
+          pointerEvents: open ? 'auto' : 'none',
+        }}
+        onClick={onClose}
+      />
+
+      <div
+        className="fixed top-0 left-0 right-0 z-40 lg:hidden overflow-hidden"
+        style={{
+          maxHeight: open ? '420px' : '0px',
+          transition: 'max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
+        }}
+      >
+        <div
+          className="pt-20 pb-6 px-5"
+          style={{ backgroundColor: 'rgba(8,8,8,0.97)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+        >
+          <div className="flex flex-col gap-1">
+            {NAV_ITEMS.map((item, i) => (
+              <a
+                key={item}
+                href="#"
+                onClick={onClose}
+                className="text-white/70 hover:text-white text-base py-3 px-3 rounded-xl hover:bg-white/5 transition-all duration-200 flex items-center justify-between group"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  transitionDelay: open ? `${i * 50 + 80}ms` : '0ms',
+                  opacity: open ? 1 : 0,
+                  transform: open ? 'translateY(0)' : 'translateY(-8px)',
+                  transition: `opacity 0.4s cubic-bezier(0.23,1,0.32,1) ${i * 50 + 80}ms, transform 0.4s cubic-bezier(0.23,1,0.32,1) ${i * 50 + 80}ms, color 0.2s, background 0.2s`,
+                }}
+              >
+                {item}
+                <ArrowRight size={14} className="opacity-0 group-hover:opacity-40 -translate-x-1 group-hover:translate-x-0 transition-all duration-200" />
+              </a>
+            ))}
           </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+
+          <div
+            className="mt-5 pt-5"
+            style={{
+              borderTop: '1px solid rgba(255,255,255,0.07)',
+              transitionDelay: open ? '360ms' : '0ms',
+              opacity: open ? 1 : 0,
+              transform: open ? 'translateY(0)' : 'translateY(-8px)',
+              transition: `opacity 0.4s cubic-bezier(0.23,1,0.32,1) 360ms, transform 0.4s cubic-bezier(0.23,1,0.32,1) 360ms`,
+            }}
+          >
             <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
+              className="w-full py-3 rounded-full text-black text-sm font-medium transition-all duration-300 hover:opacity-80"
+              style={{ fontFamily: 'Inter, sans-serif', backgroundColor: '#ffffff' }}
             >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
+              Join the wait
             </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
           </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/velorix-iic-poster.webp"
-            alt="Velorix IIC"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
         </div>
       </div>
-    </section>
+    </>
+  );
+}
+
+function Navbar() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  return (
+    <>
+      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-5 py-4 lg:px-10 lg:py-6">
+        <span className="text-white text-xl font-semibold tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>
+          velorix
+        </span>
+        <div className="hidden lg:flex items-center gap-1 rounded-full px-2 py-1.5" style={{ backgroundColor: '#0C0C0C' }}>
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item}
+              href="#"
+              className="text-white/80 hover:text-white text-sm px-4 py-1.5 rounded-full hover:bg-white/10 transition-all duration-200"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <HamburgerButton open={open} onClick={() => setOpen((v) => !v)} />
+          <button
+            className="hidden lg:block text-sm font-medium px-5 py-2 rounded-full text-black transition-all duration-300 hover:opacity-80"
+            style={{ fontFamily: 'Inter, sans-serif', backgroundColor: '#ffffff' }}
+          >
+            Join the wait
+          </button>
+        </div>
+      </nav>
+      <MobileMenu open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="relative w-full h-screen overflow-hidden bg-black" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <video
+        className="absolute inset-0 z-0 w-full h-full object-cover"
+        src={BG_VIDEO}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      <Navbar />
+
+      <div className="relative z-20 flex flex-col items-center text-center pt-[90px] md:pt-[120px] px-5 sm:px-8">
+        <h1
+          className="text-white font-normal leading-[1.12] tracking-tight max-w-3xl"
+          style={{
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
+          }}
+        >
+          Where precision finds its edge
+          <br className="hidden sm:block" />
+          {' '}and vision rewrites what comes next
+        </h1>
+
+        <p
+          className="mt-5 md:mt-6 text-white/60 text-sm md:text-base leading-relaxed max-w-xs sm:max-w-sm md:max-w-md"
+          style={{ fontFamily: "'Courier New', Courier, monospace", letterSpacing: '0.01em' }}
+        >
+          a seamless bridge - where raw ambition
+          <br className="hidden sm:block" />
+          {' '}and machine clarity converge as one
+        </p>
+
+        <button
+          className="mt-7 md:mt-8 flex items-center gap-2.5 px-5 py-2.5 rounded-full text-black text-sm font-medium transition-all duration-300 hover:opacity-80 group"
+          style={{ fontFamily: 'Inter, sans-serif', backgroundColor: '#ffffff' }}
+        >
+          Watch it unfold
+          <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+        </button>
+      </div>
+    </div>
   );
 }
 ```
+
+## Assets
+
+**Background video URL (verbatim):**
+```
+https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_155101_f2540600-6fe9-433e-8e48-b3f4b72f0727.mp4
+```
+
+## Icons (from `lucide-react`)
+
+Used via the `<Menu>`, `<X>`, and `<ArrowRight>` components. These are imported from the `lucide-react` npm package — the SVG path data is not inlined in this codebase; it ships inside the package. The three icons are rendered with:
+
+- `<Menu size={20} color="white" strokeWidth={1.5} />`
+- `<X size={20} color="white" strokeWidth={1.5} />`
+- `<ArrowRight size={15} />` (hero button) and `<ArrowRight size={14} />` (mobile menu links)
+
+## Dependencies (`package.json`)
+
+```json
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
+```
+
+## Animation values (all CSS, no Framer Motion)
+
+**Hamburger icon crossfade** — `duration: 0.3s`, `ease: cubic-bezier(0.23,1,0.32,1)`; Menu icon `opacity 1→0`, `transform rotate(0deg) scale(1) → rotate(-90deg) scale(0.5)`; X icon inverse.
+
+**Mobile menu backdrop** — `duration: 0.5s`; `backdropFilter blur(0px) → blur(12px)`; `background rgba(0,0,0,0) → rgba(0,0,0,0.6)`.
+
+**Mobile menu panel** — `max-height: 0px → 420px`, `duration: 0.5s`, `ease: cubic-bezier(0.23, 1, 0.32, 1)`.
+
+**Mobile menu link stagger** — each item `duration: 0.4s`, `ease: cubic-bezier(0.23,1,0.32,1)`, `delay: i * 50 + 80ms` (80, 130, 180, 230, 280); `opacity 0 → 1`, `transform translateY(-8px) → translateY(0)`.
+
+**Mobile menu CTA** — `duration: 0.4s`, `ease: cubic-bezier(0.23,1,0.32,1)`, `delay: 360ms`.
+
+**Hero button arrow** — hover `translate-x-0.5`, `duration: 0.2s`.
+
+No Supabase persistence is used on this marketing section — it's presentational only, and nothing on this hero is user-specific or stateful across sessions.

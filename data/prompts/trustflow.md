@@ -4,15 +4,13 @@ slug: "trustflow"
 title: "TrustFlow"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 82
+routeCollection: "prompts"
+videoUrl: "/media/videos/trustflow.mp4"
+posterUrl: "/media/posters/trustflow.webp"
+chars: 6174
 tier: "free"
-chars: 6192
-preview_video: "/media/videos/trustflow.mp4"
-preview_poster: "/media/posters/trustflow.webp"
+likes: 82
 ---
-
-# TrustFlow (Landing Page)
 
 Build a single full-viewport marketing landing page for **Boomerang**, a conversational AI platform for financial institutions. Tech: React + TypeScript + Vite + Tailwind CSS + Lucide React (`ArrowRight` only). No other UI libraries.
 
@@ -23,7 +21,7 @@ Build a single full-viewport marketing landing page for **Boomerang**, a convers
 Load in `index.html`:
 
 1. **Display / serif:** `P22 Mackinac W01 Book`  
-   `https://axeslab.zainaxes.com/web/media/ext/7989306331865be9.woff2`
+   `https://meez.design/web/media/ext/7989306331865be9.woff2`
 
 2. **UI / sans:** Inter weights 300, 400, 500, 600  
    `https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap`
@@ -39,7 +37,7 @@ Body: `font-family: 'Inter', sans-serif` with antialiased smoothing. Page title:
 ### CloudFront video (exact URL — required)
 
 ```
-https://axeslab.zainaxes.com/web/media/prompt-media/v/83285e780cd09e92.mp4
+https://meez.design/web/media/prompt-media/v/83285e780cd09e92.mp4
 ```
 
 ---

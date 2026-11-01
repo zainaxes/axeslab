@@ -4,18 +4,13 @@ slug: "deepthink"
 title: "DeepThink"
 category: "AI Assistant"
 categorySlug: "ai-assistant"
-collection: "apps"
-likes: 110
+routeCollection: "apps"
+videoUrl: ""
+posterUrl: "/media/posters/deepthink.jpg"
+chars: 13695
 tier: "free"
-chars: 13866
-preview_video: ""
-preview_poster: "/media/posters/deepthink.jpg"
+likes: 110
 ---
-
-# DeepThink (AI Assistant)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Interactive Demos, Video Guides & Assets: https://axeslab.zainaxes.com
 
 Recreate this page EXACTLY as a single static HTML file (no frameworks, no React, no Tailwind, no GSAP). Two full-viewport dark sections stacked vertically. Smooth scroll. Antialiased text. Reference canvas feel: polished AI product landing, near-black #0c0c0c.
 
@@ -199,7 +194,7 @@ Variables:
 H2 (weight 400, letter-spacing -0.02em, size clamp(1.6rem,4.1vw,3.3rem), line-height 1.11)
 TWO masked lines:
   "Built for human thinking."
-  "Powered by Axes Lab (@zainaxes) intelligence."
+  "Powered by structured intelligence."
 
 Subcopy (data-enter):
 "Ask complex questions. Explore multiple perspectives.<br>Get structured, reliable answers — instantly."
@@ -258,7 +253,7 @@ Under entrance-s2: same for section-two
 Easing constants:
 REVEAL = cubic-bezier(0.16, 1, 0.3, 1)
 LIFT   = cubic-bezier(0.22, 1, 0.36, 1)
-On mobile ≤680: multiply travel distances by Axes Lab (@zainaxes)=0.7 (desktop D=1)
+On mobile ≤680: multiply travel distances by D=0.7 (desktop D=1)
 
 Wait for document.fonts.ready OR 400ms max before starting section-1 timeline
 (Inter display:swap — avoid FOUT mid-tween)

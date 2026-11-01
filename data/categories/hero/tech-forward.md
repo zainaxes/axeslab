@@ -4,15 +4,13 @@ slug: "tech-forward"
 title: "Tech-Forward"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 166
+routeCollection: "prompts"
+videoUrl: "/media/videos/tech-forward.mp4"
+posterUrl: "/media/posters/tech-forward.jpg"
+chars: 14630
 tier: "free"
-chars: 14648
-preview_video: "/media/videos/tech-forward.mp4"
-preview_poster: "/media/posters/tech-forward.jpg"
+likes: 166
 ---
-
-# Tech-Forward (Hero)
 
 Create a full-screen hero section landing page using React, Vite, and Framer Motion (`motion` package). Use plain CSS (no Tailwind). The font is Inter (weights 300, 400, 500, 600) from Google Fonts. The design is minimal black-and-white with a full-viewport background video.
 
@@ -33,7 +31,7 @@ Create a full-screen hero section landing page using React, Vite, and Framer Mot
   - A light gray pill with a black circle button (containing a 4-dot grid SVG icon) + label "Adaptive Systems" (hidden on mobile)
 
 **Background Video:**
-- URL: `https://axeslab.zainaxes.com/web/media/ext/a9e8d581015638ec.mp4`
+- URL: `https://meez.design/web/media/ext/a9e8d581015638ec.mp4`
 - autoPlay, muted, playsInline, object-fit: cover
 - On mobile: video wrapper is 80% width and 80% height (centered)
 - On desktop (768px+): video wrapper is 100% width and 100% height
@@ -452,7 +450,7 @@ Create a full-screen hero section landing page using React, Vite, and Framer Mot
     <div class="video-container">
       <div class="video-wrapper">
         <video
-          src="https://axeslab.zainaxes.com/web/media/ext/a9e8d581015638ec.mp4"
+          src="https://meez.design/web/media/ext/a9e8d581015638ec.mp4"
           autoplay
           muted
           playsinline

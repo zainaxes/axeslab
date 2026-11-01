@@ -4,109 +4,80 @@ slug: "price-calculator"
 title: "Price Calculator"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
+routeCollection: "prompts"
+videoUrl: "/media/videos/price-calculator.mp4"
+posterUrl: "/media/posters/price-calculator.jpg"
+chars: 3168
+tier: "premium"
 likes: 42
-tier: "free"
-chars: 4415
-preview_video: "/media/videos/price-calculator.mp4"
-preview_poster: "/media/posters/price-calculator.jpg"
 ---
 
-# Price Calculator (SaaS)
+Recreate Project Estimation Calculator Section
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Create a full-width dark calculator section with id calculator-section. Background: bg-background, padding py-16 md:py-28 px-4 md:px-16, max-width max-w-7xl centered.
 
-Recreate this exact high-converting SaaS design — pixel-perfect match.
+Header: Centered. Small mono uppercase tracking-widest label "Try project estimation calculator" in text-muted-foreground. Below it, an h2: "Get premium website within your budget" — text-3xl md:text-4xl lg:text-5xl font-normal.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/price-calculator-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/price-calculator-preview.mp4
+Layout: 2-column grid (grid-cols-1 lg:grid-cols-2), rounded-2xl overflow-hidden, no gap.
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+LEFT COLUMN (Calculator Form): Background #0D0D0D, padding p-8 lg:p-12, sections divided by divide-y divide-[#1E1E1E].
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+4 sections separated by horizontal dividers:
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+Service Type (radio buttons): h3 "What kind of service do you need?" — 3 options: "Only Design" (design), "Only Development" (development), "Design + Development" (both, default). Custom radio circles: w-5 h-5 rounded-full border-2, active = border-[#FF5656] with inner w-2 h-2 rounded-full bg-[#FF5656].
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Number of Pages (slider): h3 with current value in #FF5656. Shadcn <Slider> min=1, max=30, step=1, default=5. Labels "1" and "30" below.
 
-export interface PriceCalculatorProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+Add-ons (checkboxes): Two checkboxes with price labels on the right in #FF5656:
 
-export function PriceCalculator({
-  headline = "Price Calculator",
-  subheadline = "Recreate Project Estimation Calculator Section Create a full-width dark calculator section with id calculator-section. Background: bg-background, padding …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: PriceCalculatorProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>SAAS</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/price-calculator-poster-c.jpg"
-            alt="Price Calculator"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+"I will need help with content" → +$50/pages
+
+"I want to optimize my website for SEO" → +$50/pages Custom checkboxes: w-5 h-5 border-2 rounded, checked = border-[#FF5656] bg-[#FF5656] with white SVG checkmark.
+
+Timeline (radio buttons): h3 "How fast do you need this?" — 3 options with prices:
+
+"Within 7 Days" → +$100/pages
+
+"Within 14 Days" → +$25/pages
+
+"Regular Speed (Based on discussion)" → no extra cost (default)
+
+RIGHT COLUMN (Cost Estimation): Padding p-8 lg:p-12, border border-white/10 rounded-r-2xl, min-height 717.98px.
+
+h3 "Estimated Cost" + description paragraph.
+
+3 stacked cards (rounded-2xl p-6 space-y-3):
+
+Agency card: bg-muted/50. Title "Typical Agency charges minimum". Large price text-4xl font-bold. Subtitle: "+ Too much extra time & additional cost".
+
+Freelancer card: bg-muted/50. Title "Regular Freelancer charges minimum". Large price text-4xl font-bold. Subtitle: "+ Too much headache & back-and-forth".
+
+Your price card: bg-gradient-to-r from-pink-500 to-orange-500 text-white. Title "With Webfluin Studio". Price text-5xl font-bold. Subtitle: "Save your money, time & headache".
+
+PRICING LOGIC:
+
+calculatePrice():
+  Base prices by service:
+    design: base=399, perPage=100
+    development: base=199, perPage=100
+    both: base=499, perPage=200
+  
+  total = max(base, base + (pages - 1) * perPage)
+  if needContent: total += pages * 50
+  if needSEO: total += pages * 50
+  if rush: total += pages * 100
+  if fast: total += pages * 25
+
+calculateAgencyCost():
+  perPage = (both ? 1000 : 400)
+  return 8000 + (pages - 1) * perPage
+
+calculateFreelancerCost():
+  perPage = (both ? 500 : 200)
+  return 3000 + (pages - 1) * perPage
+
+All prices displayed with .toLocaleString() and $ prefix.
+
+State: serviceType (design|development|both, default both), pages (number, default 5), needContent (bool), needSEO (bool), timeline (regular|fast|rush, default regular).
+
+Dependencies: Shadcn Slider component, useToast hook.

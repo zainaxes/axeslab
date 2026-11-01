@@ -4,109 +4,91 @@ slug: "scroll-marquee"
 title: "Scroll Marquee"
 category: "Marquee"
 categorySlug: "marquee"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/scroll-marquee.mp4"
+posterUrl: "/media/posters/scroll-marquee.jpg"
+chars: 3993
+tier: "premium"
 likes: 90
-tier: "free"
-chars: 4412
-preview_video: "/media/videos/scroll-marquee.mp4"
-preview_poster: "/media/posters/scroll-marquee.jpg"
 ---
 
-# Scroll Marquee (Marquee)
+---
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+**Prompt:**
 
-Recreate this exact high-converting Marquee design — pixel-perfect match.
+Create a scroll-driven image marquee section using React, Tailwind CSS, and vanilla JS scroll events (no libraries needed for the marquee itself). The site uses the **Google Font "Kanit"** (weights 300-900) and a dark background color `#0C0C0C`. This section sits directly below a full-screen hero section.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/scroll-marquee-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/prompt-media/76ccd48323e32b67.mp4
+**Section layout:**
+- Full-width section with `overflow: hidden`, dark background `#0C0C0C`
+- Padding: `pt-24 sm:pt-32 md:pt-40 pb-10`
+- Contains two horizontal rows of images stacked vertically with a `gap-3` (12px) between them
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
-
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
-
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
-
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
-
-export interface ScrollMarqueeProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
-
-export function ScrollMarquee({
-  headline = "Scroll Marquee",
-  subheadline = "--- **Prompt:** Create a scroll-driven image marquee section using React, Tailwind CSS, and vanilla JS scroll events (no libraries needed for the marquee …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: ScrollMarqueeProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>MARQUEE</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/scroll-marquee-poster-c.jpg"
-            alt="Scroll Marquee"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
+**Row 1 images (11 images), scrolls RIGHT as user scrolls down:**
 ```
+https://Axes Lab/assets/hero-space-voyage-preview-eECLH3Yc.gif
+https://Axes Lab/assets/hero-codenest-preview-Cgppc2qV.gif
+https://Axes Lab/assets/hero-vex-ventures-preview-BczMFIiw.gif
+https://Axes Lab/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif
+https://Axes Lab/assets/hero-asme-preview-B_nGDnTP.gif
+https://Axes Lab/assets/hero-transform-data-preview-Cx5OU29N.gif
+https://Axes Lab/assets/hero-vitara-preview-Cjz2QYyU.gif
+https://Axes Lab/assets/hero-terra-preview-BFjrCr7T.gif
+https://Axes Lab/assets/hero-skyelite-preview-DHaZIgUv.gif
+https://Axes Lab/assets/hero-aethera-preview-DknSlcTa.gif
+https://Axes Lab/assets/hero-designpro-preview-D8c5_een.gif
+```
+
+**Row 2 images (10 images), scrolls LEFT as user scrolls down (opposite direction):**
+```
+https://Axes Lab/assets/hero-stellar-ai-preview-D3HL6bw1.gif
+https://Axes Lab/assets/hero-xportfolio-preview-D4A8maiC.gif
+https://Axes Lab/assets/hero-orbit-web3-preview-BXt4OttD.gif
+https://Axes Lab/assets/hero-nexora-preview-cx5HmUgo.gif
+https://Axes Lab/assets/hero-evr-ventures-preview-DZxeVFEX.gif
+https://Axes Lab/assets/hero-planet-orbit-preview-DWAP8Z1P.gif
+https://Axes Lab/assets/hero-new-era-preview-CocuDUm9.gif
+https://Axes Lab/assets/hero-wealth-preview-B70idl_u.gif
+https://Axes Lab/assets/hero-luminex-preview-CxOP7ce6.gif
+https://Axes Lab/assets/hero-celestia-preview-0yO3jXO8.gif
+```
+
+**Image cards:**
+- Each image card is exactly `420px wide x 270px tall`
+- `flex-shrink-0` so they never collapse
+- `rounded-2xl` (16px border radius) with `overflow: hidden`
+- Images use `object-cover` to fill the container, with `loading="lazy"`
+- `gap-3` (12px) between cards horizontally
+
+**Scroll-driven parallax animation (vanilla JS, not CSS animation):**
+- Each row's image array is tripled (`[...ROW, ...ROW, ...ROW]`) to create enough content for continuous scrolling appearance
+- On every scroll event (passive listener), calculate offset:
+  1. Get the section's bounding rect top relative to the document
+  2. `scrolled = window.scrollY - sectionTop + window.innerHeight`
+  3. `offset = scrolled * 0.3` (parallax factor of 0.3)
+- Row 1: `transform: translateX(${offset - 200}px)` -- moves right as user scrolls
+- Row 2: `transform: translateX(${-(offset - 200)}px)` -- moves left as user scrolls
+- Initial transform: Row 1 starts at `translateX(-200px)`, Row 2 starts at `translateX(200px)`
+- Use `willChange: 'transform'` for GPU acceleration
+- Apply transforms directly via refs (not state) for 60fps performance
+- Use `{ passive: true }` on the scroll listener
+- Run the handler once on mount to set initial position
+- Clean up the listener on unmount
+
+**Technical details:**
+- React functional component using `useRef` and `useEffect`
+- No framer-motion or animation library needed for this section
+- Rows are built with flexbox (`flex gap-3`)
+- Each row is wrapped in an `overflow-hidden w-full` container
+- The outer section also has `overflow-hidden` and `w-full`
+- All images have empty `alt=""` since they are decorative
+
+**Font (loaded in HTML head):**
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+```
+
+CSS base: `font-family: 'Kanit', sans-serif` on html/body.
+
+---

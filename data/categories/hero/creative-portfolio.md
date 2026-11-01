@@ -4,15 +4,13 @@ slug: "creative-portfolio"
 title: "Creative Portfolio"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 94
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/creative-portfolio.jpg"
+chars: 28077
 tier: "free"
-chars: 28196
-preview_video: ""
-preview_poster: "/media/posters/creative-portfolio.jpg"
+likes: 94
 ---
-
-# Creative Portfolio (Hero)
 
 626f6c742d63632d6167656e74Let me read all the relevant files to compile the full recreation prompt.
 Here's the full recreation prompt:
@@ -40,9 +38,9 @@ Build a full-screen hero section for a creative portfolio using React, Vite, Tai
 Three full-screen looping videos (muted, autoPlay, playsInline, loop) stacked absolutely with crossfade switching. All three render simultaneously; only the active one has `opacity-100`, the others have `opacity-0` with `transition-opacity duration-[1200ms] ease-in-out`.
 
 **Video URLs (CloudFront):**
-1. `https://axeslab.zainaxes.com/web/media/bg-videos/ms-dark-flowers.mp4`
-2. `https://axeslab.zainaxes.com/web/media/bg-videos/ms-energy.mp4`
-3. `https://axeslab.zainaxes.com/web/media/bg-videos/ms-person.mp4`
+1. `https://meez.design/web/media/bg-videos/ms-dark-flowers.mp4`
+2. `https://meez.design/web/media/bg-videos/ms-energy.mp4`
+3. `https://meez.design/web/media/bg-videos/ms-person.mp4`
 
 **Preloading:** On mount, fetch all videos as blobs and create object URLs for instant playback. Fall back to original URL on failure.
 
@@ -58,7 +56,7 @@ A `bg-black/10` overlay sits above videos at `z-[1]`.
   - Label: `text-xs leading-4 tracking-[-0.12px] font-medium uppercase`
   - Each link has a `.nav-link-underline` effect (underline slides in from right on hover via `scaleX` transform)
 - **Right side (aligned right):** Email `Davies@gmail.com` and live clock showing `CUP HH:MM:SS` (24h format, updates every second using `Intl.DateTimeFormat('en-GB')`)
-- **Mobile:** Nav items hidden, replaced by Axes Lab (@zainaxes) `Menu`/`Close` toggle button. Mobile panel uses CSS Grid `grid-rows-[0fr]`/`grid-rows-[1fr]` transition (420ms, spring ease) for smooth expand/collapse. Mobile nav links are large: `text-[28px] leading-8 tracking-[-0.84px]`
+- **Mobile:** Nav items hidden, replaced by a `Menu`/`Close` toggle button. Mobile panel uses CSS Grid `grid-rows-[0fr]`/`grid-rows-[1fr]` transition (420ms, spring ease) for smooth expand/collapse. Mobile nav links are large: `text-[28px] leading-8 tracking-[-0.84px]`
 
 ---
 
@@ -72,7 +70,7 @@ Container: `max-w-[1340px]`, full height, flex column, `justify-end items-end`, 
 
 **Section 2 - Name + CTA (bottom area, pb-[60px]):**
 - Left column (`flex-[2]`): Giant name "Viktor." in `text-[200px] leading-[81%] tracking-[-6px] font-medium uppercase`. The period is accent-colored: pink `#F598F2` on slide 1, white on slides 2-3. Animate in with `revealUp` (translateY 80px to 0, 0.9s spring ease).
-- Right column (`flex-1`, `pl-[50px]`): Paragraph text ("I craft bold brands and modern websites with purpose...") at `text-base leading-6 tracking-[-0.16px] font-medium`. Below it, a "start a project" button (lowercase) with white border. Button has a fill-up hover effect: `::before` pseudo-element with `#F598F2` background that translateY from 101% to 0 on hover, text turns black, border turns pink. Both animate in with `revealRight` (translateX 100px to 0, 0.9s spring ease), button delayed by Axes Lab (@zainaxes).08s.
+- Right column (`flex-1`, `pl-[50px]`): Paragraph text ("I craft bold brands and modern websites with purpose...") at `text-base leading-6 tracking-[-0.16px] font-medium`. Below it, a "start a project" button (lowercase) with white border. Button has a fill-up hover effect: `::before` pseudo-element with `#F598F2` background that translateY from 101% to 0 on hover, text turns black, border turns pink. Both animate in with `revealRight` (translateX 100px to 0, 0.9s spring ease), button delayed by 0.08s.
 
 **Reveal animations** trigger once via IntersectionObserver at 0.35 threshold.
 
@@ -717,9 +715,9 @@ Container: `max-w-[1340px]`, full height, flex column, `justify-end items-end`, 
 
   <!-- Hero -->
   <main class="hero-main" id="heroMain" aria-label="Portfolio hero">
-    <video class="video-bg visible-video" id="video0" src="https://axeslab.zainaxes.com/web/media/bg-videos/ms-nature-nice.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-    <video class="video-bg hidden-video" id="video1" src="https://axeslab.zainaxes.com/web/media/bg-videos/ms-3d.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-    <video class="video-bg hidden-video" id="video2" src="https://axeslab.zainaxes.com/web/media/bg-videos/ms-nature.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <video class="video-bg visible-video" id="video0" src="https://meez.design/web/media/bg-videos/ms-nature-nice.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <video class="video-bg hidden-video" id="video1" src="https://meez.design/web/media/bg-videos/ms-3d.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <video class="video-bg hidden-video" id="video2" src="https://meez.design/web/media/bg-videos/ms-nature.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
 
     <div class="overlay" aria-hidden="true"></div>
 
@@ -849,9 +847,9 @@ Container: `max-w-[1340px]`, full height, flex column, `justify-end items-end`, 
 
       // Preload videos as blobs for smoother playback
       var videoUrls = [
-        'https://axeslab.zainaxes.com/web/media/bg-videos/222_1-1.mp4',
-        'https://axeslab.zainaxes.com/web/media/bg-videos/224_1niceimage.mp4',
-        'https://axeslab.zainaxes.com/web/media/bg-videos/225_38.mp4'
+        'https://meez.design/web/media/bg-videos/222_1-1.mp4',
+        'https://meez.design/web/media/bg-videos/224_1niceimage.mp4',
+        'https://meez.design/web/media/bg-videos/225_38.mp4'
       ];
       videoUrls.forEach(function(url, i) {
         fetch(url).then(function(res) { return res.blob(); }).then(function(blob) {

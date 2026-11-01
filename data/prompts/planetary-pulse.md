@@ -4,15 +4,13 @@ slug: "planetary-pulse"
 title: "Planetary Pulse"
 category: "Science"
 categorySlug: "science"
-collection: "prompts"
-likes: 156
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/planetary-pulse.jpg"
+chars: 26355
 tier: "free"
-chars: 26439
-preview_video: ""
-preview_poster: "/media/posters/planetary-pulse.jpg"
+likes: 156
 ---
-
-# Planetary Pulse (Science)
 
 Build a single-screen, non-scrolling hero landing page called **Terranova — Signals from the Deep Green**. It is a full-bleed looping background video with a real-time refractive "liquid glass" card floating over it, plus a slide-in fullscreen menu. Vanilla HTML/CSS/JS only — **no frameworks, no build step, no Three.js, no WebGL, no canvas 3D**. The glass effect is done entirely with an SVG filter plus a 2D canvas that re-draws the video every frame.
 
@@ -54,7 +52,7 @@ First element inside `<body>`:
 ```html
 <video id="bg-video" class="bg-video" aria-hidden="true"
        autoplay muted loop playsinline preload="auto"
-       src="https://axeslab.zainaxes.com/web/media/ext/e9ccabd4ebfb9505.mp4"></video>
+       src="https://meez.design/web/media/ext/e9ccabd4ebfb9505.mp4"></video>
 ```
 
 That exact URL. The asset is 1920×1080, ~10.04s, a bright iridescent soap-bubble / glass-sphere loop on a near-white studio background.
@@ -143,8 +141,8 @@ Immediately after the video, an off-screen SVG holding the filter def:
 
 **How it works** — reproduce the reasoning, not just the values:
 1. `feTurbulence` makes a static fractal-noise field: the refraction normal map.
-2. `SourceAlpha` is pushed to full opacity (alpha row `0 0 0 100 0`), blurred by Axes Lab (@zainaxes), then inverted by `feFuncA slope="-1.3" intercept="1"`. That yields an **edge mask** — near 0 in the element's interior, rising toward its borders.
-3. The noise is multiplied by Axes Lab (@zainaxes) mask (`feComposite` arithmetic, `k1=1`), so displacement is strong at the rim and near-nil in the middle. That is what reads as a thick glass bevel.
+2. `SourceAlpha` is pushed to full opacity (alpha row `0 0 0 100 0`), blurred by 45, then inverted by `feFuncA slope="-1.3" intercept="1"`. That yields an **edge mask** — near 0 in the element's interior, rising toward its borders.
+3. The noise is multiplied by that mask (`feComposite` arithmetic, `k1=1`), so displacement is strong at the rim and near-nil in the middle. That is what reads as a thick glass bevel.
 4. `SourceGraphic` is displaced **three times at different strengths — 65 / 56 / 47** — and each pass is masked down to a single channel (R, G, B), then recombined with two `screen` blends. The per-channel offset spread is the chromatic aberration / rainbow fringing.
 5. The `-30% / 160%` filter region gives the blur and displacement room to work past the element bounds.
 
@@ -384,7 +382,7 @@ Three stacking layers inside the card: refracted duplicate at `z-index: 0`, fros
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* full-viewport-aligned copy of the backdrop; left/top/width/height are written every frame by Axes Lab (@zainaxes).js */
+/* full-viewport-aligned copy of the backdrop; left/top/width/height are written every frame by glass-card.js */
 #dup-video-container { position: absolute; left: 0; top: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 #dup-image { position: absolute; inset: 0; width: 100%; height: 100%; filter: url(#liquid-glass-refraction); }
 
@@ -443,7 +441,7 @@ Each animation frame:
 Drive it with a self-starting `requestAnimationFrame` loop; the module runs itself, no exports needed.
 
 **Two comments worth preserving, because both encode non-obvious decisions:**
-- Sizing the duplicate to the **viewport** rather than to the card is deliberate. The filter shifts each colour channel by Axes Lab (@zainaxes) different amount, so the filtered element's own leading edges show hard channel-separation bands. At viewport size those bands fall outside the card and only clean refraction shows.
+- Sizing the duplicate to the **viewport** rather than to the card is deliberate. The filter shifts each colour channel by a different amount, so the filtered element's own leading edges show hard channel-separation bands. At viewport size those bands fall outside the card and only clean refraction shows.
 - The duplicate stays at **1× even on retina**: the SVG filter's cost scales with pixel count, and what shows through is a soft refraction where 4× the filter work buys nothing.
 
 ---
@@ -555,4 +553,4 @@ ES modules require HTTP; `file://` will not work. Write a dependency-free Node s
 - Menu opens with staggered links, closes on X / backdrop / link / Escape, and returns focus to the hamburger.
 - Console is clean. There must be zero references anywhere to Three.js, WebGPU, WebGL, TSL, lil-gui, or OrbitControls.
 
-**One known artifact, inherent to the design — do not "fix" it by Axes Lab (@zainaxes) the filter:** at ≤640px the card is nearly viewport-width, so its left edge falls inside the filter's 45px edge-mask zone and a chromatic band shows as a blue stripe down the card's left edge. It is invisible at ≥768px where the card is narrow relative to the viewport.
+**One known artifact, inherent to the design — do not "fix" it by changing the filter:** at ≤640px the card is nearly viewport-width, so its left edge falls inside the filter's 45px edge-mask zone and a chromatic band shows as a blue stripe down the card's left edge. It is invisible at ≥768px where the card is narrow relative to the viewport.

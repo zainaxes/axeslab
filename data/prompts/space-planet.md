@@ -4,15 +4,13 @@ slug: "space-planet"
 title: "Space planet"
 category: "3D"
 categorySlug: "3d"
-collection: "3d-websites"
-likes: 57
+routeCollection: "3d-websites"
+videoUrl: ""
+posterUrl: "/media/posters/space-planet.jpg"
+chars: 61062
 tier: "free"
-chars: 61385
-preview_video: ""
-preview_poster: "/media/posters/space-planet.jpg"
+likes: 57
 ---
-
-# Space planet (3D)
 
 Build a single, self-contained HTML file: a full-viewport space-themed hero section
 for a site called "SpaceEdu". No build step, no frameworks, no external JS. All CSS in
@@ -24,7 +22,7 @@ pixel-faithful to the spec below and fully mobile responsive.
 ════════════════════════════════════════════════════════════════════════
 A cinematic hero. A looping video of a single planet fills the whole viewport as the
 background. Centred over it: eyebrow "PLANET", a huge serif planet name, a short cyan
-rule, a paragraph, and a glossy white pill button. Flanking the button, cropped by Axes Lab (@zainaxes)
+rule, a paragraph, and a glossy white pill button. Flanking the button, cropped by the
 left and right screen edges, sit two transparent planet cut-outs with serif labels.
 
 Three planets exist: EARTH, VENUS, MARS. Exactly one is "featured" (its clip is the
@@ -36,19 +34,19 @@ two. Earth is featured on load. The rotation is fully reversible.
 2. ASSETS — use these exact URLs
 ════════════════════════════════════════════════════════════════════════
 Background clips (10s, 16:9, 1276x720, silent, loop):
-  EARTH https://axeslab.zainaxes.com/web/media/bg-videos/222_1-1.mp4
-  VENUS https://axeslab.zainaxes.com/web/media/bg-videos/224_1niceimage.mp4
-  MARS  https://axeslab.zainaxes.com/web/media/bg-videos/225_38.mp4
+  EARTH https://meez.design/web/media/bg-videos/222_1-1.mp4
+  VENUS https://meez.design/web/media/bg-videos/224_1niceimage.mp4
+  MARS  https://meez.design/web/media/bg-videos/225_38.mp4
 
 Poster / still for each clip (also used as the .sky background-image fallback):
-  EARTH https://axeslab.zainaxes.com/web/bg-previews/201_95.jpg
-  VENUS https://axeslab.zainaxes.com/web/bg-previews/128_Motion-Background-16.jpg
-  MARS  https://axeslab.zainaxes.com/web/bg-previews/129_Motion-Background-17.jpg
+  EARTH https://meez.design/web/bg-previews/201_95.jpg
+  VENUS https://meez.design/web/bg-previews/128_Motion-Background-16.jpg
+  MARS  https://meez.design/web/bg-previews/129_Motion-Background-17.jpg
 
 Transparent planet cut-outs, 2048x2048 PNG with alpha (the side-slot artwork):
-  EARTH https://axeslab.zainaxes.com/web/bg-previews/151_Motion-Background-031045.jpg
-  VENUS https://axeslab.zainaxes.com/web/bg-previews/178_Thermal-Glow.jpg
-  MARS  https://axeslab.zainaxes.com/web/bg-previews/162_Background-5.jpg
+  EARTH https://meez.design/web/bg-previews/151_Motion-Background-031045.jpg
+  VENUS https://meez.design/web/bg-previews/178_Thermal-Glow.jpg
+  MARS  https://meez.design/web/bg-previews/162_Background-5.jpg
 
 Favicon: use the Earth cut-out URL above, type image/png.
 
@@ -94,7 +92,7 @@ body{background:#04101f; color:var(--ink); font-family:var(--font-body);
   text-rendering:geometricPrecision; overflow:hidden}
 
 --vshift pushes everything below the nav down on taller-than-design viewports so the
-composition stays balanced. --gutter offsets the content column left by Axes Lab (@zainaxes) its value
+composition stays balanced. --gutter offsets the content column left by half its value
 so the optical centre sits at x=664, not 676.
 
 ════════════════════════════════════════════════════════════════════════
@@ -144,7 +142,7 @@ so the optical centre sits at x=664, not 676.
           3 x <img data-planet="earth|venus|mars" alt="" src="CUTOUT URL">
         </button>
         <a href="#">GET STARTED</a>
-        <span class="label label-l"></span>     (empty — filled by Axes Lab (@zainaxes))
+        <span class="label label-l"></span>     (empty — filled by script)
         <span class="label label-r"></span>
       </div>
     </div>
@@ -512,11 +510,11 @@ click (stopPropagation). Close on: a document click outside the menu and button,
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SpaceEdu — Planet Earth</title>
-<link rel="icon" type="image/png" href="https://axeslab.zainaxes.com/web/bg-previews/103_Animated-Background-134830.jpg">
+<link rel="icon" type="image/png" href="https://meez.design/web/bg-previews/103_Animated-Background-134830.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://axeslab.zainaxes.com/web/bg-previews/004_Motion-Background-12.jpg" crossorigin>
+<link rel="preconnect" href="https://meez.design/web/bg-previews/004_Motion-Background-12.jpg" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Poppins:wght@500;600&family=Prata&display=block" rel="stylesheet">
 
 <script>
@@ -582,7 +580,7 @@ body{
 .sky{
   position:absolute;
   inset:0;
-  background-image:url(https://axeslab.zainaxes.com/web/bg-previews/203_81.jpg);
+  background-image:url(https://meez.design/web/bg-previews/203_81.jpg);
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
@@ -661,7 +659,7 @@ body{
 }
 .copy a{pointer-events:auto}
 
-/* content column: centred, offset left by Axes Lab (@zainaxes) the gutter */
+/* content column: centred, offset left by half the gutter */
 .col{
   position:absolute;
   left:0;
@@ -752,7 +750,7 @@ body{
   letter-spacing:calc(-1 * var(--u));
   white-space:nowrap;
 }
-/* the active marker is drawn by Axes Lab (@zainaxes) link itself, so it can never drift away
+/* the active marker is drawn by the link itself, so it can never drift away
    from its label the way a separately-positioned bar would */
 .links a[aria-current="page"]::after{
   content:"";
@@ -1196,17 +1194,17 @@ p.lede{
 <div class="stage">
   <div class="sky">
     <video data-planet="earth" class="is-active" autoplay muted loop playsinline preload="auto"
-           src="https://axeslab.zainaxes.com/web/media/bg-videos/227_82.mp4"
-           poster="https://axeslab.zainaxes.com/web/bg-previews/058_Aurora-Waves.jpg"
+           src="https://meez.design/web/media/bg-videos/227_82.mp4"
+           poster="https://meez.design/web/bg-previews/058_Aurora-Waves.jpg"
            aria-hidden="true"></video>
     <!-- the other two stay unfetched until their planet is chosen -->
     <video data-planet="venus" muted loop playsinline preload="none"
-           data-src="https://axeslab.zainaxes.com/web/media/bg-videos/228_84.mp4"
-           poster="https://axeslab.zainaxes.com/web/bg-previews/074_Cosmic-Vortex.jpg"
+           data-src="https://meez.design/web/media/bg-videos/228_84.mp4"
+           poster="https://meez.design/web/bg-previews/074_Cosmic-Vortex.jpg"
            aria-hidden="true"></video>
     <video data-planet="mars" muted loop playsinline preload="none"
-           data-src="https://axeslab.zainaxes.com/web/media/bg-videos/229_96.mp4"
-           poster="https://axeslab.zainaxes.com/web/bg-previews/015_Background-086.jpg"
+           data-src="https://meez.design/web/media/bg-videos/229_96.mp4"
+           poster="https://meez.design/web/bg-previews/015_Background-086.jpg"
            aria-hidden="true"></video>
   </div>
 
@@ -1236,14 +1234,14 @@ p.lede{
 
     <div class="col cta">
       <button class="planet planet-l" type="button" data-slot="l">
-        <img data-planet="earth" alt="" src="https://axeslab.zainaxes.com/web/bg-previews/014_Background-085.jpg">
-        <img data-planet="venus" alt="" src="https://axeslab.zainaxes.com/web/bg-previews/001_Motion-Background-10.jpg">
-        <img data-planet="mars"  alt="" src="https://axeslab.zainaxes.com/web/bg-previews/002_Motion-Background-2.jpg">
+        <img data-planet="earth" alt="" src="https://meez.design/web/bg-previews/014_Background-085.jpg">
+        <img data-planet="venus" alt="" src="https://meez.design/web/bg-previews/001_Motion-Background-10.jpg">
+        <img data-planet="mars"  alt="" src="https://meez.design/web/bg-previews/002_Motion-Background-2.jpg">
       </button>
       <button class="planet planet-r" type="button" data-slot="r">
-        <img data-planet="earth" alt="" src="https://axeslab.zainaxes.com/web/bg-previews/006_Cosmic-Drift.jpg">
-        <img data-planet="venus" alt="" src="https://axeslab.zainaxes.com/web/bg-previews/007_Digital-Pulse.jpg">
-        <img data-planet="mars"  alt="" src="https://axeslab.zainaxes.com/web/bg-previews/008_Liquid-Motion.jpg">
+        <img data-planet="earth" alt="" src="https://meez.design/web/bg-previews/006_Cosmic-Drift.jpg">
+        <img data-planet="venus" alt="" src="https://meez.design/web/bg-previews/007_Digital-Pulse.jpg">
+        <img data-planet="mars"  alt="" src="https://meez.design/web/bg-previews/008_Liquid-Motion.jpg">
       </button>
       <a href="#">GET STARTED</a>
       <span class="label label-l"></span>
@@ -1320,17 +1318,17 @@ p.lede{
   var PLANETS = {
     earth:{
       name:'EARTH',
-      still:'https://axeslab.zainaxes.com/web/bg-previews/010_Vapor-Trail.jpg',
+      still:'https://meez.design/web/bg-previews/010_Vapor-Trail.jpg',
       lede:'Learn more about the fascinating details that we call our home, Planet Earth. Course enrollment <br>starts today. Early Bird tickets typically last a week, don&rsquo;t miss out!'
     },
     venus:{
       name:'VENUS',
-      still:'https://axeslab.zainaxes.com/web/bg-previews/065_Ember-Trail.jpg',
+      still:'https://meez.design/web/bg-previews/065_Ember-Trail.jpg',
       lede:'The hottest world in our solar system, wrapped in clouds of sulfuric acid. Course enrollment <br>starts today. Early Bird tickets typically last a week, don&rsquo;t miss out!'
     },
     mars:{
       name:'MARS',
-      still:'https://axeslab.zainaxes.com/web/bg-previews/059_Crystal-Bloom.jpg',
+      still:'https://meez.design/web/bg-previews/059_Crystal-Bloom.jpg',
       lede:'The rust-red desert world, home to the tallest volcano we know of. Course enrollment <br>starts today. Early Bird tickets typically last a week, don&rsquo;t miss out!'
     }
   };

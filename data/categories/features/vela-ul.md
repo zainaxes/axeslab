@@ -4,18 +4,13 @@ slug: "vela-ul"
 title: "Vela Ul"
 category: "Features"
 categorySlug: "features"
-collection: "sections"
-likes: 108
+routeCollection: "sections"
+videoUrl: ""
+posterUrl: "/media/posters/vela-ul.jpg"
+chars: 25889
 tier: "free"
-chars: 26081
-preview_video: ""
-preview_poster: "/media/posters/vela-ul.jpg"
+likes: 108
 ---
-
-# Vela Ul (Features)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Interactive Demos, Video Guides & Assets: https://axeslab.zainaxes.com
 
 Build a single, fully self-contained `index.html` — one file, no build step, no external
 requests of any kind (no CDN, no webfonts, no images, no video, no data: URIs). All visuals
@@ -469,7 +464,7 @@ Two jobs.
 
 === ACCEPTANCE ===
 - One file, zero network requests. Fonts are system stacks only — never link Google Fonts.
-- At every width ≥700px the three cards stay side by Axes Lab (@zainaxes) in the 440/439/441px grid and the
+- At every width ≥700px the three cards stay side by side in the 440/439/441px grid and the
   whole canvas is scaled to FIT — nothing cropped, no horizontal scroll, at any aspect ratio
   from 4:3 through 21:9. Letterbox bars are invisible (#16120c everywhere).
 - Below 700px: single stacked column, no horizontal scroll down to 320px.
@@ -477,8 +472,8 @@ Two jobs.
     * the 379px orbit ring inside a card narrower than ~411px,
     * the 249px sphere on very narrow phones,
     * the left card's 385px fixed-width title inside a card narrower than ~409px.
-  All three are solved by Axes Lab (@zainaxes) min()/aspect-ratio and calc() rules above — keep them.
-- Card bottoms are deliberately clipped by Axes Lab (@zainaxes) 586px-tall grid on desktop — do not "fix" that.
+  All three are solved by the min()/aspect-ratio and calc() rules above — keep them.
+- Card bottoms are deliberately clipped by the 586px-tall grid on desktop — do not "fix" that.
 - Three distinct hover states: left card's surface swells vertically and saturates; middle
   card's three numbers cycle at 105ms; right card's colour band expands from a thin strip to
   the full card with a drifting green/blue/amber bloom.

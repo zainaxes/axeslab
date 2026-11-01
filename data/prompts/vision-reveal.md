@@ -4,15 +4,13 @@ slug: "vision-reveal"
 title: "Vision Reveal"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 194
+routeCollection: "prompts"
+videoUrl: "/media/videos/vision-reveal.mp4"
+posterUrl: "/media/posters/vision-reveal.jpg"
+chars: 16616
 tier: "free"
-chars: 16643
-preview_video: "/media/videos/vision-reveal.mp4"
-preview_poster: "/media/posters/vision-reveal.jpg"
+likes: 194
 ---
-
-# Vision Reveal (Hero)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -292,7 +290,7 @@ html, body {
 <div class="logo-wrapper">
   <div class="inner">
     <a href="/" aria-label="Home">
-      <img src="https://axeslab.zainaxes.com/web/media/ext/d903b3ffd22625df.svg" alt=""/>
+      <img src="https://meez.design/web/media/ext/d903b3ffd22625df.svg" alt=""/>
     </a>
   </div>
 </div>
@@ -344,13 +342,13 @@ html, body {
 
   <!-- Base image -->
   <div class="hero-base-img hero-image-animate"
-       style="background-image:url('https://axeslab.zainaxes.com/web/media/ext/3e3e091d9b7dc534.png');">
+       style="background-image:url('https://meez.design/web/media/ext/3e3e091d9b7dc534.png');">
   </div>
 
   <!-- Reveal layer -->
   <canvas id="reveal-canvas"></canvas>
   <div class="hero-reveal-img" id="reveal-img"
-       style="background-image:url('https://axeslab.zainaxes.com/web/media/ext/e948533167791aef.png');">
+       style="background-image:url('https://meez.design/web/media/ext/e948533167791aef.png');">
   </div>
 
   <!-- Content -->

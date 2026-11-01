@@ -4,15 +4,13 @@ slug: "real-time-alerts"
 title: "Real-Time Alerts"
 category: "Sign in"
 categorySlug: "sign-in"
-collection: "prompts"
-likes: 88
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/real-time-alerts.jpg"
+chars: 21696
 tier: "free"
-chars: 21739
-preview_video: ""
-preview_poster: "/media/posters/real-time-alerts.jpg"
+likes: 88
 ---
-
-# Real-Time Alerts (Sign in)
 
 Build a single, self-contained `index.html` file — no build step, no external requests except one video URL, no frameworks, no dependencies. Everything (CSS, JS, SVG) is inline. The file is a pixel-locked recreation of a designed login page, reconstructed from a 1464×949 reference frame. Follow every number exactly; the design is calibrated, not approximate.
 
@@ -47,7 +45,7 @@ The left panel's artwork is a **looping video of a peregrine falcon in a high-sp
 Source URL (use exactly this):
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/1643aec4b5d85510.mp4
+https://meez.design/web/media/ext/1643aec4b5d85510.mp4
 ```
 
 There are **two** `<video>` elements — responsive variants that CSS shows/hides, both pointing at the same file:
@@ -109,7 +107,7 @@ Palette:
 --gBorder:#c8c8ca;   --divider:#b1b1b2;     --page:#fefefe;
 ```
 
-Note the deliberate asymmetries — they are intentional, not typos: the two headline lines differ slightly in size/tracking (69.14 vs 68.95px), the OR divider rules differ by Axes Lab (@zainaxes) (205/204), the email and password fields differ in fill, height, border and padding, and `--login-padl` is negative to optically center the Login label against its trailing arrow.
+Note the deliberate asymmetries — they are intentional, not typos: the two headline lines differ slightly in size/tracking (69.14 vs 68.95px), the OR divider rules differ by 1px (205/204), the email and password fields differ in fill, height, border and padding, and `--login-padl` is negative to optically center the Login label against its trailing arrow.
 
 ## 4. Structure
 
@@ -205,7 +203,7 @@ var TP={"pad":0.1076,"h1Top":0.08656,"h1Fs":0.06839,"subTop":0.17368,"subFs":0.0
 
 (`btFs` is `0.02876` and `heroFs` is `0.1058` — keep both keys.)
 
-Breakpoints are declared once as media-query objects and shared by Axes Lab (@zainaxes) intent and the layout pass:
+Breakpoints are declared once as media-query objects and shared by CSS intent and the layout pass:
 
 ```js
 var mqLandscape = window.matchMedia('(min-width:700px) and (min-aspect-ratio:51/50)');

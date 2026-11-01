@@ -4,109 +4,62 @@ slug: "glow-features"
 title: "Glow Features"
 category: "Features Section"
 categorySlug: "features-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: ""
+posterUrl: "/media/posters/glow-features.jpg"
+chars: 3072
+tier: "premium"
 likes: 129
-tier: "free"
-chars: 4326
-preview_video: ""
-preview_poster: "/media/posters/glow-features.jpg"
 ---
 
-# Glow Features (Features Section)
+Create a React web application using Vite and Tailwind CSS v4 that perfectly replicates a dark-themed glowing feature card section.
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+**Libraries Required:**
+- React 19, Vite, Tailwind CSS v4
+- `lucide-react` for icons
+- `motion/react` (Framer Motion) for animations
 
-Recreate this exact high-converting Features Section design — pixel-perfect match.
+**Global Page Layout:**
+- Set the main wrapper to `min-h-screen bg-[#0A0A0B] flex flex-col items-center justify-center p-6 md:p-12 font-sans`.
+- Create a CSS grid to hold the cards: `grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-3 lg:gap-3 w-full max-w-[936px]`.
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/glow-features-preview-c.jpg
+**The Feature Card Component Requirements:**
+- Build a reusable `<FeatureCard />` component taking `title`, `description`, `icon`, `gradient`, and `delay` props.
+- Wrap the entire card in a `<motion.div>`.
+- Card size restrictions wrapper: `relative flex flex-col justify-start items-start w-full max-w-[260px] md:max-w-[300px] group mx-auto`.
+- **Glow Background (Crucial):** Create an absolute positioned `div` behind the card content with `w-full h-[260px] md:h-[300px] opacity-60 rounded-[40px] pointer-events-none`. Apply inline styles: `background: gradient` and `filter: "blur(45px)"`.
+- **Foreground Card with Gradient Border (Crucial):** On top of the glow, create a relative container with `self-stretch h-[260px] md:h-[300px] rounded-[40px] z-10 overflow-hidden`.
+- Apply an 8px solid transparent border to this foreground card.
+- Use the background-clip technique strictly for the border gradient via inline styles:
+  `background: linear-gradient(#1A1A1C, #1A1A1C) padding-box, ${gradient} border-box;`
+- Content Inner Layout: Inside the foreground, use `w-full h-full p-7 flex flex-col justify-between`.
+- Icons should have `size={32}` and `strokeWidth={2.5}`, wrapped in a `text-white/90` div.
+- Titles: `text-white font-medium text-xl mb-3 tracking-tight`.
+- Descriptions: `text-gray-400 text-[14px] leading-[1.6] font-normal selection:bg-white/20`.
 
+**Animations (Framer Motion):**
+- The main `<motion.div>` wrapper should animate as follows:
+  - Initial state: `{ opacity: 0, y: 30 }`
+  - Animate state: `{ opacity: 1, y: 0 }`
+  - Transition: `{ duration: 0.8, ease: "easeOut", delay }`
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+**Data for the 3 Cards:**
+Instantiate three of these cards inside the main grid with the following exact data:
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+1. **Card 1 ("Hardware"):** 
+   - Icon: `<Monitor />` from lucide-react. 
+   - Delay: `0.1`
+   - Description: "My entire desktop setup is built for power. It is silent, durable, and holds my focus."
+   - Gradient: `linear-gradient(137deg, #FF3D77 0%, #FFB1CE 45%, #FF9D3C 100%)`
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+2. **Card 2 ("Studio"):** 
+   - Icon: `<Palette />` from lucide-react. 
+   - Delay: `0.2`
+   - Description: "Studio is where I define every single pixel. It is the hub for each canvas I deliver."
+   - Gradient: `linear-gradient(137deg, #FFFFFF 0%, #7DD3FC 45%, #06B6D4 100%)`
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
-
-export interface GlowFeaturesProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
-
-export function GlowFeatures({
-  headline = "Glow Features",
-  subheadline = "Create a React web application using Vite and Tailwind CSS v4 that perfectly replicates a dark-themed glowing feature card section. **Libraries Required:** - …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: GlowFeaturesProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>FEATURES SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/glow-features-preview-c.jpg"
-            alt="Glow Features"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+3. **Card 3 ("Motion"):** 
+   - Icon: `<Zap />` from lucide-react. 
+   - Delay: `0.3`
+   - Description: "I use Motion to build lively prototypes, bridging the gap between views and code."
+   - Gradient: `linear-gradient(137deg, #4361EE 0%, #E0AEFF 45%, #F72585 100%)`

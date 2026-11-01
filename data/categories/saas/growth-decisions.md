@@ -4,15 +4,13 @@ slug: "growth-decisions"
 title: "Growth Decisions"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 79
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/growth-decisions.jpg"
+chars: 11089
 tier: "free"
-chars: 11111
-preview_video: ""
-preview_poster: "/media/posters/growth-decisions.jpg"
+likes: 79
 ---
-
-# Growth Decisions (SaaS)
 
 **Recreate this exact single-page SaaS hero. Do not invent extra sections, extra pages, extra images, or extra copy. Implement only what is specified. Stack: one `index.html`, one `styles.css`, one `main.js`. No frameworks.**
 
@@ -36,7 +34,7 @@ https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=
 
 **Background video (mandatory CloudFront URL, do not replace):**
 ```
-https://axeslab.zainaxes.com/web/media/ext/13b52ff7bdc5d6ce.mp4
+https://meez.design/web/media/ext/13b52ff7bdc5d6ce.mp4
 ```
 `<video class="bg-video" autoplay muted loop playsinline>` with one `<source type="video/mp4">`. No poster. No controls.
 
@@ -126,7 +124,7 @@ Delays: 0.04 / 0.09 / 0.14 / 0.19 / 0.24 / 0.29s
 - `aria-label="Open menu"`, `aria-expanded="false"`, `aria-controls="mobile-menu"`
 - JS toggles `.is-open`, `aria-expanded`, label Open/Close, and `hidden` on `#mobile-menu`. Escape and any menu link close it. There is **no X-transform CSS** for `.is-open` — bars stay 3 lines.
 
-**Mobile menu** (`#mobile-menu`, `hidden` by Axes Lab (@zainaxes)):
+**Mobile menu** (`#mobile-menu`, `hidden` by default):
 - Same 4 links + same Book Demo button
 - Column, gap 1.25rem, padding `1.25rem 0 0.5rem`
 - Links wrap: padding `16px 20px`, glass bg + 18px blur, column gap 0.9rem, font 1.05rem / 500

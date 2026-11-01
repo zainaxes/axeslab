@@ -4,15 +4,13 @@ slug: "orbit-flora"
 title: "Orbit Flora"
 category: "AI"
 categorySlug: "ai"
-collection: "prompts"
-likes: 125
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/orbit-flora.jpg"
+chars: 8956
 tier: "free"
-chars: 8992
-preview_video: ""
-preview_poster: "/media/posters/orbit-flora.jpg"
+likes: 125
 ---
-
-# Orbit Flora (AI)
 
 Build a **single-file** `index.html` full-viewport poster. No scroll. No frameworks. No redesign. Match layout, type, color, both image URLs, entrance choreography, mobile menu, and mouse morph-reveal **exactly**.
 
@@ -69,25 +67,25 @@ Both are Higgsfield-proxied PNGs as webp `w=1280&q=85`. Transparent backgrounds.
 ### FRONT / BG lily (default visible)
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/46c24ca63eb40187.png
+https://meez.design/web/media/ext/46c24ca63eb40187.png
 ```
 
 Raw source:
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/63aa99e65fc131b8.png
+https://meez.design/web/media/ext/63aa99e65fc131b8.png
 ```
 
 ### REVEAL / TOP lily (only visible inside morph trail)
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/0690c0efaeb24338.png
+https://meez.design/web/media/ext/0690c0efaeb24338.png
 ```
 
 Raw source:
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/3d3af870588cd878.png
+https://meez.design/web/media/ext/3d3af870588cd878.png
 ```
 
 Front `alt`: `Pixel-art pink and violet lily`. Reveal `alt=""`. No other images.

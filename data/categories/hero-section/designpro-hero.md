@@ -4,109 +4,136 @@ slug: "designpro-hero"
 title: "DesignPro Academy"
 category: "Hero Section"
 categorySlug: "hero-section"
-collection: "sections"
+routeCollection: "sections"
+videoUrl: "/media/videos/designpro-hero.mp4"
+posterUrl: "/media/posters/designpro-hero.jpg"
+chars: 3038
+tier: "premium"
 likes: 96
-tier: "free"
-chars: 4436
-preview_video: "/media/videos/designpro-hero.mp4"
-preview_poster: "/media/posters/designpro-hero.jpg"
 ---
 
-# DesignPro Academy (Hero Section)
+Create a full-screen hero section for a product design education platform called "DesignPro" with the following exact specifications:
 
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Documentation & Live Previews: https://axeslab.zainaxes.com
+Background:
 
-Recreate this exact high-converting Hero Section design — pixel-perfect match.
+Full-screen looping video background using this exact CloudFront URL: https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4
 
-═══════════════════════════════════════
-TECH / STACK SPECIFICATION
-═══════════════════════════════════════
-- Framework: React 19 + TypeScript + Vite / Next.js
-- Styling: Tailwind CSS v4 / modern utility styling
-- Motion & Interactions: Framer Motion / Lucide React icons
-- Responsive: Fully fluid responsive design (Mobile 375px+, Tablet 768px+, Desktop 1440px+)
-- Visual Reference: https://meez.design/web/prompt-previews/designpro-hero-poster-c.jpg
-- Video Motion Demonstration: https://meez.design/web/prompt-previews/designpro-hero-preview.mp4
+Video should autoplay, loop, be muted, and play inline
 
-═══════════════════════════════════════
-COMPONENT ARCHITECTURE & DESIGN SYSTEM
-═══════════════════════════════════════
-1. Layout & Grid:
-   - Modern clean background with smooth ambient lighting and subtle borders (`border-black/10` or `border-white/10`).
-   - Standard 8pt spacing grid with fluid viewport container.
+Background color: black (#000000)
 
-2. Typography & Hierarchy:
-   - Primary Headings: Display font with tight letter spacing (`tracking-tight`).
-   - Body & Supporting Copy: Highly legible sans-serif with comfortable line height (`leading-relaxed`).
-   - Category Pill: `font-mono uppercase text-xs tracking-wider px-3 py-1 rounded-full`.
+Navigation Bar:
 
-3. Micro-Interactions:
-   - Hover lift, magnetic CTA buttons, and smooth transition states.
-   - 16/10 aspect ratio preview media container with fallback poster.
+Logo: Circular design with a white border (2px), containing a smaller filled white circle inside, followed by "DesignPro" text
 
-4. Production Component Implementation:
-```tsx
-import React from 'react';
-import { ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+Navigation links in a rounded pill container with gray-700 border: Home, About Us, Courses, Instructors, Testimonials, Blog, Contact us (with arrow icon)
 
-export interface DesignProAcademyProps {
-  headline?: string;
-  subheadline?: string;
-  ctaText?: string;
-  onCtaClick?: () => void;
-}
+All nav links: white/80 opacity, hover to full white
 
-export function DesignProAcademy({
-  headline = "DesignPro Academy",
-  subheadline = "Create a full-screen hero section for a product design education platform called \"DesignPro\" with the following exact specifications: Background: Full-screen …",
-  ctaText = "Explore with Axes Lab",
-  onCtaClick
-}: DesignProAcademyProps) {
-  return (
-    <section className="relative w-full overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-8 backdrop-blur-xl dark:border-white/10 dark:bg-black/80">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-mono font-medium tracking-wide dark:bg-white/10">
-            <Sparkles className="h-3 w-3 text-emerald-600" />
-            <span>HERO SECTION</span>
-          </div>
-          <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            {headline}
-          </h2>
-          <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button
-              onClick={onCtaClick}
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-black/80 hover:shadow-lg dark:bg-white dark:text-black dark:hover:bg-white/90"
-            >
-              <span>{ctaText}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="https://axeslab.zainaxes.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
-            >
-              <span>axeslab.zainaxes.com</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-            </a>
-          </div>
-        </div>
-        
-        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-xl border border-black/5 bg-black/5 dark:border-white/5 dark:bg-white/5">
-          <img
-            src="https://meez.design/web/prompt-previews/designpro-hero-poster-c.jpg"
-            alt="DesignPro Academy"
-            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-```
+Font size: text-sm
+
+Mobile: Show hamburger menu icon on screens smaller than lg
+
+Max width: 7xl container with proper padding
+
+Content Layout:
+
+Top Section (below nav):
+
+Two-column layout on large screens, stacked on mobile
+
+Left column: "We deliver transformative programs that empower emerging product designers with cutting-edge expertise and vision to thrive globally."
+
+Right column (right-aligned on lg+): "8000+ Talented Designers Launched !"
+
+Both paragraphs: white/80 opacity, text-sm on mobile, text-base on desktop
+
+Hero Section (center):
+
+Small uppercase text above heading: "Seats for Next Program Opening Soon" (white/80 opacity, text-xs on mobile, text-sm on desktop, tight tracking)
+
+Main heading with these exact specifications:
+
+Line 1: "Become" in white, font-medium
+
+Line 2: "Product Leader." with animated shiny gradient effect
+
+Font sizes: text-5xl (mobile) scaling up to text-9xl (xl screens)
+
+Line height: 0.85
+
+Letter spacing: tracking-tighter
+
+ShinyText Component:
+
+Use framer-motion for animation
+
+Base color: #64CEFB (light blue)
+
+Shine color: #ffffff (white)
+
+Animation speed: 3 seconds
+
+Gradient spread: 100 degrees
+
+Gradient should sweep across text continuously from left to right
+
+Use CSS gradient with backgroundClip: text and transparent text fill
+
+CTA Button:
+
+Text: "Apply for Next Enrollment" with arrow icon (from lucide-react)
+
+Black background, hover: gray-900
+
+Rounded-full shape
+
+Padding: px-6 md:px-8, py-3 md:py-4
+
+Arrow should translate right on hover
+
+Group hover animation on arrow icon
+
+Typography:
+
+Font family: Inter (sans-serif)
+
+All text colors: white/80 opacity for body text, full white for headings and hover states
+
+Technical Stack:
+
+React + TypeScript
+
+Vite
+
+Tailwind CSS
+
+Framer Motion for animations
+
+Lucide React for icons
+
+Responsive Breakpoints:
+
+Mobile-first design
+
+sm: 640px
+
+md: 768px
+
+lg: 1024px
+
+xl: 1280px
+
+Key CSS Details:
+
+Container max-width: max-w-7xl with centered margins
+
+Section height: h-screen
+
+Video: absolute positioning, inset-0, object-cover
+
+Content: relative z-10 positioning to appear above video
+
+Smooth transitions on all interactive elements
+
+Create the complete implementation including the ShinyText component with proper framer-motion animation logic.

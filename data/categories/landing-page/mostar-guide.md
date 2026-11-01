@@ -4,15 +4,13 @@ slug: "mostar-guide"
 title: "Mostar Guide"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 161
+routeCollection: "prompts"
+videoUrl: "/media/videos/mostar-guide.mp4"
+posterUrl: "/media/posters/mostar-guide.webp"
+chars: 27320
 tier: "free"
-chars: 27463
-preview_video: "/media/videos/mostar-guide.mp4"
-preview_poster: "/media/posters/mostar-guide.webp"
+likes: 161
 ---
-
-# Mostar Guide (Landing Page)
 
 # PROMPT — Recreate "Mostar city" cinematic scroll page exactly
 
@@ -24,28 +22,28 @@ Build a **single standalone page** (`index.html` + `styles.css` + `script.js`, v
 
 **Font — display serif, family name must be `"Ogg Medium"`**
 ```
-https://axeslab.zainaxes.com/web/media/ext/82338cefef84b6d9.woff2
+https://meez.design/web/media/ext/82338cefef84b6d9.woff2
 ```
 
 **Scene photographs (transparent-edge PNG layers)**
 
 | Layer role | URL |
 |---|---|
-| Sky / farthest background | `https://axeslab.zainaxes.com/web/media/ext/125a599d710ae651.png` |
-| Back "four" glow layer | `https://axeslab.zainaxes.com/web/media/ext/4c30cbf7df6db74e.png` |
-| Bazaar mid-back | `https://axeslab.zainaxes.com/web/media/ext/1f88ffb89428a24c.png` |
-| Splitframe LEFT | `https://axeslab.zainaxes.com/web/media/ext/11592a51c13f27ef.png` |
-| Splitframe RIGHT | `https://axeslab.zainaxes.com/web/media/ext/e70e8bc6286f9f7a.png` |
-| Bridge foreground | `https://axeslab.zainaxes.com/web/media/ext/020f8fce312ef368.png` |
-| Frame-two river close-up | `https://axeslab.zainaxes.com/web/media/ext/2ff7d0d330a8773b.png` |
+| Sky / farthest background | `https://meez.design/web/media/ext/125a599d710ae651.png` |
+| Back "four" glow layer | `https://meez.design/web/media/ext/4c30cbf7df6db74e.png` |
+| Bazaar mid-back | `https://meez.design/web/media/ext/1f88ffb89428a24c.png` |
+| Splitframe LEFT | `https://meez.design/web/media/ext/11592a51c13f27ef.png` |
+| Splitframe RIGHT | `https://meez.design/web/media/ext/e70e8bc6286f9f7a.png` |
+| Bridge foreground | `https://meez.design/web/media/ext/020f8fce312ef368.png` |
+| Frame-two river close-up | `https://meez.design/web/media/ext/2ff7d0d330a8773b.png` |
 
 **Sight-card pin icons (transparent cutouts, square)**
 
 | Icon | URL |
 |---|---|
-| icon1 | `https://axeslab.zainaxes.com/web/media/ext/1fbbb2933f1ed0af.png` |
-| icon2 | `https://axeslab.zainaxes.com/web/media/ext/f9b3de4cb836bb8d.png` |
-| icon3 | `https://axeslab.zainaxes.com/web/media/ext/cc430f6929d14950.png` |
+| icon1 | `https://meez.design/web/media/ext/1fbbb2933f1ed0af.png` |
+| icon2 | `https://meez.design/web/media/ext/f9b3de4cb836bb8d.png` |
+| icon3 | `https://meez.design/web/media/ext/cc430f6929d14950.png` |
 
 Favicon: `<link rel="icon" href="data:," />`
 
@@ -108,14 +106,14 @@ All `img.scene-img` have `alt=""`.
 | # | aria-label | kicker | h3 | p | pin |
 |---|---|---|---|---|---|
 | 1 | Open Stari Most card | Old Bridge | Stari Most | The stone arch over the Neretva and Mostar's main landmark. | icon1 |
-| 2 | Open Kujundziluk card | Bazaar Street | Kujundziluk | Copper shops, souvenirs, and the old bazaar lane by Axes Lab (@zainaxes) bridge. | icon2 |
+| 2 | Open Kujundziluk card | Bazaar Street | Kujundziluk | Copper shops, souvenirs, and the old bazaar lane by the bridge. | icon2 |
 | 3 | Open Koski Mehmed Pasha Mosque card | Viewpoint | Koski Mehmed Pasha Mosque | A classic minaret view back toward Stari Most and the river. | icon3 |
 | 4 | Open Kajtaz House card | Ottoman House | Kajtaz House | A preserved residential house showing Mostar's Ottoman layers. | icon1 |
 | 5 | Open War Photo Exhibition card | Museum | War Photo Exhibition | A compact, moving stop for context on the city's recent history. | icon2 |
 
 **intro-copy content:** `<p>A stone arch, emerald water, and a compact old city made for slow mornings, late light, and one unforgettable crossing.</p>` then `div.hero-tags[aria-label="Mostar highlights"]` with three spans: `Old Bridge`, `Neretva River`, `UNESCO old city`.
 
-**story-panel-bridge:** `h2` = `The bridge is the city's compass.`; `p` = `Stari Most links the banks of the Neretva and anchors a historic quarter shaped by Axes Lab (@zainaxes), Mediterranean, and European layers.`; then `dl.facts` with two `div` groups: `dt 1566 / dd Original bridge completed` and `dt 2005 / dd Old Bridge Area inscribed by Axes Lab (@zainaxes)`.
+**story-panel-bridge:** `h2` = `The bridge is the city's compass.`; `p` = `Stari Most links the banks of the Neretva and anchors a historic quarter shaped by Ottoman, Mediterranean, and European layers.`; then `dl.facts` with two `div` groups: `dt 1566 / dd Original bridge completed` and `dt 2005 / dd Old Bridge Area inscribed by UNESCO`.
 
 **story-panel-bazaar:** `h2` = `The bazaar keeps Mostar close.`; `p` = `Stone lanes, mosque courtyards, copper stalls, and riverside coffee stay within a short walk of Stari Most.`; then `button.note-button` containing `span[aria-hidden="true"] ↗` and `span Open old town notes`.
 

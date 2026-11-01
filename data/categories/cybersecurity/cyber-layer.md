@@ -4,15 +4,13 @@ slug: "cyber-layer"
 title: "Cyber Layer"
 category: "Cybersecurity"
 categorySlug: "cybersecurity"
-collection: "prompts"
-likes: 51
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/cyber-layer.jpg"
+chars: 14160
 tier: "free"
-chars: 14169
-preview_video: ""
-preview_poster: "/media/posters/cyber-layer.jpg"
+likes: 51
 ---
-
-# Cyber Layer (Cybersecurity)
 
 Build a **single self-contained `index.html`** that recreates this cybersecurity landing page **pixel-faithfully**. Fixed fullscreen black stage, left-locked typography, right-side looping video atmosphere, one-shot entrance choreography, and a mobile burger overlay. No frameworks. No scroll. No cards. No purple. No rounded pills.
 
@@ -97,7 +95,7 @@ Every layout value is `calc(N * var(--s))`. Do not use free rem/px layout outsid
 Use this **exact** CloudFront URL everywhere a bg plate appears:
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/4a3f2c95c26203a8.mp4
+https://meez.design/web/media/ext/4a3f2c95c26203a8.mp4
 ```
 
 **Three synced `<video>` instances**, each with:

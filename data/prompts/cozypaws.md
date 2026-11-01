@@ -4,15 +4,13 @@ slug: "cozypaws"
 title: "CozyPaws"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 176
+routeCollection: "prompts"
+videoUrl: "/media/videos/cozypaws.mp4"
+posterUrl: "/media/posters/cozypaws.jpg"
+chars: 6143
 tier: "free"
-chars: 6206
-preview_video: "/media/videos/cozypaws.mp4"
-preview_poster: "/media/posters/cozypaws.jpg"
+likes: 176
 ---
-
-# CozyPaws (Hero)
 
 ## Prompt to Recreate CozyPaws Hero Section
 
@@ -46,13 +44,13 @@ Apply with CSS utility class `.font-serif-display { font-family: 'DM Serif Displ
 
 | Asset | URL |
 |-------|-----|
-| Logo SVG | `https://axeslab.zainaxes.com/web/media/ext/ab0d6bb118afd817.svg` |
-| Avatar | `https://axeslab.zainaxes.com/web/media/ext/e1bfa0032b38f8ac.png` |
-| Product card (Cat House) | `https://axeslab.zainaxes.com/web/media/ext/1cd4210c98104a0f.png` |
-| Video card (TikTok/YouTube) | `https://axeslab.zainaxes.com/web/media/ext/4dd3e255a6ec95c0.png` |
-| Bottom left image | `https://axeslab.zainaxes.com/web/media/ext/3d988fce282cf6c2.png` |
-| Bottom center image (tallest) | `https://axeslab.zainaxes.com/web/media/ext/9f19000c199d73da.png` |
-| Bottom right image | `https://axeslab.zainaxes.com/web/media/ext/a1ca55f91181f111.png` |
+| Logo SVG | `https://meez.design/web/media/ext/ab0d6bb118afd817.svg` |
+| Avatar | `https://meez.design/web/media/ext/e1bfa0032b38f8ac.png` |
+| Product card (Cat House) | `https://meez.design/web/media/ext/1cd4210c98104a0f.png` |
+| Video card (TikTok/YouTube) | `https://meez.design/web/media/ext/4dd3e255a6ec95c0.png` |
+| Bottom left image | `https://meez.design/web/media/ext/3d988fce282cf6c2.png` |
+| Bottom center image (tallest) | `https://meez.design/web/media/ext/9f19000c199d73da.png` |
+| Bottom right image | `https://meez.design/web/media/ext/a1ca55f91181f111.png` |
 
 ---
 

@@ -4,15 +4,13 @@ slug: "adhd-planner"
 title: "ADHD Planner"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 128
+routeCollection: "prompts"
+videoUrl: "/media/videos/adhd-planner.mp4"
+posterUrl: "/media/posters/adhd-planner.webp"
+chars: 8407
 tier: "free"
-chars: 8481
-preview_video: "/media/videos/adhd-planner.mp4"
-preview_poster: "/media/posters/adhd-planner.webp"
+likes: 128
 ---
-
-# ADHD Planner (Landing Page)
 
 Build a single-page landing site for "Drift" -- a calm, ADHD-friendly planner app. Use React + Vite + TypeScript + Tailwind CSS + lucide-react for icons. No other UI libraries.
 
@@ -49,7 +47,7 @@ Add a custom keyframe `fade-in-down` (0%: opacity 0, translateY -8px; 100%: opac
 - Full-screen section (`h-screen`, `overflow-hidden`, `mb-[-25px]` negative bottom margin so the next section overlaps it slightly)
 - **Background video** (autoPlay, muted, loop, playsInline, object-cover, absolute inset-0):
   ```
-  https://axeslab.zainaxes.com/web/media/prompt-media/v/73dbfd8ef105173b.mp4
+  https://meez.design/web/media/prompt-media/v/73dbfd8ef105173b.mp4
   ```
 - **Semi-transparent overlay**: `absolute inset-0 bg-black/20`
 
@@ -58,7 +56,7 @@ Add a custom keyframe `fade-in-down` (0%: opacity 0, translateY -8px; 100%: opac
 - White rounded-full pill with shadow-lg containing:
   - Brand text "Drift." (text-lg, font-bold, tracking-tight, text-black)
   - Animated hamburger icon (two lines that animate to an X on click using rotate-45/-rotate-45 with cubic-bezier(0.77,0,0.175,1) easing, 300ms)
-- Dropdown (below the pill): white rounded-2xl container with links "Features", "Drift AI", "FAQ". Animated with opacity/scale/translate transitions. Hidden by Axes Lab (@zainaxes), pointer-events-none when closed.
+- Dropdown (below the pill): white rounded-2xl container with links "Features", "Drift AI", "FAQ". Animated with opacity/scale/translate transitions. Hidden by default, pointer-events-none when closed.
 
 #### Hero Content (bottom-aligned)
 - Flex column, `justify-end`, padding bottom 12 (md:16)
@@ -77,7 +75,7 @@ Add a custom keyframe `fade-in-down` (0%: opacity 0, translateY -8px; 100%: opac
 ### SECTION 2: ABOUT SECTION
 
 - Background: `bg-[#F6E4CF]`
-- **Rounded top corners**: `rounded-t-[25px]` with `relative z-10` (overlaps hero by Axes Lab (@zainaxes))
+- **Rounded top corners**: `rounded-t-[25px]` with `relative z-10` (overlaps hero by 25px)
 - Padding: py-20 md:py-32, px-6
 
 #### Top Area (centered, max-w-3xl)
@@ -99,7 +97,7 @@ Add a custom keyframe `fade-in-down` (0%: opacity 0, translateY -8px; 100%: opac
 
 - **Fixed background image** (behind content, -z-10):
   ```
-  https://axeslab.zainaxes.com/web/media/ext/6d946368c80a4d1f.webp
+  https://meez.design/web/media/ext/6d946368c80a4d1f.webp
   ```
 - Padding: px-5 md:px-10 lg:px-16, py-20 md:py-40 lg:py-48
 
@@ -126,15 +124,15 @@ Each card (`bg-black/20 backdrop-blur-sm rounded-3xl p-6 md:p-10`):
 
 1. Title: "Built for ease, not urgency"
    Description: "Drift strips away the noise that makes organizing feel draining. Every surface is made to be soft, quiet, and intuitive so you can move forward, not get stuck decoding."
-   Video: `https://axeslab.zainaxes.com/web/media/prompt-media/v/7d15c4a1e6be1c22.mp4`
+   Video: `https://meez.design/web/media/prompt-media/v/7d15c4a1e6be1c22.mp4`
 
 2. Title: "The gentlest way to start"
    Description: "Beginning your day should feel natural, not daunting. Drift eases you into motion with subtle cues and a quiet view of what deserves your energy right now."
-   Video: `https://axeslab.zainaxes.com/web/media/prompt-media/v/64f44b8d061529bd.mp4`
+   Video: `https://meez.design/web/media/prompt-media/v/64f44b8d061529bd.mp4`
 
 3. Title: "Deep, undivided focus"
    Description: "No interruptions, no clutter. Drift holds you in the present task with a stripped-back layout that softens all else until you are truly ready to shift."
-   Video: `https://axeslab.zainaxes.com/web/media/prompt-media/v/4ad0621c3e472f88.mp4`
+   Video: `https://meez.design/web/media/prompt-media/v/4ad0621c3e472f88.mp4`
 
 ---
 

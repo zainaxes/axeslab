@@ -4,15 +4,13 @@ slug: "f1-racing-hub"
 title: "F1 Racing Hub"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 180
+routeCollection: "apps"
+videoUrl: "/media/videos/f1-racing-hub.mp4"
+posterUrl: "/media/posters/f1-racing-hub.webp"
+chars: 9802
 tier: "free"
-chars: 10036
-preview_video: "/media/videos/f1-racing-hub.mp4"
-preview_poster: "/media/posters/f1-racing-hub.webp"
+likes: 180
 ---
-
-# F1 Racing Hub (Mobile App)
 
 # Recreate This Page Exactly — Lewis Hamilton / Silverstone F1 Hero
 
@@ -27,7 +25,7 @@ A full-screen hero section (`relative w-full overflow-hidden font-sans`) with a 
 
 **Page background image (used for both page and inside phone screens):**
 ```
-https://axeslab.zainaxes.com/web/media/ext/4e6314027c373f81.webp
+https://meez.design/web/media/ext/4e6314027c373f81.webp
 ```
 - Page: `<img>` absolute inset-0 w-full h-full object-cover z-0, then `<div className="absolute inset-0 bg-black/70 z-[1]" />`
 
@@ -51,9 +49,9 @@ A reusable iPhone-style frame:
 
 ## Phone navigation (shared, in every screen)
 Top nav `absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-5 h-14 mt-[20px]`:
-- Left: F1 logo `<img src="https://axeslab.zainaxes.com/web/media/ext/0727f43267d0f98e.png" className="h-7 w-auto object-contain" />`
+- Left: F1 logo `<img src="https://meez.design/web/media/ext/0727f43267d0f98e.png" className="h-7 w-auto object-contain" />`
 - Right: two 14×14 (h-14 w-14) square buttons, no rounding:
-  - White button with profile icon `https://axeslab.zainaxes.com/web/media/ext/d817d0589f44a41a.png` (w-5 h-5)
+  - White button with profile icon `https://meez.design/web/media/ext/d817d0589f44a41a.png` (w-5 h-5)
   - Glass button: `background: rgba(255,255,255,0.15); backdropFilter: blur(12px)` containing two white bars (21px and 10px wide, 2px tall, rounded-full, 5px gap)
 
 **Menu overlay (z-50, full screen):** `linear-gradient(160deg, #1a0000 0%, #8B0000 40%, #E10600 100%)`, fade transition 400ms. Links: Biography, Statistics, Career — text-3xl font-bold tracking-tight, stagger slide-in (translateX -20px→0, delay 0.1 + i*0.08s, cubic-bezier(0.16,1,0.3,1)). Hover color `#EDB40B`. Bottom: white "Sign in" button.
@@ -62,9 +60,9 @@ Top nav `absolute top-0 left-0 right-0 z-30 flex items-center justify-between px
 `relative w-full h-full flex flex-col px-5 pb-0 pt-[76px] overflow-hidden`
 - Background: ScreenBackground (BG image + `bg-black/60`)
 - PhoneNav
-- Location block (z-10, mt-4 mb-2, animate-fade-slide-up delay-300): "United Kingdom" text-white/60 text-[16px] + UK flag `https://axeslab.zainaxes.com/web/media/ext/cd0882933a3261b3.png` (w-6 h-6). Title: text-white font-normal leading-[0.95] tracking-[-0.05em] text-[48px] → "Silverstone" / "England"
+- Location block (z-10, mt-4 mb-2, animate-fade-slide-up delay-300): "United Kingdom" text-white/60 text-[16px] + UK flag `https://meez.design/web/media/ext/cd0882933a3261b3.png` (w-6 h-6). Title: text-white font-normal leading-[0.95] tracking-[-0.05em] text-[48px] → "Silverstone" / "England"
 - **Driver photo container** (z-[5], absolute fill, flex items-end justify-center): 
-  - `<img src="https://axeslab.zainaxes.com/web/media/ext/c6f89e9aa3cfdce0.png" className="w-[calc(140%-5px)] max-w-none h-auto object-contain animate-scale-in delay-500 origin-bottom" />`
+  - `<img src="https://meez.design/web/media/ext/c6f89e9aa3cfdce0.png" className="w-[calc(140%-5px)] max-w-none h-auto object-contain animate-scale-in delay-500 origin-bottom" />`
   - **Blur overlay** (the key glass effect): `absolute bottom-0 left-0 right-0 h-[50%] pointer-events-none` with inline style:
     ```
     backdropFilter: 'blur(6px)',
@@ -73,15 +71,15 @@ Top nav `absolute top-0 left-0 right-0 z-30 flex items-center justify-between px
     WebkitMask: 'linear-gradient(to bottom, transparent 0%, black 50%)'
     ```
 - Bottom content (z-10, absolute bottom-0 px-5 pb-5):
-  - Driver avatar selector strip `https://axeslab.zainaxes.com/web/media/ext/95f5fe22951a9f12.png` (h-12 w-auto, animate-fade-slide-up delay-700, mb-3)
+  - Driver avatar selector strip `https://meez.design/web/media/ext/95f5fe22951a9f12.png` (h-12 w-auto, animate-fade-slide-up delay-700, mb-3)
   - Name: text-white font-semibold leading-[0.82] tracking-[-0.05em] text-[64px] animate-speed-reveal delay-800 → "Lewis" / "Hamilton"
 
 ## Screen 2 — Silverstone circuit + stats
 `relative w-full h-full flex flex-col px-5 pb-8 pt-[76px] overflow-hidden`
 - Background + PhoneNav
 - Location block (z-10, mb-4, animate-fade-slide-up delay-400): same UK/flag/Silverstone England as Screen 1
-- Circuit image (z-10, flex-1 flex items-center justify-center -mx-5 px-2 min-h-0, animate-scale-in delay-600): `https://axeslab.zainaxes.com/web/media/ext/5127edfd57ea3450.png` w-full h-full object-contain
-- Stats block (z-10, mt-auto pt-4, animate-fade-slide-up delay-800): "Season Points" label + medal icon `https://axeslab.zainaxes.com/web/media/ext/fd5e6c93cb0cf78d.png` (w-6 h-6). Three count-up numbers, each font-semibold tracking-[-0.06em] fontSize 110px lineHeight 0.72:
+- Circuit image (z-10, flex-1 flex items-center justify-center -mx-5 px-2 min-h-0, animate-scale-in delay-600): `https://meez.design/web/media/ext/5127edfd57ea3450.png` w-full h-full object-contain
+- Stats block (z-10, mt-auto pt-4, animate-fade-slide-up delay-800): "Season Points" label + medal icon `https://meez.design/web/media/ext/fd5e6c93cb0cf78d.png` (w-6 h-6). Three count-up numbers, each font-semibold tracking-[-0.06em] fontSize 110px lineHeight 0.72:
   - 227 (delay 800) — gradient text `linear-gradient(to bottom, white 0%, rgba(255,255,255,0.4) 50%, transparent 85%)` via bg-clip-text text-transparent
   - 374 (delay 1000) — same gradient
   - 4987 (delay 1200) — solid color `#EDB40B`
@@ -90,9 +88,9 @@ Top nav `absolute top-0 left-0 right-0 z-30 flex items-center justify-between px
 ## Screen 3 — Scuderia Ferrari team
 `relative w-full h-full overflow-hidden`
 - Background + PhoneNav
-- Team title (absolute top-[100px] left-5 z-10, animate-fade-slide-up delay-300): "Team Name" text-white/60 text-[15px] + Ferrari icon `https://axeslab.zainaxes.com/web/media/ext/01aba650b4c0e9f7.png` (w-5 h-5). Title text-white font-normal leading-[0.83] text-[52px] letterSpacing -0.08em → "Scuderia" / "Ferrari"
-- Chassis (absolute top-[245px] left-5 z-10, animate-fade-slide-up delay-500): chassis icon `https://axeslab.zainaxes.com/web/media/ext/8be58f7767f27e36.png` (w-5 h-5) + "Chassis" label. Number text-[#EDB40B] font-semibold leading-[0.79] text-[120px] letterSpacing -0.08em → "SF-26"
-- Car image (absolute top-[390px] left-3 right-3 z-10 w-[calc(100%-24px)] h-auto object-contain animate-fade-slide-left delay-700): `https://axeslab.zainaxes.com/web/media/ext/2d28d081a568a3a0.png`
+- Team title (absolute top-[100px] left-5 z-10, animate-fade-slide-up delay-300): "Team Name" text-white/60 text-[15px] + Ferrari icon `https://meez.design/web/media/ext/01aba650b4c0e9f7.png` (w-5 h-5). Title text-white font-normal leading-[0.83] text-[52px] letterSpacing -0.08em → "Scuderia" / "Ferrari"
+- Chassis (absolute top-[245px] left-5 z-10, animate-fade-slide-up delay-500): chassis icon `https://meez.design/web/media/ext/8be58f7767f27e36.png` (w-5 h-5) + "Chassis" label. Number text-[#EDB40B] font-semibold leading-[0.79] text-[120px] letterSpacing -0.08em → "SF-26"
+- Car image (absolute top-[390px] left-3 right-3 z-10 w-[calc(100%-24px)] h-auto object-contain animate-fade-slide-left delay-700): `https://meez.design/web/media/ext/2d28d081a568a3a0.png`
 - Bottom driver cards (absolute bottom-0 flex, animate-fade-slide-up delay-900): two side-by-side cards, each w-1/2 h-200px rounded-t-2xl p-3, glass style:
   ```
   background: rgba(20,20,30,0.8),
@@ -100,8 +98,8 @@ Top nav `absolute top-0 left-0 right-0 z-30 flex items-center justify-between px
   borderBottom: none,
   backdropFilter: blur(16px)
   ```
-  - Leclerc card: "Charles Leclerc" text-white/60 text-[13px] + profile icon (w-4 h-4 opacity-60), stats image `https://axeslab.zainaxes.com/web/media/ext/ea6a6ea3bd472841.png` (h-5), big number "16" text-white font-semibold leading-[0.79] text-[110px] letterSpacing -0.08em
-  - Hamilton card: "Lewis Hamilton" + profile icon, stats image `https://axeslab.zainaxes.com/web/media/ext/80681b005d8cacf2.png` (h-5), big number "44"
+  - Leclerc card: "Charles Leclerc" text-white/60 text-[13px] + profile icon (w-4 h-4 opacity-60), stats image `https://meez.design/web/media/ext/ea6a6ea3bd472841.png` (h-5), big number "16" text-white font-semibold leading-[0.79] text-[110px] letterSpacing -0.08em
+  - Hamilton card: "Lewis Hamilton" + profile icon, stats image `https://meez.design/web/media/ext/80681b005d8cacf2.png` (h-5), big number "44"
 
 ## Animations (CSS keyframes, all `both` fill-mode)
 - **fadeSlideUp**: opacity 0→1, translateY 30px→0, 0.9s cubic-bezier(0.16,1,0.3,1)
@@ -115,19 +113,19 @@ Top nav `absolute top-0 left-0 right-0 z-30 flex items-center justify-between px
 - Delay utilities: delay-100 through delay-1600 (0.1s steps)
 
 ## Exact asset URLs (use verbatim)
-- Page/phone background: `https://axeslab.zainaxes.com/web/media/ext/4e6314027c373f81.webp`
-- F1 logo: `https://axeslab.zainaxes.com/web/media/ext/0727f43267d0f98e.png`
-- Profile/search icon: `https://axeslab.zainaxes.com/web/media/ext/d817d0589f44a41a.png`
-- UK flag: `https://axeslab.zainaxes.com/web/media/ext/cd0882933a3261b3.png`
-- Lewis Hamilton photo: `https://axeslab.zainaxes.com/web/media/ext/c6f89e9aa3cfdce0.png`
-- Driver avatar selector: `https://axeslab.zainaxes.com/web/media/ext/95f5fe22951a9f12.png`
-- Silverstone circuit: `https://axeslab.zainaxes.com/web/media/ext/5127edfd57ea3450.png`
-- Season points medal: `https://axeslab.zainaxes.com/web/media/ext/fd5e6c93cb0cf78d.png`
-- Ferrari team icon: `https://axeslab.zainaxes.com/web/media/ext/01aba650b4c0e9f7.png`
-- Chassis icon: `https://axeslab.zainaxes.com/web/media/ext/8be58f7767f27e36.png`
-- Ferrari SF-26 car: `https://axeslab.zainaxes.com/web/media/ext/2d28d081a568a3a0.png`
-- Leclerc stats: `https://axeslab.zainaxes.com/web/media/ext/ea6a6ea3bd472841.png`
-- Hamilton stats: `https://axeslab.zainaxes.com/web/media/ext/80681b005d8cacf2.png`
+- Page/phone background: `https://meez.design/web/media/ext/4e6314027c373f81.webp`
+- F1 logo: `https://meez.design/web/media/ext/0727f43267d0f98e.png`
+- Profile/search icon: `https://meez.design/web/media/ext/d817d0589f44a41a.png`
+- UK flag: `https://meez.design/web/media/ext/cd0882933a3261b3.png`
+- Lewis Hamilton photo: `https://meez.design/web/media/ext/c6f89e9aa3cfdce0.png`
+- Driver avatar selector: `https://meez.design/web/media/ext/95f5fe22951a9f12.png`
+- Silverstone circuit: `https://meez.design/web/media/ext/5127edfd57ea3450.png`
+- Season points medal: `https://meez.design/web/media/ext/fd5e6c93cb0cf78d.png`
+- Ferrari team icon: `https://meez.design/web/media/ext/01aba650b4c0e9f7.png`
+- Chassis icon: `https://meez.design/web/media/ext/8be58f7767f27e36.png`
+- Ferrari SF-26 car: `https://meez.design/web/media/ext/2d28d081a568a3a0.png`
+- Leclerc stats: `https://meez.design/web/media/ext/ea6a6ea3bd472841.png`
+- Hamilton stats: `https://meez.design/web/media/ext/80681b005d8cacf2.png`
 
 ## Color tokens
 - Background dark: `#0a0e1c`

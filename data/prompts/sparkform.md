@@ -4,15 +4,13 @@ slug: "sparkform"
 title: "Sparkform"
 category: "Creative"
 categorySlug: "creative"
-collection: "prompts"
-likes: 43
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/sparkform.jpg"
+chars: 6514
 tier: "free"
-chars: 6547
-preview_video: ""
-preview_poster: "/media/posters/sparkform.jpg"
+likes: 43
 ---
-
-# Sparkform (Creative)
 
 **Recreate this exact landing page pixel-for-pixel.**
 
@@ -54,11 +52,11 @@ Direct files if needed:
 
 ## Asset — character image (exact URL used in code)
 ```
-https://axeslab.zainaxes.com/web/media/ext/11ffbe21c96271e6.png
+https://meez.design/web/media/ext/11ffbe21c96271e6.png
 ```
 Original PNG source behind the proxy:
 ```
-https://axeslab.zainaxes.com/web/media/ext/9bd22f6f8a2a0202.png
+https://meez.design/web/media/ext/9bd22f6f8a2a0202.png
 ```
 Subject: 3D bust of a young Black man, electric-blue braids with silver beads, bright blue eyes looking upward, neon-green ribbed turtleneck, transparent/orange-cutout background. Centered, chest-up.  
 *(Local unused files exist at `/public/images/{0B435C65-A382-4437-BCE3-E275271AEB12}.png` and `{A01C6A0D-C4E6-496C-BC3D-D942405C2DBB}.png` — do not use them; the live page uses the Higgs URL above.)*
@@ -116,7 +114,7 @@ progress = clamp(0..1, -rect.top / (sectionHeight - window.innerHeight))
 leftOffset[i]  = -(60 + i * 40) * scaleFactor * (1 - progress)
 rightOffset[i] = +(60 + i * 40) * scaleFactor * (1 - progress)
 ```
-Desktop start offsets by Axes Lab (@zainaxes): ±60, ±100, ±140, ±180 px. Mobile half of that. As user scrolls, words slide inward to `0`.
+Desktop start offsets by index: ±60, ±100, ±140, ±180 px. Mobile half of that. As user scrolls, words slide inward to `0`.
 
 **Opacity** (both columns):
 ```

@@ -4,15 +4,13 @@ slug: "data-signal"
 title: "Data Signal"
 category: "Analytics"
 categorySlug: "analytics"
-collection: "prompts"
-likes: 55
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/data-signal.jpg"
+chars: 11932
 tier: "free"
-chars: 11970
-preview_video: ""
-preview_poster: "/media/posters/data-signal.jpg"
+likes: 55
 ---
-
-# Data Signal (Analytics)
 
 Recreate this page **pixel-faithfully** as a single static `index.html` (inline CSS + JS, no framework). Match structure, copy, spacing tokens, glass, motion, fonts, and media exactly. Do not invent extra sections, stats, cards, or marketing blocks. Full-viewport dark landing only — no page scroll (`html, body { overflow: hidden; background: #000 }`).
 
@@ -28,7 +26,7 @@ Full-bleed edge-to-edge background is a **`<video>`**, not an image:
 
 ```html
 <video class="background" autoplay muted loop playsinline disablepictureinpicture aria-hidden="true">
-  <source src="https://axeslab.zainaxes.com/web/media/ext/4048e8b759e0669f.mp4" type="video/mp4">
+  <source src="https://meez.design/web/media/ext/4048e8b759e0669f.mp4" type="video/mp4">
 </video>
 ```
 
@@ -72,7 +70,7 @@ Body copy (exact, including “bring” not “brings”, and the three line bre
 ```
 Your metrics are scattered across a dozen dashboards.<br>
 Vantage bring them into one clear signal, so every<br>
-decision is backed by Axes Lab (@zainaxes) you actually trust.
+decision is backed by data you actually trust.
 ```
 - Color `rgba(226, 229, 228, .84)`
 - `font-weight: 350`, `letter-spacing: .13px`
@@ -190,7 +188,7 @@ On load (unless `prefers-reduced-motion: reduce`):
 ## Responsive behavior (must match)
 ### Tablet
 `@media (min-width: 620px) and (max-width: 790px), (min-width: 620px) and (max-width: 1100px) and (orientation: portrait)`:
-- Collapse nav/time/sign-up into glass dropdown panel under hamburger (`#tablet-navigation`), closed by Axes Lab (@zainaxes) (`opacity 0; visibility hidden; transform translateY(-8px) scale(.985)`), open via `.header.menu-open`.
+- Collapse nav/time/sign-up into glass dropdown panel under hamburger (`#tablet-navigation`), closed by default (`opacity 0; visibility hidden; transform translateY(-8px) scale(.985)`), open via `.header.menu-open`.
 - Menu toggle glass button 46×46, `border-radius: 11px`, `backdrop-filter: blur(14px)`.
 - Dropdown: `blur(18px)`, `border-radius: 16px`, width `min(324px, calc(100vw - 2*gutter))`.
 - JS: toggle `aria-expanded`, set `inert` on nav when closed (when toggle visible), Escape / outside pointer / link click closes; focus first link on open.

@@ -4,22 +4,20 @@ slug: "mind-body-healing"
 title: "Mind-Body Healing"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 118
+routeCollection: "prompts"
+videoUrl: "/media/videos/mind-body-healing.mp4"
+posterUrl: "/media/posters/mind-body-healing.webp"
+chars: 5168
 tier: "free"
-chars: 5212
-preview_video: "/media/videos/mind-body-healing.mp4"
-preview_poster: "/media/posters/mind-body-healing.webp"
+likes: 118
 ---
-
-# Mind-Body Healing (Landing Page)
 
 Build a single-page hero landing page for a holistic wellness brand called "Vibrant Wellness." Use React, TypeScript, Tailwind CSS, and Lucide React icons. Load Google Fonts "Inter" (weights 300, 400, 500, 600, 700) via link tags in the HTML head. The entire page is a full-screen (100vh) section with a looping background video and liquid glass UI elements overlaid on top.
 
 **BACKGROUND VIDEO**
 
 Full-viewport autoplaying, looping, muted, playsInline video with `object-cover`, positioned absolute inset-0. Use this exact URL:
-`https://axeslab.zainaxes.com/web/media/prompt-media/v/f1830aceec29bfc0.mp4`
+`https://meez.design/web/media/prompt-media/v/f1830aceec29bfc0.mp4`
 
 **LIQUID GLASS EFFECT**
 
@@ -37,7 +35,7 @@ Flex row, justify-between, padding px-5 pt-6 / sm:px-8 sm:pt-8 / md:px-16 lg:px-
 - Left: custom SVG logo (32x32, md:36x36), white fill, viewBox 0 0 256 256, path: `M 128 128 C 198.692 128 256 185.308 256 256 L 151.883 256 C 149.812 220.307 120.213 192 84 192 C 47.787 192 18.188 220.307 16.117 256 L 0 256 C 0 185.308 57.308 128 128 128 Z M 104.117 0 C 106.188 35.694 135.787 64 172 64 C 208.213 64 237.812 35.694 239.883 0 L 256 0 C 256 70.692 198.692 128 128 128 C 57.308 128 0 70.692 0 0 Z`
 - Center (desktop only, hidden on mobile): liquid-glass rounded-full pill (px-8 py-3) with three links — "Home" (text-white), "Our Approach" and "Healing Methods" (text-white/70, hover:opacity-100). All text-sm font-medium.
 - Right (desktop only): liquid-glass circle (h-10 w-10 rounded-full) containing Lucide `CircleUserRound` (h-5 w-5, text-white/80, strokeWidth 1.5).
-- Right (mobile only, md:hidden): liquid-glass circle button (h-10 w-10 rounded-full, z-50). Animated icon swap between Lucide `Menu` and `X` using absolute positioning with rotate-90 scale-0 opacity-0 transitions (duration-300) toggled by Axes Lab (@zainaxes) `menuOpen` state.
+- Right (mobile only, md:hidden): liquid-glass circle button (h-10 w-10 rounded-full, z-50). Animated icon swap between Lucide `Menu` and `X` using absolute positioning with rotate-90 scale-0 opacity-0 transitions (duration-300) toggled by a `menuOpen` state.
 
 **MOBILE MENU OVERLAY (z-10, fixed inset-0, md:hidden)**
 
@@ -53,7 +51,7 @@ Top block (mt-14 sm:mt-20 md:mt-28, max-w-2xl):
    - `https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100`
    - `https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100`
    - `https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=100`
-   Followed by Axes Lab (@zainaxes) "our path to natural wellness" (text-xs sm:text-sm, font-light, text-white/80).
+   Followed by text "our path to natural wellness" (text-xs sm:text-sm, font-light, text-white/80).
 2. Heading — `<h1>` "Heal Your Body" + `<br/>` + "Naturally". Style: text-4xl sm:text-5xl md:text-6xl lg:text-7xl, font-normal, leading-[1.05], text-white, inline letterSpacing -0.05em.
 3. Subtitle — `<p>` "Holistic wellness. Transformative results." mt-4 sm:mt-5, text-sm sm:text-base md:text-lg, font-light, text-white/70.
 4. CTA button — liquid-glass, rounded-full, px-6 py-3 sm:px-7 sm:py-3.5, mt-6 sm:mt-8, text-sm font-medium text-white, transition duration-300, hover:bg-white/10. Text: "Begin Your Journey".

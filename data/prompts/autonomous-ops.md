@@ -4,18 +4,13 @@ slug: "autonomous-ops"
 title: "Autonomous Ops"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 139
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/autonomous-ops.jpg"
+chars: 18223
 tier: "free"
-chars: 18400
-preview_video: ""
-preview_poster: "/media/posters/autonomous-ops.jpg"
+likes: 139
 ---
-
-# Autonomous Ops (SaaS)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Interactive Demos, Video Guides & Assets: https://axeslab.zainaxes.com
 
 Recreate this page as a single self-contained index.html file — pixel-faithful to the Falcon AI Operations Overview triptych. No frameworks, no external CSS/JS/fonts/images. System fonts only. Light color scheme. All sizing on desktop uses CSS container query units (cqw/cqh) against a size container.
 
@@ -58,7 +53,7 @@ DESIGN TOKENS (:root)
 --cards-height: 33.81cqw
 --cards-scale: min(1, calc(60cqh / var(--cards-height)))
 
-════════════════════════════════════════
+══════════════════════════════════════��═
 FONTS (exact stacks — no webfonts)
 ════════════════════════════════════════
 Body / most UI:
@@ -288,7 +283,7 @@ Data (frozen):
   sparklePoints (unit star):
     [.50,.06],[.59,.41],[.94,.50],[.59,.59],[.50,.94],[.41,.59],[.06,.50],[.41,.41]
 Draw each sparkle:
-  size = min(w,h) * sparkle.size; offset by Axes Lab (@zainaxes)/y of canvas bounds
+  size = min(w,h) * sparkle.size; offset by x/y of canvas bounds
   map sparklePoints → absolute points
   roundedPolygon(points, roundness .34): for each corner, move to after-point of first,
     then for each subsequent: lineTo(before) + quadraticCurveTo(point, after), close path
@@ -334,7 +329,7 @@ Double rAF, then:
 2) Detect singleRow: all visible cards’ tops within max(4, height*0.04) of the topmost.
 3) Order:
    - singleRow (desktop): centre card index===1 first, then others by |distance from viewport centre|
-   - else (tablet/phone): sort by Axes Lab (@zainaxes) then left
+   - else (tablet/phone): sort by top then left
 4) compact = viewport.width <= 512
    rise = compact ? 11 : 16
    easings: easePlace = cubic-bezier(.16,1,.3,1); easeWipe = cubic-bezier(.24,.86,.28,1)

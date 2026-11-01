@@ -4,15 +4,13 @@ slug: "wellness-balance"
 title: "Wellness Balance"
 category: "Hero"
 categorySlug: "hero"
-collection: "prompts"
-likes: 156
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/wellness-balance.jpg"
+chars: 24326
 tier: "free"
-chars: 24470
-preview_video: ""
-preview_poster: "/media/posters/wellness-balance.jpg"
+likes: 156
 ---
-
-# Wellness Balance (Hero)
 
 Create a single-page hero landing for a wellness/supplements brand called "TerraElix" using React + Tailwind CSS + Lucide React icons. The page is a full-viewport hero with a background image, navbar, headline with word-by-word reveal animations, CTA section, and a 3-panel footer strip. It must be fully responsive (mobile, tablet, desktop).
 
@@ -30,7 +28,7 @@ Import from Google Fonts:
 
 Full-screen background image covering the entire viewport:
 ```
-url: https://axeslab.zainaxes.com/web/bg-previews/190_Blue-Purple-Glow.jpg
+url: https://meez.design/web/bg-previews/190_Blue-Purple-Glow.jpg
 background-size: cover; background-position: center; background-repeat: no-repeat;
 ```
 
@@ -60,7 +58,7 @@ background-size: cover; background-position: center; background-repeat: no-repea
   - Return icon (Lucide `CornerUpLeft`, size 20, strokeWidth 1.5)
   - Round avatar image (w-8 h-8, lg:w-10 lg:h-10, rounded-full, object-cover):
     ```
-    https://axeslab.zainaxes.com/web/bg-previews/191_Motion-Background-2.jpg
+    https://meez.design/web/bg-previews/191_Motion-Background-2.jpg
     ```
   - Hamburger menu button (md:hidden, Lucide `Menu` / `X` toggle)
 
@@ -92,7 +90,7 @@ Each word is wrapped in a container with overflow-hidden, and the inner span ani
 
 **Inline image** after "Capsule" (hidden on mobile, sm:inline-block, align-middle, ml-2 lg:ml-4):
 ```
-https://axeslab.zainaxes.com/web/bg-previews/194_Motion-Background-10.jpg
+https://meez.design/web/bg-previews/194_Motion-Background-10.jpg
 height: clamp(60px, 10vw, 160px); width: auto;
 ```
 
@@ -111,7 +109,7 @@ Below the headline, mt-8 sm:mt-12 lg:mt-[75px]. Flex row on sm+, column on mobil
 
 Visible below lg breakpoint. Oversized, bleeding off edges:
 ```
-https://axeslab.zainaxes.com/web/bg-previews/195_Motion-Background-6.jpg
+https://meez.design/web/bg-previews/195_Motion-Background-6.jpg
 w-[180%] sm:w-[151%] max-w-[1296px], object-contain, mx-auto, drop-shadow-2xl
 margin-bottom: -180px sm:-220px (overlaps panels below)
 ```
@@ -127,7 +125,7 @@ margin-bottom: -180px sm:-220px (overlaps panels below)
 - Link: "Personal Assessment" -- underline, Inter 400, text-base lg:text-lg, letter-spacing -0.03em
 - Decorative image (absolute right-0 bottom-0, h-full, mix-blend-multiply):
   ```
-  https://axeslab.zainaxes.com/web/bg-previews/197_Motion-Background-12.jpg
+  https://meez.design/web/bg-previews/197_Motion-Background-12.jpg
   ```
 
 ### Panel 2 (bg-[#FEFDF9]) -- Auto-rotating card carousel
@@ -146,7 +144,7 @@ Bottom dots: 4 thin bars (h-0.5, flex-1, rounded-full). Active: bg-black. Inacti
 ### Panel 3 (bg-black)
 - Left: Product image (w-[120px] h-[82px] sm:w-[160px] h-[110px] lg:w-[208px] h-[142px]):
   ```
-  https://axeslab.zainaxes.com/web/bg-previews/198_Ember-Glow.jpg
+  https://meez.design/web/bg-previews/198_Ember-Glow.jpg
   ```
 - Right: "+14K" (white, Inter 400, text-2xl sm:text-3xl lg:text-[35px], letter-spacing -0.05em) + "People have already optimized their wellness" (text-white/60, Inter 400, text-sm sm:text-base lg:text-lg, line-height 1.2)
 
@@ -156,7 +154,7 @@ Bottom dots: 4 thin bars (h-0.5, flex-1, rounded-full). Active: bg-black. Inacti
 
 Same image as mobile product, but absolutely positioned for desktop:
 ```
-https://axeslab.zainaxes.com/web/bg-previews/199_Background-04.jpg
+https://meez.design/web/bg-previews/199_Background-04.jpg
 position: absolute; z-0; hidden lg:block;
 width: clamp(600px, 80vw, 1412px); height: auto;
 bottom: -10%; right: clamp(-400px, -20vw, -100px);
@@ -278,7 +276,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
 <body class="m-0 p-0">
   <div
     class="min-h-screen font-sans flex flex-col relative overflow-hidden"
-    style="background-image: url('https://axeslab.zainaxes.com/web/bg-previews/200_97.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+    style="background-image: url('https://meez.design/web/bg-previews/200_97.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"
   >
     <!-- Navbar -->
     <nav class="flex items-center justify-between px-5 sm:px-8 lg:px-10 py-4 lg:py-5 relative z-20 animate-fade-in">
@@ -302,7 +300,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
         <button class="text-white/80 hover:text-white transition-colors bg-transparent border-none cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
         </button>
-        <img src="https://axeslab.zainaxes.com/web/bg-previews/202_79.jpg" class="w-8 h-8 lg:w-10 lg:h-10 rounded-full object-cover" alt="Avatar" />
+        <img src="https://meez.design/web/bg-previews/202_79.jpg" class="w-8 h-8 lg:w-10 lg:h-10 rounded-full object-cover" alt="Avatar" />
 
         <!-- Mobile menu button -->
         <button id="menuBtn" class="md:hidden text-white/80 hover:text-white transition-colors ml-2 bg-transparent border-none cursor-pointer">
@@ -340,7 +338,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
         <br />
         <span class="animate-word-reveal"><span class="text-white" style="animation-delay: 0.9s;">Capsule</span></span>
         <img
-          src="https://axeslab.zainaxes.com/web/bg-previews/104_Motion-Background-031045.jpg"
+          src="https://meez.design/web/bg-previews/104_Motion-Background-031045.jpg"
           alt=""
           class="hidden sm:inline-block align-middle ml-2 lg:ml-4 animate-scale-in delay-1000"
           style="height: clamp(60px, 10vw, 160px); width: auto;"
@@ -367,7 +365,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
     <!-- Mobile/Tablet product image -->
     <div class="relative z-10 flex items-center justify-center pt-0 sm:pt-2 pb-0 sm:block lg:hidden overflow-visible mb-[-180px] sm:mb-[-220px] animate-scale-in delay-800">
       <img
-        src="https://axeslab.zainaxes.com/web/bg-previews/193_Motion-Background-3.jpg"
+        src="https://meez.design/web/bg-previews/193_Motion-Background-3.jpg"
         alt="Product capsules"
         class="w-[180%] sm:w-[151%] max-w-[1296px] h-auto object-contain mx-auto drop-shadow-2xl"
       />
@@ -390,7 +388,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
           Personal Assessment
         </span>
         <img
-          src="https://axeslab.zainaxes.com/web/bg-previews/136_Motion-Background-17.jpg"
+          src="https://meez.design/web/bg-previews/136_Motion-Background-17.jpg"
           alt=""
           class="absolute right-0 bottom-0 h-full w-auto object-contain pointer-events-none z-0"
           style="mix-blend-mode: multiply;"
@@ -400,7 +398,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
       <!-- Panel 2 - Gallery -->
       <div class="bg-[#FEFDF9] px-5 sm:px-8 py-6 sm:py-8 flex flex-col justify-between min-h-[150px] sm:min-h-[180px] animate-fade-up delay-1000 overflow-hidden">
         <div class="relative flex-1" id="cardContainer">
-          <!-- Cards injected by Axes Lab (@zainaxes) -->
+          <!-- Cards injected by JS -->
         </div>
         <div class="flex gap-2 mt-6" id="cardDots"></div>
       </div>
@@ -409,7 +407,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
       <div class="bg-black px-5 sm:px-8 py-6 sm:py-8 flex items-center gap-4 sm:gap-6 min-h-[150px] sm:min-h-[180px] animate-fade-up delay-1100">
         <div class="flex-shrink-0">
           <img
-            src="https://axeslab.zainaxes.com/web/bg-previews/097_Background-5.jpg"
+            src="https://meez.design/web/bg-previews/097_Background-5.jpg"
             alt=""
             class="object-contain w-[120px] h-[82px] sm:w-[160px] sm:h-[110px] lg:w-[208px] lg:h-[142px]"
           />
@@ -433,7 +431,7 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` easing with `both` fill mode.
 
     <!-- Background decorative image - desktop only -->
     <img
-      src="https://axeslab.zainaxes.com/web/bg-previews/206_Transit-Flow.jpg"
+      src="https://meez.design/web/bg-previews/206_Transit-Flow.jpg"
       alt=""
       class="absolute pointer-events-none z-0 hidden lg:block animate-scale-in delay-700"
       style="width: clamp(600px, 80vw, 1412px); height: auto; bottom: -10%; right: clamp(-400px, -20vw, -100px);"

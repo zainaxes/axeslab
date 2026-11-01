@@ -4,15 +4,13 @@ slug: "cross-border"
 title: "Cross-Border"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 129
+routeCollection: "apps"
+videoUrl: "/media/videos/cross-border.mp4"
+posterUrl: "/media/posters/cross-border.jpg"
+chars: 6294
 tier: "free"
-chars: 6365
-preview_video: "/media/videos/cross-border.mp4"
-preview_poster: "/media/posters/cross-border.jpg"
+likes: 129
 ---
-
-# Cross-Border (Mobile App)
 
 Create a mobile-first logistics company landing page for "CARGOX GROUP" displayed inside an iPhone 15 Pro mockup frame. Use React, TypeScript, Tailwind CSS, and the `motion` library (motion/react) for animations. Use Vite as the build tool.
 
@@ -35,7 +33,7 @@ The body background is #111111. The scrollable container uses `container-type: s
 
 **Background:** Autoplaying, muted, looping video:
 ```
-https://axeslab.zainaxes.com/web/media/ext/597d53d9b15f2d2d.mp4
+https://meez.design/web/media/ext/597d53d9b15f2d2d.mp4
 ```
 
 **Navbar (absolute, top):**
@@ -62,10 +60,10 @@ https://axeslab.zainaxes.com/web/media/ext/597d53d9b15f2d2d.mp4
 
 **Tagline** (scroll-triggered, slides from left):
 - "LOGISTICS" in Barlow Condensed 800, white, clamp(44px, 13vw, 64px)
-- "shaped by Axes Lab (@zainaxes)" / "powered by Axes Lab (@zainaxes)" in Helvetica, clamp(18px, 5vw, 26px), color #1a1a1a
+- "shaped by scale" / "powered by precision" in Helvetica, clamp(18px, 5vw, 26px), color #1a1a1a
 
 **World Map:**
-- Background map image: `https://axeslab.zainaxes.com/web/media/ext/f9ce5f887859208d.png`
+- Background map image: `https://meez.design/web/media/ext/f9ce5f887859208d.png`
 - Aspect ratio 435/340, extends 20px beyond container edges
 - SVG overlay (viewBox 0 0 299.037 142.509) at left:10%, top:18%, width:80% with 4 curved route paths in yellow (#FFDA00, 2.5 stroke):
   ```
@@ -78,9 +76,9 @@ https://axeslab.zainaxes.com/web/media/ext/597d53d9b15f2d2d.mp4
 - Animated yellow arrow polygons (points="0,-4 8,0 0,4") using SVG `<animateMotion>` along each path, rotating automatically
 - 5 stop dots at coordinates: [9.519,15.519], [289.519,59.518], [220.519,9.519], [125.518,78.519], [19.519,104.519] - each is a yellow circle r=9.519 with dark center r=3.389 (#002A35). They pop in with scale animation.
 - 3 floating transport icons (white circle bg, 16% width, rounded-full, box-shadow):
-  - Ship: `https://axeslab.zainaxes.com/web/media/ext/0d3cbcc042a65ea1.png` at left:26%, top:28.9%
-  - Car: `https://axeslab.zainaxes.com/web/media/ext/457552dcad941164.png` at left:70.8%, top:15.6%, rotate(9.73deg)
-  - Plane: `https://axeslab.zainaxes.com/web/media/ext/c4fe9416e8e5502f.png` at left:55.2%, top:52.1%, rotate(180deg) scaleY(-1)
+  - Ship: `https://meez.design/web/media/ext/0d3cbcc042a65ea1.png` at left:26%, top:28.9%
+  - Car: `https://meez.design/web/media/ext/457552dcad941164.png` at left:70.8%, top:15.6%, rotate(9.73deg)
+  - Plane: `https://meez.design/web/media/ext/c4fe9416e8e5502f.png` at left:55.2%, top:52.1%, rotate(180deg) scaleY(-1)
   - Icons pop in (scale 0.5 -> 1), then continuously float up/down with infinite y animation
 
 **Stats** (scroll-triggered, slide in from opposite sides):

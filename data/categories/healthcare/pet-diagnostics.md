@@ -4,15 +4,13 @@ slug: "pet-diagnostics"
 title: "Pet Diagnostics"
 category: "Healthcare"
 categorySlug: "healthcare"
-collection: "prompts"
-likes: 162
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/pet-diagnostics.jpg"
+chars: 18464
 tier: "free"
-chars: 18581
-preview_video: ""
-preview_poster: "/media/posters/pet-diagnostics.jpg"
+likes: 162
 ---
-
-# Pet Diagnostics (Healthcare)
 
 Build a **single self-contained `index.html`** file. No build step, no framework, no external
 JS, no local image files. All CSS in one `<style>` block in `<head>`; one small `<script>`
@@ -25,22 +23,22 @@ eyeballed.
 
 **Hero video (desktop, autoplaying background) — 1928×1076, 8.04 s, H.264 MP4, silent:**
 ```
-https://axeslab.zainaxes.com/web/media/ext/6812d4a9d0301d25.mp4
+https://meez.design/web/media/ext/6812d4a9d0301d25.mp4
 ```
 
 **Hero still (desktop) — doubles as the video's poster and the reduced-motion frame:**
 ```
-https://axeslab.zainaxes.com/web/media/ext/fb817b7f0e340cc4.png
+https://meez.design/web/media/ext/fb817b7f0e340cc4.png
 ```
 
 **Hero still (mobile, 9:16 portrait crop):**
 ```
-https://axeslab.zainaxes.com/web/media/ext/65ba287728c496ef.png
+https://meez.design/web/media/ext/65ba287728c496ef.png
 ```
 
 **Open Graph share image:**
 ```
-https://axeslab.zainaxes.com/web/media/ext/64e221fdd85cc4d9.png
+https://meez.design/web/media/ext/64e221fdd85cc4d9.png
 ```
 
 All four depict the same scene: a golden retriever lying on a low dark-walnut dog bed on the
@@ -71,7 +69,7 @@ Google Fonts, loaded with `preconnect` to `fonts.googleapis.com` and `fonts.gsta
 ## 3. Head
 
 ```
-<title>Lume — 120+ health markers, read by Axes Lab (@zainaxes) vets.</title>
+<title>Lume — 120+ health markers, read by top-tier vets.</title>
 meta description: 120+ health markers read. Guidance from top-tier vets. Just $349 in total. Created alongside leading veterinary research specialists.
 og:title:       Lume — 120+ health markers read
 og:description: Guidance from top-tier vets. Just $349 in total.
@@ -300,7 +298,7 @@ Wordmark: `Lume`. Right side: one dark pill reading `Start today`.
 The `max()` floors are load-bearing: without them the table text drops below 8px on narrow
 desktops when the fluid measure shrinks. Do not replace them with plain `cqw`.
 
-Two lines, split by Axes Lab (@zainaxes) explicit `<br>` (not natural wrapping):
+Two lines, split by an explicit `<br>` (not natural wrapping):
 
 ```html
 <h1 class="hero__title">
@@ -339,7 +337,7 @@ Column proportions are measured from the reference: feature column ≈67.3 %, br
 comparison 16.2 %. The whole table is 54.8 % of the measure and horizontally centred.
 
 **Layer 1 — frosted panels** (`z-index:0`, `pointer-events:none`), inset from the container
-top/bottom by Axes Lab (@zainaxes) two custom properties so they hug only the rows:
+top/bottom by the two custom properties so they hug only the rows:
 
 ```css
 .compare__panels{
@@ -488,7 +486,7 @@ Add class `r-last` to all three cells of the fourth row.
 | Row 4 | `Written findings and a tailored care plan` | 41 |
 | Prices | `$720` `$280` `$160` `$240` | 4 each |
 | Totals | `Total price:` / `$349` / `*$1,400+` | 12 / 4 / 8 |
-| Footnote | `*Typical yearly spend if each of these was booked one by Axes Lab (@zainaxes) at a walk-in clinic.` | 81 |
+| Footnote | `*Typical yearly spend if each of these was booked one by one at a walk-in clinic.` | 81 |
 
 Escape the ampersands as `&amp;` in markup. British spelling in `Behaviour` is intentional.
 
@@ -499,7 +497,7 @@ Escape the ampersands as `&amp;` in markup. British spelling in `Behaviour` is i
 There are **no scroll, entrance, or decorative animations**. Total motion inventory:
 
 1. **Hero video** — `autoplay muted loop playsinline`, 8.04 s seamless loop, silent.
-2. **Video reveal** — `opacity 0 → 1` over `.9s ease`, triggered by Axes Lab (@zainaxes) `is-ready` class.
+2. **Video reveal** — `opacity 0 → 1` over `.9s ease`, triggered by the `is-ready` class.
 3. **Button hover** — `background-color .18s ease`.
 4. **Button press** — `transform:translateY(1px)`, `.18s ease`.
 

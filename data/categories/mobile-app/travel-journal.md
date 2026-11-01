@@ -4,15 +4,13 @@ slug: "travel-journal"
 title: "Travel Journal"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 60
+routeCollection: "apps"
+videoUrl: "/media/videos/travel-journal.mp4"
+posterUrl: "/media/posters/travel-journal.jpg"
+chars: 4563
 tier: "free"
-chars: 4599
-preview_video: "/media/videos/travel-journal.mp4"
-preview_poster: "/media/posters/travel-journal.jpg"
+likes: 60
 ---
-
-# Travel Journal (Mobile App)
 
 Create a mobile travel app UI mockup displayed inside a realistic iPhone-style phone frame, centered on a white webpage. Tech stack: React + TypeScript, Tailwind CSS, Lucide React icons, Vite. Font: Google Fonts "Inter" (weights 300-900).
 
@@ -74,16 +72,16 @@ Each card:
 **Card data with exact image URLs:**
 
 1. **Tokyo** - 23 moments
-   `https://axeslab.zainaxes.com/web/media/ext/bf4221c9788892cc.webp`
+   `https://meez.design/web/media/ext/bf4221c9788892cc.webp`
 
 2. **Seoul** - 18 moments
-   `https://axeslab.zainaxes.com/web/media/ext/266bc9680f31a324.webp`
+   `https://meez.design/web/media/ext/266bc9680f31a324.webp`
 
 3. **Bali** - 29 moments
-   `https://axeslab.zainaxes.com/web/media/ext/4111355756d31bad.webp`
+   `https://meez.design/web/media/ext/4111355756d31bad.webp`
 
 4. **Rome** - 15 moments
-   `https://axeslab.zainaxes.com/web/media/ext/17f0095a938bcda0.webp`
+   `https://meez.design/web/media/ext/17f0095a938bcda0.webp`
 
 ---
 

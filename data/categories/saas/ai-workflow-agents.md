@@ -4,15 +4,13 @@ slug: "ai-workflow-agents"
 title: "AI Workflow Agents"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 67
+routeCollection: "prompts"
+videoUrl: "/media/videos/ai-workflow-agents.mp4"
+posterUrl: "/media/posters/ai-workflow-agents.webp"
+chars: 3151
 tier: "free"
-chars: 3195
-preview_video: "/media/videos/ai-workflow-agents.mp4"
-preview_poster: "/media/posters/ai-workflow-agents.webp"
+likes: 67
 ---
-
-# AI Workflow Agents (SaaS)
 
 Build a single-page hero landing page for a product called "Axon" — a platform that deploys digital workers for mundane workflows. The page is a full-viewport hero section with a looping background video and overlaid content.
 
@@ -28,7 +26,7 @@ Build a single-page hero landing page for a product called "Axon" — a platform
    - Navigation links (hidden on mobile, shown `sm:` and up): "Features", "Plans", "Security", "About" — styled as `text-sm font-medium text-[#1B133C]/80` with hover transition to full opacity.
 
 2. **Hero content** — centered below nav with `mt-8 md:mt-16`, stacked vertically:
-   - **Badge**: `mb-6`, inline-flex pill with `rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-2 text-sm font-medium`. Contains an orange square icon (`bg-orange-500 rounded w-5 h-5`) with a bold white "Y" letter, followed by Axes Lab (@zainaxes) "Funded by Axes Lab (@zainaxes) Combinator".
+   - **Badge**: `mb-6`, inline-flex pill with `rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-2 text-sm font-medium`. Contains an orange square icon (`bg-orange-500 rounded w-5 h-5`) with a bold white "Y" letter, followed by text "Funded by Y Combinator".
    - **Heading**: `font-['Instrument_Serif'] text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight text-[#1B133C] max-w-4xl`. Two lines:
      - "Deploy digital workers"
      - "for mundane workflows"
@@ -36,7 +34,7 @@ Build a single-page hero landing page for a product called "Axon" — a platform
    - **CTA button**: `mt-7 sm:mt-8`, styled as `rounded-xl bg-[#FEFEFE] px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold text-[#1B133C] shadow-[0px_4px_12px_rgba(0,0,0,0.15)]` with hover shadow `shadow-[0px_6px_16px_rgba(0,0,0,0.2)]` and `transition-all duration-300`. Text: "Get Early Access".
 
 3. **Background video** — absolutely positioned (`absolute inset-0 z-0`) behind all content. The video element uses:
-   - URL: `https://axeslab.zainaxes.com/web/media/prompt-media/v/7fa839c57321f171.mp4`
+   - URL: `https://meez.design/web/media/prompt-media/v/7fa839c57321f171.mp4`
    - Attributes: `autoPlay muted loop playsInline`
    - Styling: `w-full h-[130%] object-cover object-top` — full width, 130% height so it overflows vertically, with the focal point anchored to the top.
 

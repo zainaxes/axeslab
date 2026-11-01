@@ -4,15 +4,13 @@ slug: "fastshot"
 title: "Fastshot"
 category: "AI"
 categorySlug: "ai"
-collection: "prompts"
-likes: 46
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/fastshot.jpg"
+chars: 54734
 tier: "free"
-chars: 54806
-preview_video: ""
-preview_poster: "/media/posters/fastshot.jpg"
+likes: 46
 ---
-
-# Fastshot (AI)
 
 Recreate this page as ONE self-contained HTML file (inline CSS + JS). Match it pixel-faithfully. Do not invent extra sections, extra pages, extra copy, or a different visual language. The entire website is this single full-viewport hero.
 
@@ -104,7 +102,7 @@ Fastshot landing hero.
 viewport: width=device-width, initial-scale=1, viewport-fit=cover
 
 BACKGROUND VIDEO (REQUIRED — this exact URL, no substitute, no still image)
-https://axeslab.zainaxes.com/web/media/ext/3d16a1c80d75577d.mp4
+https://meez.design/web/media/ext/3d16a1c80d75577d.mp4
 <video> covering the full viewport: autoplay muted loop playsinline, object-fit:cover, z-index 0.
 Page behind it: #0a0d12. html/body height 100%, body overflow:hidden.
 The video is a dawn lake-and-mountains landscape. CSS must not pan/zoom/ken-burns it. UI sits on top.
@@ -233,7 +231,7 @@ aria-label “Build it”
 hover brightness(1.07); active scale(.95)
 
 FOOTER
-“Built by Axes Lab (@zainaxes) from”
+“Built by engineers from”
 Inter, 14.01u, weight 480, letter-spacing 0.0065em, color rgba(255,255,255,.95), opsz 32
 text-shadow: 0 1u 12u rgba(0,0,0,.35)
 Three white wordmark SVGs, gap 62u, drop-shadow 0 1u 10u rgba(0,0,0,.30)
@@ -394,7 +392,7 @@ Desktop composer: absolute toolbar. Right cluster is NOT a flex-centered group.
   --logo-y:867;    --logo-gap:62;
 }
 @supports (height:100dvh){ :root{ --u: min(0.06410256vw, 0.12400794dvh); --vu: 0.09920635dvh } }
-/* beyond the reference width the frame is scaled up by Axes Lab (@zainaxes), so pull the chrome in */
+/* beyond the reference width the frame is scaled up by width, so pull the chrome in */
 @media (min-width:1561px){ :root{ --inset-top:27; --inset-bottom:74 } }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -615,7 +613,7 @@ button,input,textarea{font:inherit;color:inherit;background:none;border:0}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    TABLET
-   Desktop scales the whole 1560x1008 composition by Axes Lab (@zainaxes), which holds while --u
+   Desktop scales the whole 1560x1008 composition by --u, which holds while --u
    stays near 1. Measured, the composer's micro-labels (9u) and body (10u) fall
    under 8px/9px once --u drops past ~0.88, and at 1024x768 they reach 5.9px and
    6.5px. That is where the desktop model stops being legible -- not where it
@@ -924,7 +922,7 @@ button,input,textarea{font:inherit;color:inherit;background:none;border:0}
 </head>
 <body>
 <div class="stage">
-  <video class="stage-video" src="https://axeslab.zainaxes.com/web/media/ext/3d16a1c80d75577d.mp4" autoplay muted loop playsinline></video>
+  <video class="stage-video" src="https://meez.design/web/media/ext/3d16a1c80d75577d.mp4" autoplay muted loop playsinline></video>
   <div class="frame">
 
     <input type="checkbox" id="menu" hidden>
@@ -984,7 +982,7 @@ button,input,textarea{font:inherit;color:inherit;background:none;border:0}
     </main>
 
     <footer class="proof">
-      <p class="by">Built by Axes Lab (@zainaxes) from</p>
+      <p class="by">Built by engineers from</p>
       <div class="logos">
         <svg class="ic ic-google" viewBox="3.78 8.530000000000001 96.84 32.08" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" ><path d="M18.25 33.02 L13.25 32.81 L9.0 30.74 L5.75 27.35 L4.13 22.5 L4.14 18.75 L5.93 14.25 L9.06 11.0 L13.75 8.88 L19.0 9.0 L23.38 11.0 L24.12 12.25 L22.25 14.12 L19.75 12.73 L14.75 12.14 L12.25 12.88 L9.75 14.76 L7.83 18.25 L7.48 21.75 L8.0 24.22 L10.54 27.75 L12.25 28.91 L16.25 29.78 L20.5 28.88 L22.41 27.5 L23.72 25.5 L24.0 23.27 L16.75 22.81 L16.16 21.25 L16.75 19.86 L26.5 19.82 L27.66 20.75 L27.34 25.25 L25.56 28.75 L22.15 31.75 L18.25 33.02 Z M83.5 32.79 L81.5 32.65 L81.01 31.5 L81.12 10.5 L81.5 9.78 L82.5 9.56 L84.0 9.82 L84.41 10.75 L84.59 31.5 L83.5 32.79 Z M38.75 33.04 L35.0 33.01 L32.34 31.75 L30.0 29.26 L29.0 26.75 L29.08 23.75 L30.04 21.25 L32.04 19.0 L35.75 17.32 L37.75 17.28 L40.75 18.13 L43.5 20.58 L44.76 23.0 L44.77 27.0 L43.74 29.5 L41.5 31.84 L38.75 33.04 Z M55.75 33.01 L52.5 32.89 L49.89 31.75 L47.21 28.75 L46.43 26.25 L46.99 22.25 L48.18 20.25 L50.87 18.0 L53.5 17.21 L56.25 17.27 L59.5 18.92 L61.75 21.71 L62.29 23.5 L62.06 27.75 L61.0 29.8 L59.0 31.78 L55.75 33.01 Z M71.75 40.26 L69.25 39.96 L67.0 38.83 L65.07 36.75 L64.94 35.5 L67.25 34.26 L69.75 36.78 L73.0 36.95 L74.92 35.5 L75.6 32.5 L74.75 32.04 L73.0 32.94 L70.25 32.92 L67.25 31.66 L64.29 28.0 L64.3 22.5 L65.77 20.0 L68.75 17.73 L72.0 17.21 L75.0 18.54 L76.5 17.67 L78.0 17.6 L78.92 19.0 L78.56 35.0 L77.75 36.97 L76.0 38.88 L74.0 39.95 L71.75 40.26 Z M94.75 33.02 L91.75 32.84 L89.64 31.75 L87.37 29.5 L86.36 27.0 L86.42 23.0 L87.36 21.0 L90.5 18.06 L93.0 17.27 L97.0 18.15 L100.27 22.5 L99.75 23.63 L90.72 27.75 L90.87 28.75 L93.0 30.05 L95.5 29.84 L97.75 28.08 L100.0 29.38 L99.95 30.5 L98.5 31.75 L94.75 33.02 Z M38.71 29.75 L40.94 27.75 L41.63 25.75 L41.6 23.75 L39.63 21.0 L36.25 20.31 L34.5 21.1 L33.01 22.75 L32.72 26.75 L33.75 28.51 L35.25 29.68 L38.71 29.75 Z M91.1 24.5 L96.0 22.5 L96.09 21.25 L93.75 20.12 L91.75 20.95 L89.73 23.75 L90.0 24.62 L91.1 24.5 Z M54.94 30.0 L57.93 28.5 L58.98 26.75 L59.09 24.5 L57.23 21.25 L54.0 20.31 L52.25 20.93 L51.0 22.1 L50.12 23.75 L50.01 25.75 L51.42 28.75 L53.0 29.78 L54.94 30.0 Z M72.55 30.0 L73.73 29.5 L75.31 27.75 L75.62 23.75 L73.75 21.15 L71.0 20.56 L69.5 21.13 L68.25 22.41 L67.5 26.25 L69.0 28.82 L70.75 29.91 L72.55 30.0 Z" fill="currentColor"/></svg>
         <svg class="ic ic-cisco" viewBox="5.0200000000000005 7.0 67.28999999999999 35.36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" ><path d="M23.75 24.86 L22.0 24.67 L21.48 23.0 L21.5 8.5 L21.77 7.75 L22.75 7.35 L24.24 7.75 L24.58 8.5 L24.54 23.75 L23.75 24.86 Z M54.75 25.09 L53.54 24.75 L53.17 23.75 L53.16 9.0 L53.5 7.87 L55.0 7.53 L56.05 8.5 L56.09 20.25 L55.84 24.0 L54.75 25.09 Z M16.0 22.27 L14.25 22.34 L13.56 21.25 L13.67 13.75 L14.75 12.66 L16.0 13.06 L16.52 14.25 L16.55 21.25 L16.0 22.27 Z M31.75 21.79 L30.25 21.79 L29.67 20.75 L29.64 13.5 L30.5 12.6 L31.75 12.91 L32.51 14.25 L32.4 20.75 L31.75 21.79 Z M62.75 22.06 L61.5 21.79 L61.08 20.75 L61.1 14.0 L61.53 13.0 L62.5 12.67 L63.75 13.19 L64.08 14.5 L63.92 21.0 L62.75 22.06 Z M47.75 21.77 L46.0 21.82 L45.27 21.0 L45.43 14.5 L46.75 12.92 L47.57 13.25 L48.09 14.5 L47.75 21.77 Z M70.75 22.33 L69.75 22.16 L69.16 21.0 L69.28 17.25 L70.5 16.44 L71.5 16.82 L71.96 17.75 L71.89 21.25 L70.75 22.33 Z M7.0 22.03 L5.75 21.81 L5.37 21.0 L5.43 17.5 L6.25 16.69 L7.75 16.95 L8.29 18.0 L8.28 21.25 L7.0 22.03 Z M39.5 22.05 L38.25 22.02 L37.39 21.0 L37.44 18.25 L38.5 16.89 L39.75 17.18 L40.27 18.25 L40.29 21.0 L39.5 22.05 Z M36.5 41.82 L32.5 41.83 L31.29 40.5 L32.0 39.13 L34.75 39.37 L35.92 38.75 L35.58 37.75 L33.25 36.88 L31.2 34.5 L32.0 31.63 L34.0 30.26 L37.5 30.32 L38.76 31.5 L38.0 33.02 L35.25 32.99 L34.43 33.75 L34.86 34.75 L37.67 35.5 L39.33 37.75 L38.58 40.5 L36.5 41.82 Z M50.5 41.84 L46.1 41.75 L44.49 40.75 L43.0 38.68 L42.7 36.25 L43.11 33.75 L44.25 32.17 L46.75 30.44 L50.25 30.18 L51.2 31.25 L51.0 33.01 L47.5 33.31 L46.13 34.5 L45.81 35.75 L46.0 37.54 L47.19 38.75 L50.96 39.25 L51.18 40.75 L50.5 41.84 Z M62.0 42.01 L58.83 42.0 L56.75 41.04 L54.46 37.75 L54.4 35.25 L55.25 33.0 L56.83 31.25 L58.75 30.35 L61.5 30.25 L63.5 31.16 L66.0 34.36 L65.83 38.5 L64.0 40.93 L62.0 42.01 Z M19.25 41.76 L16.25 41.84 L14.25 41.04 L12.77 39.5 L12.05 37.75 L11.99 35.5 L12.75 33.25 L14.75 31.19 L16.5 30.37 L19.25 30.33 L20.49 31.5 L20.21 33.25 L17.0 33.51 L15.75 34.38 L15.12 36.0 L15.52 37.75 L16.5 38.71 L20.28 39.0 L20.45 40.75 L19.25 41.76 Z M26.75 41.77 L25.0 41.77 L24.47 40.75 L24.56 31.5 L25.5 30.35 L27.0 30.67 L27.61 31.5 L27.61 40.75 L26.75 41.77 Z M61.3 39.0 L62.92 37.25 L63.08 35.0 L61.65 33.25 L59.75 33.11 L58.14 34.25 L57.49 36.5 L59.0 38.84 L61.3 39.0 Z" fill="currentColor"/></svg>

@@ -4,15 +4,13 @@ slug: "quantum-core"
 title: "Quantum Core"
 category: "Data Intelligence"
 categorySlug: "data-intelligence"
-collection: "prompts"
-likes: 195
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/quantum-core.jpg"
+chars: 27160
 tier: "free"
-chars: 27279
-preview_video: ""
-preview_poster: "/media/posters/quantum-core.jpg"
+likes: 195
 ---
-
-# Quantum Core (Data Intelligence)
 
 # PROMPT — Recreate the "Apogee" Hero Section Exactly
 
@@ -161,7 +159,7 @@ body {
 }
 ```
 
-**Critical:** every animation uses `forwards` fill mode and the easing `cubic-bezier(0.16, 1, 0.3, 1)`. Elements start at `opacity-0` in markup and are revealed by Axes Lab (@zainaxes) animation — never by Axes Lab (@zainaxes) state or IntersectionObserver.
+**Critical:** every animation uses `forwards` fill mode and the easing `cubic-bezier(0.16, 1, 0.3, 1)`. Elements start at `opacity-0` in markup and are revealed by the animation — never by JS state or IntersectionObserver.
 
 ---
 
@@ -204,13 +202,13 @@ It maps direction → class via a lookup object (`up: 'animate-fade-up'`, `down:
 **Background video** — first child, absolutely positioned, covering, with this EXACT source URL:
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/8697de2ba28425a4.mp4
+https://meez.design/web/media/ext/8697de2ba28425a4.mp4
 ```
 
 ```tsx
 <video
   className="absolute inset-0 w-full h-full object-cover"
-  src="https://axeslab.zainaxes.com/web/media/ext/8697de2ba28425a4.mp4"
+  src="https://meez.design/web/media/ext/8697de2ba28425a4.mp4"
   autoPlay
   loop
   muted
@@ -384,7 +382,7 @@ Panel CTAs — `<div className="flex flex-col gap-3 transition-all duration-300"
 
 ## 5. EXACT SPACING / BOX-MODEL TABLE — CRITICAL, DO NOT ESTIMATE
 
-**Read this before building.** Every number below is a literal pixel value taken from the source code. Do not eyeball proportions from the screenshot, do not round to "looks about right," and do not let auto-layout/AI defaults substitute their own padding. If a cell says `24px` padding, the rendered element must have 24px of empty space between its border and its text/icon on that side — verify by Axes Lab (@zainaxes), not by Axes Lab (@zainaxes). The most common failure mode when this gets rebuilt is buttons and pills getting little or no internal padding (text touching the edges) — every button/pill row below exists specifically to prevent that.
+**Read this before building.** Every number below is a literal pixel value taken from the source code. Do not eyeball proportions from the screenshot, do not round to "looks about right," and do not let auto-layout/AI defaults substitute their own padding. If a cell says `24px` padding, the rendered element must have 24px of empty space between its border and its text/icon on that side — verify by measuring, not by glancing. The most common failure mode when this gets rebuilt is buttons and pills getting little or no internal padding (text touching the edges) — every button/pill row below exists specifically to prevent that.
 
 Format: **Property — base (<640px) → sm (≥640px) → md (≥768px) → lg (≥1024px)**. A dash (`—`) means "unchanged from the last stated breakpoint."
 
@@ -397,7 +395,7 @@ Format: **Property — base (<640px) → sm (≥640px) → md (≥768px) → lg 
 | `<nav>` | bottom padding | `0` (none — spacing to hero content comes from the `flex-1 items-center` centering below it, not nav padding) | | | |
 | Hero content row (`flex-1`) | vertical padding | `32px` top and bottom (`py-8`) | — | — | — |
 | Nav / content row | max width | `1800px`, centered (`mx-auto`) | — | — | — |
-| Copy column ↔ Revenue card | gap between them | `40px` (stacked vertically, so this is vertical gap) | — | — | `48px` (horizontal gap, side by Axes Lab (@zainaxes)) |
+| Copy column ↔ Revenue card | gap between them | `40px` (stacked vertically, so this is vertical gap) | — | — | `48px` (horizontal gap, side by side) |
 | Copy column | max width | `593px` | — | — | — |
 | Revenue card wrapper | max width | `405px`, horizontally centered (`mx-auto`) | — | — | left-aligned (`mx-0`, no longer centered) |
 
@@ -597,9 +595,9 @@ All use `cubic-bezier(0.16, 1, 0.3, 1)` with `forwards`. Total sequence resolves
 - [ ] The `.00` in the amount is a separate `white/20` span
 - [ ] `font-[450]` is used throughout (not `font-normal`/`font-medium`) except the `<h1>`, which is `font-normal`
 - [ ] Mobile menu is visibility-toggled, not conditionally rendered, so close transitions animate
-- [ ] Menu/X icons cross-fade with rotate+scale; they are never swapped by Axes Lab (@zainaxes)
+- [ ] Menu/X icons cross-fade with rotate+scale; they are never swapped by unmounting
 - [ ] Body scroll lock on menu open, with cleanup on unmount
-- [ ] Every animated element carries `opacity-0` in markup and is revealed only by Axes Lab (@zainaxes) CSS animation's `forwards` fill
+- [ ] Every animated element carries `opacity-0` in markup and is revealed only by the CSS animation's `forwards` fill
 - [ ] No scroll-triggered animation, no IntersectionObserver, no animation library — pure CSS keyframes + `animationDelay`
 - [ ] **Both hero CTA buttons have 20–27px of horizontal breathing room between their border and their label text — never text touching the edge** (see §5.7 — this was the exact defect in the last rebuild)
 - [ ] The center desktop nav pill is sized to its content plus 24px of padding on each side, with the full 52px height — not a cramped box that clips or crowds the four nav links (see §5.3)

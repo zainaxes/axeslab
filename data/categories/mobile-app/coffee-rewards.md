@@ -4,17 +4,15 @@ slug: "coffee-rewards"
 title: "Coffee Rewards"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 141
+routeCollection: "apps"
+videoUrl: "/media/videos/coffee-rewards.mp4"
+posterUrl: "/media/posters/coffee-rewards.jpg"
+chars: 22485
 tier: "free"
-chars: 22606
-preview_video: "/media/videos/coffee-rewards.mp4"
-preview_poster: "/media/posters/coffee-rewards.jpg"
+likes: 141
 ---
 
-# Coffee Rewards (Mobile App)
-
-Build a mobile coffee profile screen inside a phone mockup frame. Use vanilla HTML, CSS, and JS with Vite as the bundler. The design is dark/warm-toned, inspired by Axes Lab (@zainaxes) profile screens with glassmorphic UI elements.
+Build a mobile coffee profile screen inside a phone mockup frame. Use vanilla HTML, CSS, and JS with Vite as the bundler. The design is dark/warm-toned, inspired by iOS profile screens with glassmorphic UI elements.
 
 **Phone mockup:**
 - 390x844px at zoom 0.78, black background, 44px border-radius, overflow hidden, strong drop shadow
@@ -22,12 +20,12 @@ Build a mobile coffee profile screen inside a phone mockup frame. Use vanilla HT
 
 **Hero section (top):**
 - Full-width, 430px tall
-- Contains a looping muted autoplay video: `https://axeslab.zainaxes.com/web/media/bg-videos/278_kv7e7ksvfd.mp4`
+- Contains a looping muted autoplay video: `https://meez.design/web/media/bg-videos/278_kv7e7ksvfd.mp4`
 - Video covers the area with `object-fit: cover; object-position: center top`
 - Bottom gradient overlay fading from transparent at 52% to the background color at 100%
 - Top bar with two glass circle buttons (edit icon on left, X close SVG on right), positioned absolute top 18px
 
-**Identity section (overlaps hero by Axes Lab (@zainaxes) margin-top):**
+**Identity section (overlaps hero by -112px margin-top):**
 - Centered name "Dasha" (28px, weight 500)
 - Left and right laurel images flanking the name (local assets `/assets/images/laurel-left.png` and `laurel-right.png`), 73px tall, 0.6 opacity, positioned via `right: calc(50% + 66px)` / `left: calc(50% + 66px)`
 - Subtitle "Plum Parfait Latte" below (15px, muted color `rgba(235, 220, 205, 0.55)`)
@@ -38,14 +36,14 @@ Build a mobile coffee profile screen inside a phone mockup frame. Use vanilla HT
 
 **Stats grid (3 columns, 12px gap, 26px top padding, 16px horizontal padding):**
 - Each card: semi-transparent background `rgba(255,255,255,0.06)`, 24px border-radius
-- Card 1: coffee image `https://axeslab.zainaxes.com/web/bg-previews/239_bp8i93exbq.jpg` (84x84), number "154", label "drinks consumed"
-- Card 2: sandwich image `https://axeslab.zainaxes.com/web/bg-previews/240_bwuyzzssak.jpg` (84x84), number "36", label "sandwiches eaten"
-- Card 3: cafe image `https://axeslab.zainaxes.com/web/bg-previews/241_bwxlb9yeti.jpg` (84x84), number "12", label "cafes visited"
+- Card 1: coffee image `https://meez.design/web/bg-previews/239_bp8i93exbq.jpg` (84x84), number "154", label "drinks consumed"
+- Card 2: sandwich image `https://meez.design/web/bg-previews/240_bwuyzzssak.jpg` (84x84), number "36", label "sandwiches eaten"
+- Card 3: cafe image `https://meez.design/web/bg-previews/241_bwxlb9yeti.jpg` (84x84), number "12", label "cafes visited"
 - Numbers: 25px, weight 500. Labels: 13px, color `#BAAA9A8C`
 
 **Favorite card (12px below stats, 16px horizontal margin):**
 - Same card background, 24px radius, 110px height, flex row with 16px gap
-- Latte image `https://axeslab.zainaxes.com/web/bg-previews/242_byzm6mnvgu.jpg` (108x108, object-fit contain)
+- Latte image `https://meez.design/web/bg-previews/242_byzm6mnvgu.jpg` (108x108, object-fit contain)
 - Text column: "Favorite" (13px, weight 500), "Latte" (19px, weight 500), "Ordered 73 times" (13px, color `#BAAA9A8C`)
 - Shuffle button on right (glass circle, local icon `/assets/images/icon-shuffle.png` 19px)
 
@@ -474,7 +472,7 @@ body {
   <div class="screen">
 
     <div class="hero">
-      <video src="https://axeslab.zainaxes.com/web/media/bg-videos/281_mag4s8xjit.mp4" autoplay muted loop playsinline></video>
+      <video src="https://meez.design/web/media/bg-videos/281_mag4s8xjit.mp4" autoplay muted loop playsinline></video>
       <div class="top-bar">
         <button class="glass circle" type="button" aria-label="Edit profile">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -531,24 +529,24 @@ body {
 
     <div class="stats">
       <div class="stat-card">
-        <img src="https://axeslab.zainaxes.com/web/bg-previews/243_c6rpndcf3k.jpg" alt="">
+        <img src="https://meez.design/web/bg-previews/243_c6rpndcf3k.jpg" alt="">
         <div class="stat-num">154</div>
         <div class="stat-label">drinks<br>consumed</div>
       </div>
       <div class="stat-card">
-        <img src="https://axeslab.zainaxes.com/web/bg-previews/244_ca7j1h1ztr.jpg" alt="">
+        <img src="https://meez.design/web/bg-previews/244_ca7j1h1ztr.jpg" alt="">
         <div class="stat-num">36</div>
         <div class="stat-label">sandwiches<br>eaten</div>
       </div>
       <div class="stat-card">
-        <img src="https://axeslab.zainaxes.com/web/bg-previews/245_cyhp8jgs3b.jpg" alt="">
+        <img src="https://meez.design/web/bg-previews/245_cyhp8jgs3b.jpg" alt="">
         <div class="stat-num">12</div>
         <div class="stat-label">cafes<br>visited</div>
       </div>
     </div>
 
     <div class="favorite">
-      <img src="https://axeslab.zainaxes.com/web/bg-previews/246_d1scdtfz8a.jpg" alt="">
+      <img src="https://meez.design/web/bg-previews/246_d1scdtfz8a.jpg" alt="">
       <div class="fav-text">
         <div class="fav-eyebrow">Favorite</div>
         <div class="fav-title">Latte</div>

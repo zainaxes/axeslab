@@ -4,18 +4,13 @@ slug: "task-engine"
 title: "Task Engine"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 118
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/task-engine.jpg"
+chars: 14503
 tier: "free"
-chars: 14645
-preview_video: ""
-preview_poster: "/media/posters/task-engine.jpg"
+likes: 118
 ---
-
-# Task Engine (SaaS)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Interactive Demos, Video Guides & Assets: https://axeslab.zainaxes.com
 
 ## ROLE
 Recreate a single-file HTML product landing mosaic **pixel-faithful** to the reference below. Output one self-contained `index.html` with inline CSS + JS. **No external images.** All icons are inline SVG. The only external resource is Google Fonts.

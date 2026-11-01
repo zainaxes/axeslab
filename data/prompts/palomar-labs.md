@@ -4,24 +4,23 @@ slug: "palomar-labs"
 title: "Palomar Labs"
 category: "AI"
 categorySlug: "ai"
-collection: "prompts"
-likes: 89
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/palomar-labs.jpg"
+chars: 21115
 tier: "free"
-chars: 21190
-preview_video: ""
-preview_poster: "/media/posters/palomar-labs.jpg"
+likes: 89
 ---
-
-# Palomar Labs (AI)
 
 Build a standalone pixel-accurate recreation of the Palomar Labs marketing landing page: fixed navbar + full-viewport video hero only. No other sections. Match this spec exactly. Do not invent extra copy, buttons, gradients, overlays, or decorative blobs.
 Stack
 React + TypeScript + Vite
 Tailwind CSS
 lucide-react icons: ChevronDown, ArrowRight, Triangle
-Single App.tsx with Navbar, Hero, Trustedby Axes Lab (@zainaxes) assets and URLs (do not change)
+Single App.tsx with Navbar, Hero, TrustedBy
+Exact assets and URLs (do not change)
 Background video (must be this exact CloudFront URL):
-https://axeslab.zainaxes.com/web/media/ext/4ee225aa17cc394a.mp4
+https://meez.design/web/media/ext/4ee225aa17cc394a.mp4
 Fonts in index.html:
 <link href="(self-host this face — no free CDN; substitute a close match if unavailable)" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Oswald:wght@500&family=Montserrat:wght@700&family=Roboto+Slab:wght@600&family=Raleway:wght@700&display=swap" rel="stylesheet">
@@ -108,7 +107,8 @@ Implementation: first line, then <br className="hidden sm:block" />, then a spac
 No subtitle, no primary CTA in the hero body.
 3) Trusted by (inside Hero, under headline)
 Wrapper: w-full mt-8 md:mt-10 animate-fade-up stagger-5
-Label: text-left text-xs tracking-[0.25em] uppercase text-brand-dark/50 mb-6 md:mb-8 font-helvetica-neue → Backed by Axes Lab (@zainaxes) row: flex flex-wrap items-center justify-start gap-6 md:gap-12 lg:gap-16 animate-fade-up stagger-6
+Label: text-left text-xs tracking-[0.25em] uppercase text-brand-dark/50 mb-6 md:mb-8 font-helvetica-neue → Backed by
+Logo row: flex flex-wrap items-center justify-start gap-6 md:gap-12 lg:gap-16 animate-fade-up stagger-6
 Five wordmarks as text (not images), text-lg md:text-xl lg:text-2xl text-brand-dark/80 whitespace-nowrap:
 Meridian — font-playfair (Playfair Display 700)
 STELLEX — font-oswald uppercase (Oswald 500)
@@ -123,7 +123,7 @@ Hero always h-screen with min-h-[700px]
 Content always left-aligned (items-start, text-left, justify-start)
 Video always object-cover object-bottom so the bottom of the footage stays framed
 Visual character
-Quiet, editorial, cream/forest. Light Helvetica Neue, not heavy Inter/SF. Centered triangle + Palomar wordmark. Frosted white pill over a full-bleed landscape video. Wordmark “logos” in mixed display fonts, not SVG brand files. Entrance: nav fades down (stagger 0 / 120 / 240ms); pill, headline, backed-by Axes Lab (@zainaxes) up (240 / 360 / 480 / 600ms).
+Quiet, editorial, cream/forest. Light Helvetica Neue, not heavy Inter/SF. Centered triangle + Palomar wordmark. Frosted white pill over a full-bleed landscape video. Wordmark “logos” in mixed display fonts, not SVG brand files. Entrance: nav fades down (stagger 0 / 120 / 240ms); pill, headline, backed-by fade up (240 / 360 / 480 / 600ms).
 Do not add
 Footer, extra sections, search, language switcher, social icons, video controls, mute button, overlay scrim, second headline, hero “Get started” button, Solutions mega-menu content, or any other video URL.
 Implement this as one working page that looks identical on desktop and mobile.
@@ -470,7 +470,7 @@ Implement this as one working page that looks identical on desktop and mobile.
     }
     .headline .break { display: none; }
 
-    /* ---------- Trusted by Axes Lab (@zainaxes) */
+    /* ---------- Trusted by ---------- */
     .trusted {
       width: 100%;
       margin-top: 2rem;
@@ -568,7 +568,7 @@ Implement this as one working page that looks identical on desktop and mobile.
   <section class="hero">
     <div class="hero-video">
       <video
-        src="https://axeslab.zainaxes.com/web/media/ext/4ee225aa17cc394a.mp4"
+        src="https://meez.design/web/media/ext/4ee225aa17cc394a.mp4"
         autoplay
         muted
         loop

@@ -4,15 +4,13 @@ slug: "celestial-renewal"
 title: "Celestial Renewal"
 category: "Wellness"
 categorySlug: "wellness"
-collection: "prompts"
-likes: 141
+routeCollection: "prompts"
+videoUrl: "/media/videos/celestial-renewal.mp4"
+posterUrl: "/media/posters/celestial-renewal.jpg"
+chars: 7188
 tier: "free"
-chars: 7215
-preview_video: "/media/videos/celestial-renewal.mp4"
-preview_poster: "/media/posters/celestial-renewal.jpg"
+likes: 141
 ---
-
-# Celestial Renewal (Wellness)
 
 **Build a React + Vite + Tailwind CSS landing page with two full-screen sections for a luxury beauty/wellness brand called "Serene". Use TypeScript.**
 
@@ -118,7 +116,7 @@ A full-viewport (`h-screen`) section with:
 
 1. **Background video** -- autoplays, muted, loops, playsInline, covers the full section with `object-cover`:
    ```
-   https://axeslab.zainaxes.com/web/media/ext/54f99e047eb75657.mp4
+   https://meez.design/web/media/ext/54f99e047eb75657.mp4
    ```
 
 2. **Dark overlay** -- `absolute inset-0 bg-black/20`
@@ -159,12 +157,12 @@ progress = clamp(0, 1, (windowHeight - rect.top) / (windowHeight + rect.height))
 
 1. **Rainbow image** -- full-width, positioned `absolute inset-x-0 top-0 z-30`. Parallax: moves vertically from +120px to -160px based on scroll progress. Lerp factor: 0.06.
    ```
-   https://axeslab.zainaxes.com/web/media/ext/7ec95e7fa7e81bbe.png
+   https://meez.design/web/media/ext/7ec95e7fa7e81bbe.png
    ```
 
 2. **Left cloud** -- `absolute left-0 bottom-[10%] z-10`, hidden on mobile (`hidden sm:block`). Width: `w-[500px] md:w-[650px]`. Has `marginLeft: '-50%'` to let it overflow left. Slides in from -200px on X when in view (progress 0.12-0.92), slides back out when not. Also drifts up (cloudY = progress * -50). Opacity tied to X distance. Lerp factor: 0.04.
    ```
-   https://axeslab.zainaxes.com/web/media/ext/0d654f08e102decb.png
+   https://meez.design/web/media/ext/0d654f08e102decb.png
    ```
 
 3. **Right cloud** -- same image as left but `scale-x-[-1]` (flipped), `absolute right-0 bottom-[15%] z-10`. Has `marginRight: '-75%'`. Slides in from +200px. Same lerp/timing as left cloud.

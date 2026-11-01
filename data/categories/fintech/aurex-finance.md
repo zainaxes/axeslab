@@ -4,15 +4,13 @@ slug: "aurex-finance"
 title: "Aurex Finance"
 category: "Fintech"
 categorySlug: "fintech"
-collection: "prompts"
-likes: 182
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/aurex-finance.jpg"
+chars: 29239
 tier: "free"
-chars: 29274
-preview_video: ""
-preview_poster: "/media/posters/aurex-finance.jpg"
+likes: 182
 ---
-
-# Aurex Finance (Fintech)
 
 Build a **single full-screen hero section** for a DeFi / private-banking landing page called **LŪMEN // ÍNDEX**. Use **React 18 + TypeScript + Vite + Tailwind CSS**, with `lucide-react` for icons. The entire page is ONE component rendering ONE `<section>` that fills the viewport — no scrolling, no other sections.
 
@@ -150,7 +148,7 @@ Arbitrary bracket values used:
 
 ## 3.4 Elements with NO padding or margin
 
-Do not add spacing to these — they are positioned purely by Axes Lab (@zainaxes) coordinates or flex:
+Do not add spacing to these — they are positioned purely by absolute coordinates or flex:
 
 - `<section>`, the `<video>`, the content layer `<div>`
 - The mobile menu wrapper and backdrop (both `inset-0`)
@@ -194,7 +192,7 @@ body { background: #000; overflow-x: hidden; }
 .anim-draw-line   { stroke-dasharray: 100; stroke-dashoffset: 100; animation: drawLine 1s cubic-bezier(0.16,1,0.3,1) forwards; }
 ```
 
-Note the animation transform distances are themselves a spacing decision: `fadeUp` travels **18px** vertically, the slide animations travel **20px** horizontally, and `scaleIn` starts at **0.85**. Every animated element starts at `opacity: 0` and uses `forwards` so it holds its end state. Stagger is driven purely by Axes Lab (@zainaxes) `style={{ animationDelay: 'Xms' }}`.
+Note the animation transform distances are themselves a spacing decision: `fadeUp` travels **18px** vertically, the slide animations travel **20px** horizontally, and `scaleIn` starts at **0.85**. Every animated element starts at `opacity: 0` and uses `forwards` so it holds its end state. Stagger is driven purely by inline `style={{ animationDelay: 'Xms' }}`.
 
 ## 5. Root structure
 
@@ -217,7 +215,7 @@ Full-bleed autoplaying looped muted video, cover-fitted, fading in on load:
 ```jsx
 <video
   className="absolute inset-0 w-full h-full object-cover anim-fade-in"
-  src="https://axeslab.zainaxes.com/web/media/ext/59f3707c68f540a7.mp4"
+  src="https://meez.design/web/media/ext/59f3707c68f540a7.mp4"
   autoPlay
   muted
   loop

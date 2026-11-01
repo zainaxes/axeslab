@@ -4,15 +4,13 @@ slug: "agent-grove"
 title: "Agent Grove"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 75
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/agent-grove.jpg"
+chars: 7884
 tier: "free"
-chars: 7893
-preview_video: ""
-preview_poster: "/media/posters/agent-grove.jpg"
+likes: 75
 ---
-
-# Agent Grove (SaaS)
 
 Build a single full-screen (`h-screen w-full overflow-hidden`) hero page for **nexum** — a dark cinematic AI-ops landing hero with a full-bleed background video, glassmorphism nav/cards, and bottom-anchored content. Stack: React + Tailwind + `lucide-react` (`ChevronDown`, `Menu`, `X`). No routing. One section only.
 
@@ -27,7 +25,7 @@ https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=S
 
 ### Background video (exact URL + behavior)
 ```
-https://axeslab.zainaxes.com/web/media/ext/3e968e8bf80d5a51.mp4
+https://meez.design/web/media/ext/3e968e8bf80d5a51.mp4
 ```
 - Absolutely positioned `inset-0`, `h-full w-full object-cover`
 - Attributes: `autoPlay`, `loop`, `muted`, `playsInline`

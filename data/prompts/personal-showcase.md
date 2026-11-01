@@ -4,15 +4,13 @@ slug: "personal-showcase"
 title: "Personal Showcase"
 category: "Portfolio"
 categorySlug: "portfolio"
-collection: "prompts"
-likes: 70
+routeCollection: "prompts"
+videoUrl: "/media/videos/personal-showcase.mp4"
+posterUrl: "/media/posters/personal-showcase.webp"
+chars: 6725
 tier: "free"
-chars: 6779
-preview_video: "/media/videos/personal-showcase.mp4"
-preview_poster: "/media/posters/personal-showcase.webp"
+likes: 70
 ---
-
-# Personal Showcase (Portfolio)
 
 Recreate this page **pixel-faithfully**. Single full-viewport hero. React + Tailwind CSS. No cards, no purple, no Inter/Roboto. Black/cream editorial portfolio look.
 
@@ -26,7 +24,7 @@ Recreate this page **pixel-faithfully**. Single full-viewport hero. React + Tail
 - Load this exact webfont (print→all pattern):
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/eed78f47abdeac6e.woff2
+https://meez.design/web/media/ext/eed78f47abdeac6e.woff2
 ```
 
 - Tailwind theme extensions:
@@ -41,12 +39,12 @@ https://axeslab.zainaxes.com/web/media/ext/eed78f47abdeac6e.woff2
 
 **Background image (full-bleed, behind everything):**
 ```
-https://axeslab.zainaxes.com/web/media/ext/b1adcb779aa26d3f.webp
+https://meez.design/web/media/ext/b1adcb779aa26d3f.webp
 ```
 
 **Front portrait (cutout overlay, above marquee, pointer-events none):**
 ```
-https://axeslab.zainaxes.com/web/media/ext/b9d4e3d3ff44ac3c.png
+https://meez.design/web/media/ext/b9d4e3d3ff44ac3c.png
 ```
 
 Both images: `absolute inset-0 h-full w-full object-cover`.
@@ -78,7 +76,7 @@ Both images: `absolute inset-0 h-full w-full object-cover`.
 - Footer left (three lines):
   - `Visuals Composer`
   - `Digital Crafter`
-  - `Obsessed by Axes Lab (@zainaxes) Office`
+  - `Obsessed by The Office`
 - Footer right (right-aligned):
   - `A homage to`
   - `Marcus Holloway`
@@ -126,7 +124,7 @@ All UI text color: `text-cream` (`#efeee9`).
 
 ## Entrance animations (exact)
 
-Use `animation-fill-mode: both`. Honor `prefers-reduced-motion: reduce` by Axes Lab (@zainaxes) these to ~0.01ms / 0 delay.
+Use `animation-fill-mode: both`. Honor `prefers-reduced-motion: reduce` by collapsing these to ~0.01ms / 0 delay.
 
 | Class | Keyframes | Duration / easing | Used on |
 |--------|-----------|-------------------|---------|

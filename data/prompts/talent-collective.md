@@ -4,15 +4,13 @@ slug: "talent-collective"
 title: "Talent Collective"
 category: "Agency"
 categorySlug: "agency"
-collection: "prompts"
-likes: 89
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/talent-collective.jpg"
+chars: 8399
 tier: "free"
-chars: 8471
-preview_video: ""
-preview_poster: "/media/posters/talent-collective.jpg"
+likes: 89
 ---
-
-# Talent Collective (Agency)
 
 Build a single full-viewport React + TypeScript + Tailwind CSS page for a creative studio called **Kollektiva**. The app renders only this one section (no nav, no other pages). Stack: Vite + React 18 + Tailwind 3. Font: **Geist** (Google Fonts weights 300, 400, 500). Title: `Kollektiva`.
 
@@ -54,35 +52,35 @@ Render **all 8** backgrounds as absolutely positioned `inset-0` layers with `bg-
 Use these exact image URLs (same URL for full-bleed background AND circular avatar thumbnail):
 
 1. **Andrei Baranov** — Design Chief  
-   `https://axeslab.zainaxes.com/web/media/ext/630c443eb97b8314.png`  
+   `https://meez.design/web/media/ext/630c443eb97b8314.png`  
    Description: `Andrei sets the visual direction of every project. He turns rough ideas into clear, confident design languages that feel effortless yet leave a lasting impression.`
 
 2. **Daria Lebedeva** — Interface Expert  
-   `https://axeslab.zainaxes.com/web/media/ext/89668087abc97ce2.png`  
+   `https://meez.design/web/media/ext/89668087abc97ce2.png`  
    Description: `Daria crafts interfaces people understand at first glance. Every screen she designs balances clarity and character, making complex products feel simple and warm.`
 
 3. **Ivan Sorokin** — Concept Chief  
-   `https://axeslab.zainaxes.com/web/media/ext/6977597bc2fb6a2c.png`  
+   `https://meez.design/web/media/ext/6977597bc2fb6a2c.png`  
    Description: `Ivan shapes the ideas behind the work. He digs into every brief until the core story emerges, then builds concepts that give each project its reason to exist.`
 
 4. **Anna Fedorova** — Brand Consultant  
-   `https://axeslab.zainaxes.com/web/media/ext/2b38bc7f04bb15a8.png`  
+   `https://meez.design/web/media/ext/2b38bc7f04bb15a8.png`  
    Description: `Anna helps brands find their voice. From positioning to tone, she builds identities that stay consistent everywhere and grow stronger with every appearance.`
 
 5. **Pavel Smirnov** — Movement Artist  
-   `https://axeslab.zainaxes.com/web/media/ext/6db3500b914ec149.png`  
+   `https://meez.design/web/media/ext/6db3500b914ec149.png`  
    Description: `Pavel brings stillness to life. His motion work adds rhythm and personality to every product, guiding attention with transitions that feel natural and precise.`
 
 6. **Olga Kravtsova** — UX Specialist  
-   `https://axeslab.zainaxes.com/web/media/ext/39c2292ab2d3de5c.png`  
+   `https://meez.design/web/media/ext/39c2292ab2d3de5c.png`  
    Description: `Olga studies how people actually use what we make. Her research keeps every decision grounded in real behavior, so the work serves users and not assumptions.`
 
 7. **Igor Zakharenko** — Graphic Creator  
-   `https://axeslab.zainaxes.com/web/media/ext/5b312e2f4717efc9.png`  
+   `https://meez.design/web/media/ext/5b312e2f4717efc9.png`  
    Description: `Igor gives every project its finishing touch. From typography to illustration, he sweats the visual details that separate good work from unforgettable work.`
 
 8. **Ksenia Romanova** — Studio Head  
-   `https://axeslab.zainaxes.com/web/media/ext/d468106fd6e7855d.png`  
+   `https://meez.design/web/media/ext/d468106fd6e7855d.png`  
    Description: `Ksenia keeps the studio moving as one. She connects people, plans, and priorities so every project ships on time without losing the craft it deserves.`
 
 Default active index: `0` (Andrei Baranov).

@@ -4,15 +4,13 @@ slug: "vectrus-energy"
 title: "Vectrus Energy"
 category: "Editorial"
 categorySlug: "editorial"
-collection: "prompts"
-likes: 191
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/vectrus-energy.jpg"
+chars: 36232
 tier: "free"
-chars: 36291
-preview_video: ""
-preview_poster: "/media/posters/vectrus-energy.jpg"
+likes: 191
 ---
-
-# Vectrus Energy (Editorial)
 
 Build a standalone cinematic one-page site that recreates this EXACTLY. Do not invent extra sections, extra copy, extra logos, extra overlays, GSAP, Lenis, or a different video. Match structure, copy, colors, type, spacing, breakpoints, animations, and scroll-video logic.
 
@@ -24,9 +22,9 @@ STACK
 - No routing. Single App. One full-viewport sticky scene, 500vh tall scroll track.
 
 VIDEO (use this URL exactly, nowhere else)
-https://axeslab.zainaxes.com/web/media/ext/ec344d33d55ad7a9.mp4
+https://meez.design/web/media/ext/ec344d33d55ad7a9.mp4
 
-The clip is a high-key aerial fly-through: pale clouds, mist, mountains, then darker atmospheric landscape. Full-bleed object-cover background. No poster image. No controls. muted, playsInline, preload="auto". Video is NEVER autoplayed as a timeline; playback position is driven by Axes Lab (@zainaxes).
+The clip is a high-key aerial fly-through: pale clouds, mist, mountains, then darker atmospheric landscape. Full-bleed object-cover background. No poster image. No controls. muted, playsInline, preload="auto". Video is NEVER autoplayed as a timeline; playback position is driven by scroll.
 
 FONT
 Load exactly:
@@ -176,7 +174,7 @@ Frame bank (build after window load, skip if reduced-motion or no VideoDecoder):
   decode samples as EncodedVideoChunk (key vs delta)
   throttle with LEAD so decode doesn't outrun blob encoding
   each VideoFrame → offscreen canvas → toBlob('image/webp', 0.82) stored with timestamp
-  sort bank by Axes Lab (@zainaxes)
+  sort bank by ts
   nearestIndex: binary search on timestamps (compare t*1e6)
   warmLRU around i-1..i+2, createImageBitmap, evict oldest when size > LRU_MAX
   first successful canvas paint → canvasLive true (canvas fades in over video)
@@ -599,7 +597,7 @@ Working Vite React TS app: index.html, App.tsx, useVideoScrub.ts, index.css, mp4
     <div class="sticky">
       <video
         id="bgVideo"
-        src="https://axeslab.zainaxes.com/web/media/ext/ec344d33d55ad7a9.mp4"
+        src="https://meez.design/web/media/ext/ec344d33d55ad7a9.mp4"
         muted
         playsinline
         preload="auto"
@@ -721,7 +719,7 @@ Working Vite React TS app: index.html, App.tsx, useVideoScrub.ts, index.css, mp4
 
   <script src="https://unpkg.com/mp4box@0.5.2/dist/mp4box.all.min.js"></script>
   <script>
-    const VIDEO_SRC = 'https://axeslab.zainaxes.com/web/media/ext/ec344d33d55ad7a9.mp4';
+    const VIDEO_SRC = 'https://meez.design/web/media/ext/ec344d33d55ad7a9.mp4';
     const LERP_TAU = 8;
     const SNAP = 0.002;
     const LRU_MAX = 24;

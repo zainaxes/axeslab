@@ -4,15 +4,13 @@ slug: "synth-mode"
 title: "Synth Mode"
 category: "Fashion"
 categorySlug: "fashion"
-collection: "prompts"
-likes: 184
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/synth-mode.jpg"
+chars: 10237
 tier: "free"
-chars: 10293
-preview_video: ""
-preview_poster: "/media/posters/synth-mode.jpg"
+likes: 184
 ---
-
-# Synth Mode (Fashion)
 
 Build a pure-white, minimal, futuristic fashion landing page titled **"LGPSM — Future Forward Fashion"**. Stack: React 19 + Vite + TypeScript + Tailwind CSS v4 + lucide-react. Page title: `LGPSM — Future Forward Fashion`. Description vibe: pure white minimal futuristic fashion website interface. Full-viewport single composition, black text on white, no purple, no cream, no cards-as-decoration, no glow effects.
 
@@ -79,13 +77,13 @@ All sizes scale with viewport via `clamp()` — no hard fixed px breakpoints for
 **Base image (BG_IMAGE_1)** — always visible full-bleed desktop background; also used as the mobile static image:
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/299f1f52922a97ba.png
+https://meez.design/web/media/ext/299f1f52922a97ba.png
 ```
 
 **Reveal image (BG_IMAGE_2)** — second image revealed only inside the mouse spotlight mask:
 
 ```
-https://axeslab.zainaxes.com/web/media/ext/38f100c5af5e55e9.png
+https://meez.design/web/media/ext/38f100c5af5e55e9.png
 ```
 
 Both layers: `absolute inset-0`, `background-size: cover`, `background-position: center`, `background-repeat: no-repeat`.
@@ -98,7 +96,7 @@ Component: `ImageRevealBackground`. Desktop only: `hidden lg:block fixed inset-0
 
 ### Layers (bottom → top)
 1. Base layer: BG_IMAGE_1 full bleed
-2. Reveal layer: BG_IMAGE_2 full bleed, clipped by Axes Lab (@zainaxes) CSS/WebKit mask generated from an offscreen canvas
+2. Reveal layer: BG_IMAGE_2 full bleed, clipped by a CSS/WebKit mask generated from an offscreen canvas
 3. Subtle SVG grid overlay at `opacity: 0.10`, stroke `#64748b`, strokeWidth `0.6`
 
 ### Spotlight / mask algorithm (exact)
@@ -152,7 +150,7 @@ Padding: `paddingInline: var(--pad-x)`, `paddingBlock: var(--main-py)`. Layout: 
 2. Headline — Orbitron extrabold, uppercase, tracking `0.08em`, leading `1.05`, size `var(--headline)`, three lines:
    - `FUTURE`
    - `FORWARD`
-   - `FASHION` + inline **checkerboard grid SVG** (viewBox `0 0 36 18`, 4 rows of 3.8×3.8 black squares; even rows shifted by Axes Lab (@zainaxes).25; size `var(--checker-w)` × `var(--checker-h)`, slightly translated down 2px)
+   - `FASHION` + inline **checkerboard grid SVG** (viewBox `0 0 36 18`, 4 rows of 3.8×3.8 black squares; even rows shifted by 2.25; size `var(--checker-w)` × `var(--checker-h)`, slightly translated down 2px)
 3. Bottom-left L-corner bracket
 4. CTA button: border `border-gray-400`, rounded-md, uppercase `SHOP NOW` + lucide `ArrowUpRight`. Tracking `0.18em`, size `var(--body)`, padding `var(--btn-px)` / `var(--btn-py)`. Hover: fill black, text white, border black; icon nudges up-right.
 

@@ -4,15 +4,13 @@ slug: "ai-trip-planner"
 title: "AI Trip Planner"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 177
+routeCollection: "prompts"
+videoUrl: "/media/videos/ai-trip-planner.mp4"
+posterUrl: "/media/posters/ai-trip-planner.webp"
+chars: 13780
 tier: "free"
-chars: 13798
-preview_video: "/media/videos/ai-trip-planner.mp4"
-preview_poster: "/media/posters/ai-trip-planner.webp"
+likes: 177
 ---
-
-# AI Trip Planner (SaaS)
 
 **Build a single-page React + TypeScript landing page for a travel app called "Wandor" using Vite, Tailwind CSS, and lucide-react. The page is a full-viewport hero section with a looping background video, a frosted-glass prompt card, and a navigation bar.**
 
@@ -41,7 +39,7 @@ preview_poster: "/media/posters/ai-trip-planner.webp"
 
 **Background video (z-0):**
 - `<video>` absolutely positioned `inset-0 w-full h-full object-cover z-0`.
-- Exact `src`: `https://axeslab.zainaxes.com/web/media/prompt-media/v/4274a69e25d7e8a7.mp4`
+- Exact `src`: `https://meez.design/web/media/prompt-media/v/4274a69e25d7e8a7.mp4`
 - Attributes: `autoPlay muted loop playsInline`.
 
 **Top gradient overlay (z-1):**
@@ -220,7 +218,7 @@ preview_poster: "/media/posters/ai-trip-planner.webp"
 <body>
   <section class="hero">
     <video class="hero-video"
-      src="https://axeslab.zainaxes.com/web/media/prompt-media/v/4274a69e25d7e8a7.mp4"
+      src="https://meez.design/web/media/prompt-media/v/4274a69e25d7e8a7.mp4"
       autoplay muted loop playsinline></video>
 
     <div class="hero-overlay"></div>

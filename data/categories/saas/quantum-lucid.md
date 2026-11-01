@@ -4,15 +4,13 @@ slug: "quantum-lucid"
 title: "Quantum Lucid"
 category: "SaaS"
 categorySlug: "saas"
-collection: "prompts"
-likes: 97
+routeCollection: "prompts"
+videoUrl: ""
+posterUrl: "/media/posters/quantum-lucid.jpg"
+chars: 46589
 tier: "free"
-chars: 46651
-preview_video: ""
-preview_poster: "/media/posters/quantum-lucid.jpg"
+likes: 97
 ---
-
-# Quantum Lucid (SaaS)
 
 Build a SINGLE standalone file: index.html (inline CSS + JS, no frameworks, no extra files). Recreate this exact Quantum² marketing landing page pixel-for-pixel: one-screen hero, black pill nav, two-line headline, subcopy, Get Started, full-bleed cyan video band, and a fixed-geometry product mockup card sitting on the band. html lang="en". Title: Quantum² — Convert screen recording into clear, intelligent insights. Viewport: width=device-width, initial-scale=1, viewport-fit=cover.
 
@@ -101,10 +99,10 @@ Typography utility classes (apply these, do not invent new type):
 MEDIA — USE THESE EXACT URLS (do not substitute)
 ════════════════════════════════════════
 Band video (REQUIRED, this exact CloudFront URL):
-src="https://axeslab.zainaxes.com/web/media/ext/54a766afa9db375f.mp4"
+src="https://meez.design/web/media/ext/54a766afa9db375f.mp4"
 
 Poster (same origin):
-poster="https://axeslab.zainaxes.com/web/media/ext/24c7552d4295810b.png"
+poster="https://meez.design/web/media/ext/24c7552d4295810b.png"
 
 <video class="band__video" autoplay muted loop playsinline> covering the band:
 position absolute; inset 0; width/height 100%; object-fit:cover; object-position:center top; z-index:0.
@@ -139,7 +137,7 @@ Convert Screen recording into
 clear, intelligent insights
 
 p.hero-sub.t-body (white-space:pre-line — keep this exact break):
-From screen recordings to searchable knowledge, powered by Axes Lab (@zainaxes) AI.
+From screen recordings to searchable knowledge, powered by quantum AI.
 Skip the manual work.
 
 Card:
@@ -913,12 +911,12 @@ body{
 
   <h1 class="hero-h1 t-display">Convert Screen recording into
 clear, intelligent insights</h1>
-  <p class="hero-sub t-body">From screen recordings to searchable knowledge, powered by Axes Lab (@zainaxes) AI.
+  <p class="hero-sub t-body">From screen recordings to searchable knowledge, powered by quantum AI.
 Skip the manual work.</p>
   <a class="btn btn--hero" href="#">Get Started</a>
 
   <div class="band" role="presentation">
-    <video class="band__video" src="https://axeslab.zainaxes.com/web/media/ext/54a766afa9db375f.mp4" autoplay muted loop playsinline poster="https://axeslab.zainaxes.com/web/media/ext/24c7552d4295810b.png"></video>
+    <video class="band__video" src="https://meez.design/web/media/ext/54a766afa9db375f.mp4" autoplay muted loop playsinline poster="https://meez.design/web/media/ext/24c7552d4295810b.png"></video>
   </div>
 
   <div class="card">

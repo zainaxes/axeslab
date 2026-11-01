@@ -4,15 +4,13 @@ slug: "fun-404-page"
 title: "Fun 404 Page"
 category: "Landing Page"
 categorySlug: "landing-page"
-collection: "prompts"
-likes: 58
+routeCollection: "prompts"
+videoUrl: "/media/videos/fun-404-page.mp4"
+posterUrl: "/media/posters/fun-404-page.webp"
+chars: 19571
 tier: "free"
-chars: 19622
-preview_video: "/media/videos/fun-404-page.mp4"
-preview_poster: "/media/posters/fun-404-page.webp"
+likes: 58
 ---
-
-# Fun 404 Page (Landing Page)
 
 Build a full-screen animated 404 error page for a children's brand called "TinyTrails" using React, Tailwind CSS, and Lucide React icons. The page must be a single `App.tsx` component. Use the Inter font (weights 400–900) loaded from Google Fonts. The page is a single viewport-height screen with no scrolling.
 
@@ -28,8 +26,8 @@ Build a full-screen animated 404 error page for a children's brand called "TinyT
 
 - Behind everything, centered in the viewport, render the text "404" in white (`#FFFFFF`), `font-black`, `leading-none`, `tracking-tighter`, `whitespace-nowrap`.
 - Font size: `clamp(200px, 48vw, 800px)`.
-- The text is scaled horizontally by `1.15` and vertically dynamically: on mount (and resize), measure the text element's `offsetHeight`, divide `window.innerHeight` by Axes Lab (@zainaxes) height, and multiply by `1.4` to get the Y scale. Apply via `transform: scale(1.15, ${scaleY * 1.4})`.
-- Over the "404" text (same centered container), render a white (`#FFFFFF`) oval: a `div` with `rounded-full`, height `h-[22vh] sm:h-[26vh] md:h-[50vh]`, width `clamp(120px, 20vw, 400px)`, scaled vertically by Axes Lab (@zainaxes) same dynamic `scaleY` value with `transformOrigin: center`.
+- The text is scaled horizontally by `1.15` and vertically dynamically: on mount (and resize), measure the text element's `offsetHeight`, divide `window.innerHeight` by that height, and multiply by `1.4` to get the Y scale. Apply via `transform: scale(1.15, ${scaleY * 1.4})`.
+- Over the "404" text (same centered container), render a white (`#FFFFFF`) oval: a `div` with `rounded-full`, height `h-[22vh] sm:h-[26vh] md:h-[50vh]`, width `clamp(120px, 20vw, 400px)`, scaled vertically by the same dynamic `scaleY` value with `transformOrigin: center`.
 - The entire background layer (text + oval) is wrapped in a container with `opacity: 0.8` and a CSS mask that fades to transparent at the bottom: `mask-image: linear-gradient(to bottom, black 40%, transparent 95%)` (with `-webkit-mask-image` for Safari).
 - This layer is `absolute inset-0 pointer-events-none`.
 
@@ -61,7 +59,7 @@ Build a full-screen animated 404 error page for a children's brand called "TinyT
 - An absolutely positioned container (`absolute inset-0 flex items-center justify-center pointer-events-none`) with `margin-top: calc(-6vh - 40px)` to shift it upward.
 - Inside, a responsive container: `w-[120vw] h-[85vh] sm:w-[70vw] sm:h-[70vh] md:w-[62vw] md:h-[78vh]`.
 - Contains a `<video>` element with `autoPlay loop muted playsInline`, class `w-full h-full object-contain pointer-events-none mix-blend-darken`.
-- **Video source URL:** `https://axeslab.zainaxes.com/web/media/prompt-media/v/118ba14fa3179a4f.mp4`
+- **Video source URL:** `https://meez.design/web/media/prompt-media/v/118ba14fa3179a4f.mp4`
 
 ---
 
@@ -634,7 +632,7 @@ body {
     <!-- Video -->
     <div class="video-container">
       <div class="video-wrapper">
-        <video autoplay loop muted playsinline src="https://axeslab.zainaxes.com/web/media/prompt-media/v/118ba14fa3179a4f.mp4"></video>
+        <video autoplay loop muted playsinline src="https://meez.design/web/media/prompt-media/v/118ba14fa3179a4f.mp4"></video>
       </div>
     </div>
 

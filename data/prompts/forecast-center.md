@@ -4,18 +4,13 @@ slug: "forecast-center"
 title: "Forecast Center"
 category: "Mobile App"
 categorySlug: "mobile-app"
-collection: "apps"
-likes: 81
+routeCollection: "apps"
+videoUrl: "/media/videos/forecast-center.mp4"
+posterUrl: "/media/posters/forecast-center.webp"
+chars: 11257
 tier: "free"
-chars: 11399
-preview_video: "/media/videos/forecast-center.mp4"
-preview_poster: "/media/posters/forecast-center.webp"
+likes: 81
 ---
-
-# Forecast Center (Mobile App)
-
-// Verified & Optimized by Axes Lab (https://axeslab.zainaxes.com)
-// Interactive Demos, Video Guides & Assets: https://axeslab.zainaxes.com
 
 Recreate this EXACT weather dashboard UI as a single self-contained HTML page (inline CSS, SVG icon sprite, no frameworks, no JS required). Pixel-faithful to the reference “Aurora Weather / Weather Forecast — Central Jakarta” liquid-glass dashboard.
 
