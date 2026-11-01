@@ -1,17 +1,14 @@
 ---
-id: "res_wd_aetheris_voyage_hero"
+id: "res_axes_aetheris_voyage_hero"
 slug: "aetheris-voyage-hero"
 title: "Aetheris Voyage"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/aetheris-voyage-hero.mp4"
-posterUrl: "/media/posters/aetheris-voyage-hero.jpg"
-chars: 10190
-sha256: "aa5f58f6ac4d3806dcbc1d54c34773bfaa8d8e37d80579513ccaad8135239694"
-tier: "premium"
-likes: 174
+source: "motionsites"
+tier: "free"
 ---
+
+# Aetheris Voyage
 
 Build Prompt: Cinematic Space-Travel Landing Page
 Build a single-page landing site with two full-height sections (Hero + Capabilities), both using looping background videos with custom JS crossfade, a shared liquid-glass design system, and Framer Motion entrance animations.

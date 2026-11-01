@@ -1,16 +1,14 @@
 ---
-id: "res_meez_quantum_lucid"
+id: "res_axes_quantum_lucid"
 slug: "quantum-lucid"
 title: "Quantum Lucid"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/quantum-lucid.jpg"
-chars: 46589
+source: "meez"
 tier: "free"
-likes: 97
 ---
+
+# Quantum Lucid
 
 Build a SINGLE standalone file: index.html (inline CSS + JS, no frameworks, no extra files). Recreate this exact Quantum² marketing landing page pixel-for-pixel: one-screen hero, black pill nav, two-line headline, subcopy, Get Started, full-bleed cyan video band, and a fixed-geometry product mockup card sitting on the band. html lang="en". Title: Quantum² — Convert screen recording into clear, intelligent insights. Viewport: width=device-width, initial-scale=1, viewport-fit=cover.
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_taskly_hero"
+id: "res_axes_taskly_hero"
 slug: "taskly-hero"
 title: "Taskly"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/taskly-hero.mp4"
-posterUrl: "/media/posters/taskly-hero.jpg"
-chars: 2465
-sha256: "f095b57babdba5d6d9807f765dd91d9db8f91bd6407bcb92d07187a4f4d49023"
-tier: "premium"
-likes: 89
+source: "motionsites"
+tier: "free"
 ---
+
+# Taskly
 
 System Prompt: High-Fidelity "Liquid Glass" Hero Section
 

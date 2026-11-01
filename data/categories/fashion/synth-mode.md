@@ -1,16 +1,14 @@
 ---
-id: "res_meez_synth_mode"
+id: "res_axes_synth_mode"
 slug: "synth-mode"
 title: "Synth Mode"
 category: "Fashion"
 categorySlug: "fashion"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/synth-mode.jpg"
-chars: 10237
+source: "meez"
 tier: "free"
-likes: 184
 ---
+
+# Synth Mode
 
 Build a pure-white, minimal, futuristic fashion landing page titled **"LGPSM — Future Forward Fashion"**. Stack: React 19 + Vite + TypeScript + Tailwind CSS v4 + lucide-react. Page title: `LGPSM — Future Forward Fashion`. Description vibe: pure white minimal futuristic fashion website interface. Full-viewport single composition, black text on white, no purple, no cream, no cards-as-decoration, no glow effects.
 

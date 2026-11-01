@@ -1,17 +1,14 @@
 ---
-id: "res_wd_vex_ventures_hero"
+id: "res_axes_vex_ventures_hero"
 slug: "vex-ventures-hero"
 title: "VEX Ventures"
 category: "Hero Section"
-categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/vex-ventures-hero.mp4"
-posterUrl: "/media/posters/vex-ventures-hero.jpg"
-chars: 5051
+source: "motionsites"
+tier: "free"
 sha256: "5b43ab2865b587b541447a0ac44d601d0b10fb80eabaf72f11b8e799a5953a7b"
-tier: "premium"
-likes: 127
 ---
+
+# VEX Ventures
 
 Recreate this hero section exactly. Here are the complete specifications:
 

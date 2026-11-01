@@ -1,17 +1,14 @@
 ---
-id: "res_wd_prisma_landing"
+id: "res_axes_prisma_landing"
 slug: "prisma-landing"
 title: "Prisma Creative Studio"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/prisma-landing.mp4"
-posterUrl: "/media/posters/prisma-landing.jpg"
-chars: 8432
+source: "motionsites"
+tier: "free"
 sha256: "4fc7f6c5021dfbf0662047d5ca32bd83291f7d06645f539c0ec99766c56c5128"
-tier: "premium"
-likes: 30
 ---
+
+# Prisma Creative Studio
 
 Create a React + Vite + TypeScript + Tailwind CSS landing page for a creative studio called "Prisma". The page has 3 sections: Hero, About, and Features. Use framer-motion for animations and lucide-react for icons. The design is dark, moody, and cinematic with a warm cream color palette.
 

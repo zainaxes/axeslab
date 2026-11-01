@@ -1,17 +1,14 @@
 ---
-id: "res_wd_wellness_companion"
+id: "res_axes_wellness_companion"
 slug: "wellness-companion"
 title: "Wellness Companion"
-category: "Mobile App"
-categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/wellness-companion.mp4"
-posterUrl: "/media/posters/wellness-companion.jpg"
-chars: 4095
-sha256: "9f1ff2f86e0f36eea841fac041fbb1f942f84e16084e713ef84c3197f1062ff0"
+category: "Wellness"
+source: "motionsites"
 tier: "free"
-likes: 136
+sha256: "9f1ff2f86e0f36eea841fac041fbb1f942f84e16084e713ef84c3197f1062ff0"
 ---
+
+# Wellness Companion
 
 Build a mobile wellness quiz screen inside a realistic phone frame mockup, centered on a white page. Use React with Tailwind CSS and Lucide React icons.
 

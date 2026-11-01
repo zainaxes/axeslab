@@ -1,16 +1,14 @@
 ---
-id: "res_wd_digital_director"
+id: "res_axes_digital_director"
 slug: "digital-director"
 title: "Digital Director"
 category: "Portfolio"
 categorySlug: "portfolio"
-routeCollection: "prompts"
-videoUrl: "/media/videos/digital-director.mp4"
-posterUrl: "/media/posters/digital-director.webp"
-chars: 8864
+source: "meez"
 tier: "free"
-likes: 111
 ---
+
+# Digital Director
 
 Recreate this exact full-viewport portfolio landing page — pixel-perfect match.
 

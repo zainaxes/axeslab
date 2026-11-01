@@ -1,16 +1,14 @@
 ---
-id: "res_meez_agent_wave"
+id: "res_axes_agent_wave"
 slug: "agent-wave"
 title: "Agent Wave"
-category: "AI"
-categorySlug: "ai"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/agent-wave.jpg"
-chars: 16600
+category: "AI SaaS"
+source: "meez"
 tier: "free"
-likes: 79
+sha256: ""
 ---
+
+# Agent Wave
 
 Recreate this exact single-viewport landing page for **Vesper.ai**. Document title: `Vesper.ai — Operational AI Infrastructure`. `lang="en"`. One HTML file with inline CSS and a small IIFE for the menu + animation fallback. Pure black `#000000`. No extra sections, cards, forms, pricing tables, or footer beyond the three stats. Do **not** add a video, WebGL, Three.js, or Lottie. Do **not** invent a CloudFront URL.
 

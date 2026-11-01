@@ -1,17 +1,14 @@
 ---
-id: "res_wd_prompt_hero"
+id: "res_axes_prompt_hero"
 slug: "prompt-hero"
 title: "PROMPT"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/prompt-hero.mp4"
-posterUrl: "/media/posters/prompt-hero.jpg"
-chars: 13186
-sha256: "00ee092c5e29f6634fc49b9e3dfde68c77d21017cbf741081f8e58ed1ed3d9a3"
+source: "motionsites"
 tier: "free"
-likes: 47
 ---
+
+# PROMPT
 
 ### Overview
 

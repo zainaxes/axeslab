@@ -1,17 +1,14 @@
 ---
-id: "res_wd_coffee_rewards"
+id: "res_axes_coffee_rewards"
 slug: "coffee-rewards"
 title: "Coffee Rewards"
-category: "Mobile App"
-categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/coffee-rewards.mp4"
-posterUrl: "/media/posters/coffee-rewards.jpg"
-chars: 5054
-sha256: "ee4a52d661786358e9d1b75ffd699b687221e8520faffc02242d2dbb8449ec9f"
+category: "Loyalty App"
+source: "motionsites"
 tier: "free"
-likes: 141
+sha256: "ee4a52d661786358e9d1b75ffd699b687221e8520faffc02242d2dbb8449ec9f"
 ---
+
+# Coffee Rewards
 
 Build a mobile coffee profile screen inside a phone mockup frame. Use vanilla HTML, CSS, and JS with Vite as the bundler. The design is dark/warm-toned, inspired by iOS profile screens with glassmorphic UI elements.
 

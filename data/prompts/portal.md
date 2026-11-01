@@ -1,17 +1,14 @@
 ---
-id: "res_wd_portal"
+id: "res_axes_portal"
 slug: "portal"
-title: "Portal — Password Manager"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/portal.webp"
-chars: 5718
-sha256: "ee44ddcb6d7928da383b2e9dd9e4d7e05a00125970f441ac7301fa4ef7801260"
+title: "Password Vault Portal"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 132
+sha256: "ee44ddcb6d7928da383b2e9dd9e4d7e05a00125970f441ac7301fa4ef7801260"
 ---
+
+# Password Vault Portal
 
 Build a password manager landing page hero section using React, TypeScript, Tailwind CSS, Framer Motion, and Lucide React icons. Here is every specification:
 

@@ -1,16 +1,14 @@
 ---
-id: "res_wd_wellness_device"
+id: "res_axes_wellness_device"
 slug: "wellness-device"
 title: "Wellness Device"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/wellness-device.mp4"
-posterUrl: "/media/posters/wellness-device.webp"
-chars: 6652
+source: "meez"
 tier: "free"
-likes: 42
 ---
+
+# Wellness Device
 
 Build a single-page hero section for a product called "Measured" — a health/wellness wearable device landing page. The page is fullscreen (100vh), dark/moody aesthetic with layered imagery, a cursor-following spotlight reveal effect, and a frosted-glass navigation. Use React + Vite + Tailwind CSS + TypeScript.
 

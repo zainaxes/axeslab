@@ -1,17 +1,14 @@
 ---
-id: "res_wd_tech_forward"
+id: "res_axes_tech_forward"
 slug: "tech-forward"
 title: "Tech-Forward"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/tech-forward.mp4"
-posterUrl: "/media/posters/tech-forward.jpg"
-chars: 3400
-sha256: "7abc31f28067c26aa9384dd8617cd4ef90f07b121f1893f041faffca950e5edd"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 166
+sha256: "7abc31f28067c26aa9384dd8617cd4ef90f07b121f1893f041faffca950e5edd"
 ---
+
+# Tech-Forward
 
 Create a full-screen hero section landing page using React, Vite, and Framer Motion (`motion` package). Use plain CSS (no Tailwind). The font is Inter (weights 300, 400, 500, 600) from Google Fonts. The design is minimal black-and-white with a full-viewport background video.
 

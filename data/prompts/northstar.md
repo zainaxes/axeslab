@@ -1,16 +1,14 @@
 ---
-id: "res_meez_northstar"
+id: "res_axes_northstar"
 slug: "northstar"
 title: "Northstar"
 category: "Agency"
-categorySlug: "agency"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/northstar.jpg"
-chars: 30394
+source: "meez"
 tier: "free"
-likes: 147
+sha256: ""
 ---
+
+# Northstar
 
 Build a single-file standalone HTML page (index.html) that recreates this Nexeus landing page PIXEL-EXACTLY. Do not invent extra sections, nav bars, extra CTAs, or restyle anything. One full-viewport cinematic page: looping background video + left-aligned hero + glass footer. No frameworks. No build step. Inline CSS and JS only.
 

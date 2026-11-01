@@ -1,17 +1,14 @@
 ---
-id: "res_wd_ai_workflow"
+id: "res_axes_ai_workflow"
 slug: "ai-workflow"
 title: "AI Workflow Hero"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/ai-workflow.mp4"
-posterUrl: "/media/posters/ai-workflow.webp"
-chars: 16580
-sha256: "e42fd7caf02036199ffc1ba10228e93524afa28a617321229b3a00aaffee51c1"
-tier: "premium"
-likes: 48
+source: "motionsites"
+tier: "free"
 ---
+
+# AI Workflow Hero
 
 ### Stack
 

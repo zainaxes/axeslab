@@ -1,17 +1,14 @@
 ---
-id: "res_wd_neuralyn_hero"
+id: "res_axes_neuralyn_hero"
 slug: "neuralyn-hero"
 title: "Neuralyn"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/neuralyn-hero.mp4"
-posterUrl: "/media/posters/neuralyn-hero.jpg"
-chars: 5257
-sha256: "2268d689489cc9ef20b5acf32baed1f3cc26a9564f1537d11115cacc3064698f"
-tier: "premium"
-likes: 95
+source: "motionsites"
+tier: "free"
 ---
+
+# Neuralyn
 
 Create a dark landing page for "Neuralyn" — an analytics dashboard SaaS. Use React + Vite + Tailwind CSS + TypeScript + Framer Motion + shadcn/ui.
 

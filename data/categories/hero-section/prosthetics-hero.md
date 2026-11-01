@@ -1,17 +1,14 @@
 ---
-id: "res_wd_prosthetics_hero"
+id: "res_axes_prosthetics_hero"
 slug: "prosthetics-hero"
 title: "Prosthetics Hero"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/prosthetics-hero.mp4"
-posterUrl: "/media/posters/prosthetics-hero.webp"
-chars: 3421
-sha256: "43dc54544e666fcf232cd251a9caf081cbbde86436f5eeff6d5ecdc484e73948"
-tier: "premium"
-likes: 79
+source: "motionsites"
+tier: "free"
 ---
+
+# Prosthetics Hero
 
 Build a React + TypeScript + Tailwind CSS single-page hero section using Vite. The entire page lives in `src/App.tsx`. No extra libraries beyond `react`, `react-dom`, `lucide-react`, and Tailwind.
 

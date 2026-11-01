@@ -1,17 +1,14 @@
 ---
-id: "res_wd_intelligentx"
+id: "res_axes_intelligentx"
 slug: "intelligentx"
 title: "IntelligentX"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/intelligentx.mp4"
-posterUrl: "/media/posters/intelligentx.jpg"
-chars: 4182
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "290841aaf028b821eebcff51ef7fca9947566ea967b269ab51edfd499845358a"
-tier: "premium"
-likes: 133
 ---
+
+# IntelligentX
 
 Prompt:
 Build a modern React landing page using Vite, Tailwind CSS, and motion/react for elegant animations. The application must feature a highly polished, aesthetic hero section and a glassmorphic navigation bar.

@@ -1,16 +1,14 @@
 ---
-id: "res_meez_task_engine"
+id: "res_axes_task_engine"
 slug: "task-engine"
 title: "Task Engine"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/task-engine.jpg"
-chars: 14503
+source: "meez"
 tier: "free"
-likes: 118
 ---
+
+# Task Engine
 
 ## ROLE
 Recreate a single-file HTML product landing mosaic **pixel-faithful** to the reference below. Output one self-contained `index.html` with inline CSS + JS. **No external images.** All icons are inline SVG. The only external resource is Google Fonts.

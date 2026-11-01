@@ -1,17 +1,14 @@
 ---
-id: "res_wd_equilibrium"
+id: "res_axes_equilibrium"
 slug: "equilibrium"
 title: "Equilibrium"
 category: "Hero Section"
-categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/equilibrium.mp4"
-posterUrl: "/media/posters/equilibrium.webp"
-chars: 4787
+source: "motionsites"
+tier: "free"
 sha256: "5da5c38222bf3e71733675c23d39e98f2f156684febef1e6b0821faade0c27e0"
-tier: "premium"
-likes: 92
 ---
+
+# Equilibrium
 
 Build a full-screen, single-page React + TypeScript + Vite + Tailwind CSS hero section with a "liquid glass" aesthetic on top of a looping background video. Use `lucide-react` for icons. No other UI libraries.
 

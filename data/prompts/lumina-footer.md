@@ -1,16 +1,14 @@
 ---
-id: "res_wd_lumina_footer"
+id: "res_axes_lumina_footer"
 slug: "lumina-footer"
 title: "Lumina"
 category: "Footer Section"
-categorySlug: "footer-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/lumina-footer.mp4"
-posterUrl: "/media/posters/lumina-footer.jpg"
-chars: 5113
-tier: "premium"
-likes: 32
+source: "heydesign"
+tier: "free"
+sha256: ""
 ---
+
+# Lumina
 
 Create a React frontend using Tailwind CSS v4, the `motion/react` library for animations, and `lucide-react` for icons. I want to build a page with an immersive video background and a highly stylized "liquid glass" footer.
 

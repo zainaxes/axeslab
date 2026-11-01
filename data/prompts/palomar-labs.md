@@ -1,16 +1,14 @@
 ---
-id: "res_meez_palomar_labs"
+id: "res_axes_palomar_labs"
 slug: "palomar-labs"
 title: "Palomar Labs"
-category: "AI"
-categorySlug: "ai"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/palomar-labs.jpg"
-chars: 21115
+category: "AI SaaS"
+source: "meez"
 tier: "free"
-likes: 89
+sha256: ""
 ---
+
+# Palomar Labs
 
 Build a standalone pixel-accurate recreation of the Palomar Labs marketing landing page: fixed navbar + full-viewport video hero only. No other sections. Match this spec exactly. Do not invent extra copy, buttons, gradients, overlays, or decorative blobs.
 Stack

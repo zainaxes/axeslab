@@ -1,17 +1,14 @@
 ---
-id: "res_wd_sentinel_ai_hero"
+id: "res_axes_sentinel_ai_hero"
 slug: "sentinel-ai-hero"
 title: "Sentinel AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/sentinel-ai-hero.mp4"
-posterUrl: "/media/posters/sentinel-ai-hero.jpg"
-chars: 5940
-sha256: "e52bab7ddad4744ce9c3e7058c7af3cab4dc95a53bd6c08964b5df55e00504ea"
-tier: "premium"
-likes: 46
+source: "motionsites"
+tier: "free"
 ---
+
+# Sentinel AI
 
 Create a full-screen dark hero landing page for a security company called "SENTINEL AI" using React, Vite, TypeScript, Tailwind CSS, shadcn/ui, and an embedded Spline 3D scene as the background. The tech stack uses @splinetool/react-spline and @splinetool/runtime for the 3D embed. Here is every detail:
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_retro_futurist"
+id: "res_axes_retro_futurist"
 slug: "retro-futurist"
 title: "Retro-Futurist"
 category: "Hero Section"
-categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/retro-futurist.mp4"
-posterUrl: "/media/posters/retro-futurist.webp"
-chars: 5713
+source: "motionsites"
+tier: "free"
 sha256: "77349f561dcf23cb8d0dfc0b45f8acedd3505bff78a5eae8aa3be73f95768e4c"
-tier: "premium"
-likes: 101
 ---
+
+# Retro-Futurist
 
 Build a full-screen hero landing page for a creative agency called "Mainframe" using React, TypeScript, Vite, and Tailwind CSS. Here is every detail:
 

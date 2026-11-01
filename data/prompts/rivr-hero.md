@@ -1,17 +1,14 @@
 ---
-id: "res_wd_rivr_hero"
+id: "res_axes_rivr_hero"
 slug: "rivr-hero"
 title: "RIVR"
 category: "Hero Section"
-categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/rivr-hero.mp4"
-posterUrl: "/media/posters/rivr-hero.jpg"
-chars: 8089
+source: "motionsites"
+tier: "free"
 sha256: "44771c0ba6fedb5aec274e001a93b1569b743749f45fa49a1c990c84efb6b1e9"
-tier: "premium"
-likes: 144
 ---
+
+# RIVR
 
 Build a Hero section for a DeFi dashboard named RIVR showcasing a sleek, glassmorphism aesthetic. Please mimic these exact specifications to ensure a premium UI.
 

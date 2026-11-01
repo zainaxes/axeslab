@@ -1,16 +1,14 @@
 ---
-id: "res_wd_adhd_planner"
+id: "res_axes_adhd_planner"
 slug: "adhd-planner"
 title: "ADHD Planner"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/adhd-planner.mp4"
-posterUrl: "/media/posters/adhd-planner.webp"
-chars: 8407
+source: "meez"
 tier: "free"
-likes: 128
+sha256: ""
 ---
+
+# ADHD Planner
 
 Build a single-page landing site for "Drift" -- a calm, ADHD-friendly planner app. Use React + Vite + TypeScript + Tailwind CSS + lucide-react for icons. No other UI libraries.
 

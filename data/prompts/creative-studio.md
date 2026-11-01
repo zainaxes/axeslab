@@ -1,17 +1,14 @@
 ---
-id: "res_wd_creative_studio"
+id: "res_axes_creative_studio"
 slug: "creative-studio"
 title: "Creative Studio"
 category: "Agency"
-categorySlug: "agency"
-routeCollection: "prompts"
-videoUrl: "/media/videos/creative-studio.mp4"
-posterUrl: "/media/posters/creative-studio.webp"
-chars: 5481
+source: "motionsites"
+tier: "free"
 sha256: "3520f044ab716f4599c9c6e0a7e8558c6bab0d83c0964030b7af41e14ca52f82"
-tier: "premium"
-likes: 112
 ---
+
+# Creative Studio
 
 Build a full-screen hero section using React, Tailwind CSS, Framer Motion, and Lucide React icons. Use the Inter font. The page is fully mobile-responsive. Here are the exact specifications:
 

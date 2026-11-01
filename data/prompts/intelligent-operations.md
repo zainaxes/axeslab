@@ -1,16 +1,14 @@
 ---
-id: "res_meez_intelligent_operations"
+id: "res_axes_intelligent_operations"
 slug: "intelligent-operations"
 title: "Intelligent Operations"
 category: "Agency"
-categorySlug: "agency"
-routeCollection: "prompts"
-videoUrl: "/media/videos/intelligent-operations.mp4"
-posterUrl: "/media/posters/intelligent-operations.webp"
-chars: 10236
+source: "meez"
 tier: "free"
-likes: 46
+sha256: ""
 ---
+
+# Intelligent Operations
 
 # Exact recreation prompt — NovaAI landing page
 

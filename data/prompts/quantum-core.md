@@ -1,16 +1,14 @@
 ---
-id: "res_meez_quantum_core"
+id: "res_axes_quantum_core"
 slug: "quantum-core"
 title: "Quantum Core"
 category: "Data Intelligence"
-categorySlug: "data-intelligence"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/quantum-core.jpg"
-chars: 27160
+source: "meez"
 tier: "free"
-likes: 195
+sha256: ""
 ---
+
+# Quantum Core
 
 # PROMPT — Recreate the "Apogee" Hero Section Exactly
 

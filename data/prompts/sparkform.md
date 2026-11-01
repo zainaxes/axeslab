@@ -1,16 +1,14 @@
 ---
-id: "res_meez_sparkform"
+id: "res_axes_sparkform"
 slug: "sparkform"
 title: "Sparkform"
 category: "Creative"
-categorySlug: "creative"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/sparkform.jpg"
-chars: 6514
+source: "meez"
 tier: "free"
-likes: 43
+sha256: ""
 ---
+
+# Sparkform
 
 **Recreate this exact landing page pixel-for-pixel.**
 

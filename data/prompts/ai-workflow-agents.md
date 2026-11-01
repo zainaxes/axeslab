@@ -1,16 +1,14 @@
 ---
-id: "res_wd_ai_workflow_agents"
+id: "res_axes_ai_workflow_agents"
 slug: "ai-workflow-agents"
 title: "AI Workflow Agents"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/ai-workflow-agents.mp4"
-posterUrl: "/media/posters/ai-workflow-agents.webp"
-chars: 3151
+source: "meez"
 tier: "free"
-likes: 67
+sha256: ""
 ---
+
+# AI Workflow Agents
 
 Build a single-page hero landing page for a product called "Axon" — a platform that deploys digital workers for mundane workflows. The page is a full-viewport hero section with a looping background video and overlaid content.
 

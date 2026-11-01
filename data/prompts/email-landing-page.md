@@ -1,17 +1,14 @@
 ---
-id: "res_wd_email_landing_page"
+id: "res_axes_email_landing_page"
 slug: "email-landing-page"
 title: "Email Landing Page"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/email-landing-page.mp4"
-posterUrl: "/media/posters/email-landing-page.webp"
-chars: 19431
+source: "motionsites"
+tier: "free"
 sha256: "f5f6bf8cf3390db3f457b12c7a8fd25b4cd1e9419c73da4102f848e0c74a85d9"
-tier: "premium"
-likes: 38
 ---
+
+# Email Landing Page
 
 Build a premium, AI-native email client landing page called "Aura" using **React 18 + TypeScript + Vite + Tailwind CSS + motion/react (framer motion) + lucide-react**. The aesthetic is dark (bg `#0c0c0c`), cinematic, glassy, with a looping fullscreen background video, a shiny gradient headline, a macOS-style menu bar, a realistic inbox mockup, and a custom "liquid-glass" card treatment.
 

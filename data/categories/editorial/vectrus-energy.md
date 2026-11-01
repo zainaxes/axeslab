@@ -1,16 +1,14 @@
 ---
-id: "res_meez_vectrus_energy"
+id: "res_axes_vectrus_energy"
 slug: "vectrus-energy"
 title: "Vectrus Energy"
 category: "Editorial"
 categorySlug: "editorial"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/vectrus-energy.jpg"
-chars: 36232
+source: "meez"
 tier: "free"
-likes: 191
 ---
+
+# Vectrus Energy
 
 Build a standalone cinematic one-page site that recreates this EXACTLY. Do not invent extra sections, extra copy, extra logos, extra overlays, GSAP, Lenis, or a different video. Match structure, copy, colors, type, spacing, breakpoints, animations, and scroll-video logic.
 

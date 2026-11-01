@@ -1,16 +1,14 @@
 ---
-id: "res_meez_intelligence_layer"
+id: "res_axes_intelligence_layer"
 slug: "intelligence-layer"
 title: "Intelligence Layer"
 category: "Technology"
 categorySlug: "technology"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/intelligence-layer.jpg"
-chars: 11750
+source: "meez"
 tier: "free"
-likes: 43
 ---
+
+# Intelligence Layer
 
 Recreate a single-file dark cinematic AI-infrastructure landing page EXACTLY as specified. Deliver one self-contained index.html (inline CSS + JS, no build step). Pixel-faithful to a measured Figma-style comp. No cards, no purple, no glow orbs, no decorative abstract gradients as the main visual — the hero visual is a full-bleed looping video.
 

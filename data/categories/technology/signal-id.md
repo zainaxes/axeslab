@@ -1,16 +1,14 @@
 ---
-id: "res_meez_signal_id"
+id: "res_axes_signal_id"
 slug: "signal-id"
 title: "Signal ID"
 category: "Technology"
 categorySlug: "technology"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/signal-id.jpg"
-chars: 11271
+source: "meez"
 tier: "free"
-likes: 76
 ---
+
+# Signal ID
 
 Recreate this exact full-viewport dark hero landing page for “ECHOID” — a voice-identity product for the E network. Match every detail below precisely. Do not invent extra sections, cards, stats, or decorative overlays. Desktop composition: full-bleed cinematic background video on the left/center with a right-aligned signup panel; black negative space on the left; UI pinned top (nav), right (form), and bottom (legal).
 

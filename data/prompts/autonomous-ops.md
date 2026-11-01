@@ -1,16 +1,14 @@
 ---
-id: "res_meez_autonomous_ops"
+id: "res_axes_autonomous_ops"
 slug: "autonomous-ops"
 title: "Autonomous Ops"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/autonomous-ops.jpg"
-chars: 18223
+source: "meez"
 tier: "free"
-likes: 139
+sha256: ""
 ---
+
+# Autonomous Ops
 
 Recreate this page as a single self-contained index.html file — pixel-faithful to the Falcon AI Operations Overview triptych. No frameworks, no external CSS/JS/fonts/images. System fonts only. Light color scheme. All sizing on desktop uses CSS container query units (cqw/cqh) against a size container.
 

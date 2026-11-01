@@ -1,17 +1,14 @@
 ---
-id: "res_wd_place_saver"
+id: "res_axes_place_saver"
 slug: "place-saver"
 title: "Place Saver"
 category: "Travel"
-categorySlug: "travel"
-routeCollection: "prompts"
-videoUrl: "/media/videos/place-saver.mp4"
-posterUrl: "/media/posters/place-saver.jpg"
-chars: 8226
-sha256: "c3346cc6b31363ea49f423313a6829d0f1a0ffb5ea96f2ba0154122138cdbd03"
+source: "motionsites"
 tier: "free"
-likes: 41
+sha256: "c3346cc6b31363ea49f423313a6829d0f1a0ffb5ea96f2ba0154122138cdbd03"
 ---
+
+# Place Saver
 
 **Build a single-page HTML showcase displaying two iOS device frames (370x790px each) side by side on a neutral `#F4F4F4` stage. The stage auto-scales to fit the viewport using JS. Both phones have a Dynamic Island, status bar (time "11:11", signal/wifi/battery icons in white SVG), and a home indicator bar. Animations are gated behind video `loadeddata` events + font loading, with a 5s safety timeout.**
 

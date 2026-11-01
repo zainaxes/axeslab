@@ -1,17 +1,14 @@
 ---
-id: "res_wd_cybersecurity_hero"
+id: "res_axes_cybersecurity_hero"
 slug: "cybersecurity-hero"
 title: "Cybersecurity Hero"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/cybersecurity-hero.mp4"
-posterUrl: "/media/posters/cybersecurity-hero.webp"
-chars: 11920
-sha256: "44646e05b1798f780dd3923e7c8fd1dd6081f137d31bf2587f32978ef5509b37"
-tier: "premium"
-likes: 102
+source: "motionsites"
+tier: "free"
 ---
+
+# Cybersecurity Hero
 
 Build a **single-page React + TypeScript (Vite)** landing hero for a product called **"Xero"** that recreates the following section exactly. Use the **Inter** Google Font (weights 300, 400, 500, 600, 700, 800). Do not use Tailwind utility classes for the hero — write plain CSS in a global stylesheet. No purple/indigo branding outside the specified pink-magenta gradient arc.
 

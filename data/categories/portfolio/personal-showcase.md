@@ -1,16 +1,14 @@
 ---
-id: "res_meez_personal_showcase"
+id: "res_axes_personal_showcase"
 slug: "personal-showcase"
 title: "Personal Showcase"
 category: "Portfolio"
 categorySlug: "portfolio"
-routeCollection: "prompts"
-videoUrl: "/media/videos/personal-showcase.mp4"
-posterUrl: "/media/posters/personal-showcase.webp"
-chars: 6725
+source: "meez"
 tier: "free"
-likes: 70
 ---
+
+# Personal Showcase
 
 Recreate this page **pixel-faithfully**. Single full-viewport hero. React + Tailwind CSS. No cards, no purple, no Inter/Roboto. Black/cream editorial portfolio look.
 

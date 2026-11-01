@@ -1,16 +1,14 @@
 ---
-id: "res_meez_aurex_finance"
+id: "res_axes_aurex_finance"
 slug: "aurex-finance"
 title: "Aurex Finance"
 category: "Fintech"
-categorySlug: "fintech"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/aurex-finance.jpg"
-chars: 29239
+source: "meez"
 tier: "free"
-likes: 182
+sha256: ""
 ---
+
+# Aurex Finance
 
 Build a **single full-screen hero section** for a DeFi / private-banking landing page called **LŪMEN // ÍNDEX**. Use **React 18 + TypeScript + Vite + Tailwind CSS**, with `lucide-react` for icons. The entire page is ONE component rendering ONE `<section>` that fills the viewport — no scrolling, no other sections.
 

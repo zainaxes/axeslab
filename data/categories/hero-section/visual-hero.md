@@ -1,17 +1,14 @@
 ---
-id: "res_wd_visual_hero"
+id: "res_axes_visual_hero"
 slug: "visual-hero"
 title: "Visual Hero"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/visual-hero.mp4"
-posterUrl: "/media/posters/visual-hero.webp"
-chars: 8275
-sha256: "772b97713db0f210823dfbfc4d3f17f879c89887eac3c7f21117064d8478beaa"
-tier: "premium"
-likes: 97
+source: "motionsites"
+tier: "free"
 ---
+
+# Visual Hero
 
 **Build a fullscreen hero section in a Vite + React + TypeScript + Tailwind CSS project. Use `gsap` and `lucide-react`. No other UI libraries.**
 

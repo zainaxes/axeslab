@@ -1,16 +1,14 @@
 ---
-id: "res_wd_church_community"
+id: "res_axes_church_community"
 slug: "church-community"
 title: "Church Community"
 category: "Mobile App"
 categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/church-community.mp4"
-posterUrl: "/media/posters/church-community.jpg"
-chars: 5245
+source: "meez"
 tier: "free"
-likes: 127
 ---
+
+# Church Community
 
 Create a mobile app showcase page displaying 3 iPhone mockups for "Christ Family Church" -- a church website mobile design. Use React Native with Expo Router, react-native-reanimated, and Manrope font (weights: Light, Regular, Medium).
 

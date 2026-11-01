@@ -1,17 +1,14 @@
 ---
-id: "res_wd_designpro_hero"
+id: "res_axes_designpro_hero"
 slug: "designpro-hero"
 title: "DesignPro Academy"
 category: "Hero Section"
-categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/designpro-hero.mp4"
-posterUrl: "/media/posters/designpro-hero.jpg"
-chars: 3038
+source: "motionsites"
+tier: "free"
 sha256: "06a79839ee295e9e0a8b7819fdb59d007c91062f0210f6955156bcf0662912aa"
-tier: "premium"
-likes: 96
 ---
+
+# DesignPro Academy
 
 Create a full-screen hero section for a product design education platform called "DesignPro" with the following exact specifications:
 

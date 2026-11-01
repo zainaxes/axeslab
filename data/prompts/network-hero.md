@@ -1,17 +1,14 @@
 ---
-id: "res_wd_network_hero"
+id: "res_axes_network_hero"
 slug: "network-hero"
 title: "Network Hero"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/network-hero.webp"
-chars: 7543
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "545c5a935972609e32ac1c272ffe2d398d98a0d6330b9f7e25bd22a60d936abf"
-tier: "premium"
-likes: 119
 ---
+
+# Network Hero
 
 Create a single-page React + Vite landing page for "Marketeam" -- a marketing talent platform. Use Inter (400, 500, 600, 700) and Urbanist (600, 700) from Google Fonts. The page is a full-viewport hero with a header, left content area, right animated circles visualization, and a bottom logo ticker strip.
 

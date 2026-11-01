@@ -1,17 +1,14 @@
 ---
-id: "res_wd_vaultshield"
+id: "res_axes_vaultshield"
 slug: "vaultshield"
 title: "VaultShield"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/vaultshield.mp4"
-posterUrl: "/media/posters/vaultshield.webp"
-chars: 4734
-sha256: "bc0dee85e1848eacd91af9b38024b8853e27b23572e86326ccab396d75b7b5ff"
-tier: "premium"
-likes: 189
+source: "motionsites"
+tier: "free"
 ---
+
+# VaultShield
 
 Create a fullscreen hero section for a password manager app called "VaultShield" using React, TypeScript, Tailwind CSS, Framer Motion, and Lucide React icons.
 

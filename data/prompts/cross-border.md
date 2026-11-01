@@ -1,17 +1,14 @@
 ---
-id: "res_wd_cross_border"
+id: "res_axes_cross_border"
 slug: "cross-border"
 title: "Cross-Border"
-category: "Mobile App"
-categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/cross-border.mp4"
-posterUrl: "/media/posters/cross-border.jpg"
-chars: 6698
-sha256: "51277206ad60741d5f96ec0838c26ed6c92e63858b03f07c9975fe05bb62214b"
+category: "Transportation"
+source: "motionsites"
 tier: "free"
-likes: 129
+sha256: "51277206ad60741d5f96ec0838c26ed6c92e63858b03f07c9975fe05bb62214b"
 ---
+
+# Cross-Border
 
 Create a mobile-first logistics company landing page for "CARGOX GROUP" displayed inside an iPhone 15 Pro mockup frame. Use React, TypeScript, Tailwind CSS, and the `motion` library (motion/react) for animations. Use Vite as the build tool.
 

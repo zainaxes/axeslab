@@ -1,17 +1,14 @@
 ---
-id: "res_wd_skyelite_hero"
+id: "res_axes_skyelite_hero"
 slug: "skyelite-hero"
 title: "SkyElite Private Jets"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/skyelite-hero.mp4"
-posterUrl: "/media/posters/skyelite-hero.jpg"
-chars: 2285
+source: "motionsites"
+tier: "free"
 sha256: "ecfa79a15e0566ef1308a639507f2c8e1107364074a514ee3b413c301d86f015"
-tier: "premium"
-likes: 179
 ---
+
+# SkyElite Private Jets
 
 Create a premium private jet landing page hero section with the following specifications:
 

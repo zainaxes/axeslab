@@ -1,17 +1,14 @@
 ---
-id: "res_wd_wellness_balance"
+id: "res_axes_wellness_balance"
 slug: "wellness-balance"
 title: "Wellness Balance"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/wellness-balance.jpg"
-chars: 7840
-sha256: "6d5127d809b35cf3d08bba6e739a13327955d222045f809667854c37b6c444a6"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 156
+sha256: "6d5127d809b35cf3d08bba6e739a13327955d222045f809667854c37b6c444a6"
 ---
+
+# Wellness Balance
 
 Create a single-page hero landing for a wellness/supplements brand called "TerraElix" using React + Tailwind CSS + Lucide React icons. The page is a full-viewport hero with a background image, navbar, headline with word-by-word reveal animations, CTA section, and a 3-panel footer strip. It must be fully responsive (mobile, tablet, desktop).
 

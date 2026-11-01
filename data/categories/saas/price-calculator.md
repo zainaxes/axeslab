@@ -1,16 +1,14 @@
 ---
-id: "res_wd_price_calculator"
+id: "res_axes_price_calculator"
 slug: "price-calculator"
 title: "Price Calculator"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/price-calculator.mp4"
-posterUrl: "/media/posters/price-calculator.jpg"
-chars: 3168
-tier: "premium"
-likes: 42
+source: "heydesign"
+tier: "free"
 ---
+
+# Price Calculator
 
 Recreate Project Estimation Calculator Section
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_organic_odyssey"
+id: "res_axes_organic_odyssey"
 slug: "organic-odyssey"
 title: "Organic Odyssey"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/organic-odyssey.mp4"
-posterUrl: "/media/posters/organic-odyssey.webp"
-chars: 4802
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "c46de546ac824599e6e63ea95c34729ece6e09c7322f2b427a2902a6074f12c4"
-tier: "premium"
-likes: 42
 ---
+
+# Organic Odyssey
 
 Create a full-screen cinematic hero section using React, Tailwind CSS, and Framer Motion. Use Vite with TypeScript. The dependencies required are: `react`, `react-dom`, `framer-motion`, `lucide-react`, and `tailwindcss`.
 

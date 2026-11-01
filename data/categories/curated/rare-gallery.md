@@ -1,16 +1,14 @@
 ---
-id: "res_meez_rare_gallery"
+id: "res_axes_rare_gallery"
 slug: "rare-gallery"
 title: "Rare Gallery"
 category: "Curated"
 categorySlug: "curated"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/rare-gallery.jpg"
-chars: 16834
+source: "meez"
 tier: "free"
-likes: 151
 ---
+
+# Rare Gallery
 
 Build a single-page luxury brand landing (navbar + full-viewport hero only). Stack: React 18 + TypeScript + Vite + Tailwind CSS 3. No extra UI kits. Use lucide-react only for the Flower2 icon. Page title: Aurevon. Root wrapper: bg-black. html, body { overflow-x: hidden }. Global reset: margin: 0; padding: 0; box-sizing: border-box.
 

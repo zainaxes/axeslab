@@ -1,16 +1,14 @@
 ---
-id: "res_meez_trustflow"
+id: "res_axes_trustflow"
 slug: "trustflow"
 title: "TrustFlow"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/trustflow.mp4"
-posterUrl: "/media/posters/trustflow.webp"
-chars: 6174
+source: "meez"
 tier: "free"
-likes: 82
 ---
+
+# TrustFlow
 
 Build a single full-viewport marketing landing page for **Boomerang**, a conversational AI platform for financial institutions. Tech: React + TypeScript + Vite + Tailwind CSS + Lucide React (`ArrowRight` only). No other UI libraries.
 

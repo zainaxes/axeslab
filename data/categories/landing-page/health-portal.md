@@ -1,17 +1,14 @@
 ---
-id: "res_wd_health_portal"
+id: "res_axes_health_portal"
 slug: "health-portal"
 title: "Health Portal"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/health-portal.webp"
-chars: 16908
-sha256: "16286a9938d5b87fe11d9ef402285994ad1b4414a406dd0e7c04e3383254b849"
-tier: "premium"
-likes: 35
+source: "motionsites"
+tier: "free"
 ---
+
+# Health Portal
 
 Create a single-page dental clinic landing page using **React + Vite + TypeScript + Tailwind CSS**. No external UI libraries, no icon libraries. Everything lives in one `App.tsx` file. The page has 3 full-screen sections, a splash screen, and a fixed navbar.
 

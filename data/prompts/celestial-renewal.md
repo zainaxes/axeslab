@@ -1,17 +1,14 @@
 ---
-id: "res_wd_celestial_renewal"
+id: "res_axes_celestial_renewal"
 slug: "celestial-renewal"
 title: "Celestial Renewal"
 category: "Wellness"
-categorySlug: "wellness"
-routeCollection: "prompts"
-videoUrl: "/media/videos/celestial-renewal.mp4"
-posterUrl: "/media/posters/celestial-renewal.jpg"
-chars: 7343
-sha256: "6ee7a251064e1c8bbd3dd8436a81fe4c358c545c31247a2dce7146b2567efebb"
+source: "motionsites"
 tier: "free"
-likes: 141
+sha256: "6ee7a251064e1c8bbd3dd8436a81fe4c358c545c31247a2dce7146b2567efebb"
 ---
+
+# Celestial Renewal
 
 **Build a React + Vite + Tailwind CSS landing page with two full-screen sections for a luxury beauty/wellness brand called "Serene". Use TypeScript.**
 

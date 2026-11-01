@@ -1,17 +1,14 @@
 ---
-id: "res_wd_transform_data_hero"
+id: "res_axes_transform_data_hero"
 slug: "transform-data-hero"
 title: "Transform Data"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/transform-data-hero.mp4"
-posterUrl: "/media/posters/transform-data-hero.jpg"
-chars: 3605
-sha256: "677d3fcb3c1f2fe378d9d463a05925f39951c343dbb3a22920cc0f604fe73f6b"
-tier: "premium"
-likes: 24
+source: "motionsites"
+tier: "free"
 ---
+
+# Transform Data
 
 HERO SECTION CREATION PROMPT
 

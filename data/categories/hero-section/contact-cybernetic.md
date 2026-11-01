@@ -1,17 +1,14 @@
 ---
-id: "res_wd_contact_cybernetic"
+id: "res_axes_contact_cybernetic"
 slug: "contact-cybernetic"
 title: "Contact Cybernetic"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/contact-cybernetic.mp4"
-posterUrl: "/media/posters/contact-cybernetic.webp"
-chars: 6423
-sha256: "3bdae30ec7078168d20fbced6eb76b89ba5a8a412253aeb75dd91915411bf051"
-tier: "premium"
-likes: 135
+source: "motionsites"
+tier: "free"
 ---
+
+# Contact Cybernetic
 
 Build a modern, interactive hero section using React, Tailwind CSS, and Framer Motion (motion/react). Ensure you follow these precise architecture and styling instructions:
 1. Fonts & Global Animations

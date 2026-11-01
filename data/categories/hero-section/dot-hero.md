@@ -1,17 +1,14 @@
 ---
-id: "res_wd_dot_hero"
+id: "res_axes_dot_hero"
 slug: "dot-hero"
 title: "Dot"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/dot-hero.mp4"
-posterUrl: "/media/posters/dot-hero.jpg"
-chars: 3870
-sha256: "b59eeeb35cb978cb5c1d6a264a8e1bb32229b11c452f022a477ebf09500462d5"
-tier: "premium"
-likes: 42
+source: "motionsites"
+tier: "free"
 ---
+
+# Dot
 
 Build a React landing page exactly as specified below. Use React 19, Tailwind CSS v4, and motion/react for animations.
 1. Fonts & Global CSS Setup:

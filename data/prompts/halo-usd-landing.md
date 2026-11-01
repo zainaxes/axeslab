@@ -1,17 +1,14 @@
 ---
-id: "res_wd_halo_usd_landing"
+id: "res_axes_halo_usd_landing"
 slug: "halo-usd-landing"
 title: "USD Halo"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/halo-usd-landing.jpg"
-chars: 8531
-sha256: "304fc87864be5186bb31beec502153a80b7f18c4f915b3479c0a430d5c3fd6aa"
+source: "motionsites"
 tier: "free"
-likes: 169
+sha256: "304fc87864be5186bb31beec502153a80b7f18c4f915b3479c0a430d5c3fd6aa"
 ---
+
+# USD Halo
 
 Build a premium, fintech-style landing page for a stablecoin product called "Halo / USD Halo" using React + TypeScript + Vite + Tailwind CSS, with lucide-react for icons. No other UI libraries. Background color of the page is #F5F5F5.
 

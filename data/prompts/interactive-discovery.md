@@ -1,17 +1,14 @@
 ---
-id: "res_wd_interactive_discovery"
+id: "res_axes_interactive_discovery"
 slug: "interactive-discovery"
 title: "Interactive Discovery"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/interactive-discovery.mp4"
-posterUrl: "/media/posters/interactive-discovery.webp"
-chars: 6894
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "c81bf5235d39099e553f989415057fc9610a0e5184bf127b563fed79712b4829"
-tier: "premium"
-likes: 127
 ---
+
+# Interactive Discovery
 
 Build a full-screen, dark-themed hero section for a geology brand called **Lithos**, using **React 18 + TypeScript + Vite + Tailwind CSS** and **lucide-react** for icons. The signature feature is a **cursor-following spotlight that reveals a second image** through a soft circular mask on top of a base image. Match every detail below exactly.
 

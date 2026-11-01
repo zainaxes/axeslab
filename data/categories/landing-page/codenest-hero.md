@@ -1,17 +1,14 @@
 ---
-id: "res_wd_codenest_hero"
+id: "res_axes_codenest_hero"
 slug: "codenest-hero"
 title: "CodeNest Coding Platform"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/codenest-hero.mp4"
-posterUrl: "/media/posters/codenest-hero.jpg"
-chars: 2581
-sha256: "aecd9a57ef07ea90a50e99364f6fc1c2eb9cbaaa6de4cb6853f62bb7643697ec"
-tier: "premium"
-likes: 62
+source: "motionsites"
+tier: "free"
 ---
+
+# CodeNest Coding Platform
 
 Create a high-end, dark-themed hero section for a coding education platform called 'CodeNest' using React and Tailwind CSS. The design must be responsive and follow these precise specifications:
 

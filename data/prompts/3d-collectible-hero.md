@@ -1,17 +1,14 @@
 ---
-id: "res_wd_3d_collectible_hero"
+id: "res_axes_3d_collectible_hero"
 slug: "3d-collectible-hero"
 title: "3D Collectible Hero"
 category: "3D Website"
-categorySlug: "3d-website"
-routeCollection: "3d-websites"
-videoUrl: "/media/videos/3d-collectible-hero.mp4"
-posterUrl: "/media/posters/3d-collectible-hero.webp"
-chars: 5347
+source: "motionsites"
+tier: "free"
 sha256: "6a2ec31f9a13a4afcc6bcadc602b35439cd8225e3cfbc7db3c415976f113ee67"
-tier: "premium"
-likes: 121
 ---
+
+# 3D Collectible Hero
 
 Build a single full-viewport hero section in React + TypeScript + Vite + Tailwind CSS, using `lucide-react` for icons. The component is a character-figurine carousel called "TOONHUB".
 

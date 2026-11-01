@@ -1,17 +1,14 @@
 ---
-id: "res_wd_immersive_ocean"
+id: "res_axes_immersive_ocean"
 slug: "immersive-ocean"
 title: "Immersive Ocean"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/immersive-ocean.webp"
-chars: 4030
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "6a98189c77fd23768ae75e00b114a4953224a867931729ad8c5adaba63cbc5be"
-tier: "premium"
-likes: 112
 ---
+
+# Immersive Ocean
 
 Create a fullscreen hero landing page for a creative studio called "Foldcraft" using React, Tailwind CSS, and Lucide React icons. The page is a single viewport-height section with a looping background video, a responsive navbar, a mobile menu, and staggered-animated hero text.
 

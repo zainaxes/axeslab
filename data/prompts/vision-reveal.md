@@ -1,17 +1,14 @@
 ---
-id: "res_wd_vision_reveal"
+id: "res_axes_vision_reveal"
 slug: "vision-reveal"
 title: "Vision Reveal"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/vision-reveal.mp4"
-posterUrl: "/media/posters/vision-reveal.jpg"
-chars: 16723
-sha256: "e41755ecba41e0dbf5e3d55ce5da3460b733c903b91688335849269693bf8508"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 194
+sha256: "e41755ecba41e0dbf5e3d55ce5da3460b733c903b91688335849269693bf8508"
 ---
+
+# Vision Reveal
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,16 +1,14 @@
 ---
-id: "res_meez_pet_diagnostics"
+id: "res_axes_pet_diagnostics"
 slug: "pet-diagnostics"
 title: "Pet Diagnostics"
 category: "Healthcare"
 categorySlug: "healthcare"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/pet-diagnostics.jpg"
-chars: 18464
+source: "meez"
 tier: "free"
-likes: 162
 ---
+
+# Pet Diagnostics
 
 Build a **single self-contained `index.html`** file. No build step, no framework, no external
 JS, no local image files. All CSS in one `<style>` block in `<head>`; one small `<script>`

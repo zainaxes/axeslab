@@ -1,16 +1,14 @@
 ---
-id: "res_wd_innovation_lab"
+id: "res_axes_innovation_lab"
 slug: "innovation-lab"
 title: "Innovation Lab"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/innovation-lab.mp4"
-posterUrl: "/media/posters/innovation-lab.webp"
-chars: 6847
+source: "meez"
 tier: "free"
-likes: 133
+sha256: ""
 ---
+
+# Innovation Lab
 
 Create a full-screen immersive landing page for a fictional creative-tech studio called "VortxLab Creations" (brand: "V O R T X"). The page features a looping background video, a glassmorphism-cut button aesthetic with octagonal clip-path shapes, and staggered fade-up entrance animations on every element.
 

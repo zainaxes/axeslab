@@ -1,17 +1,14 @@
 ---
-id: "res_wd_digital_experiences"
+id: "res_axes_digital_experiences"
 slug: "digital-experiences"
 title: "Digital Experiences"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/digital-experiences.webp"
-chars: 8994
-sha256: "64e6b632545157840c1db3818255774f616dc1f61fe86c31ef91446684ac759f"
-tier: "premium"
-likes: 100
+source: "motionsites"
+tier: "free"
 ---
+
+# Digital Experiences
 
 ## Prompt
 

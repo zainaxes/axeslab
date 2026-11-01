@@ -1,16 +1,14 @@
 ---
-id: "res_meez_agent_grove"
+id: "res_axes_agent_grove"
 slug: "agent-grove"
 title: "Agent Grove"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/agent-grove.jpg"
-chars: 7884
+source: "meez"
 tier: "free"
-likes: 75
 ---
+
+# Agent Grove
 
 Build a single full-screen (`h-screen w-full overflow-hidden`) hero page for **nexum** — a dark cinematic AI-ops landing hero with a full-bleed background video, glassmorphism nav/cards, and bottom-anchored content. Stack: React + Tailwind + `lucide-react` (`ChevronDown`, `Menu`, `X`). No routing. One section only.
 

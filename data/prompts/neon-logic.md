@@ -1,17 +1,14 @@
 ---
-id: "res_wd_neon_logic"
+id: "res_axes_neon_logic"
 slug: "neon-logic"
 title: "Neon Logic"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/neon-logic.webp"
-chars: 13601
+source: "motionsites"
+tier: "free"
 sha256: "0ab5371ac3a324fad708fbceb98c0e15778930f496dec6368d04867b9879f985"
-tier: "premium"
-likes: 157
 ---
+
+# Neon Logic
 
 Build a single-page landing site for "SynapseX" -- a futuristic neural-AI interface product. The entire site uses a black background with white text and full-viewport video backgrounds. The primary font is "Space Mono" (monospace) for all text. Use React + TypeScript + Vite + Tailwind CSS + Framer Motion.
 

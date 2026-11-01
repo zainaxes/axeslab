@@ -1,16 +1,14 @@
 ---
-id: "res_wd_rocket_pricing"
+id: "res_axes_rocket_pricing"
 slug: "rocket-pricing"
 title: "Rocket Pricing"
 category: "Pricing"
-categorySlug: "pricing"
-routeCollection: "sections"
-videoUrl: "/media/videos/rocket-pricing.mp4"
-posterUrl: "/media/posters/rocket-pricing.jpg"
-chars: 8841
-tier: "premium"
-likes: 159
+source: "heydesign"
+tier: "free"
+sha256: ""
 ---
+
+# Rocket Pricing
 
 Build a `PricingSection` React component that matches the spec below exactly.
 

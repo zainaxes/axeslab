@@ -1,17 +1,14 @@
 ---
-id: "res_wd_digitwist_hero"
+id: "res_axes_digitwist_hero"
 slug: "digitwist-hero"
 title: "Digitwist AI Builder"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/digitwist-hero.mp4"
-posterUrl: "/media/posters/digitwist-hero.jpg"
-chars: 6001
+source: "motionsites"
+tier: "free"
 sha256: "22db40a74f053015edad3376029e3c7233ebd8d714909980d3fcb867fefc4a26"
-tier: "premium"
-likes: 185
 ---
+
+# Digitwist AI Builder
 
 Create a dark mode hero section for an AI website builder with the following exact specifications:
 

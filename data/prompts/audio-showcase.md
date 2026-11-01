@@ -1,17 +1,14 @@
 ---
-id: "res_wd_audio_showcase"
+id: "res_axes_audio_showcase"
 slug: "audio-showcase"
 title: "Audio Showcase"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/audio-showcase.mp4"
-posterUrl: "/media/posters/audio-showcase.webp"
-chars: 6927
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "6bed09a557b923f894591f045f444b3e92c7bea69c68c3ed3208d37f0922606e"
-tier: "premium"
-likes: 152
 ---
+
+# Audio Showcase
 
 Build a full-screen hero section for a fictional vinyl record label called **"quietpress"** using React, TypeScript, Tailwind CSS, and Vite. The page is a single viewport-height hero with no scrolling. Use **lucide-react** for icons. No other UI libraries.
 

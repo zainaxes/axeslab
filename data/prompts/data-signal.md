@@ -1,16 +1,14 @@
 ---
-id: "res_meez_data_signal"
+id: "res_axes_data_signal"
 slug: "data-signal"
 title: "Data Signal"
 category: "Analytics"
-categorySlug: "analytics"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/data-signal.jpg"
-chars: 11932
+source: "meez"
 tier: "free"
-likes: 55
+sha256: ""
 ---
+
+# Data Signal
 
 Recreate this page **pixel-faithfully** as a single static `index.html` (inline CSS + JS, no framework). Match structure, copy, spacing tokens, glass, motion, fonts, and media exactly. Do not invent extra sections, stats, cards, or marketing blocks. Full-viewport dark landing only — no page scroll (`html, body { overflow: hidden; background: #000 }`).
 

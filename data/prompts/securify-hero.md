@@ -1,17 +1,14 @@
 ---
-id: "res_wd_securify_hero"
+id: "res_axes_securify_hero"
 slug: "securify-hero"
 title: "Securify Data Security"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/securify-hero.mp4"
-posterUrl: "/media/posters/securify-hero.jpg"
-chars: 3822
+source: "motionsites"
+tier: "free"
 sha256: "9bc9f2f0d7bb0a9c759714a3814e38a3012362afe02fcf3d7fb79823950e0452"
-tier: "premium"
-likes: 135
 ---
+
+# Securify Data Security
 
 Build a full-screen hero section for a data-security SaaS landing page called "securify" using React + TypeScript + Tailwind CSS, with a looping fullscreen background video, a floating pill-shaped navbar, and large staggered typography.
 

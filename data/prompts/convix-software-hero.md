@@ -1,17 +1,14 @@
 ---
-id: "res_wd_convix_software_hero"
+id: "res_axes_convix_software_hero"
 slug: "convix-software-hero"
-title: "SAAS Software"
+title: "Convix Software"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/convix-software-hero.mp4"
-posterUrl: "/media/posters/convix-software-hero.jpg"
-chars: 5587
+source: "motionsites"
+tier: "free"
 sha256: "dc2d0b83448511268b39ce955990f46888b439028d37d3c80dd993aa4ee1cac8"
-tier: "premium"
-likes: 146
 ---
+
+# Convix Software
 
 Build a fully responsive, full-viewport hero section for a PR-agency SaaS called "Convix Software" with these exact specs:
 

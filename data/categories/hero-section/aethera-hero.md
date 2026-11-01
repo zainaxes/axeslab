@@ -1,17 +1,14 @@
 ---
-id: "res_wd_aethera_hero"
+id: "res_axes_aethera_hero"
 slug: "aethera-hero"
 title: "Aethera Studio"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/aethera-hero.mp4"
-posterUrl: "/media/posters/aethera-hero.jpg"
-chars: 3169
-sha256: "e4f05b30ecfb52ada93f551f0e9cafbc259fa57c791408c412107e23e5ccdf32"
-tier: "premium"
-likes: 153
+source: "motionsites"
+tier: "free"
 ---
+
+# Aethera Studio
 
 Prompt: Cinematic Hero Section with Looping Video Background
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_subscription_agency"
+id: "res_axes_subscription_agency"
 slug: "subscription-agency"
 title: "Subscription Agency"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/subscription-agency.mp4"
-posterUrl: "/media/posters/subscription-agency.jpg"
-chars: 6172
-sha256: "a1c407a9c4090191ddb3cd175d22d7c90c0c42715d3c7235a2c6a08022e24120"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 71
+sha256: "a1c407a9c4090191ddb3cd175d22d7c90c0c42715d3c7235a2c6a08022e24120"
 ---
+
+# Subscription Agency
 
 **Create a single-page landing hero section for a creative agency called "Alwayzz" with a React + Vite + Tailwind CSS setup. Use custom CSS (not Tailwind utilities) for all styling. The design should be minimal, clean, black-and-white, with tight negative letter-spacing throughout.**
 

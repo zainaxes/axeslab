@@ -1,17 +1,14 @@
 ---
-id: "res_wd_cyberpunk_reveal"
+id: "res_axes_cyberpunk_reveal"
 slug: "cyberpunk-reveal"
 title: "Cyberpunk Reveal"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/cyberpunk-reveal.mp4"
-posterUrl: "/media/posters/cyberpunk-reveal.jpg"
-chars: 7086
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "2ef94ff0248588d46eb2f21e03a26f446a66fa831570e3a7f889c9b6b1a19922"
-tier: "premium"
-likes: 49
 ---
+
+# Cyberpunk Reveal
 
 Recreate a cyberpunk-style hero section (React + Vite + TypeScript + Tailwind CSS, lucide-react icons)**
 

@@ -1,16 +1,14 @@
 ---
-id: "res_meez_forecast_center"
+id: "res_axes_forecast_center"
 slug: "forecast-center"
 title: "Forecast Center"
 category: "Mobile App"
 categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/forecast-center.mp4"
-posterUrl: "/media/posters/forecast-center.webp"
-chars: 11257
+source: "meez"
 tier: "free"
-likes: 81
 ---
+
+# Forecast Center
 
 Recreate this EXACT weather dashboard UI as a single self-contained HTML page (inline CSS, SVG icon sprite, no frameworks, no JS required). Pixel-faithful to the reference “Aurora Weather / Weather Forecast — Central Jakarta” liquid-glass dashboard.
 

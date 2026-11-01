@@ -1,16 +1,14 @@
 ---
-id: "res_meez_talent_collective"
+id: "res_axes_talent_collective"
 slug: "talent-collective"
 title: "Talent Collective"
 category: "Agency"
-categorySlug: "agency"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/talent-collective.jpg"
-chars: 8399
+source: "meez"
 tier: "free"
-likes: 89
+sha256: ""
 ---
+
+# Talent Collective
 
 Build a single full-viewport React + TypeScript + Tailwind CSS page for a creative studio called **Kollektiva**. The app renders only this one section (no nav, no other pages). Stack: Vite + React 18 + Tailwind 3. Font: **Geist** (Google Fonts weights 300, 400, 500). Title: `Kollektiva`.
 

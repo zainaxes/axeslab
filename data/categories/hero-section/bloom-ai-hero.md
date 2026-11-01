@@ -1,17 +1,14 @@
 ---
-id: "res_wd_bloom_ai_hero"
+id: "res_axes_bloom_ai_hero"
 slug: "bloom-ai-hero"
 title: "Bloom AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/bloom-ai-hero.mp4"
-posterUrl: "/media/posters/bloom-ai-hero.jpg"
-chars: 3900
-sha256: "d821c5196a8f4039bd0de4235c2e94de55bb4867b6fe37088430720ea9aa19d5"
-tier: "premium"
-likes: 173
+source: "motionsites"
+tier: "free"
 ---
+
+# Bloom AI
 
 Create a full-screen hero landing page for "Bloom" — an AI-powered plant/floral design platform. The design uses a liquid glass morphism aesthetic over a looping video background.
 

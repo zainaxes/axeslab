@@ -1,17 +1,14 @@
 ---
-id: "res_wd_build_with_us"
+id: "res_axes_build_with_us"
 slug: "build-with-us"
 title: "Build With Us"
 category: "Contact us"
 categorySlug: "contact-us"
-routeCollection: "prompts"
-videoUrl: "/media/videos/build-with-us.mp4"
-posterUrl: "/media/posters/build-with-us.jpg"
-chars: 6253
-sha256: "41b8f5989fa746155e0d44c72cc4378eb0ec03411a87495fc25524d61c1e167d"
-tier: "premium"
-likes: 98
+source: "motionsites"
+tier: "free"
 ---
+
+# Build With Us
 
 Build a single-page React + TypeScript + Vite + Tailwind site that is a full-screen video-background landing page with a contact form. Use `lucide-react` for icons.
 

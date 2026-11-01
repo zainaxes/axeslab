@@ -1,16 +1,14 @@
 ---
-id: "res_wd_ai_trip_planner"
+id: "res_axes_ai_trip_planner"
 slug: "ai-trip-planner"
 title: "AI Trip Planner"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/ai-trip-planner.mp4"
-posterUrl: "/media/posters/ai-trip-planner.webp"
-chars: 13780
+source: "meez"
 tier: "free"
-likes: 177
 ---
+
+# AI Trip Planner
 
 **Build a single-page React + TypeScript landing page for a travel app called "Wandor" using Vite, Tailwind CSS, and lucide-react. The page is a full-viewport hero section with a looping background video, a frosted-glass prompt card, and a navigation bar.**
 

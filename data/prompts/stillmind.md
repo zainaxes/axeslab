@@ -1,17 +1,14 @@
 ---
-id: "res_wd_stillmind"
+id: "res_axes_stillmind"
 slug: "stillmind"
 title: "Stillmind"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/stillmind.mp4"
-posterUrl: "/media/posters/stillmind.jpg"
-chars: 6025
-sha256: "8caa5f53a90ef80f9a7e28e6664037a22b2ea2e732792476ee40b95fd862fe3b"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 138
+sha256: "8caa5f53a90ef80f9a7e28e6664037a22b2ea2e732792476ee40b95fd862fe3b"
 ---
+
+# Stillmind
 
 Create a fullscreen cinematic hero section for a mindfulness/focus app called "Lumora" using React, Tailwind CSS, and Lucide React icons.
 

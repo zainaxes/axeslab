@@ -1,17 +1,14 @@
 ---
-id: "res_wd_travel_journal"
+id: "res_axes_travel_journal"
 slug: "travel-journal"
 title: "Travel Journal"
-category: "Mobile App"
-categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/travel-journal.mp4"
-posterUrl: "/media/posters/travel-journal.jpg"
-chars: 5151
-sha256: "01075eaea7b5b8bdc28ba157b588d4f60797cbd0c00e55fe0ce0b32039b10f88"
+category: "Travel"
+source: "motionsites"
 tier: "free"
-likes: 60
+sha256: "01075eaea7b5b8bdc28ba157b588d4f60797cbd0c00e55fe0ce0b32039b10f88"
 ---
+
+# Travel Journal
 
 Create a mobile travel app UI mockup displayed inside a realistic iPhone-style phone frame, centered on a white webpage. Tech stack: React + TypeScript, Tailwind CSS, Lucide React icons, Vite. Font: Google Fonts "Inter" (weights 300-900).
 

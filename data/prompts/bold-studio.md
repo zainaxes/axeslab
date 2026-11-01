@@ -1,17 +1,14 @@
 ---
-id: "res_wd_bold_studio"
+id: "res_axes_bold_studio"
 slug: "bold-studio"
 title: "Bold Studio"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/bold-studio.mp4"
-posterUrl: "/media/posters/bold-studio.jpg"
-chars: 6067
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "7a7a7632a6a6cf5a7b33662151552eac3d8c335d70c7da85cb0180dba4946ab1"
-tier: "premium"
-likes: 98
 ---
+
+# Bold Studio
 
 Build a fullscreen hero landing page for a creative agency called "VANGUARD" using React, Tailwind CSS, and Vite. The page should be a single viewport-height section with a looping background video and all content overlaid on top.
 

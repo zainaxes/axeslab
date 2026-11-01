@@ -1,17 +1,14 @@
 ---
-id: "res_wd_digital_epoch_hero"
+id: "res_axes_digital_epoch_hero"
 slug: "digital-epoch-hero"
 title: "Digital Epoch"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/digital-epoch-hero.mp4"
-posterUrl: "/media/posters/digital-epoch-hero.jpg"
-chars: 4594
-sha256: "98a578e9d85ce3e6d4a80b5fc09a94e31a8796088975de98245db90e56bfd3fb"
-tier: "premium"
-likes: 35
+source: "motionsites"
+tier: "free"
 ---
+
+# Digital Epoch
 
 Build a modern, high-performance landing page section using React, TypeScript, Tailwind CSS v4, and Motion. The application should match the following exact specifications:
 1. Dependencies & Setup

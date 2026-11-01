@@ -1,17 +1,14 @@
 ---
-id: "res_wd_mindloop_landing"
+id: "res_axes_mindloop_landing"
 slug: "mindloop-landing"
 title: "Mindloop Landing"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/mindloop-landing.mp4"
-posterUrl: "/media/posters/mindloop-landing.jpg"
-chars: 7242
+source: "motionsites"
+tier: "free"
 sha256: "e37b73d4812519e3362aa46a9c05e8e4b8361dc55a41afad413789b0e1d3b0bf"
-tier: "premium"
-likes: 92
 ---
+
+# Mindloop Landing
 
 Build a dark monochrome landing page called Mindloop — a newsletter/content platform. Use React + Vite + TypeScript + Tailwind CSS + shadcn/ui + Framer Motion. Fonts: Inter (sans) and Instrument Serif (serif, used for italic accent words). The entire theme is pure black (#000) background with white foreground — no colors or gradients beyond monochrome. Install hls.js and framer-motion.
 

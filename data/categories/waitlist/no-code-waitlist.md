@@ -1,17 +1,14 @@
 ---
-id: "res_wd_no_code_waitlist"
+id: "res_axes_no_code_waitlist"
 slug: "no-code-waitlist"
 title: "No-Code Waitlist"
 category: "Waitlist"
 categorySlug: "waitlist"
-routeCollection: "prompts"
-videoUrl: "/media/videos/no-code-waitlist.mp4"
-posterUrl: "/media/posters/no-code-waitlist.webp"
-chars: 6532
-sha256: "601cc396470b69406eaa041848e3ec2eebf0bacb86394ff2f1261d7f7d038a63"
-tier: "premium"
-likes: 93
+source: "motionsites"
+tier: "free"
 ---
+
+# No-Code Waitlist
 
 Build a full-screen dark hero section landing page in React + Vite + Tailwind CSS v4 + Motion (framer-motion) + Lucide React icons + hls.js. The page should be a single screen (100vh, no scroll) with a black background, a fullscreen background video, a glassmorphism navbar, and a centered hero with an email capture CTA.
 >

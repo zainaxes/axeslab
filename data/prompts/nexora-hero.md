@@ -1,17 +1,14 @@
 ---
-id: "res_wd_nexora_hero"
+id: "res_axes_nexora_hero"
 slug: "nexora-hero"
 title: "Nexora Automation"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/nexora-hero.mp4"
-posterUrl: "/media/posters/nexora-hero.jpg"
-chars: 5344
+source: "motionsites"
+tier: "free"
 sha256: "74c6b26bd78c1b439dc2eb30bbb16a70f4d22d42c3acd3999616d2e8d8822f84"
-tier: "premium"
-likes: 202
 ---
+
+# Nexora Automation
 
 Create a SaaS landing page hero section with the following exact specifications:
 

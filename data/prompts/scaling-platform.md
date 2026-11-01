@@ -1,16 +1,14 @@
 ---
-id: "res_meez_scaling_platform"
+id: "res_axes_scaling_platform"
 slug: "scaling-platform"
 title: "Scaling Platform"
 category: "SaaS"
-categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/scaling-platform.jpg"
-chars: 5081
+source: "meez"
 tier: "free"
-likes: 37
+sha256: ""
 ---
+
+# Scaling Platform
 
 # Prompt: Recreate the Targo hero + about sections
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_impact_ventures"
+id: "res_axes_impact_ventures"
 slug: "impact-ventures"
 title: "Impact Ventures"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/impact-ventures.webp"
-chars: 4400
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "c19477fa46ff8da25abdc927ce7dd1af814ad62453a688423479123ffa64a96c"
-tier: "premium"
-likes: 103
 ---
+
+# Impact Ventures
 
 Create a fullscreen hero landing page section for a design agency called "Atelier" using React, Tailwind CSS, and Lucide React icons. The section must be fully mobile responsive with an animated hamburger mobile menu. Here are the exact specifications:
 

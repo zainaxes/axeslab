@@ -1,16 +1,14 @@
 ---
-id: "res_meez_orbit_flora"
+id: "res_axes_orbit_flora"
 slug: "orbit-flora"
 title: "Orbit Flora"
-category: "AI"
-categorySlug: "ai"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/orbit-flora.jpg"
-chars: 8956
+category: "AI SaaS"
+source: "meez"
 tier: "free"
-likes: 125
+sha256: ""
 ---
+
+# Orbit Flora
 
 Build a **single-file** `index.html` full-viewport poster. No scroll. No frameworks. No redesign. Match layout, type, color, both image URLs, entrance choreography, mobile menu, and mouse morph-reveal **exactly**.
 

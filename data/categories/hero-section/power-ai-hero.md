@@ -1,17 +1,14 @@
 ---
-id: "res_wd_power_ai_hero"
+id: "res_axes_power_ai_hero"
 slug: "power-ai-hero"
 title: "Power AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/power-ai-hero.mp4"
-posterUrl: "/media/posters/power-ai-hero.jpg"
-chars: 3838
-sha256: "7da85cb611a91bdb080434dce20716b4efe5bd97224849594446e19d697ff009"
-tier: "premium"
-likes: 171
+source: "motionsites"
+tier: "free"
 ---
+
+# Power AI
 
 Create a full-screen dark hero section with a looping background video, navbar, headline, subtitle, CTA button, and a logo marquee at the bottom. Here are the exact specifications:
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_ai_image_generator_ui"
+id: "res_axes_ai_image_generator_ui"
 slug: "ai-image-generator-ui"
 title: "AI Image Generator UI"
-category: "AI"
-categorySlug: "ai"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/ai-image-generator-ui.jpg"
-chars: 4480
+category: "AI SaaS"
+source: "motionsites"
+tier: "free"
 sha256: "671a598b15d237479ee87fa4321d48d1e0394bf618a0329e1bd7a1f99f0ecf29"
-tier: "premium"
-likes: 103
 ---
+
+# AI Image Generator UI
 
 Build a "Core Features" marketing section as a single centered component with three gradient cards. Use the Inter font family (weights 400, 500, 600) loaded from Google Fonts: `https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap`.
 

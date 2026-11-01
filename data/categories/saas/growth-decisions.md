@@ -1,16 +1,14 @@
 ---
-id: "res_meez_growth_decisions"
+id: "res_axes_growth_decisions"
 slug: "growth-decisions"
 title: "Growth Decisions"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/growth-decisions.jpg"
-chars: 11089
+source: "meez"
 tier: "free"
-likes: 79
 ---
+
+# Growth Decisions
 
 **Recreate this exact single-page SaaS hero. Do not invent extra sections, extra pages, extra images, or extra copy. Implement only what is specified. Stack: one `index.html`, one `styles.css`, one `main.js`. No frameworks.**
 

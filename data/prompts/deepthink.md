@@ -1,16 +1,14 @@
 ---
-id: "res_meez_deepthink"
+id: "res_axes_deepthink"
 slug: "deepthink"
 title: "DeepThink"
-category: "AI Assistant"
-categorySlug: "ai-assistant"
-routeCollection: "apps"
-videoUrl: ""
-posterUrl: "/media/posters/deepthink.jpg"
-chars: 13695
+category: "AI SaaS"
+source: "meez"
 tier: "free"
-likes: 110
+sha256: ""
 ---
+
+# DeepThink
 
 Recreate this page EXACTLY as a single static HTML file (no frameworks, no React, no Tailwind, no GSAP). Two full-viewport dark sections stacked vertically. Smooth scroll. Antialiased text. Reference canvas feel: polished AI product landing, near-black #0c0c0c.
 

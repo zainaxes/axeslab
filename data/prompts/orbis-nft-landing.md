@@ -1,17 +1,14 @@
 ---
-id: "res_wd_orbis_nft_landing"
+id: "res_axes_orbis_nft_landing"
 slug: "orbis-nft-landing"
 title: "Orbis NFT"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/orbis-nft-landing.mp4"
-posterUrl: "/media/posters/orbis-nft-landing.jpg"
-chars: 8276
+source: "motionsites"
+tier: "free"
 sha256: "014b9381a9779a6acdf1e8f1c03acbe30689afe2d1ce2c2f0b48f0df87a28acc"
-tier: "premium"
-likes: 202
 ---
+
+# Orbis NFT
 
 Create an NFT landing page called "Orbis.Nft" with 4 sections, using a dark space theme. The page uses video backgrounds served from CloudFront, a liquid glass UI effect, and a specific color/font system. Recreate it exactly as described below.
 

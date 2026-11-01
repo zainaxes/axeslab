@@ -1,17 +1,14 @@
 ---
-id: "res_wd_velorah_hero"
+id: "res_axes_velorah_hero"
 slug: "velorah-hero"
 title: "Velorah"
 category: "Agency"
-categorySlug: "agency"
-routeCollection: "prompts"
-videoUrl: "/media/videos/velorah-hero.mp4"
-posterUrl: "/media/posters/velorah-hero.jpg"
-chars: 3788
+source: "motionsites"
+tier: "free"
 sha256: "b79f787da8bad026b0a783abfe2445ed6317caa898764fb61046a58122721a2f"
-tier: "premium"
-likes: 80
 ---
+
+# Velorah
 
 Create a single-page hero section with a fullscreen looping background video, glassmorphic navigation, and cinematic typography. Use React + Vite + Tailwind CSS + TypeScript with shadcn/ui.
 

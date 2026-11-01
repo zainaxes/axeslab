@@ -1,17 +1,14 @@
 ---
-id: "res_wd_wellbeing_os"
+id: "res_axes_wellbeing_os"
 slug: "wellbeing-os"
 title: "Wellbeing OS"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/wellbeing-os.mp4"
-posterUrl: "/media/posters/wellbeing-os.jpg"
-chars: 5051
-sha256: "6883361e5addea9ca09740bb047d4050683b32312c5b97dbc43811c530f95662"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 100
+sha256: "6883361e5addea9ca09740bb047d4050683b32312c5b97dbc43811c530f95662"
 ---
+
+# Wellbeing OS
 
 Create a fullscreen hero section for a SaaS product called "flowpath" using React, Tailwind CSS, and Lucide React icons. The section should be a single `<section>` filling the viewport (`h-screen w-full overflow-hidden`).
 

@@ -1,16 +1,14 @@
 ---
-id: "res_wd_scroll_marquee"
+id: "res_axes_scroll_marquee"
 slug: "scroll-marquee"
 title: "Scroll Marquee"
 category: "Marquee"
 categorySlug: "marquee"
-routeCollection: "sections"
-videoUrl: "/media/videos/scroll-marquee.mp4"
-posterUrl: "/media/posters/scroll-marquee.jpg"
-chars: 3993
-tier: "premium"
-likes: 90
+source: "heydesign"
+tier: "free"
 ---
+
+# Scroll Marquee
 
 ---
 
@@ -25,31 +23,31 @@ Create a scroll-driven image marquee section using React, Tailwind CSS, and vani
 
 **Row 1 images (11 images), scrolls RIGHT as user scrolls down:**
 ```
-https://Axes Lab/assets/hero-space-voyage-preview-eECLH3Yc.gif
-https://Axes Lab/assets/hero-codenest-preview-Cgppc2qV.gif
-https://Axes Lab/assets/hero-vex-ventures-preview-BczMFIiw.gif
-https://Axes Lab/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif
-https://Axes Lab/assets/hero-asme-preview-B_nGDnTP.gif
-https://Axes Lab/assets/hero-transform-data-preview-Cx5OU29N.gif
-https://Axes Lab/assets/hero-vitara-preview-Cjz2QYyU.gif
-https://Axes Lab/assets/hero-terra-preview-BFjrCr7T.gif
-https://Axes Lab/assets/hero-skyelite-preview-DHaZIgUv.gif
-https://Axes Lab/assets/hero-aethera-preview-DknSlcTa.gif
-https://Axes Lab/assets/hero-designpro-preview-D8c5_een.gif
+https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif
+https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif
+https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif
+https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif
+https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif
+https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif
+https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif
+https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif
+https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif
+https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif
+https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif
 ```
 
 **Row 2 images (10 images), scrolls LEFT as user scrolls down (opposite direction):**
 ```
-https://Axes Lab/assets/hero-stellar-ai-preview-D3HL6bw1.gif
-https://Axes Lab/assets/hero-xportfolio-preview-D4A8maiC.gif
-https://Axes Lab/assets/hero-orbit-web3-preview-BXt4OttD.gif
-https://Axes Lab/assets/hero-nexora-preview-cx5HmUgo.gif
-https://Axes Lab/assets/hero-evr-ventures-preview-DZxeVFEX.gif
-https://Axes Lab/assets/hero-planet-orbit-preview-DWAP8Z1P.gif
-https://Axes Lab/assets/hero-new-era-preview-CocuDUm9.gif
-https://Axes Lab/assets/hero-wealth-preview-B70idl_u.gif
-https://Axes Lab/assets/hero-luminex-preview-CxOP7ce6.gif
-https://Axes Lab/assets/hero-celestia-preview-0yO3jXO8.gif
+https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif
+https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif
+https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif
+https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif
+https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif
+https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif
+https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif
+https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif
+https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif
+https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif
 ```
 
 **Image cards:**

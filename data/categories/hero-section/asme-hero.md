@@ -1,17 +1,14 @@
 ---
-id: "res_wd_asme_hero"
+id: "res_axes_asme_hero"
 slug: "asme-hero"
 title: "Asme"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/asme-hero.mp4"
-posterUrl: "/media/posters/asme-hero.jpg"
-chars: 4360
-sha256: "1127da6eb24f5c40f392c09df4ecc39dd435fee5475f28b4aa64a91472a46a2c"
-tier: "premium"
-likes: 129
+source: "motionsites"
+tier: "free"
 ---
+
+# Asme
 
 Build a single-page hero section with a full-screen looping background video, liquid glass UI elements, and a dark cinematic aesthetic. Use React, TypeScript, Tailwind CSS, and Lucide React icons. Here are the exact specifications:
 

@@ -1,16 +1,14 @@
 ---
-id: "res_wd_f1_racing_hub"
+id: "res_axes_f1_racing_hub"
 slug: "f1-racing-hub"
 title: "F1 Racing Hub"
 category: "Mobile App"
-categorySlug: "mobile-app"
-routeCollection: "apps"
-videoUrl: "/media/videos/f1-racing-hub.mp4"
-posterUrl: "/media/posters/f1-racing-hub.webp"
-chars: 9802
+source: "meez"
 tier: "free"
-likes: 180
+sha256: ""
 ---
+
+# F1 Racing Hub
 
 # Recreate This Page Exactly — Lewis Hamilton / Silverstone F1 Hero
 

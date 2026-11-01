@@ -1,26 +1,23 @@
 ---
-id: "res_wd_vortex_studio_hero"
+id: "res_axes_vortex_studio_hero"
 slug: "vortex-studio-hero"
 title: "AI Designer Portfolio"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/vortex-studio-hero.mp4"
-posterUrl: "/media/posters/vortex-studio-hero.png"
-chars: 11374
+source: "motionsites"
+tier: "free"
 sha256: "fb1552ead43495f98fb88a2f373682ba29229afc7686017589149ba0220cb632"
-tier: "premium"
-likes: 42
 ---
 
-Create a single-page landing page for a creative design studio called "Zainaxes" using React, TypeScript, Vite, and Tailwind CSS. Use lucide-react for icons. The page has a white background throughout and uses two custom fonts: "PP Neue Montreal" (body text, loaded from Webflow CDN) and "PP Mondwest" (serif accent font, loaded from a local /PPMondwest-Regular.woff2 file). The body default font is PP Neue Montreal with system fallbacks.
+# AI Designer Portfolio
+
+Create a single-page landing page for a creative design studio called "Viktor Oddy" using React, TypeScript, Vite, and Tailwind CSS. Use lucide-react for icons. The page has a white background throughout and uses two custom fonts: "PP Neue Montreal" (body text, loaded from Webflow CDN) and "PP Mondwest" (serif accent font, loaded from a local /PPMondwest-Regular.woff2 file). The body default font is PP Neue Montreal with system fallbacks.
 
 The page consists of these sections in order:
 
 1. HERO SECTION (centered, narrow column max-w-[440px], px-6, pt-12 md:pt-16)
 
-Logo text: "Zainaxes" in PP Mondwest serif font, text-[32px] md:text-[40px] lg:text-[44px], font-semibold, color #051A24, tracking-tight, mb-4. Fades in with staggered animation (delay 0.1s).
-Tagline: "The creative studio of Zainaxes" in monospace font (font-mono), text-xs md:text-sm, color #051A24, mb-2. Animation delay 0.2s.
+Logo text: "Viktor Oddy" in PP Mondwest serif font, text-[32px] md:text-[40px] lg:text-[44px], font-semibold, color #051A24, tracking-tight, mb-4. Fades in with staggered animation (delay 0.1s).
+Tagline: "The creative studio of Viktor Oddy" in monospace font (font-mono), text-xs md:text-sm, color #051A24, mb-2. Animation delay 0.2s.
 Main Heading: Two lines: "Build the next wave," and "the bold way." where "next wave" and "bold way." are in PP Mondwest serif. Text is text-[32px] md:text-[40px] lg:text-[44px], leading-[1.1], color #0D212C, tracking-tight, whitespace-nowrap. Animation delay 0.3s.
 Description: Three paragraphs in a flex-col gap-6 container, text-sm md:text-base, color #051A24, leading-relaxed, mt-5 md:mt-6. Animation delay 0.4s.
 Paragraph 1: "I spent seven years at Apple crafting products used by over a billion people. I founded Vortex Studio to bring that same level of thinking to innovators shaping what comes next."
@@ -33,21 +30,21 @@ Two buttons in flex-col sm:flex-row, gap-3 md:gap-4, mt-5 md:mt-6. Animation del
 
 Horizontally scrolling image strip. Uses 8 GIF images duplicated (total 16) in a flex row with animate-marquee CSS animation (translateX(0) to translateX(-50%), 30s linear infinite on desktop, 10s on mobile). Images are h-[280px] md:h-[500px], object-cover, mx-3, rounded-2xl, shadow-lg.
 
-Image URLs (all from Axes Lab):
+Image URLs (all from motionsites.ai):
 
-https://Axes Lab/assets/hero-space-voyage-preview-eECLH3Yc.gif
-https://Axes Lab/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif
-https://Axes Lab/assets/hero-velorah-preview-CJNTtbpd.gif
-https://Axes Lab/assets/hero-asme-preview-B_nGDnTP.gif
-https://Axes Lab/assets/hero-transform-data-preview-Cx5OU29N.gif
-https://Axes Lab/assets/hero-aethera-preview-DknSlcTa.gif
-https://Axes Lab/assets/hero-orbit-web3-preview-BXt4OttD.gif
-https://Axes Lab/assets/hero-nexora-preview-cx5HmUgo.gif
+https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif
+https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif
+https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif
+https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif
+https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif
+https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif
+https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif
+https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif
 3. TESTIMONIAL QUOTE SECTION (py-12, px-6, max-w-2xl, centered)
 
 A quote icon (lucide-react Quote, w-6 h-6, text-slate-900). Animation delay 0.1s.
 Large quote text: 'I left Apple to build the studio I always wanted to work with' where "Apple" is in PP Mondwest serif. Text sizing: text-[32px] md:text-[40px] lg:text-[44px], leading-[1.1], color #0D212C, tracking-tight. Animation delay 0.2s.
-Author: "Zainaxes" in italic, text-sm, color #273C46. Animation delay 0.3s.
+Author: "Viktor Oddy" in italic, text-sm, color #273C46. Animation delay 0.3s.
 Three company logo names displayed as text: "Apple" (80px wide, 24px font), "IDEO" (83px wide, 24px font), "Polygon" (110px wide, 24px font). Font-medium, text-slate-900. Animation delay 0.4s.
 Below logos: A parallax image (scrolls with a parallax effect based on viewport position, max offset 200px). The image URL is: https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260330_103804_7aa5494f-4d5b-432e-9dc7-20715275f143.png&w=1280&q=85. Alt text "Chris Halaska". w-full max-w-xs rounded-2xl shadow-lg. Animation delay 0.5s. The parallax uses IntersectionObserver + scroll listener with requestAnimationFrame.
 4. PRICING SECTION (full width, py-12, px-6)
@@ -89,9 +86,9 @@ Full-width image below (rounded-2xl, shadow-lg, object-cover)
 Each item independently triggers fade-in animation via IntersectionObserver.
 Projects:
 
-"evr" - "From idea to millions raised for a web3 AI product" - https://Axes Lab/assets/hero-evr-ventures-preview-DZxeVFEX.gif
-"Automation Machines" - "Streamlining industrial automation processes" - https://Axes Lab/assets/hero-automation-machines-preview-DlTveRIN.gif
-"xPortfolio" - "Modern portfolio management platform" - https://Axes Lab/assets/hero-xportfolio-preview-D4A8maiC.gif
+"evr" - "From idea to millions raised for a web3 AI product" - https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif
+"Automation Machines" - "Streamlining industrial automation processes" - https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif
+"xPortfolio" - "Modern portfolio management platform" - https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif
 7. PARTNER SECTION (full width, py-12, px-6)
 
 Large white container (max-w-7xl, py-48, rounded-[40px], subtle shadow). On mouse hover, GIF thumbnails (from the marquee images array) spawn at cursor position with random rotation (-10 to +10 deg), fade out over 1000ms with scale-down, spawning every 80ms minimum. Uses requestAnimationFrame-style cleanup.

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_neo_museum"
+id: "res_axes_neo_museum"
 slug: "neo-museum"
 title: "Neo Museum"
 category: "Website"
-categorySlug: "website"
-routeCollection: "prompts"
-videoUrl: "/media/videos/neo-museum.mp4"
-posterUrl: "/media/posters/neo-museum.webp"
-chars: 15036
+source: "motionsites"
+tier: "free"
 sha256: "c79fa379a6e3485265c3b8b48b7cbaea4973f11c6c6954fcd88cdb22790bdab9"
-tier: "premium"
-likes: 97
 ---
+
+# Neo Museum
 
 Project Setup
 

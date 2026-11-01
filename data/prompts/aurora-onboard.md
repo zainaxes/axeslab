@@ -1,17 +1,14 @@
 ---
-id: "res_wd_aurora_onboard"
+id: "res_axes_aurora_onboard"
 slug: "aurora-onboard"
 title: "Aurora Onboard"
 category: "Signup"
-categorySlug: "signup"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/aurora-onboard.jpg"
-chars: 4770
+source: "motionsites"
+tier: "free"
 sha256: "04bbd8d1a7479031fc455c2df4f01cf1d52e23ed0172e488f670fd8f217c3b0f"
-tier: "premium"
-likes: 74
 ---
+
+# Aurora Onboard
 
 Please build a modern, two-column registration interface called "Aurora Sign Up". Use React, Tailwind CSS (v4), `motion/react` (for animations), and `lucide-react` (for icons). The app should be contained entirely in `App.tsx` and `index.css`.
 

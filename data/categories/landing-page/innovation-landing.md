@@ -1,17 +1,14 @@
 ---
-id: "res_wd_innovation_landing"
+id: "res_axes_innovation_landing"
 slug: "innovation-landing"
 title: "Innovation"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/innovation-landing.mp4"
-posterUrl: "/media/posters/innovation-landing.jpg"
-chars: 8995
-sha256: "9e4779f7ba0d275c370964366f30e0c592fbd6c3dd50666c286b1c833c3d22da"
-tier: "premium"
-likes: 71
+source: "motionsites"
+tier: "free"
 ---
+
+# Innovation
 
 RECREATION PROMPT
 

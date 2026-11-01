@@ -1,17 +1,14 @@
 ---
-id: "res_wd_creative_portfolio"
+id: "res_axes_creative_portfolio"
 slug: "creative-portfolio"
 title: "Creative Portfolio"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/creative-portfolio.jpg"
-chars: 5639
-sha256: "2801889242104a8f6a6250b6a91bfdefd73ef2007992f18fc0eaa61c61d23b45"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 94
+sha256: "2801889242104a8f6a6250b6a91bfdefd73ef2007992f18fc0eaa61c61d23b45"
 ---
+
+# Creative Portfolio
 
 626f6c742d63632d6167656e74Let me read all the relevant files to compile the full recreation prompt.
 Here's the full recreation prompt:

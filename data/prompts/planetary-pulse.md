@@ -1,16 +1,14 @@
 ---
-id: "res_meez_planetary_pulse"
+id: "res_axes_planetary_pulse"
 slug: "planetary-pulse"
 title: "Planetary Pulse"
 category: "Science"
-categorySlug: "science"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/planetary-pulse.jpg"
-chars: 26355
+source: "meez"
 tier: "free"
-likes: 156
+sha256: ""
 ---
+
+# Planetary Pulse
 
 Build a single-screen, non-scrolling hero landing page called **Terranova — Signals from the Deep Green**. It is a full-bleed looping background video with a real-time refractive "liquid glass" card floating over it, plus a slide-in fullscreen menu. Vanilla HTML/CSS/JS only — **no frameworks, no build step, no Three.js, no WebGL, no canvas 3D**. The glass effect is done entirely with an SVG filter plus a 2D canvas that re-draws the video every frame.
 

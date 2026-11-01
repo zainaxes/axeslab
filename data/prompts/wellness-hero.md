@@ -1,17 +1,14 @@
 ---
-id: "res_wd_wellness_hero"
+id: "res_axes_wellness_hero"
 slug: "wellness-hero"
 title: "Wellness Hero"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/wellness-hero.mp4"
-posterUrl: "/media/posters/wellness-hero.webp"
-chars: 4719
+category: "Hero Section"
+source: "motionsites"
+tier: "free"
 sha256: "404e516e0ad9365a2ff6890cd206886e0621e770dd637bd1172eabcafb389ec1"
-tier: "premium"
-likes: 114
 ---
+
+# Wellness Hero
 
 Build a full-screen hero section landing page for "Aurai" - an always-on AI wellness companion. The page is a single viewport-height section with a looping background video and overlaid content.
 

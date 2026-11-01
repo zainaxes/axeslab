@@ -1,16 +1,14 @@
 ---
-id: "res_meez_mostar_guide"
+id: "res_axes_mostar_guide"
 slug: "mostar-guide"
 title: "Mostar Guide"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/mostar-guide.mp4"
-posterUrl: "/media/posters/mostar-guide.webp"
-chars: 27320
+source: "meez"
 tier: "free"
-likes: 161
 ---
+
+# Mostar Guide
 
 # PROMPT — Recreate "Mostar city" cinematic scroll page exactly
 

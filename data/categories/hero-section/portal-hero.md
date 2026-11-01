@@ -1,17 +1,14 @@
 ---
-id: "res_wd_portal_hero"
+id: "res_axes_portal_hero"
 slug: "portal-hero"
-title: "Portal — Cyber Entrance"
+title: "Streaming Movie Portal"
 category: "Hero Section"
 categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/portal-hero.mp4"
-posterUrl: "/media/posters/portal-hero.jpg"
-chars: 6663
-sha256: "177583fa25c2aa3e8b4ab12ca26c88a60e7d09dc7d98cd0e9557d90fe640f278"
-tier: "premium"
-likes: 157
+source: "motionsites"
+tier: "free"
 ---
+
+# Streaming Movie Portal
 
 PROMPT:
 

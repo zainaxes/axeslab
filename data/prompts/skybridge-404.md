@@ -1,16 +1,14 @@
 ---
-id: "res_meez_skybridge_404"
+id: "res_axes_skybridge_404"
 slug: "skybridge-404"
 title: "Skybridge 404"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/skybridge-404.mp4"
-posterUrl: "/media/posters/skybridge-404.webp"
-chars: 7060
+source: "meez"
 tier: "free"
-likes: 161
+sha256: ""
 ---
+
+# Skybridge 404
 
 Create a single-page, full-viewport 404 error screen in React + Vite + Tailwind CSS v4. Match this composition precisely.
 

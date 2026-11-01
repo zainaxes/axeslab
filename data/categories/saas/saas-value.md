@@ -1,17 +1,14 @@
 ---
-id: "res_wd_saas_value"
+id: "res_axes_saas_value"
 slug: "saas-value"
 title: "SaaS Value"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/saas-value.jpg"
-chars: 8755
-sha256: "a6c22889377337439e88083be916adadfdbbb8ee67ec379be3923eeb65394095"
-tier: "premium"
-likes: 152
+source: "motionsites"
+tier: "free"
 ---
+
+# SaaS Value
 
 Build a full-viewport hero section for a SaaS landing page called "Questly" using React, TypeScript, Tailwind CSS 3, and Vite. Use `lucide-react` for all icons. No other UI libraries.
 

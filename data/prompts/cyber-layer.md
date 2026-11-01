@@ -1,16 +1,14 @@
 ---
-id: "res_meez_cyber_layer"
+id: "res_axes_cyber_layer"
 slug: "cyber-layer"
 title: "Cyber Layer"
 category: "Cybersecurity"
-categorySlug: "cybersecurity"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/cyber-layer.jpg"
-chars: 14160
+source: "meez"
 tier: "free"
-likes: 51
+sha256: ""
 ---
+
+# Cyber Layer
 
 Build a **single self-contained `index.html`** that recreates this cybersecurity landing page **pixel-faithfully**. Fixed fullscreen black stage, left-locked typography, right-side looping video atmosphere, one-shot entrance choreography, and a mobile burger overlay. No frameworks. No scroll. No cards. No purple. No rounded pills.
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_datacore_booking_hero"
+id: "res_axes_datacore_booking_hero"
 slug: "datacore-booking-hero"
 title: "Datacore Booking"
 category: "SaaS"
 categorySlug: "saas"
-routeCollection: "prompts"
-videoUrl: "/media/videos/datacore-booking-hero.mp4"
-posterUrl: "/media/posters/datacore-booking-hero.jpg"
-chars: 2826
-sha256: "3e6ecfa439ad3dd2e86ea3294f8bd2454593c659a1922379237241ac42fd0aa8"
-tier: "premium"
-likes: 130
+source: "motionsites"
+tier: "free"
 ---
+
+# Datacore Booking
 
 Create a responsive, full-screen hero section for a web application using React and Tailwind CSS.
 

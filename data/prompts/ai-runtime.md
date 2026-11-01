@@ -1,16 +1,14 @@
 ---
-id: "res_meez_ai_runtime"
+id: "res_axes_ai_runtime"
 slug: "ai-runtime"
 title: "AI Runtime"
-category: "AI"
-categorySlug: "ai"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/ai-runtime.jpg"
-chars: 9502
+category: "AI SaaS"
+source: "meez"
 tier: "free"
-likes: 121
+sha256: ""
 ---
+
+# AI Runtime
 
 Rebuild this as a **single-viewport, full-bleed video-background landing page** using static **HTML + CSS + vanilla JS** (no framework). Match the current implementation exactly. File structure:
 

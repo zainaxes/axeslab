@@ -1,16 +1,14 @@
 ---
-id: "res_meez_real_time_alerts"
+id: "res_axes_real_time_alerts"
 slug: "real-time-alerts"
 title: "Real-Time Alerts"
 category: "Sign in"
-categorySlug: "sign-in"
-routeCollection: "prompts"
-videoUrl: ""
-posterUrl: "/media/posters/real-time-alerts.jpg"
-chars: 21696
+source: "meez"
 tier: "free"
-likes: 88
+sha256: ""
 ---
+
+# Real-Time Alerts
 
 Build a single, self-contained `index.html` file — no build step, no external requests except one video URL, no frameworks, no dependencies. Everything (CSS, JS, SVG) is inline. The file is a pixel-locked recreation of a designed login page, reconstructed from a 1464×949 reference frame. Follow every number exactly; the design is calibrated, not approximate.
 

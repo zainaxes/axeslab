@@ -1,17 +1,14 @@
 ---
-id: "res_wd_cozypaws"
+id: "res_axes_cozypaws"
 slug: "cozypaws"
 title: "CozyPaws"
-category: "Hero"
-categorySlug: "hero"
-routeCollection: "prompts"
-videoUrl: "/media/videos/cozypaws.mp4"
-posterUrl: "/media/posters/cozypaws.jpg"
-chars: 6443
-sha256: "bafa6b2af5f0a290f17c922f798f46e2e7a6fdfbb7c25208c3ccae1c73e74074"
+category: "Hero Section"
+source: "motionsites"
 tier: "free"
-likes: 176
+sha256: "bafa6b2af5f0a290f17c922f798f46e2e7a6fdfbb7c25208c3ccae1c73e74074"
 ---
+
+# CozyPaws
 
 ## Prompt to Recreate CozyPaws Hero Section
 

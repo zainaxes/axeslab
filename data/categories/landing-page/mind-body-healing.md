@@ -1,16 +1,14 @@
 ---
-id: "res_wd_mind_body_healing"
+id: "res_axes_mind_body_healing"
 slug: "mind-body-healing"
 title: "Mind-Body Healing"
 category: "Landing Page"
 categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/mind-body-healing.mp4"
-posterUrl: "/media/posters/mind-body-healing.webp"
-chars: 5168
+source: "meez"
 tier: "free"
-likes: 118
 ---
+
+# Mind-Body Healing
 
 Build a single-page hero landing page for a holistic wellness brand called "Vibrant Wellness." Use React, TypeScript, Tailwind CSS, and Lucide React icons. Load Google Fonts "Inter" (weights 300, 400, 500, 600, 700) via link tags in the HTML head. The entire page is a full-screen (100vh) section with a looping background video and liquid glass UI elements overlaid on top.
 

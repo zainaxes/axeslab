@@ -1,17 +1,14 @@
 ---
-id: "res_wd_modern_agency"
+id: "res_axes_modern_agency"
 slug: "modern-agency"
 title: "Modern Agency"
 category: "Agency"
-categorySlug: "agency"
-routeCollection: "prompts"
-videoUrl: "/media/videos/modern-agency.mp4"
-posterUrl: "/media/posters/modern-agency.jpg"
-chars: 10347
+source: "motionsites"
+tier: "free"
 sha256: "311cb3608bae2caa7b62823ed61d031165af19f9386316849f521ef74f61ed22"
-tier: "premium"
-likes: 83
 ---
+
+# Modern Agency
 
 Build a React + Vite + Tailwind CSS landing page for "Axion Studio" - a design agency site. Use the `shaders` package (npm: `shaders`) for the hero background, `lucide-react` for icons. The page has 3 sections. Match every detail exactly:
 

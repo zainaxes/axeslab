@@ -1,17 +1,14 @@
 ---
-id: "res_wd_3d_jack_portfolio_hero"
+id: "res_axes_3d_jack_portfolio_hero"
 slug: "3d-jack-portfolio-hero"
-title: "3D Jack Portfolio"
+title: "3D Portfolio"
 category: "Portfolio"
 categorySlug: "portfolio"
-routeCollection: "3d-websites"
-videoUrl: "/media/videos/3d-jack-portfolio-hero.mp4"
-posterUrl: "/media/posters/3d-jack-portfolio-hero.jpg"
-chars: 13745
-sha256: "480ba19526baf0950139c9bd1be6dd1fae792eb4a5b083d9383602bf9f3876c6"
-tier: "premium"
-likes: 149
+source: "motionsites"
+tier: "free"
 ---
+
+# 3D Portfolio
 
 Build a 3D Creator portfolio landing page for "Jack" using React, TypeScript, Tailwind CSS, Framer Motion, and Lucide React. The page has a dark theme (#0C0C0C background) with the font Kanit (Google Fonts, weights 300-900). The page title is "Jack -- 3D Creator".
 
@@ -45,30 +42,30 @@ FadeIn animations: Navbar fades in with delay 0, y -20. Heading: delay 0.15, y 4
 2. MARQUEE SECTION
 Two rows of images that scroll horizontally based on page scroll position. Background #0C0C0C. Padding: pt-24 sm:pt-32 md:pt-40 pb-10.
 
-21 GIF images from Axes Lab (exact URLs):
+21 GIF images from motionsites.ai (exact URLs):
 
 
-https://Axes Lab/assets/hero-space-voyage-preview-eECLH3Yc.gif
-https://Axes Lab/assets/hero-codenest-preview-Cgppc2qV.gif
-https://Axes Lab/assets/hero-vex-ventures-preview-BczMFIiw.gif
-https://Axes Lab/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif
-https://Axes Lab/assets/hero-asme-preview-B_nGDnTP.gif
-https://Axes Lab/assets/hero-transform-data-preview-Cx5OU29N.gif
-https://Axes Lab/assets/hero-vitara-preview-Cjz2QYyU.gif
-https://Axes Lab/assets/hero-terra-preview-BFjrCr7T.gif
-https://Axes Lab/assets/hero-skyelite-preview-DHaZIgUv.gif
-https://Axes Lab/assets/hero-aethera-preview-DknSlcTa.gif
-https://Axes Lab/assets/hero-designpro-preview-D8c5_een.gif
-https://Axes Lab/assets/hero-stellar-ai-preview-D3HL6bw1.gif
-https://Axes Lab/assets/hero-xportfolio-preview-D4A8maiC.gif
-https://Axes Lab/assets/hero-orbit-web3-preview-BXt4OttD.gif
-https://Axes Lab/assets/hero-nexora-preview-cx5HmUgo.gif
-https://Axes Lab/assets/hero-evr-ventures-preview-DZxeVFEX.gif
-https://Axes Lab/assets/hero-planet-orbit-preview-DWAP8Z1P.gif
-https://Axes Lab/assets/hero-new-era-preview-CocuDUm9.gif
-https://Axes Lab/assets/hero-wealth-preview-B70idl_u.gif
-https://Axes Lab/assets/hero-luminex-preview-CxOP7ce6.gif
-https://Axes Lab/assets/hero-celestia-preview-0yO3jXO8.gif
+https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif
+https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif
+https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif
+https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif
+https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif
+https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif
+https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif
+https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif
+https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif
+https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif
+https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif
+https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif
+https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif
+https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif
+https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif
+https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif
+https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif
+https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif
+https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif
+https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif
+https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif
 Row 1: first 11 images, tripled for seamless scrolling. Moves RIGHT on scroll (translateX(offset - 200)).
 Row 2: remaining 10 images, tripled. Moves LEFT on scroll (translateX(-(offset - 200))).
 Scroll offset calculated as: (window.scrollY - sectionTop + window.innerHeight) * 0.3

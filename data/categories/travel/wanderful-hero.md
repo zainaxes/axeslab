@@ -1,17 +1,14 @@
 ---
-id: "res_wd_wanderful_hero"
+id: "res_axes_wanderful_hero"
 slug: "wanderful-hero"
 title: "Wanderful Hero"
 category: "Travel"
 categorySlug: "travel"
-routeCollection: "prompts"
-videoUrl: "/media/videos/wanderful-hero.mp4"
-posterUrl: "/media/posters/wanderful-hero.webp"
-chars: 4223
-sha256: "a88ec2d864bdaff152230391d1725468982663d6abec1fe71ee124ed306e4a98"
-tier: "premium"
-likes: 165
+source: "motionsites"
+tier: "free"
 ---
+
+# Wanderful Hero
 
 Build a full-viewport cinematic hero section for a travel brand called "Wanderful" using React + TypeScript + Vite + Tailwind CSS. Use GSAP for animation and `lucide-react` for icons.
 

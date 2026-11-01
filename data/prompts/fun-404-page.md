@@ -1,16 +1,14 @@
 ---
-id: "res_wd_fun_404_page"
+id: "res_axes_fun_404_page"
 slug: "fun-404-page"
 title: "Fun 404 Page"
 category: "Landing Page"
-categorySlug: "landing-page"
-routeCollection: "prompts"
-videoUrl: "/media/videos/fun-404-page.mp4"
-posterUrl: "/media/posters/fun-404-page.webp"
-chars: 19571
+source: "meez"
 tier: "free"
-likes: 58
+sha256: ""
 ---
+
+# Fun 404 Page
 
 Build a full-screen animated 404 error page for a children's brand called "TinyTrails" using React, Tailwind CSS, and Lucide React icons. The page must be a single `App.tsx` component. Use the Inter font (weights 400–900) loaded from Google Fonts. The page is a single viewport-height screen with no scrolling.
 

@@ -1,17 +1,14 @@
 ---
-id: "res_wd_stellar_ai_hero"
+id: "res_axes_stellar_ai_hero"
 slug: "stellar-ai-hero"
 title: "Stellar AI"
 category: "Hero Section"
-categorySlug: "hero-section"
-routeCollection: "sections"
-videoUrl: "/media/videos/stellar-ai-hero.mp4"
-posterUrl: "/media/posters/stellar-ai-hero.jpg"
-chars: 3973
+source: "motionsites"
+tier: "free"
 sha256: "3f87ec9c95f24355d5cfc08626fafb0ccf59f5886e6d7452f02ff53fd0a718ba"
-tier: "premium"
-likes: 83
 ---
+
+# Stellar AI
 
 Create a "Stellar.ai" landing page hero section using React, Tailwind CSS, and Lucide React icons. Use the Inter font (imported from Google Fonts). The page has a white background (bg-white), max-width max-w-7xl, and is centered with mx-auto.
 
