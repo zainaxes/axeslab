@@ -14,6 +14,7 @@ export default function Header() {
   const navLinks = [
     { label: "MCP", href: "/mcp", isMCP: true },
     { label: "Prompts", href: "/" },
+    { label: "Apps", href: "/apps" },
     { label: "Skills", href: "/skills" },
     { label: "Backgrounds", href: "/backgrounds" },
     { label: "Sections", href: "/sections" },

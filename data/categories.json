@@ -1,0 +1,632 @@
+[
+  {
+    "name": "Landing Page",
+    "slug": "landing-page",
+    "count": 83
+  },
+  {
+    "name": "Hero Section",
+    "slug": "hero-section",
+    "count": 56
+  },
+  {
+    "name": "SaaS",
+    "slug": "saas",
+    "count": 55
+  },
+  {
+    "name": "Design System",
+    "slug": "design-system",
+    "count": 49
+  },
+  {
+    "name": "Hero",
+    "slug": "hero",
+    "count": 46
+  },
+  {
+    "name": "Component",
+    "slug": "component",
+    "count": 40
+  },
+  {
+    "name": "Background",
+    "slug": "background",
+    "count": 20
+  },
+  {
+    "name": "Agency",
+    "slug": "agency",
+    "count": 17
+  },
+  {
+    "name": "Form",
+    "slug": "form",
+    "count": 12
+  },
+  {
+    "name": "Text Effect",
+    "slug": "text-effect",
+    "count": 10
+  },
+  {
+    "name": "Portfolio",
+    "slug": "portfolio",
+    "count": 10
+  },
+  {
+    "name": "AI",
+    "slug": "ai",
+    "count": 9
+  },
+  {
+    "name": "Pricing",
+    "slug": "pricing",
+    "count": 9
+  },
+  {
+    "name": "Mobile App",
+    "slug": "mobile-app",
+    "count": 8
+  },
+  {
+    "name": "Navigation",
+    "slug": "navigation",
+    "count": 8
+  },
+  {
+    "name": "Features",
+    "slug": "features",
+    "count": 8
+  },
+  {
+    "name": "CTA",
+    "slug": "cta",
+    "count": 7
+  },
+  {
+    "name": "Fintech",
+    "slug": "fintech",
+    "count": 7
+  },
+  {
+    "name": "Card",
+    "slug": "card",
+    "count": 6
+  },
+  {
+    "name": "About",
+    "slug": "about",
+    "count": 6
+  },
+  {
+    "name": "Features Section",
+    "slug": "features-section",
+    "count": 6
+  },
+  {
+    "name": "Technology",
+    "slug": "technology",
+    "count": 6
+  },
+  {
+    "name": "Wellness",
+    "slug": "wellness",
+    "count": 6
+  },
+  {
+    "name": "Cards",
+    "slug": "cards",
+    "count": 5
+  },
+  {
+    "name": "Creative",
+    "slug": "creative",
+    "count": 5
+  },
+  {
+    "name": "Ecommerce",
+    "slug": "ecommerce",
+    "count": 5
+  },
+  {
+    "name": "Footer Section",
+    "slug": "footer-section",
+    "count": 5
+  },
+  {
+    "name": "Travel",
+    "slug": "travel",
+    "count": 5
+  },
+  {
+    "name": "Scroll",
+    "slug": "scroll",
+    "count": 4
+  },
+  {
+    "name": "Footer",
+    "slug": "footer",
+    "count": 4
+  },
+  {
+    "name": "Button",
+    "slug": "button",
+    "count": 3
+  },
+  {
+    "name": "Showcase",
+    "slug": "showcase",
+    "count": 3
+  },
+  {
+    "name": "Real Estate",
+    "slug": "real-estate",
+    "count": 3
+  },
+  {
+    "name": "Social Media",
+    "slug": "social-media",
+    "count": 3
+  },
+  {
+    "name": "Testimonial",
+    "slug": "testimonial",
+    "count": 3
+  },
+  {
+    "name": "Ecommerce App",
+    "slug": "ecommerce-app",
+    "count": 2
+  },
+  {
+    "name": "Education",
+    "slug": "education",
+    "count": 2
+  },
+  {
+    "name": "Lifestyle",
+    "slug": "lifestyle",
+    "count": 2
+  },
+  {
+    "name": "Security",
+    "slug": "security",
+    "count": 2
+  },
+  {
+    "name": "3D Website",
+    "slug": "3d-website",
+    "count": 2
+  },
+  {
+    "name": "Benefits",
+    "slug": "benefits",
+    "count": 2
+  },
+  {
+    "name": "CTA Section",
+    "slug": "cta-section",
+    "count": 2
+  },
+  {
+    "name": "Dashboard",
+    "slug": "dashboard",
+    "count": 2
+  },
+  {
+    "name": "Fashion",
+    "slug": "fashion",
+    "count": 2
+  },
+  {
+    "name": "Health",
+    "slug": "health",
+    "count": 2
+  },
+  {
+    "name": "Healthcare",
+    "slug": "healthcare",
+    "count": 2
+  },
+  {
+    "name": "Interactive",
+    "slug": "interactive",
+    "count": 2
+  },
+  {
+    "name": "Product",
+    "slug": "product",
+    "count": 2
+  },
+  {
+    "name": "Services",
+    "slug": "services",
+    "count": 2
+  },
+  {
+    "name": "Signup",
+    "slug": "signup",
+    "count": 2
+  },
+  {
+    "name": "Slider",
+    "slug": "slider",
+    "count": 2
+  },
+  {
+    "name": "Tabs",
+    "slug": "tabs",
+    "count": 2
+  },
+  {
+    "name": "Testimonials",
+    "slug": "testimonials",
+    "count": 2
+  },
+  {
+    "name": "Web3",
+    "slug": "web3",
+    "count": 2
+  },
+  {
+    "name": "3D",
+    "slug": "3d",
+    "count": 1
+  },
+  {
+    "name": "AI App",
+    "slug": "ai-app",
+    "count": 1
+  },
+  {
+    "name": "AI Assistant",
+    "slug": "ai-assistant",
+    "count": 1
+  },
+  {
+    "name": "AI Technology",
+    "slug": "ai-technology",
+    "count": 1
+  },
+  {
+    "name": "Analytics",
+    "slug": "analytics",
+    "count": 1
+  },
+  {
+    "name": "Booking",
+    "slug": "booking",
+    "count": 1
+  },
+  {
+    "name": "Books",
+    "slug": "books",
+    "count": 1
+  },
+  {
+    "name": "Business",
+    "slug": "business",
+    "count": 1
+  },
+  {
+    "name": "Communication",
+    "slug": "communication",
+    "count": 1
+  },
+  {
+    "name": "Community",
+    "slug": "community",
+    "count": 1
+  },
+  {
+    "name": "Community App",
+    "slug": "community-app",
+    "count": 1
+  },
+  {
+    "name": "Construction",
+    "slug": "construction",
+    "count": 1
+  },
+  {
+    "name": "Creative Studio",
+    "slug": "creative-studio",
+    "count": 1
+  },
+  {
+    "name": "Crypto",
+    "slug": "crypto",
+    "count": 1
+  },
+  {
+    "name": "Curated",
+    "slug": "curated",
+    "count": 1
+  },
+  {
+    "name": "Cursor",
+    "slug": "cursor",
+    "count": 1
+  },
+  {
+    "name": "Cyberpunk",
+    "slug": "cyberpunk",
+    "count": 1
+  },
+  {
+    "name": "Data Intelligence",
+    "slug": "data-intelligence",
+    "count": 1
+  },
+  {
+    "name": "Editorial",
+    "slug": "editorial",
+    "count": 1
+  },
+  {
+    "name": "Entertainment",
+    "slug": "entertainment",
+    "count": 1
+  },
+  {
+    "name": "Events",
+    "slug": "events",
+    "count": 1
+  },
+  {
+    "name": "Film",
+    "slug": "film",
+    "count": 1
+  },
+  {
+    "name": "Fitness",
+    "slug": "fitness",
+    "count": 1
+  },
+  {
+    "name": "Food",
+    "slug": "food",
+    "count": 1
+  },
+  {
+    "name": "Game UI",
+    "slug": "game-ui",
+    "count": 1
+  },
+  {
+    "name": "Health App",
+    "slug": "health-app",
+    "count": 1
+  },
+  {
+    "name": "Learning",
+    "slug": "learning",
+    "count": 1
+  },
+  {
+    "name": "Learning SaaS",
+    "slug": "learning-saas",
+    "count": 1
+  },
+  {
+    "name": "Logistics",
+    "slug": "logistics",
+    "count": 1
+  },
+  {
+    "name": "Medical",
+    "slug": "medical",
+    "count": 1
+  },
+  {
+    "name": "Misc",
+    "slug": "misc",
+    "count": 1
+  },
+  {
+    "name": "Music",
+    "slug": "music",
+    "count": 1
+  },
+  {
+    "name": "Nature",
+    "slug": "nature",
+    "count": 1
+  },
+  {
+    "name": "Recruitment",
+    "slug": "recruitment",
+    "count": 1
+  },
+  {
+    "name": "Science",
+    "slug": "science",
+    "count": 1
+  },
+  {
+    "name": "Sign in",
+    "slug": "sign-in",
+    "count": 1
+  },
+  {
+    "name": "Travel App",
+    "slug": "travel-app",
+    "count": 1
+  },
+  {
+    "name": "404",
+    "slug": "404",
+    "count": 1
+  },
+  {
+    "name": "Accordion",
+    "slug": "accordion",
+    "count": 1
+  },
+  {
+    "name": "Agency Website",
+    "slug": "agency-website",
+    "count": 1
+  },
+  {
+    "name": "AI / SaaS",
+    "slug": "ai-saas",
+    "count": 1
+  },
+  {
+    "name": "Automotive",
+    "slug": "automotive",
+    "count": 1
+  },
+  {
+    "name": "Bento",
+    "slug": "bento",
+    "count": 1
+  },
+  {
+    "name": "Blog",
+    "slug": "blog",
+    "count": 1
+  },
+  {
+    "name": "Carousal",
+    "slug": "carousal",
+    "count": 1
+  },
+  {
+    "name": "Case Studies",
+    "slug": "case-studies",
+    "count": 1
+  },
+  {
+    "name": "Categories",
+    "slug": "categories",
+    "count": 1
+  },
+  {
+    "name": "Contact us",
+    "slug": "contact-us",
+    "count": 1
+  },
+  {
+    "name": "Cybersecurity",
+    "slug": "cybersecurity",
+    "count": 1
+  },
+  {
+    "name": "Dashboard Demo",
+    "slug": "dashboard-demo",
+    "count": 1
+  },
+  {
+    "name": "E-commerce",
+    "slug": "e-commerce",
+    "count": 1
+  },
+  {
+    "name": "Email Marketing",
+    "slug": "email-marketing",
+    "count": 1
+  },
+  {
+    "name": "FAQ",
+    "slug": "faq",
+    "count": 1
+  },
+  {
+    "name": "Feature",
+    "slug": "feature",
+    "count": 1
+  },
+  {
+    "name": "Finance",
+    "slug": "finance",
+    "count": 1
+  },
+  {
+    "name": "Info",
+    "slug": "info",
+    "count": 1
+  },
+  {
+    "name": "Investor Presentations",
+    "slug": "investor-presentations",
+    "count": 1
+  },
+  {
+    "name": "Landing page",
+    "slug": "landing-page",
+    "count": 1
+  },
+  {
+    "name": "Marquee",
+    "slug": "marquee",
+    "count": 1
+  },
+  {
+    "name": "Presentation",
+    "slug": "presentation",
+    "count": 1
+  },
+  {
+    "name": "Process",
+    "slug": "process",
+    "count": 1
+  },
+  {
+    "name": "Products",
+    "slug": "products",
+    "count": 1
+  },
+  {
+    "name": "Projects",
+    "slug": "projects",
+    "count": 1
+  },
+  {
+    "name": "Sign In Form",
+    "slug": "sign-in-form",
+    "count": 1
+  },
+  {
+    "name": "Sports",
+    "slug": "sports",
+    "count": 1
+  },
+  {
+    "name": "Stats",
+    "slug": "stats",
+    "count": 1
+  },
+  {
+    "name": "Sustainability",
+    "slug": "sustainability",
+    "count": 1
+  },
+  {
+    "name": "Transportation",
+    "slug": "transportation",
+    "count": 1
+  },
+  {
+    "name": "Use Case",
+    "slug": "use-case",
+    "count": 1
+  },
+  {
+    "name": "Waitlist",
+    "slug": "waitlist",
+    "count": 1
+  },
+  {
+    "name": "Website",
+    "slug": "website",
+    "count": 1
+  },
+  {
+    "name": "Why Us",
+    "slug": "why-us",
+    "count": 1
+  }
+]

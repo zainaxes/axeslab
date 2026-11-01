@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ALL_REAL_PROMPTS, PromptItem } from '@/lib/real-prompts';
+import Hls from 'hls.js';
 import {
   X,
   Copy,
@@ -27,6 +28,7 @@ export function PromptModal() {
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
   const [viewMode, setViewMode] = useState<'video' | 'interactive'>('video');
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const item: PromptItem | undefined = ALL_REAL_PROMPTS.find((i) => i.slug === promptSlug);
 
@@ -36,6 +38,31 @@ export function PromptModal() {
       setHasLiked(false);
     }
   }, [item]);
+
+  useEffect(() => {
+    const video = modalVideoRef.current;
+    if (!video || !item?.videoUrl) return;
+
+    let hls: Hls | null = null;
+    const isM3u8 = item.videoUrl.includes('.m3u8');
+    const isWebp = item.videoUrl.includes('.webp');
+
+    if (isM3u8) {
+      if (Hls.isSupported()) {
+        hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+        hls.loadSource(item.videoUrl);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = item.videoUrl;
+      }
+    } else if (!isWebp) {
+      video.src = item.videoUrl;
+    }
+
+    return () => {
+      if (hls) hls.destroy();
+    };
+  }, [item?.videoUrl]);
 
   if (!promptSlug || !item) return null;
 
@@ -145,9 +172,15 @@ export function PromptModal() {
 
         {/* 2. Main 16:9 Interactive Real Preview Stage */}
         <div className="bg-black relative aspect-[16/10] sm:aspect-video w-full overflow-hidden border-b border-white/[0.07]">
-          {item.videoUrl ? (
-            <video
+          {item.videoUrl && item.videoUrl.includes('.webp') ? (
+            <img
               src={item.videoUrl}
+              alt={item.title}
+              className="w-full h-full object-cover"
+            />
+          ) : item.videoUrl ? (
+            <video
+              ref={modalVideoRef}
               poster={item.posterUrl}
               controls
               autoPlay

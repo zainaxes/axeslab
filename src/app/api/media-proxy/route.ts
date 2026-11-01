@@ -18,12 +18,20 @@ export async function GET(request: NextRequest) {
       return new NextResponse("Invalid url", { status: 400 });
     }
 
-    // Only allow media from verified design prompt sources
+    // Only allow media from verified design prompt and streaming CDN sources
     const allowedHosts = [
       "meez.design",
       "heydesign.ai",
       "images.unsplash.com",
       "assets.zainaxes.com",
+      "mux.com",
+      "stream.mux.com",
+      "image.mux.com",
+      "r2.dev",
+      "pexels.com",
+      "spline.design",
+      "supabase.co",
+      "githubusercontent.com",
     ];
 
     const isAllowed = allowedHosts.some(
