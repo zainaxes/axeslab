@@ -3,9 +3,8 @@ id: "res_axes_velorah_hero"
 slug: "velorah-hero"
 title: "Velorah"
 category: "Agency"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "b79f787da8bad026b0a783abfe2445ed6317caa898764fb61046a58122721a2f"
 ---
 
 # Velorah

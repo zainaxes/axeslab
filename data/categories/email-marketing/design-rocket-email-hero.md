@@ -4,7 +4,7 @@ slug: "design-rocket-email-hero"
 title: "Email Marketing"
 category: "Email Marketing"
 categorySlug: "email-marketing"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

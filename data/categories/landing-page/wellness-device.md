@@ -4,7 +4,7 @@ slug: "wellness-device"
 title: "Wellness Device"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

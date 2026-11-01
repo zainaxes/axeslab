@@ -3,9 +3,8 @@ id: "res_axes_no_code_waitlist"
 slug: "no-code-waitlist"
 title: "No-Code Waitlist"
 category: "Waitlist"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "601cc396470b69406eaa041848e3ec2eebf0bacb86394ff2f1261d7f7d038a63"
 ---
 
 # No-Code Waitlist

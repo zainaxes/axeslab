@@ -3,9 +3,8 @@ id: "res_axes_rare_gallery"
 slug: "rare-gallery"
 title: "Rare Gallery"
 category: "Curated"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Rare Gallery

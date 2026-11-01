@@ -4,7 +4,7 @@ slug: "intelligent-operations"
 title: "Intelligent Operations"
 category: "Agency"
 categorySlug: "agency"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

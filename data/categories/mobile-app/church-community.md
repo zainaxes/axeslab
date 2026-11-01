@@ -4,7 +4,7 @@ slug: "church-community"
 title: "Church Community"
 category: "Mobile App"
 categorySlug: "mobile-app"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

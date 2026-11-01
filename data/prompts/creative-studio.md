@@ -3,9 +3,8 @@ id: "res_axes_creative_studio"
 slug: "creative-studio"
 title: "Creative Studio"
 category: "Agency"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "3520f044ab716f4599c9c6e0a7e8558c6bab0d83c0964030b7af41e14ca52f82"
 ---
 
 # Creative Studio

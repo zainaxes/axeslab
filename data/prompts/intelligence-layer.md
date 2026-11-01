@@ -3,9 +3,8 @@ id: "res_axes_intelligence_layer"
 slug: "intelligence-layer"
 title: "Intelligence Layer"
 category: "Technology"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Intelligence Layer

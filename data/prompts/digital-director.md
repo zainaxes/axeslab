@@ -3,9 +3,8 @@ id: "res_axes_digital_director"
 slug: "digital-director"
 title: "Digital Director"
 category: "Portfolio"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Digital Director

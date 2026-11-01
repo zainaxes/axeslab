@@ -3,9 +3,8 @@ id: "res_axes_personal_showcase"
 slug: "personal-showcase"
 title: "Personal Showcase"
 category: "Portfolio"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Personal Showcase

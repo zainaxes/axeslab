@@ -3,9 +3,8 @@ id: "res_axes_saas_value"
 slug: "saas-value"
 title: "SaaS Value"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "a6c22889377337439e88083be916adadfdbbb8ee67ec379be3923eeb65394095"
 ---
 
 # SaaS Value

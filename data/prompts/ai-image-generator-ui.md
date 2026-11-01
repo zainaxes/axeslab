@@ -3,9 +3,8 @@ id: "res_axes_ai_image_generator_ui"
 slug: "ai-image-generator-ui"
 title: "AI Image Generator UI"
 category: "AI SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "671a598b15d237479ee87fa4321d48d1e0394bf618a0329e1bd7a1f99f0ecf29"
 ---
 
 # AI Image Generator UI

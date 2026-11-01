@@ -4,7 +4,7 @@ slug: "audio-showcase"
 title: "Audio Showcase"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

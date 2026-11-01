@@ -3,9 +3,8 @@ id: "res_axes_transform_data_hero"
 slug: "transform-data-hero"
 title: "Transform Data"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "677d3fcb3c1f2fe378d9d463a05925f39951c343dbb3a22920cc0f604fe73f6b"
 ---
 
 # Transform Data

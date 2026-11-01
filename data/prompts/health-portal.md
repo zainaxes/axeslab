@@ -3,9 +3,8 @@ id: "res_axes_health_portal"
 slug: "health-portal"
 title: "Health Portal"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "16286a9938d5b87fe11d9ef402285994ad1b4414a406dd0e7c04e3383254b849"
 ---
 
 # Health Portal

@@ -3,9 +3,8 @@ id: "res_axes_skybridge_404"
 slug: "skybridge-404"
 title: "Skybridge 404"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Skybridge 404

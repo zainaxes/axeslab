@@ -4,7 +4,7 @@ slug: "neuralyn-hero"
 title: "Neuralyn"
 category: "SaaS"
 categorySlug: "saas"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

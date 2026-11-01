@@ -4,7 +4,7 @@ slug: "agent-wave"
 title: "Agent Wave"
 category: "AI SaaS"
 categorySlug: "ai-saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

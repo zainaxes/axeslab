@@ -4,7 +4,7 @@ slug: "aurex-finance"
 title: "Aurex Finance"
 category: "Fintech"
 categorySlug: "fintech"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

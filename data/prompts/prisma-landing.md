@@ -3,9 +3,8 @@ id: "res_axes_prisma_landing"
 slug: "prisma-landing"
 title: "Prisma Creative Studio"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "4fc7f6c5021dfbf0662047d5ca32bd83291f7d06645f539c0ec99766c56c5128"
 ---
 
 # Prisma Creative Studio

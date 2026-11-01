@@ -3,9 +3,8 @@ id: "res_axes_bold_studio"
 slug: "bold-studio"
 title: "Bold Studio"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "7a7a7632a6a6cf5a7b33662151552eac3d8c335d70c7da85cb0180dba4946ab1"
 ---
 
 # Bold Studio

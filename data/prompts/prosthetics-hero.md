@@ -3,9 +3,8 @@ id: "res_axes_prosthetics_hero"
 slug: "prosthetics-hero"
 title: "Prosthetics Hero"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "43dc54544e666fcf232cd251a9caf081cbbde86436f5eeff6d5ecdc484e73948"
 ---
 
 # Prosthetics Hero

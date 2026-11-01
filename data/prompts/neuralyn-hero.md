@@ -3,9 +3,8 @@ id: "res_axes_neuralyn_hero"
 slug: "neuralyn-hero"
 title: "Neuralyn"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "2268d689489cc9ef20b5acf32baed1f3cc26a9564f1537d11115cacc3064698f"
 ---
 
 # Neuralyn

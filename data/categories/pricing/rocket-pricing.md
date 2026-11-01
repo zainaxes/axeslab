@@ -4,7 +4,7 @@ slug: "rocket-pricing"
 title: "Rocket Pricing"
 category: "Pricing"
 categorySlug: "pricing"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

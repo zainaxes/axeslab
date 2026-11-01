@@ -4,7 +4,7 @@ slug: "no-code-waitlist"
 title: "No-Code Waitlist"
 category: "Waitlist"
 categorySlug: "waitlist"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

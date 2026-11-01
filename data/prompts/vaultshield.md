@@ -3,9 +3,8 @@ id: "res_axes_vaultshield"
 slug: "vaultshield"
 title: "VaultShield"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "bc0dee85e1848eacd91af9b38024b8853e27b23572e86326ccab396d75b7b5ff"
 ---
 
 # VaultShield

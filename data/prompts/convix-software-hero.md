@@ -3,9 +3,8 @@ id: "res_axes_convix_software_hero"
 slug: "convix-software-hero"
 title: "Convix Software"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "dc2d0b83448511268b39ce955990f46888b439028d37d3c80dd993aa4ee1cac8"
 ---
 
 # Convix Software

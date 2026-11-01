@@ -210,7 +210,7 @@ export function PromptCard({ item }: PromptCardProps) {
         </div>
       </div>
 
-      {/* MotionSites Signature Card Footer: Title Left, Category Pill & Likes Right */}
+      {/* Card Footer: Title Left, Category Pill & Likes Right */}
       <div className="px-4 py-3.5 flex items-center justify-between gap-2 bg-[#0B0B0F]">
         <div className="min-w-0 pr-2">
           <h3 className="text-[15px] font-medium text-zinc-100 group-hover:text-white truncate">

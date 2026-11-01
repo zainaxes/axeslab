@@ -3,9 +3,8 @@ id: "res_axes_ai_workflow"
 slug: "ai-workflow"
 title: "AI Workflow Hero"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "e42fd7caf02036199ffc1ba10228e93524afa28a617321229b3a00aaffee51c1"
 ---
 
 # AI Workflow Hero

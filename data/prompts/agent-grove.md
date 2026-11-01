@@ -3,9 +3,8 @@ id: "res_axes_agent_grove"
 slug: "agent-grove"
 title: "Agent Grove"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Agent Grove

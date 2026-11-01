@@ -3,9 +3,8 @@ id: "res_axes_layered_depth"
 slug: "layered-depth"
 title: "Layered Depth"
 category: "Landing Page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Layered Depth

@@ -3,9 +3,8 @@ id: "res_axes_3d_collectible_hero"
 slug: "3d-collectible-hero"
 title: "3D Collectible Hero"
 category: "3D Website"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "6a2ec31f9a13a4afcc6bcadc602b35439cd8225e3cfbc7db3c415976f113ee67"
 ---
 
 # 3D Collectible Hero

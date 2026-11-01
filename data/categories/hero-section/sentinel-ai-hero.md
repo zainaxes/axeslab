@@ -4,7 +4,7 @@ slug: "sentinel-ai-hero"
 title: "Sentinel AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -4,7 +4,7 @@ slug: "digital-epoch-hero"
 title: "Digital Epoch"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -3,9 +3,8 @@ id: "res_axes_codenest_hero"
 slug: "codenest-hero"
 title: "CodeNest Coding Platform"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "aecd9a57ef07ea90a50e99364f6fc1c2eb9cbaaa6de4cb6853f62bb7643697ec"
 ---
 
 # CodeNest Coding Platform

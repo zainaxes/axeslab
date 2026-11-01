@@ -3,9 +3,8 @@ id: "res_axes_scroll_marquee"
 slug: "scroll-marquee"
 title: "Scroll Marquee"
 category: "Marquee"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Scroll Marquee

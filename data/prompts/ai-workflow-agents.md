@@ -3,9 +3,8 @@ id: "res_axes_ai_workflow_agents"
 slug: "ai-workflow-agents"
 title: "AI Workflow Agents"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # AI Workflow Agents

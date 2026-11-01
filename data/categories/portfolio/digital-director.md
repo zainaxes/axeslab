@@ -4,7 +4,7 @@ slug: "digital-director"
 title: "Digital Director"
 category: "Portfolio"
 categorySlug: "portfolio"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

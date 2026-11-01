@@ -4,7 +4,7 @@ slug: "3d-collectible-hero"
 title: "3D Collectible Hero"
 category: "3D Website"
 categorySlug: "3d-website"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

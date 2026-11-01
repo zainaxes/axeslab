@@ -3,9 +3,8 @@ id: "res_axes_digital_epoch_hero"
 slug: "digital-epoch-hero"
 title: "Digital Epoch"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "98a578e9d85ce3e6d4a80b5fc09a94e31a8796088975de98245db90e56bfd3fb"
 ---
 
 # Digital Epoch

@@ -4,7 +4,7 @@ slug: "scaling-platform"
 title: "Scaling Platform"
 category: "SaaS"
 categorySlug: "saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

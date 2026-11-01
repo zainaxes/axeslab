@@ -4,7 +4,7 @@ slug: "price-calculator"
 title: "Price Calculator"
 category: "SaaS"
 categorySlug: "saas"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

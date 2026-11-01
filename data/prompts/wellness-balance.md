@@ -3,9 +3,8 @@ id: "res_axes_wellness_balance"
 slug: "wellness-balance"
 title: "Wellness Balance"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "6d5127d809b35cf3d08bba6e739a13327955d222045f809667854c37b6c444a6"
 ---
 
 # Wellness Balance

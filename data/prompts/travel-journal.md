@@ -3,9 +3,8 @@ id: "res_axes_travel_journal"
 slug: "travel-journal"
 title: "Travel Journal"
 category: "Travel"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "01075eaea7b5b8bdc28ba157b588d4f60797cbd0c00e55fe0ce0b32039b10f88"
 ---
 
 # Travel Journal

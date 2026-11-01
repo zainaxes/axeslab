@@ -4,7 +4,7 @@ slug: "rare-gallery"
 title: "Rare Gallery"
 category: "Curated"
 categorySlug: "curated"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

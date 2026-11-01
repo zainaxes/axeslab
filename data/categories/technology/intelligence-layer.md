@@ -4,7 +4,7 @@ slug: "intelligence-layer"
 title: "Intelligence Layer"
 category: "Technology"
 categorySlug: "technology"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

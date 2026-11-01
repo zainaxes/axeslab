@@ -4,7 +4,7 @@ slug: "wellbeing-os"
 title: "Wellbeing OS"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -4,7 +4,7 @@ slug: "nexora-hero"
 title: "Nexora Automation"
 category: "SaaS"
 categorySlug: "saas"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

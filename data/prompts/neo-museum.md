@@ -3,9 +3,8 @@ id: "res_axes_neo_museum"
 slug: "neo-museum"
 title: "Neo Museum"
 category: "Website"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "c79fa379a6e3485265c3b8b48b7cbaea4973f11c6c6954fcd88cdb22790bdab9"
 ---
 
 # Neo Museum

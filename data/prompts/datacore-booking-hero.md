@@ -3,9 +3,8 @@ id: "res_axes_datacore_booking_hero"
 slug: "datacore-booking-hero"
 title: "Datacore Booking"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "3e6ecfa439ad3dd2e86ea3294f8bd2454593c659a1922379237241ac42fd0aa8"
 ---
 
 # Datacore Booking

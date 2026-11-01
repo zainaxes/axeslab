@@ -3,9 +3,8 @@ id: "res_axes_prompt_hero"
 slug: "prompt-hero"
 title: "PROMPT"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "00ee092c5e29f6634fc49b9e3dfde68c77d21017cbf741081f8e58ed1ed3d9a3"
 ---
 
 # PROMPT

@@ -4,7 +4,7 @@ slug: "bloom-ai-hero"
 title: "Bloom AI"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

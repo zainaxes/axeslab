@@ -4,7 +4,7 @@ slug: "ai-trip-planner"
 title: "AI Trip Planner"
 category: "SaaS"
 categorySlug: "saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

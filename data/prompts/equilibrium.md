@@ -3,9 +3,8 @@ id: "res_axes_equilibrium"
 slug: "equilibrium"
 title: "Equilibrium"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "5da5c38222bf3e71733675c23d39e98f2f156684febef1e6b0821faade0c27e0"
 ---
 
 # Equilibrium

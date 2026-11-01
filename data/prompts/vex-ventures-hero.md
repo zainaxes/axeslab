@@ -3,9 +3,8 @@ id: "res_axes_vex_ventures_hero"
 slug: "vex-ventures-hero"
 title: "VEX Ventures"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "5b43ab2865b587b541447a0ac44d601d0b10fb80eabaf72f11b8e799a5953a7b"
 ---
 
 # VEX Ventures

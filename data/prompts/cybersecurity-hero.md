@@ -3,9 +3,8 @@ id: "res_axes_cybersecurity_hero"
 slug: "cybersecurity-hero"
 title: "Cybersecurity Hero"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "44646e05b1798f780dd3923e7c8fd1dd6081f137d31bf2587f32978ef5509b37"
 ---
 
 # Cybersecurity Hero

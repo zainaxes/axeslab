@@ -3,9 +3,8 @@ id: "res_axes_tech_forward"
 slug: "tech-forward"
 title: "Tech-Forward"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "7abc31f28067c26aa9384dd8617cd4ef90f07b121f1893f041faffca950e5edd"
 ---
 
 # Tech-Forward

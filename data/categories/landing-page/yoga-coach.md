@@ -4,7 +4,7 @@ slug: "yoga-coach"
 title: "Yoga Coach"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -3,9 +3,8 @@ id: "res_axes_rivr_defi_landing"
 slug: "rivr-defi-landing"
 title: "RIVR DeFi"
 category: "Landing Page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # RIVR DeFi

@@ -4,7 +4,7 @@ slug: "luminex-hero"
 title: "Luminex"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

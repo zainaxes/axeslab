@@ -175,7 +175,7 @@ export default function HomePage() {
                     <div className="flex items-center gap-3">
                       <div className="w-44 h-28 rounded-2xl overflow-hidden border border-white/[0.15] bg-black shadow-2xl">
                         <video
-                          src="/api/media-proxy?url=https%3A%2F%2Fmeez.design%2Fweb%2Fprompt-previews%2Forbis-nft-landing-preview.mp4"
+                          src="/media/videos/orbis-nft-landing.mp4"
                           autoPlay
                           loop
                           muted

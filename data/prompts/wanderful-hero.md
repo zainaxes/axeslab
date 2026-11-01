@@ -3,9 +3,8 @@ id: "res_axes_wanderful_hero"
 slug: "wanderful-hero"
 title: "Wanderful Hero"
 category: "Travel"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "a88ec2d864bdaff152230391d1725468982663d6abec1fe71ee124ed306e4a98"
 ---
 
 # Wanderful Hero

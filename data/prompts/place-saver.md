@@ -3,9 +3,8 @@ id: "res_axes_place_saver"
 slug: "place-saver"
 title: "Place Saver"
 category: "Travel"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "c3346cc6b31363ea49f423313a6829d0f1a0ffb5ea96f2ba0154122138cdbd03"
 ---
 
 # Place Saver

@@ -4,7 +4,7 @@ slug: "digital-experiences"
 title: "Digital Experiences"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

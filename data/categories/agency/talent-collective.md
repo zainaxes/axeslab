@@ -4,7 +4,7 @@ slug: "talent-collective"
 title: "Talent Collective"
 category: "Agency"
 categorySlug: "agency"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

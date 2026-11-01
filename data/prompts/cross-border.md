@@ -3,9 +3,8 @@ id: "res_axes_cross_border"
 slug: "cross-border"
 title: "Cross-Border"
 category: "Transportation"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "51277206ad60741d5f96ec0838c26ed6c92e63858b03f07c9975fe05bb62214b"
 ---
 
 # Cross-Border

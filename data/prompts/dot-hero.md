@@ -3,9 +3,8 @@ id: "res_axes_dot_hero"
 slug: "dot-hero"
 title: "Dot"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "b59eeeb35cb978cb5c1d6a264a8e1bb32229b11c452f022a477ebf09500462d5"
 ---
 
 # Dot

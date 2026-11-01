@@ -3,9 +3,8 @@ id: "res_axes_creative_portfolio"
 slug: "creative-portfolio"
 title: "Creative Portfolio"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "2801889242104a8f6a6250b6a91bfdefd73ef2007992f18fc0eaa61c61d23b45"
 ---
 
 # Creative Portfolio

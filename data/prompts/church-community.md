@@ -3,9 +3,8 @@ id: "res_axes_church_community"
 slug: "church-community"
 title: "Church Community"
 category: "Mobile App"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Church Community

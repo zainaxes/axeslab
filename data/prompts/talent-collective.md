@@ -3,9 +3,8 @@ id: "res_axes_talent_collective"
 slug: "talent-collective"
 title: "Talent Collective"
 category: "Agency"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Talent Collective

@@ -3,9 +3,8 @@ id: "res_axes_nexora_hero"
 slug: "nexora-hero"
 title: "Nexora Automation"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "74c6b26bd78c1b439dc2eb30bbb16a70f4d22d42c3acd3999616d2e8d8822f84"
 ---
 
 # Nexora Automation

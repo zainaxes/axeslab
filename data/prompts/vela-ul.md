@@ -3,9 +3,8 @@ id: "res_axes_vela_ul"
 slug: "vela-ul"
 title: "Vela Ul"
 category: "Features"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Vela Ul

@@ -3,9 +3,8 @@ id: "res_axes_cozypaws"
 slug: "cozypaws"
 title: "CozyPaws"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "bafa6b2af5f0a290f17c922f798f46e2e7a6fdfbb7c25208c3ccae1c73e74074"
 ---
 
 # CozyPaws

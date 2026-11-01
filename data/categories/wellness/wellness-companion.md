@@ -4,7 +4,7 @@ slug: "wellness-companion"
 title: "Wellness Companion"
 category: "Wellness"
 categorySlug: "wellness"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

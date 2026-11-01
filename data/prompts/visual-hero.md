@@ -3,9 +3,8 @@ id: "res_axes_visual_hero"
 slug: "visual-hero"
 title: "Visual Hero"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "772b97713db0f210823dfbfc4d3f17f879c89887eac3c7f21117064d8478beaa"
 ---
 
 # Visual Hero

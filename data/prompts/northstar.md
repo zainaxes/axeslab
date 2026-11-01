@@ -3,9 +3,8 @@ id: "res_axes_northstar"
 slug: "northstar"
 title: "Northstar"
 category: "Agency"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Northstar

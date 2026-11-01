@@ -27,14 +27,8 @@ export function HeroSection({ totalPublished }: HeroSectionProps) {
             videoLoaded ? "opacity-60 scale-100" : "opacity-35 scale-105"
           }`}
         >
-          {/* 1. User local file: /videos/abstract-blue-lines-dots.mp4 */}
+          {/* Background Video */}
           <source src="/videos/abstract-blue-lines-dots.mp4" type="video/mp4" />
-          {/* 2. High-speed Live CDN Cybernetic Energy / Blue Motion Stream */}
-          <source src="https://meez.design/web/media/bg-videos/ms-energy.mp4" type="video/mp4" />
-          {/* 3. Deep Neural Motion Network Fallback */}
-          <source src="https://heydesign.ai/api/design-prompt-media/v1/effects/deep-neural-interface.mp4" type="video/mp4" />
-          {/* 4. Alternate 3D Cyber loop */}
-          <source src="https://meez.design/web/media/bg-videos/ms-3d.mp4" type="video/mp4" />
         </video>
 
         {/* 2. Cybernetic Vignette & Atmospheric Fog Layers */}
@@ -49,7 +43,7 @@ export function HeroSection({ totalPublished }: HeroSectionProps) {
         />
       </div>
 
-      {/* 3. Centerpiece Content (Meez Layout & Typography) */}
+      {/* 3. Centerpiece Content (Axes Lab Layout & Typography) */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 text-center space-y-8 flex flex-col items-center">
         {/* Top Eyebrow Badge */}
         <div className="inline-flex items-center gap-2.5 rounded-full border border-sky-500/30 bg-sky-950/40 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-sky-300 shadow-[0_0_24px_rgba(14,165,233,0.25)] backdrop-blur-xl">

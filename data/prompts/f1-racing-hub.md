@@ -3,9 +3,8 @@ id: "res_axes_f1_racing_hub"
 slug: "f1-racing-hub"
 title: "F1 Racing Hub"
 category: "Mobile App"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # F1 Racing Hub

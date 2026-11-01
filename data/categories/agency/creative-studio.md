@@ -4,7 +4,7 @@ slug: "creative-studio"
 title: "Creative Studio"
 category: "Agency"
 categorySlug: "agency"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

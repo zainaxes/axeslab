@@ -3,9 +3,8 @@ id: "res_axes_mindloop_landing"
 slug: "mindloop-landing"
 title: "Mindloop Landing"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "e37b73d4812519e3362aa46a9c05e8e4b8361dc55a41afad413789b0e1d3b0bf"
 ---
 
 # Mindloop Landing

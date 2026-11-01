@@ -4,7 +4,7 @@ slug: "aurora-onboard"
 title: "Aurora Onboard"
 category: "Signup"
 categorySlug: "signup"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -3,9 +3,8 @@ id: "res_axes_adhd_planner"
 slug: "adhd-planner"
 title: "ADHD Planner"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # ADHD Planner

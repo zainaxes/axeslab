@@ -3,9 +3,8 @@ id: "res_axes_mind_body_healing"
 slug: "mind-body-healing"
 title: "Mind-Body Healing"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Mind-Body Healing

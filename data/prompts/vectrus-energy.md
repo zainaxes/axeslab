@@ -3,9 +3,8 @@ id: "res_axes_vectrus_energy"
 slug: "vectrus-energy"
 title: "Vectrus Energy"
 category: "Editorial"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Vectrus Energy

@@ -4,7 +4,7 @@ slug: "velorah-hero"
 title: "Velorah"
 category: "Agency"
 categorySlug: "agency"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

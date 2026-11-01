@@ -3,9 +3,8 @@ id: "res_axes_yoga_coach"
 slug: "yoga-coach"
 title: "Yoga Coach"
 category: "Landing Page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Yoga Coach

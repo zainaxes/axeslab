@@ -3,9 +3,8 @@ id: "res_axes_celestial_renewal"
 slug: "celestial-renewal"
 title: "Celestial Renewal"
 category: "Wellness"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "6ee7a251064e1c8bbd3dd8436a81fe4c358c545c31247a2dce7146b2567efebb"
 ---
 
 # Celestial Renewal

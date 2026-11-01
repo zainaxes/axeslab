@@ -3,9 +3,8 @@ id: "res_axes_immersive_ocean"
 slug: "immersive-ocean"
 title: "Immersive Ocean"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "6a98189c77fd23768ae75e00b114a4953224a867931729ad8c5adaba63cbc5be"
 ---
 
 # Immersive Ocean

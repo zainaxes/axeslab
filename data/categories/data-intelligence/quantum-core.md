@@ -4,7 +4,7 @@ slug: "quantum-core"
 title: "Quantum Core"
 category: "Data Intelligence"
 categorySlug: "data-intelligence"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

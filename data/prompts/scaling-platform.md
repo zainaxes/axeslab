@@ -3,9 +3,8 @@ id: "res_axes_scaling_platform"
 slug: "scaling-platform"
 title: "Scaling Platform"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Scaling Platform

@@ -3,9 +3,8 @@ id: "res_axes_build_with_us"
 slug: "build-with-us"
 title: "Build With Us"
 category: "Contact us"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "41b8f5989fa746155e0d44c72cc4378eb0ec03411a87495fc25524d61c1e167d"
 ---
 
 # Build With Us

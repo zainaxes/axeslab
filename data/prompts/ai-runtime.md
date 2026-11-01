@@ -3,9 +3,8 @@ id: "res_axes_ai_runtime"
 slug: "ai-runtime"
 title: "AI Runtime"
 category: "AI SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # AI Runtime

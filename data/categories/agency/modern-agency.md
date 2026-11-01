@@ -4,7 +4,7 @@ slug: "modern-agency"
 title: "Modern Agency"
 category: "Agency"
 categorySlug: "agency"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

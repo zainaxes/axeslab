@@ -3,9 +3,8 @@ id: "res_axes_quantum_lucid"
 slug: "quantum-lucid"
 title: "Quantum Lucid"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Quantum Lucid

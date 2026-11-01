@@ -4,7 +4,7 @@ slug: "growth-decisions"
 title: "Growth Decisions"
 category: "SaaS"
 categorySlug: "saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

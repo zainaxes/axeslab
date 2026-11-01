@@ -4,7 +4,7 @@ slug: "palomar-labs"
 title: "Palomar Labs"
 category: "AI SaaS"
 categorySlug: "ai-saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -3,9 +3,8 @@ id: "res_axes_wellness_device"
 slug: "wellness-device"
 title: "Wellness Device"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Wellness Device

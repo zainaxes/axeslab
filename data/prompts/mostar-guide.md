@@ -3,9 +3,8 @@ id: "res_axes_mostar_guide"
 slug: "mostar-guide"
 title: "Mostar Guide"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Mostar Guide

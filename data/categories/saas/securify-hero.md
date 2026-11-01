@@ -4,7 +4,7 @@ slug: "securify-hero"
 title: "Securify Data Security"
 category: "SaaS"
 categorySlug: "saas"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -4,7 +4,7 @@ slug: "coffee-rewards"
 title: "Coffee Rewards"
 category: "Loyalty App"
 categorySlug: "loyalty-app"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

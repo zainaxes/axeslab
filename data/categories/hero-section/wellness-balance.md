@@ -4,7 +4,7 @@ slug: "wellness-balance"
 title: "Wellness Balance"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

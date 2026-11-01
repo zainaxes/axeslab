@@ -4,7 +4,7 @@ slug: "wanderful-hero"
 title: "Wanderful Hero"
 category: "Travel"
 categorySlug: "travel"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

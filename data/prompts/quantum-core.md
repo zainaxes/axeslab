@@ -3,9 +3,8 @@ id: "res_axes_quantum_core"
 slug: "quantum-core"
 title: "Quantum Core"
 category: "Data Intelligence"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Quantum Core

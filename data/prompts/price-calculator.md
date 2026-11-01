@@ -3,9 +3,8 @@ id: "res_axes_price_calculator"
 slug: "price-calculator"
 title: "Price Calculator"
 category: "SaaS"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Price Calculator

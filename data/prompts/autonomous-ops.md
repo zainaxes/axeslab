@@ -3,9 +3,8 @@ id: "res_axes_autonomous_ops"
 slug: "autonomous-ops"
 title: "Autonomous Ops"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Autonomous Ops

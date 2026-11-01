@@ -3,9 +3,8 @@ id: "res_axes_designpro_hero"
 slug: "designpro-hero"
 title: "DesignPro Academy"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "06a79839ee295e9e0a8b7819fdb59d007c91062f0210f6955156bcf0662912aa"
 ---
 
 # DesignPro Academy

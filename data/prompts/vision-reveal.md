@@ -3,9 +3,8 @@ id: "res_axes_vision_reveal"
 slug: "vision-reveal"
 title: "Vision Reveal"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "e41755ecba41e0dbf5e3d55ce5da3460b733c903b91688335849269693bf8508"
 ---
 
 # Vision Reveal

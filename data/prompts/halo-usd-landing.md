@@ -3,9 +3,8 @@ id: "res_axes_halo_usd_landing"
 slug: "halo-usd-landing"
 title: "USD Halo"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "304fc87864be5186bb31beec502153a80b7f18c4f915b3479c0a430d5c3fd6aa"
 ---
 
 # USD Halo

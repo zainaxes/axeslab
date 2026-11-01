@@ -3,9 +3,8 @@ id: "res_axes_portal"
 slug: "portal"
 title: "Password Vault Portal"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "ee44ddcb6d7928da383b2e9dd9e4d7e05a00125970f441ac7301fa4ef7801260"
 ---
 
 # Password Vault Portal

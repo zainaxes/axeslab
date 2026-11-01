@@ -4,7 +4,7 @@ slug: "digitwist-hero"
 title: "Digitwist AI Builder"
 category: "SaaS"
 categorySlug: "saas"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

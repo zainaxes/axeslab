@@ -3,9 +3,8 @@ id: "res_axes_velorix_iic"
 slug: "velorix-iic"
 title: "Velorix IIC"
 category: "Hero Section"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Velorix IIC

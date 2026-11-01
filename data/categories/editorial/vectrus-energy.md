@@ -4,7 +4,7 @@ slug: "vectrus-energy"
 title: "Vectrus Energy"
 category: "Editorial"
 categorySlug: "editorial"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

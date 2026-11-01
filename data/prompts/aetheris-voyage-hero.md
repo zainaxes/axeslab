@@ -3,9 +3,8 @@ id: "res_axes_aetheris_voyage_hero"
 slug: "aetheris-voyage-hero"
 title: "Aetheris Voyage"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "aa5f58f6ac4d3806dcbc1d54c34773bfaa8d8e37d80579513ccaad8135239694"
 ---
 
 # Aetheris Voyage

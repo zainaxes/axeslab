@@ -3,9 +3,8 @@ id: "res_axes_task_engine"
 slug: "task-engine"
 title: "Task Engine"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Task Engine

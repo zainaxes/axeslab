@@ -3,9 +3,8 @@ id: "res_axes_coffee_rewards"
 slug: "coffee-rewards"
 title: "Coffee Rewards"
 category: "Loyalty App"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "ee4a52d661786358e9d1b75ffd699b687221e8520faffc02242d2dbb8449ec9f"
 ---
 
 # Coffee Rewards

@@ -3,9 +3,8 @@ id: "res_axes_sparkform"
 slug: "sparkform"
 title: "Sparkform"
 category: "Creative"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Sparkform

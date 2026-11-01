@@ -3,9 +3,8 @@ id: "res_axes_trustflow"
 slug: "trustflow"
 title: "TrustFlow"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # TrustFlow

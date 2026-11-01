@@ -3,9 +3,8 @@ id: "res_axes_innovation_lab"
 slug: "innovation-lab"
 title: "Innovation Lab"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Innovation Lab

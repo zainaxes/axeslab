@@ -3,9 +3,8 @@ id: "res_axes_innovation_landing"
 slug: "innovation-landing"
 title: "Innovation"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "9e4779f7ba0d275c370964366f30e0c592fbd6c3dd50666c286b1c833c3d22da"
 ---
 
 # Innovation

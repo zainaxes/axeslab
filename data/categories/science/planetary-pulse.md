@@ -4,7 +4,7 @@ slug: "planetary-pulse"
 title: "Planetary Pulse"
 category: "Science"
 categorySlug: "science"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

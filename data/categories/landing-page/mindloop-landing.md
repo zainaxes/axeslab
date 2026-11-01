@@ -4,7 +4,7 @@ slug: "mindloop-landing"
 title: "Mindloop Landing"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

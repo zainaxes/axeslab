@@ -4,7 +4,7 @@ slug: "vortex-studio-hero"
 title: "AI Designer Portfolio"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 
@@ -30,7 +30,7 @@ Two buttons in flex-col sm:flex-row, gap-3 md:gap-4, mt-5 md:mt-6. Animation del
 
 Horizontally scrolling image strip. Uses 8 GIF images duplicated (total 16) in a flex row with animate-marquee CSS animation (translateX(0) to translateX(-50%), 30s linear infinite on desktop, 10s on mobile). Images are h-[280px] md:h-[500px], object-cover, mx-3, rounded-2xl, shadow-lg.
 
-Image URLs (all from motionsites.ai):
+Image URLs (curated asset references):
 
 https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif
 https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif

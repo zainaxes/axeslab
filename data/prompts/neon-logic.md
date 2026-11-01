@@ -3,9 +3,8 @@ id: "res_axes_neon_logic"
 slug: "neon-logic"
 title: "Neon Logic"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "0ab5371ac3a324fad708fbceb98c0e15778930f496dec6368d04867b9879f985"
 ---
 
 # Neon Logic

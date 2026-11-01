@@ -3,9 +3,8 @@ id: "res_axes_duolingo_styleguide_hero"
 slug: "duolingo-styleguide-hero"
 title: "Duolingo Styleguide"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "899c74629c7ea16cca2c2d3e418b5c360b4138d9a810fe21f1281d10fa4c3f9e"
 ---
 
 # Duolingo Styleguide

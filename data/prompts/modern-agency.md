@@ -3,9 +3,8 @@ id: "res_axes_modern_agency"
 slug: "modern-agency"
 title: "Modern Agency"
 category: "Agency"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "311cb3608bae2caa7b62823ed61d031165af19f9386316849f521ef74f61ed22"
 ---
 
 # Modern Agency

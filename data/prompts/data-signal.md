@@ -3,9 +3,8 @@ id: "res_axes_data_signal"
 slug: "data-signal"
 title: "Data Signal"
 category: "Analytics"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Data Signal

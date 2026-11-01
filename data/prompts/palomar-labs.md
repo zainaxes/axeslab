@@ -3,9 +3,8 @@ id: "res_axes_palomar_labs"
 slug: "palomar-labs"
 title: "Palomar Labs"
 category: "AI SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Palomar Labs

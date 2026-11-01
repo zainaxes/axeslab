@@ -3,9 +3,8 @@ id: "res_axes_stillmind"
 slug: "stillmind"
 title: "Stillmind"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "8caa5f53a90ef80f9a7e28e6664037a22b2ea2e732792476ee40b95fd862fe3b"
 ---
 
 # Stillmind

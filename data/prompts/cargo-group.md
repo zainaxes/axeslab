@@ -3,9 +3,8 @@ id: "res_axes_cargo_group"
 slug: "cargo-group"
 title: "Cargo Group"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Cargo Group

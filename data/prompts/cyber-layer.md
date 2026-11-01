@@ -3,9 +3,8 @@ id: "res_axes_cyber_layer"
 slug: "cyber-layer"
 title: "Cyber Layer"
 category: "Cybersecurity"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Cyber Layer

@@ -4,7 +4,7 @@ slug: "celestial-renewal"
 title: "Celestial Renewal"
 category: "Wellness"
 categorySlug: "wellness"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -3,9 +3,8 @@ id: "res_axes_intelligentx"
 slug: "intelligentx"
 title: "IntelligentX"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "290841aaf028b821eebcff51ef7fca9947566ea967b269ab51edfd499845358a"
 ---
 
 # IntelligentX

@@ -3,9 +3,8 @@ id: "res_axes_rocket_pricing"
 slug: "rocket-pricing"
 title: "Rocket Pricing"
 category: "Pricing"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Rocket Pricing

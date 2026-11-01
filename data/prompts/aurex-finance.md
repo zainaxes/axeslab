@@ -3,9 +3,8 @@ id: "res_axes_aurex_finance"
 slug: "aurex-finance"
 title: "Aurex Finance"
 category: "Fintech"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Aurex Finance

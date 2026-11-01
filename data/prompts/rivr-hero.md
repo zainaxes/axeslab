@@ -3,9 +3,8 @@ id: "res_axes_rivr_hero"
 slug: "rivr-hero"
 title: "RIVR"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "44771c0ba6fedb5aec274e001a93b1569b743749f45fa49a1c990c84efb6b1e9"
 ---
 
 # RIVR

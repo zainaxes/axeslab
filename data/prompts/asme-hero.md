@@ -3,9 +3,8 @@ id: "res_axes_asme_hero"
 slug: "asme-hero"
 title: "Asme"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "1127da6eb24f5c40f392c09df4ecc39dd435fee5475f28b4aa64a91472a46a2c"
 ---
 
 # Asme

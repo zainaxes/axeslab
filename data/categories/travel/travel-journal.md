@@ -4,7 +4,7 @@ slug: "travel-journal"
 title: "Travel Journal"
 category: "Travel"
 categorySlug: "travel"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

@@ -4,7 +4,7 @@ slug: "vision-reveal"
 title: "Vision Reveal"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

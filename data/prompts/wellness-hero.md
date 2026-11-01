@@ -3,9 +3,8 @@ id: "res_axes_wellness_hero"
 slug: "wellness-hero"
 title: "Wellness Hero"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "404e516e0ad9365a2ff6890cd206886e0621e770dd637bd1172eabcafb389ec1"
 ---
 
 # Wellness Hero

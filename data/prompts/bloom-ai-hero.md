@@ -3,9 +3,8 @@ id: "res_axes_bloom_ai_hero"
 slug: "bloom-ai-hero"
 title: "Bloom AI"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "d821c5196a8f4039bd0de4235c2e94de55bb4867b6fe37088430720ea9aa19d5"
 ---
 
 # Bloom AI

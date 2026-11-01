@@ -3,9 +3,8 @@ id: "res_axes_design_rocket_email_hero"
 slug: "design-rocket-email-hero"
 title: "Email Marketing"
 category: "Email Marketing"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "4f0a14eaff1d21a3e4e703371e0afa825c1e0924f569fee01426c65746bf0cf6"
 ---
 
 # Email Marketing

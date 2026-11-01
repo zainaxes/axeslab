@@ -4,7 +4,7 @@ slug: "velorix-iic"
 title: "Velorix IIC"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

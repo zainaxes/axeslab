@@ -3,9 +3,8 @@ id: "res_axes_interactive_discovery"
 slug: "interactive-discovery"
 title: "Interactive Discovery"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "c81bf5235d39099e553f989415057fc9610a0e5184bf127b563fed79712b4829"
 ---
 
 # Interactive Discovery

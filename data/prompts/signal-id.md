@@ -3,9 +3,8 @@ id: "res_axes_signal_id"
 slug: "signal-id"
 title: "Signal ID"
 category: "Technology"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Signal ID
@@ -33,7 +32,7 @@ https://meez.design/web/media/ext/71d89c5b89d722c9.png
 Video attributes: autoPlay, muted, loop, playsInline, preload="auto"
 Video CSS: width/height 100%, object-fit: cover, object-position: center
 Media layer: position absolute, inset 0, z-index -1, black background behind video
-Preconnect to: https://meez.design
+Preconnect to: https://axeslab.zainaxes.com
 
 Video content (for reference): dark cinematic AI/surreal face sequence — abstract metallic/glass facial forms, cool dark palette, motion graphic identity vibe. Full-bleed edge-to-edge; never inset, never in a card.
 

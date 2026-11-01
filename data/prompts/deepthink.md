@@ -3,9 +3,8 @@ id: "res_axes_deepthink"
 slug: "deepthink"
 title: "DeepThink"
 category: "AI SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # DeepThink

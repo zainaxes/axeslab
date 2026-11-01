@@ -3,9 +3,8 @@ id: "res_axes_digitwist_hero"
 slug: "digitwist-hero"
 title: "Digitwist AI Builder"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "22db40a74f053015edad3376029e3c7233ebd8d714909980d3fcb867fefc4a26"
 ---
 
 # Digitwist AI Builder

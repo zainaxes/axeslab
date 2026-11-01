@@ -3,9 +3,8 @@ id: "res_axes_pet_diagnostics"
 slug: "pet-diagnostics"
 title: "Pet Diagnostics"
 category: "Healthcare"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Pet Diagnostics

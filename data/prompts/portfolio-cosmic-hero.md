@@ -3,9 +3,8 @@ id: "res_axes_portfolio_cosmic_hero"
 slug: "portfolio-cosmic-hero"
 title: "Portfolio Cosmic"
 category: "Portfolio"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "4f53cb27436233bf7799ac3a425d39b808f46a6da6928b099b11f9d3ad31d8e3"
 ---
 
 # Portfolio Cosmic

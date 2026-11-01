@@ -3,9 +3,8 @@ id: "res_axes_subscription_agency"
 slug: "subscription-agency"
 title: "Subscription Agency"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "a1c407a9c4090191ddb3cd175d22d7c90c0c42715d3c7235a2c6a08022e24120"
 ---
 
 # Subscription Agency

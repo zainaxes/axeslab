@@ -3,9 +3,8 @@ id: "res_axes_orbis_nft_landing"
 slug: "orbis-nft-landing"
 title: "Orbis NFT"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "014b9381a9779a6acdf1e8f1c03acbe30689afe2d1ce2c2f0b48f0df87a28acc"
 ---
 
 # Orbis NFT

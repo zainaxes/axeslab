@@ -3,9 +3,8 @@ id: "res_axes_network_hero"
 slug: "network-hero"
 title: "Network Hero"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "545c5a935972609e32ac1c272ffe2d398d98a0d6330b9f7e25bd22a60d936abf"
 ---
 
 # Network Hero

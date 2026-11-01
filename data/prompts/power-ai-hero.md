@@ -3,9 +3,8 @@ id: "res_axes_power_ai_hero"
 slug: "power-ai-hero"
 title: "Power AI"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "7da85cb611a91bdb080434dce20716b4efe5bd97224849594446e19d697ff009"
 ---
 
 # Power AI

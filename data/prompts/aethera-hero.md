@@ -3,9 +3,8 @@ id: "res_axes_aethera_hero"
 slug: "aethera-hero"
 title: "Aethera Studio"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "e4f05b30ecfb52ada93f551f0e9cafbc259fa57c791408c412107e23e5ccdf32"
 ---
 
 # Aethera Studio

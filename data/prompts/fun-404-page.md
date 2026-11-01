@@ -3,9 +3,8 @@ id: "res_axes_fun_404_page"
 slug: "fun-404-page"
 title: "Fun 404 Page"
 category: "Landing Page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Fun 404 Page

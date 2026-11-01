@@ -3,9 +3,8 @@ id: "res_axes_agent_wave"
 slug: "agent-wave"
 title: "Agent Wave"
 category: "AI SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Agent Wave

@@ -3,9 +3,8 @@ id: "res_axes_wellness_companion"
 slug: "wellness-companion"
 title: "Wellness Companion"
 category: "Wellness"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "9f1ff2f86e0f36eea841fac041fbb1f942f84e16084e713ef84c3197f1062ff0"
 ---
 
 # Wellness Companion

@@ -4,7 +4,7 @@ slug: "synth-mode"
 title: "Synth Mode"
 category: "Fashion"
 categorySlug: "fashion"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

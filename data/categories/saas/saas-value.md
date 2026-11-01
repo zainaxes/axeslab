@@ -4,7 +4,7 @@ slug: "saas-value"
 title: "SaaS Value"
 category: "SaaS"
 categorySlug: "saas"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

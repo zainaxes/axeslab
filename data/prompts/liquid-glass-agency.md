@@ -3,9 +3,8 @@ id: "res_axes_liquid_glass_agency"
 slug: "liquid-glass-agency"
 title: "Liquid Glass Agency"
 category: "Landing Page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Liquid Glass Agency

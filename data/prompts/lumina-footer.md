@@ -3,9 +3,8 @@ id: "res_axes_lumina_footer"
 slug: "lumina-footer"
 title: "Lumina"
 category: "Footer Section"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Lumina

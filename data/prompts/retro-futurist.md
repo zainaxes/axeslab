@@ -3,9 +3,8 @@ id: "res_axes_retro_futurist"
 slug: "retro-futurist"
 title: "Retro-Futurist"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "77349f561dcf23cb8d0dfc0b45f8acedd3505bff78a5eae8aa3be73f95768e4c"
 ---
 
 # Retro-Futurist

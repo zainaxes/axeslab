@@ -4,7 +4,7 @@ slug: "mind-body-healing"
 title: "Mind-Body Healing"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

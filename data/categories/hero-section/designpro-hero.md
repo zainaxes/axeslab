@@ -4,7 +4,7 @@ slug: "designpro-hero"
 title: "DesignPro Academy"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

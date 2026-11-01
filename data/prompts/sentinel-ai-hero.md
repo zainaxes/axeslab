@@ -3,9 +3,8 @@ id: "res_axes_sentinel_ai_hero"
 slug: "sentinel-ai-hero"
 title: "Sentinel AI"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "e52bab7ddad4744ce9c3e7058c7af3cab4dc95a53bd6c08964b5df55e00504ea"
 ---
 
 # Sentinel AI

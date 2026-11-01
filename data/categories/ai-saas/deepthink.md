@@ -4,7 +4,7 @@ slug: "deepthink"
 title: "DeepThink"
 category: "AI SaaS"
 categorySlug: "ai-saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

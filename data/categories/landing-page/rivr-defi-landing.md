@@ -4,7 +4,7 @@ slug: "rivr-defi-landing"
 title: "RIVR DeFi"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

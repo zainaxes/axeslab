@@ -3,9 +3,8 @@ id: "res_axes_forecast_center"
 slug: "forecast-center"
 title: "Forecast Center"
 category: "Mobile App"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Forecast Center

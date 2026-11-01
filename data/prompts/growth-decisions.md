@@ -3,9 +3,8 @@ id: "res_axes_growth_decisions"
 slug: "growth-decisions"
 title: "Growth Decisions"
 category: "SaaS"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Growth Decisions

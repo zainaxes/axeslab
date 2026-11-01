@@ -3,9 +3,8 @@ id: "res_axes_impact_ventures"
 slug: "impact-ventures"
 title: "Impact Ventures"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "c19477fa46ff8da25abdc927ce7dd1af814ad62453a688423479123ffa64a96c"
 ---
 
 # Impact Ventures

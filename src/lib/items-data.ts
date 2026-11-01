@@ -590,7 +590,7 @@ export const obsidianTokens = {
 };`,
     skillContent: `---
 name: obsidian-glass-system
-description: Rules and tokens for building ultra-polished obsidian dark interfaces matching MotionSites and Axes Lab.
+description: Rules and tokens for building ultra-polished obsidian dark interfaces crafted for Axes Lab.
 ---
 # Obsidian Glass Design System Rules
 1. Never use pure black #000000 for cards — use #0B0B0F or #0E0E14.

@@ -3,9 +3,8 @@ id: "res_axes_organic_odyssey"
 slug: "organic-odyssey"
 title: "Organic Odyssey"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "c46de546ac824599e6e63ea95c34729ece6e09c7322f2b427a2902a6074f12c4"
 ---
 
 # Organic Odyssey

@@ -4,7 +4,7 @@ slug: "vex-ventures-hero"
 title: "VEX Ventures"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

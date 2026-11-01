@@ -3,9 +3,8 @@ id: "res_axes_3d_jack_portfolio_hero"
 slug: "3d-jack-portfolio-hero"
 title: "3D Portfolio"
 category: "Portfolio"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "480ba19526baf0950139c9bd1be6dd1fae792eb4a5b083d9383602bf9f3876c6"
 ---
 
 # 3D Portfolio
@@ -42,7 +41,7 @@ FadeIn animations: Navbar fades in with delay 0, y -20. Heading: delay 0.15, y 4
 2. MARQUEE SECTION
 Two rows of images that scroll horizontally based on page scroll position. Background #0C0C0C. Padding: pt-24 sm:pt-32 md:pt-40 pb-10.
 
-21 GIF images from motionsites.ai (exact URLs):
+21 GIF images (exact asset URLs):
 
 
 https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif

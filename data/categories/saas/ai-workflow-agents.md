@@ -4,7 +4,7 @@ slug: "ai-workflow-agents"
 title: "AI Workflow Agents"
 category: "SaaS"
 categorySlug: "saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

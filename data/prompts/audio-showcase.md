@@ -3,9 +3,8 @@ id: "res_axes_audio_showcase"
 slug: "audio-showcase"
 title: "Audio Showcase"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "6bed09a557b923f894591f045f444b3e92c7bea69c68c3ed3208d37f0922606e"
 ---
 
 # Audio Showcase

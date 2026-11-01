@@ -4,7 +4,7 @@ slug: "f1-racing-hub"
 title: "F1 Racing Hub"
 category: "Mobile App"
 categorySlug: "mobile-app"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

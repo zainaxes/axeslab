@@ -4,7 +4,7 @@ slug: "layered-depth"
 title: "Layered Depth"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

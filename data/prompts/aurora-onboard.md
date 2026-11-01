@@ -3,9 +3,8 @@ id: "res_axes_aurora_onboard"
 slug: "aurora-onboard"
 title: "Aurora Onboard"
 category: "Signup"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "04bbd8d1a7479031fc455c2df4f01cf1d52e23ed0172e488f670fd8f217c3b0f"
 ---
 
 # Aurora Onboard

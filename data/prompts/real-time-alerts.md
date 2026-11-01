@@ -3,9 +3,8 @@ id: "res_axes_real_time_alerts"
 slug: "real-time-alerts"
 title: "Real-Time Alerts"
 category: "Sign in"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Real-Time Alerts

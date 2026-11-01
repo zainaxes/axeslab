@@ -3,9 +3,8 @@ id: "res_axes_cyberpunk_reveal"
 slug: "cyberpunk-reveal"
 title: "Cyberpunk Reveal"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "2ef94ff0248588d46eb2f21e03a26f446a66fa831570e3a7f889c9b6b1a19922"
 ---
 
 # Cyberpunk Reveal

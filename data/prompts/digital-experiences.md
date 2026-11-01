@@ -3,9 +3,8 @@ id: "res_axes_digital_experiences"
 slug: "digital-experiences"
 title: "Digital Experiences"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "64e6b632545157840c1db3818255774f616dc1f61fe86c31ef91446684ac759f"
 ---
 
 # Digital Experiences

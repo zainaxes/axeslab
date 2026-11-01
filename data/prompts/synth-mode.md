@@ -3,9 +3,8 @@ id: "res_axes_synth_mode"
 slug: "synth-mode"
 title: "Synth Mode"
 category: "Fashion"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Synth Mode

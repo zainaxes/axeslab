@@ -4,7 +4,7 @@ slug: "fun-404-page"
 title: "Fun 404 Page"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

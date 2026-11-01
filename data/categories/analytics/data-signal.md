@@ -4,7 +4,7 @@ slug: "data-signal"
 title: "Data Signal"
 category: "Analytics"
 categorySlug: "analytics"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

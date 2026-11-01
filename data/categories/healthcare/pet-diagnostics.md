@@ -4,7 +4,7 @@ slug: "pet-diagnostics"
 title: "Pet Diagnostics"
 category: "Healthcare"
 categorySlug: "healthcare"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

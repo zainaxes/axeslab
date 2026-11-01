@@ -3,9 +3,8 @@ id: "res_axes_intelligent_operations"
 slug: "intelligent-operations"
 title: "Intelligent Operations"
 category: "Agency"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Intelligent Operations

@@ -4,7 +4,7 @@ slug: "lumina-footer"
 title: "Lumina"
 category: "Footer Section"
 categorySlug: "footer-section"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

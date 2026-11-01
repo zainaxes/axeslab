@@ -3,9 +3,8 @@ id: "res_axes_planetary_pulse"
 slug: "planetary-pulse"
 title: "Planetary Pulse"
 category: "Science"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: ""
 ---
 
 # Planetary Pulse

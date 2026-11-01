@@ -4,7 +4,7 @@ slug: "stillmind"
 title: "Stillmind"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

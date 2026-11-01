@@ -3,9 +3,8 @@ id: "res_axes_email_landing_page"
 slug: "email-landing-page"
 title: "Email Landing Page"
 category: "Landing Page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "f5f6bf8cf3390db3f457b12c7a8fd25b4cd1e9419c73da4102f848e0c74a85d9"
 ---
 
 # Email Landing Page

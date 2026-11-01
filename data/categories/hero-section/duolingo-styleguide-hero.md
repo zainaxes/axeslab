@@ -4,7 +4,7 @@ slug: "duolingo-styleguide-hero"
 title: "Duolingo Styleguide"
 category: "Hero Section"
 categorySlug: "hero-section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

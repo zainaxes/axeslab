@@ -3,9 +3,8 @@ id: "res_axes_stellar_ai_hero"
 slug: "stellar-ai-hero"
 title: "Stellar AI"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "3f87ec9c95f24355d5cfc08626fafb0ccf59f5886e6d7452f02ff53fd0a718ba"
 ---
 
 # Stellar AI

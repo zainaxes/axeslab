@@ -3,9 +3,8 @@ id: "res_axes_securify_hero"
 slug: "securify-hero"
 title: "Securify Data Security"
 category: "SaaS"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "9bc9f2f0d7bb0a9c759714a3814e38a3012362afe02fcf3d7fb79823950e0452"
 ---
 
 # Securify Data Security

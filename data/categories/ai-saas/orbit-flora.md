@@ -4,7 +4,7 @@ slug: "orbit-flora"
 title: "Orbit Flora"
 category: "AI SaaS"
 categorySlug: "ai-saas"
-source: "meez"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

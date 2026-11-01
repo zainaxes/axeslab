@@ -4,7 +4,7 @@ slug: "ai-image-generator-ui"
 title: "AI Image Generator UI"
 category: "AI SaaS"
 categorySlug: "ai-saas"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

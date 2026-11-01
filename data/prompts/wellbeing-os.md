@@ -3,9 +3,8 @@ id: "res_axes_wellbeing_os"
 slug: "wellbeing-os"
 title: "Wellbeing OS"
 category: "Hero Section"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
-sha256: "6883361e5addea9ca09740bb047d4050683b32312c5b97dbc43811c530f95662"
 ---
 
 # Wellbeing OS

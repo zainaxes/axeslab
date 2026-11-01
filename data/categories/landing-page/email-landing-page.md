@@ -4,7 +4,7 @@ slug: "email-landing-page"
 title: "Email Landing Page"
 category: "Landing Page"
 categorySlug: "landing-page"
-source: "motionsites"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 

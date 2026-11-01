@@ -4,7 +4,7 @@ slug: "scroll-marquee"
 title: "Scroll Marquee"
 category: "Marquee"
 categorySlug: "marquee"
-source: "heydesign"
+source: "Axes Lab Curated"
 tier: "free"
 ---
 
