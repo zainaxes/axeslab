@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import promptsData from '@/lib/generated-prompts.json';
 import catalogData from '../../../../data/catalog.json';
+import axeskitTaxonomy from '../../../../data/axeskit_taxonomy.json';
 
 interface CatalogPrompt {
   id: string;
@@ -17,6 +18,7 @@ interface CatalogPrompt {
 
 const typedCatalog = (catalogData as unknown) as CatalogPrompt[];
 const rawPromptsArray = (promptsData as unknown) as CatalogPrompt[];
+const typedTaxonomy = axeskitTaxonomy as Record<string, any>;
 
 // Build slug -> prompt map
 const promptMap: Record<string, string> = {};
@@ -26,11 +28,11 @@ rawPromptsArray.forEach((item) => {
   }
 });
 
-// Tool definitions for MCP
+// Unified Tool definitions for MCP (Axes Lab + AxesKit merged)
 const TOOLS = [
   {
     name: 'axeslab_search_templates',
-    description: 'Search Axes Lab curated UI templates and prompts by query, topic, or category (e.g. "hero", "bento", "pricing", "cards", "3D").',
+    description: 'Search Axes Lab curated UI templates and motion prompts by query, topic, or category (e.g. "hero", "bento", "pricing", "cards", "3D").',
     inputSchema: {
       type: 'object',
       properties: {
@@ -90,6 +92,27 @@ const TOOLS = [
       required: ['slug'],
     },
   },
+  {
+    name: 'axeskit_list_asset_categories',
+    description: 'List all design asset categories from AxesKit (icons, vector graphics, fonts, sound effects, lottie animations, UI kits, code snippets).',
+    inputSchema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'axeskit_get_design_guidelines',
+    description: 'Retrieve AxesKit UI/UX design tokens, typography pairings, color systems, and stack recommendations.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        style: {
+          type: 'string',
+          description: 'Design style: "clean-saas" | "dark-luxury" | "cyberpunk" | "editorial" | "minimal".',
+        },
+      },
+    },
+  },
 ];
 
 function handleSearchTemplates(params: any) {
@@ -100,8 +123,8 @@ function handleSearchTemplates(params: any) {
   let results = typedCatalog.filter((item) => {
     if (category) {
       const matchCat =
-        item.category.toLowerCase().includes(category) ||
-        item.categorySlug.toLowerCase().includes(category);
+        (item.category || '').toLowerCase().includes(category) ||
+        (item.categorySlug || '').toLowerCase().includes(category);
       if (!matchCat) return false;
     }
     if (query) {
@@ -150,7 +173,7 @@ function handleGetPrompt(params: any) {
     title: catalogEntry?.title || slug,
     category: catalogEntry?.category || 'General',
     description: catalogEntry?.description || '',
-    videoUrl: catalogEntry?.videoUrl,
+    videoUrl: catalogEntry?.videoUrl || catalogEntry?.preview_video_url,
     prompt: promptText || 'Prompt text not available for this entry.',
     liveUrl: `https://axeslab.zainaxes.com/item/${slug}`,
   };
@@ -201,6 +224,47 @@ function handleGenerateScaffold(params: any) {
   };
 }
 
+function handleAxesKitAssetCategories() {
+  return {
+    ecosystem: 'AxesKit Assets & Tools',
+    liveUrl: 'https://axeskit.zainaxes.com',
+    categories: Object.entries(typedTaxonomy).map(([key, val]: [string, any]) => ({
+      slug: key,
+      name: val.name || key,
+      subcategoriesCount: val.daughters?.length || 0,
+      subcategories: val.daughters?.map((d: any) => d.slug) || [],
+    })),
+  };
+}
+
+function handleAxesKitDesignGuidelines(params: any) {
+  const style = params?.style || 'dark-luxury';
+  return {
+    style,
+    colorTokens: {
+      background: '#050507',
+      cardSurface: '#0B0B10',
+      borderSubtle: 'rgba(255, 255, 255, 0.08)',
+      primaryAccent: '#8B5CF6',
+      emeraldHighlight: '#10B981',
+      textPrimary: '#FAFAFA',
+      textMuted: '#A1A1AA',
+    },
+    typography: {
+      primary: 'Inter, -apple-system, sans-serif',
+      headingAccent: 'Playfair Display, serif (italic)',
+      code: 'JetBrains Mono, monospace',
+    },
+    motionRules: {
+      timingCurve: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      standardDuration: '300ms',
+      hoverTransform: 'translateY(-4px)',
+    },
+    axesKitUrl: 'https://axeskit.zainaxes.com',
+    axesLabUrl: 'https://axeslab.zainaxes.com',
+  };
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -213,7 +277,6 @@ export async function POST(req: NextRequest) {
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     };
 
-    // Standard JSON-RPC 2.0 response wrapper
     const makeResponse = (result: any) =>
       NextResponse.json({ jsonrpc: '2.0', result, id: id ?? 1 }, { headers: responseHeaders });
 
@@ -235,9 +298,9 @@ export async function POST(req: NextRequest) {
             tools: {},
           },
           serverInfo: {
-            name: 'axeslab mcp server',
-            version: '1.0.0',
-            description: 'Axes Lab Official HTTP MCP Server - Search & scaffold 130+ production UI templates and motion prompts.',
+            name: 'axeslab & axeskit unified mcp server',
+            version: '2.0.0',
+            description: 'Axes Lab & AxesKit Unified HTTP MCP Server - Search & scaffold 130+ production UI templates, design tokens, and multi-asset libraries.',
           },
         });
 
@@ -263,8 +326,12 @@ export async function POST(req: NextRequest) {
           content = handleListCategories();
         } else if (toolName === 'axeslab_generate_scaffold') {
           content = handleGenerateScaffold(toolArguments);
+        } else if (toolName === 'axeskit_list_asset_categories') {
+          content = handleAxesKitAssetCategories();
+        } else if (toolName === 'axeskit_get_design_guidelines') {
+          content = handleAxesKitDesignGuidelines(toolArguments);
         } else {
-          return makeError(-32601, `Tool "${toolName}" not found on axeslab mcp server.`);
+          return makeError(-32601, `Tool "${toolName}" not found on unified MCP server.`);
         }
 
         return makeResponse({
@@ -278,7 +345,7 @@ export async function POST(req: NextRequest) {
       }
 
       default:
-        return makeError(-32601, `Method "${method}" is not supported by axeslab mcp server.`);
+        return makeError(-32601, `Method "${method}" is not supported.`);
     }
   } catch (error: any) {
     return NextResponse.json(
@@ -301,9 +368,9 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return NextResponse.json(
     {
-      name: 'axeslab mcp server',
-      version: '1.0.0',
-      description: 'Axes Lab Streamable HTTP MCP Server is active.',
+      name: 'axeslab & axeskit unified mcp server',
+      version: '2.0.0',
+      description: 'Unified Streamable HTTP MCP Server covering Axes Lab prompts & AxesKit design assets.',
       docs: 'https://axeslab.zainaxes.com/mcp',
       tools: TOOLS.map((t) => ({ name: t.name, description: t.description })),
     },

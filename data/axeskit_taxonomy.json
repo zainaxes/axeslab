@@ -1,0 +1,1036 @@
+{
+  "icons": {
+    "name": "Icons",
+    "slug": "icons",
+    "daughters": [
+      {
+        "slug": "actions-controls",
+        "description": "Add, edit, remove, save, delete, settings, controls"
+      },
+      {
+        "slug": "arrows-navigation",
+        "description": "Arrows, chevrons, carets, compass, directions, expand/collapse"
+      },
+      {
+        "slug": "interface-layout",
+        "description": "Menus, panels, grids, sidebars, windows, views, layout"
+      },
+      {
+        "slug": "forms-inputs",
+        "description": "Checkboxes, radios, sliders, toggles, form fields, search controls"
+      },
+      {
+        "slug": "status-feedback",
+        "description": "Alerts, warnings, success badges, loaders, info, help, blocking"
+      },
+      {
+        "slug": "files-documents",
+        "description": "Folders, files, PDFs, archives, code files, attachments"
+      },
+      {
+        "slug": "text-formatting-editing",
+        "description": "Typography, bold, italic, align, quotes, rich text"
+      },
+      {
+        "slug": "media-playback",
+        "description": "Play, pause, volume, audio, camera, photo, gallery, mic"
+      },
+      {
+        "slug": "communication-messaging",
+        "description": "Chat bubbles, mail, inbox, comments, calls, support"
+      },
+      {
+        "slug": "people-users",
+        "description": "Avatars, user accounts, teams, profiles, roles, groups"
+      },
+      {
+        "slug": "commerce-shopping",
+        "description": "Carts, baskets, bags, price tags, packages, delivery"
+      },
+      {
+        "slug": "payments-finance",
+        "description": "Cards, wallets, currency, banks, invoices, receipts"
+      },
+      {
+        "slug": "business-work",
+        "description": "Briefcases, tasks, productivity, meetings, reports"
+      },
+      {
+        "slug": "time-calendar",
+        "description": "Clocks, calendar dates, timers, stopwatches, schedules"
+      },
+      {
+        "slug": "weather-seasons",
+        "description": "Sun, clouds, rain, snow, temperature, seasons"
+      },
+      {
+        "slug": "travel-maps-location",
+        "description": "Pins, maps, routes, airport, hotel, navigation"
+      },
+      {
+        "slug": "transport-vehicles",
+        "description": "Cars, trains, buses, airplanes, bicycles, transit"
+      },
+      {
+        "slug": "nature-plants-environment",
+        "description": "Leaves, trees, flowers, ecology, recycling"
+      },
+      {
+        "slug": "animals-wildlife",
+        "description": "Pets, dogs, cats, birds, wildlife, insects"
+      },
+      {
+        "slug": "food-drink",
+        "description": "Meals, drinks, cups, coffee, restaurants, groceries"
+      },
+      {
+        "slug": "sports-fitness-health",
+        "description": "Gym, fitness, hearts, medical, cross, medicine, sports"
+      },
+      {
+        "slug": "science-education",
+        "description": "Books, school, graduation, lab flasks, astronomy"
+      },
+      {
+        "slug": "technology-devices",
+        "description": "Laptops, phones, screens, chips, USB, wifi, bluetooth"
+      },
+      {
+        "slug": "code-development",
+        "description": "Code tags, terminals, databases, git branches, APIs"
+      },
+      {
+        "slug": "security-privacy",
+        "description": "Locks, shields, keys, authentication, passwords, eye/view"
+      },
+      {
+        "slug": "charts-analytics",
+        "description": "Bar charts, pie charts, analytics trends, metrics"
+      },
+      {
+        "slug": "buildings-places",
+        "description": "Homes, offices, stores, schools, cities"
+      },
+      {
+        "slug": "shapes-geometry",
+        "description": "Circles, squares, polygons, stars, geometric marks"
+      },
+      {
+        "slug": "flags-languages",
+        "description": "Flags, translation, globe, locale"
+      },
+      {
+        "slug": "gaming-entertainment",
+        "description": "Controllers, gamepads, dice, achievements, arcade"
+      },
+      {
+        "slug": "brand-logos",
+        "description": "Tech, social, and developer company brand marks"
+      },
+      {
+        "slug": "accessibility-inclusion",
+        "description": "Accessibility, assistive tools, visual symbols"
+      },
+      {
+        "slug": "miscellaneous",
+        "description": "Other recognized standalone symbols"
+      },
+      {
+        "slug": "app-icons-social",
+        "description": "Social networking, chat, community, and messaging app icons"
+      },
+      {
+        "slug": "app-icons-games",
+        "description": "Action, casual, arcade, RPG, and mobile game icons"
+      },
+      {
+        "slug": "app-icons-entertainment",
+        "description": "Streaming, video, movie, music, and audio app icons"
+      },
+      {
+        "slug": "app-icons-productivity",
+        "description": "Office, notes, collaboration, and work utility app icons"
+      },
+      {
+        "slug": "app-icons-finance",
+        "description": "Banking, crypto, wallet, payment, and investment app icons"
+      },
+      {
+        "slug": "app-icons-photo-video",
+        "description": "Camera, photo editor, filter, and video creation app icons"
+      },
+      {
+        "slug": "app-icons-utilities",
+        "description": "Security, system, VPN, tools, and developer utility app icons"
+      },
+      {
+        "slug": "app-icons-shopping",
+        "description": "E-commerce, shopping, retail, and deals app icons"
+      },
+      {
+        "slug": "app-icons-food-drink",
+        "description": "Delivery, restaurant, recipe, and beverage app icons"
+      },
+      {
+        "slug": "app-icons-travel-navigation",
+        "description": "Ride hailing, navigation, flight, hotel, and map app icons"
+      },
+      {
+        "slug": "app-icons-health-fitness",
+        "description": "Workout, running, meditation, and health app icons"
+      },
+      {
+        "slug": "app-icons-education-books",
+        "description": "Learning, quiz, language, and e-reader app icons"
+      },
+      {
+        "slug": "app-icons-lifestyle-news",
+        "description": "Lifestyle, news, weather, and reference app icons"
+      }
+    ]
+  },
+  "svg-vector-graphics": {
+    "name": "SVG & Vector Graphics",
+    "slug": "svg-vector-graphics",
+    "daughters": [
+      {
+        "slug": "mockups-presentation",
+        "name": "Mockups & Presentation Assets",
+        "description": "Device mockups, screens, hardware frames, stationery, and presentation templates"
+      },
+      {
+        "slug": "stickers-emojis",
+        "description": "Expressive emoji artwork, smiley faces, and vector stickers"
+      },
+      {
+        "slug": "logos-brand-marks",
+        "description": "Company, developer, and brand vector marks"
+      },
+      {
+        "slug": "patterns-ornaments",
+        "description": "Decorative patterns, repeatable vector textures, spinners"
+      },
+      {
+        "slug": "maps-geography",
+        "description": "Country flags, regional maps, and geographic vector graphics"
+      },
+      {
+        "slug": "illustrations-scenes",
+        "description": "Full vector scene illustrations and compositions"
+      },
+      {
+        "slug": "characters-avatars",
+        "description": "Illustrated people, mascots, and avatar illustrations"
+      },
+      {
+        "slug": "diagrams-flowcharts",
+        "description": "Architecture diagrams, process trees, and charts"
+      },
+      {
+        "slug": "badges-labels",
+        "description": "Vector badges, ribbons, seals, and certification marks"
+      },
+      {
+        "slug": "backgrounds-shapes",
+        "description": "Abstract vector blobs, gradients, and backdrop curves"
+      },
+      {
+        "slug": "line-art",
+        "description": "Minimalist line art, sketch vectors, and contour drawings"
+      },
+      {
+        "slug": "typography-lettering",
+        "description": "Calligraphic lettering artwork and vector quotes"
+      },
+      {
+        "slug": "miscellaneous",
+        "description": "Other multi-path vector artwork"
+      },
+      {
+        "slug": "islamic-calligraphy-artwork",
+        "description": "Islamic and Urdu calligraphy vector illustrations and epigraphy"
+      }
+    ]
+  },
+  "fonts": {
+    "name": "Fonts",
+    "slug": "fonts",
+    "daughters": [
+      {
+        "slug": "sans-serif",
+        "description": "Clean modern sans-serif typefaces (Grotesque, Neo-grotesque, Geometric, Humanist)"
+      },
+      {
+        "slug": "serif",
+        "description": "Classic editorial serif typefaces (Old Style, Transitional, Didone)"
+      },
+      {
+        "slug": "monospace",
+        "description": "Fixed-width developer and terminal typefaces"
+      },
+      {
+        "slug": "display-decorative",
+        "description": "High-impact display and title typefaces"
+      },
+      {
+        "slug": "script-handwriting",
+        "description": "Calligraphy, cursive, brush, and signature styles"
+      },
+      {
+        "slug": "slab-serif",
+        "description": "Heavy block serifs, Egyptian, and collegiate styles"
+      },
+      {
+        "slug": "condensed",
+        "description": "Narrow, compressed, and headline space-saving fonts"
+      },
+      {
+        "slug": "rounded",
+        "description": "Softened terminals, friendly, and informal sans"
+      },
+      {
+        "slug": "variable-fonts",
+        "description": "Multi-axis variable font families (weight, slant, width)"
+      },
+      {
+        "slug": "pixel-retro",
+        "description": "8-bit, bitmap, and arcade screen fonts"
+      },
+      {
+        "slug": "blackletter-historical",
+        "description": "Gothic, medieval, Fraktur, and historical styles"
+      },
+      {
+        "slug": "multilingual-script-support",
+        "description": "Non-latin scripts (Korean, Cyrillic, Arabic, Devanagari, Japanese)"
+      },
+      {
+        "slug": "icon-symbol-fonts",
+        "description": "Symbol, glyph, and dingbat icon font faces"
+      },
+      {
+        "slug": "other-fonts",
+        "description": "Miscellaneous font styles"
+      }
+    ]
+  },
+  "sound-effects": {
+    "name": "Sound Effects",
+    "slug": "sound-effects",
+    "daughters": [
+      {
+        "slug": "ui-clicks-interactions",
+        "description": "Micro-interactions, button clicks, taps, toggles, switches"
+      },
+      {
+        "slug": "notifications-alerts",
+        "description": "Chimes, pings, bells, error buzzers, and reminder alerts"
+      },
+      {
+        "slug": "transitions-whooshes",
+        "description": "Air swishes, cinematic whooshes, risers, and reveal swooshes"
+      },
+      {
+        "slug": "impacts-breaks",
+        "description": "Hits, punches, crashes, thuds, drops, and collisions"
+      },
+      {
+        "slug": "games-arcade",
+        "description": "8-bit retro sounds, coins, powerups, game over, laser blasts"
+      },
+      {
+        "slug": "human-vocal",
+        "description": "Reactions, gasps, laughs, screams, cheers, sighs, and voice clips"
+      },
+      {
+        "slug": "footsteps-movement",
+        "description": "Steps on concrete, wood, grass, running, and body motion"
+      },
+      {
+        "slug": "sci-fi-fantasy",
+        "description": "Magic spells, lasers, teleports, forcefields, energy pulses"
+      },
+      {
+        "slug": "fire-explosions",
+        "description": "Detonations, blasts, flames, combustion, and fireworks"
+      },
+      {
+        "slug": "water-liquid",
+        "description": "Splashes, pours, drips, bubbles, and underwater ambience"
+      },
+      {
+        "slug": "weather-atmosphere",
+        "description": "Rain, thunder, lightning, snow, storms, wind"
+      },
+      {
+        "slug": "nature-environment",
+        "description": "Forest ambience, stream, ocean waves, birds, outdoor wildlife"
+      },
+      {
+        "slug": "household-daily-life",
+        "description": "Doors, appliances, kitchen cutlery, drawers, glass clinks"
+      },
+      {
+        "slug": "office-work",
+        "description": "Keyboard typing, mouse clicks, staplers, paper shuffling"
+      },
+      {
+        "slug": "travel-transport",
+        "description": "Cars, engine revs, honks, trains, airplanes, traffic"
+      },
+      {
+        "slug": "tools-mechanics",
+        "description": "Gears, machinery, drills, hammers, workshop ratchets"
+      },
+      {
+        "slug": "sports-crowds",
+        "description": "Whistles, stadium cheers, ball bounces, applause"
+      },
+      {
+        "slug": "food-cooking",
+        "description": "Sizzling, chopping, frying, pouring"
+      },
+      {
+        "slug": "underwater-space",
+        "description": "Deep space rumbles, atmospheric drones, submarine sonar"
+      },
+      {
+        "slug": "seasonal-holiday",
+        "description": "Holiday bells, festive sounds, celebratory effects"
+      },
+      {
+        "slug": "memes-humor",
+        "description": "Comedy stingers, funny reaction sounds, viral clips"
+      },
+      {
+        "slug": "other-sound-effects",
+        "description": "Unclassified audio effects"
+      }
+    ],
+    "count": 57188
+  },
+  "music-audio-loops": {
+    "name": "Music & Audio Loops",
+    "slug": "music-audio-loops",
+    "daughters": [
+      {
+        "slug": "`ambient-background`",
+        "description": ""
+      },
+      {
+        "slug": "`cinematic-orchestral`",
+        "description": ""
+      },
+      {
+        "slug": "`electronic-synth`",
+        "description": ""
+      },
+      {
+        "slug": "`lofi-chill`",
+        "description": ""
+      },
+      {
+        "slug": "`retro-8bit-chiptune`",
+        "description": ""
+      },
+      {
+        "slug": "`corporate-upbeat`",
+        "description": ""
+      },
+      {
+        "slug": "`dramatic-suspense`",
+        "description": ""
+      },
+      {
+        "slug": "`game-music`",
+        "description": ""
+      },
+      {
+        "slug": "`seasonal-holiday-music`",
+        "description": ""
+      },
+      {
+        "slug": "`short-stingers-intros`",
+        "description": ""
+      },
+      {
+        "slug": "`loops-rhythms`",
+        "description": ""
+      },
+      {
+        "slug": "`other-music`",
+        "description": ""
+      }
+    ]
+  },
+  "lottie-animations": {
+    "name": "Lottie Animations",
+    "slug": "lottie-animations",
+    "daughters": [
+      {
+        "slug": "`loaders-progress`",
+        "description": ""
+      },
+      {
+        "slug": "`success-completion`",
+        "description": ""
+      },
+      {
+        "slug": "`error-warning-empty-states`",
+        "description": ""
+      },
+      {
+        "slug": "`onboarding-tutorials`",
+        "description": ""
+      },
+      {
+        "slug": "`navigation-menu-transitions`",
+        "description": ""
+      },
+      {
+        "slug": "`buttons-microinteractions`",
+        "description": ""
+      },
+      {
+        "slug": "`forms-input-feedback`",
+        "description": ""
+      },
+      {
+        "slug": "`commerce-shopping`",
+        "description": ""
+      },
+      {
+        "slug": "`payments-finance`",
+        "description": ""
+      },
+      {
+        "slug": "`social-reactions`",
+        "description": ""
+      },
+      {
+        "slug": "`people-characters`",
+        "description": ""
+      },
+      {
+        "slug": "`charts-data-visualization`",
+        "description": ""
+      },
+      {
+        "slug": "`weather-environment`",
+        "description": ""
+      },
+      {
+        "slug": "`travel-maps-location`",
+        "description": ""
+      },
+      {
+        "slug": "`technology-devices`",
+        "description": ""
+      },
+      {
+        "slug": "`logos-brand-marks`",
+        "description": ""
+      },
+      {
+        "slug": "`background-loops`",
+        "description": ""
+      },
+      {
+        "slug": "`decorative-abstract`",
+        "description": ""
+      },
+      {
+        "slug": "`games-entertainment`",
+        "description": ""
+      },
+      {
+        "slug": "`other-lottie`",
+        "description": ""
+      }
+    ]
+  },
+  "ui-kits": {
+    "name": "UI Kits",
+    "slug": "ui-kits",
+    "daughters": [
+      {
+        "slug": "`dashboard-admin`",
+        "description": ""
+      },
+      {
+        "slug": "`saas-web-app`",
+        "description": ""
+      },
+      {
+        "slug": "`ecommerce-storefront`",
+        "description": ""
+      },
+      {
+        "slug": "`mobile-app`",
+        "description": ""
+      },
+      {
+        "slug": "`landing-marketing`",
+        "description": ""
+      },
+      {
+        "slug": "`portfolio-agency`",
+        "description": ""
+      },
+      {
+        "slug": "`blog-editorial`",
+        "description": ""
+      },
+      {
+        "slug": "`analytics-data`",
+        "description": ""
+      },
+      {
+        "slug": "`crm-productivity`",
+        "description": ""
+      },
+      {
+        "slug": "`authentication-onboarding`",
+        "description": ""
+      },
+      {
+        "slug": "`education-learning`",
+        "description": ""
+      },
+      {
+        "slug": "`finance-banking`",
+        "description": ""
+      },
+      {
+        "slug": "`health-fitness`",
+        "description": ""
+      },
+      {
+        "slug": "`travel-hospitality`",
+        "description": ""
+      },
+      {
+        "slug": "`food-delivery`",
+        "description": ""
+      },
+      {
+        "slug": "`gaming-entertainment`",
+        "description": ""
+      },
+      {
+        "slug": "`design-system-foundations`",
+        "description": ""
+      },
+      {
+        "slug": "`email-templates`",
+        "description": ""
+      },
+      {
+        "slug": "`documentation-help-center`",
+        "description": ""
+      },
+      {
+        "slug": "`general-purpose`",
+        "description": ""
+      },
+      {
+        "slug": "`other-ui-kits`",
+        "description": ""
+      }
+    ]
+  },
+  "ui-components": {
+    "name": "UI Components",
+    "slug": "ui-components",
+    "daughters": [
+      {
+        "slug": "tabs-accordions",
+        "description": "Expandable accordions, collapse panels, and tabbed interfaces"
+      },
+      {
+        "slug": "badges-tags",
+        "description": "Pills, status badges, indicator tags, and count chips"
+      },
+      {
+        "slug": "navigation-menus",
+        "description": "Breadcrumbs, navbars, side menus, and pagination"
+      },
+      {
+        "slug": "buttons-actions",
+        "description": "Button groups, action buttons, icon buttons, CTAs"
+      },
+      {
+        "slug": "charts-data-viz",
+        "description": "Dashboard metric charts, progress bars, stats counters"
+      },
+      {
+        "slug": "forms-inputs-validation",
+        "description": "Checkboxes, switches, text fields, radio buttons"
+      },
+      {
+        "slug": "tables-data-grids",
+        "description": "Details lists, responsive data tables, key-value rows"
+      },
+      {
+        "slug": "dividers-separators",
+        "description": "Content dividers, rule lines, and section delimiters"
+      },
+      {
+        "slug": "dropdowns-selects",
+        "description": "Context menus, popover selectors, and dropdown menus"
+      },
+      {
+        "slug": "empty-loading-error-states",
+        "description": "Empty state placeholders, 404 cards, skeletons"
+      },
+      {
+        "slug": "cards-panels",
+        "description": "Feature cards, content panels, pricing grids, and hero tiles"
+      },
+      {
+        "slug": "dialogs-modals-drawers",
+        "description": "Alert dialogs, modal sheets, and slide-over drawers"
+      },
+      {
+        "slug": "notifications-toasts",
+        "description": "Floating toasts, banner alerts, and status banners"
+      },
+      {
+        "slug": "other-ui-components",
+        "description": "Miscellaneous interface elements"
+      }
+    ]
+  },
+  "textures-backgrounds": {
+    "name": "Textures & Backgrounds",
+    "slug": "textures-backgrounds",
+    "daughters": [
+      {
+        "slug": "`wood`",
+        "description": ""
+      },
+      {
+        "slug": "`stone-concrete`",
+        "description": ""
+      },
+      {
+        "slug": "`metal-rust`",
+        "description": ""
+      },
+      {
+        "slug": "`fabric-leather`",
+        "description": ""
+      },
+      {
+        "slug": "`plastic-rubber`",
+        "description": ""
+      },
+      {
+        "slug": "`paper-cardboard`",
+        "description": ""
+      },
+      {
+        "slug": "`brick-tile-masonry`",
+        "description": ""
+      },
+      {
+        "slug": "`ground-sand-soil`",
+        "description": ""
+      },
+      {
+        "slug": "`rock-minerals`",
+        "description": ""
+      },
+      {
+        "slug": "`plants-leaves-bark`",
+        "description": ""
+      },
+      {
+        "slug": "`water-ice`",
+        "description": ""
+      },
+      {
+        "slug": "`glass-transparent`",
+        "description": ""
+      },
+      {
+        "slug": "`asphalt-road`",
+        "description": ""
+      },
+      {
+        "slug": "`terrain-landscape`",
+        "description": ""
+      },
+      {
+        "slug": "`sky-hdri-environments`",
+        "description": ""
+      },
+      {
+        "slug": "`pbr-material-sets`",
+        "description": ""
+      },
+      {
+        "slug": "`seamless-patterns`",
+        "description": ""
+      },
+      {
+        "slug": "`abstract-backgrounds`",
+        "description": ""
+      },
+      {
+        "slug": "`gradients-noise-grain`",
+        "description": ""
+      },
+      {
+        "slug": "`geometric-decorative`",
+        "description": ""
+      },
+      {
+        "slug": "`web-mobile-backgrounds`",
+        "description": ""
+      },
+      {
+        "slug": "`game-environment-textures`",
+        "description": ""
+      },
+      {
+        "slug": "`other-textures-backgrounds`",
+        "description": ""
+      }
+    ]
+  },
+  "code-snippets-css-animations": {
+    "name": "Code Snippets & CSS Animations",
+    "slug": "code-snippets-css-animations",
+    "daughters": [
+      {
+        "slug": "`html-patterns`",
+        "description": ""
+      },
+      {
+        "slug": "`css-layout`",
+        "description": ""
+      },
+      {
+        "slug": "`css-animations`",
+        "description": ""
+      },
+      {
+        "slug": "`buttons-interactions`",
+        "description": ""
+      },
+      {
+        "slug": "`forms-validation`",
+        "description": ""
+      },
+      {
+        "slug": "`navigation-menus`",
+        "description": ""
+      },
+      {
+        "slug": "`cards-content-layout`",
+        "description": ""
+      },
+      {
+        "slug": "`responsive-patterns`",
+        "description": ""
+      },
+      {
+        "slug": "`tailwind-snippets`",
+        "description": ""
+      },
+      {
+        "slug": "`react-components`",
+        "description": ""
+      },
+      {
+        "slug": "`javascript-utilities`",
+        "description": ""
+      },
+      {
+        "slug": "`typescript-patterns`",
+        "description": ""
+      },
+      {
+        "slug": "`svg-code-effects`",
+        "description": ""
+      },
+      {
+        "slug": "`accessibility-patterns`",
+        "description": ""
+      },
+      {
+        "slug": "`seo-markup`",
+        "description": ""
+      },
+      {
+        "slug": "`api-examples`",
+        "description": ""
+      },
+      {
+        "slug": "`data-formatting`",
+        "description": ""
+      },
+      {
+        "slug": "`other-code-snippets`",
+        "description": ""
+      }
+    ]
+  },
+  "asset-packs-collections": {
+    "name": "Asset Packs & Collections",
+    "slug": "asset-packs-collections",
+    "daughters": [
+      {
+        "slug": "`icon-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`font-families`",
+        "description": ""
+      },
+      {
+        "slug": "`audio-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`lottie-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`3d-model-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`ui-kit-packages`",
+        "description": ""
+      },
+      {
+        "slug": "`template-packages`",
+        "description": ""
+      },
+      {
+        "slug": "`texture-material-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`sprite-game-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`mixed-asset-packs`",
+        "description": ""
+      },
+      {
+        "slug": "`other-collections`",
+        "description": ""
+      },
+      {
+        "slug": "Audio converter.",
+        "description": ""
+      },
+      {
+        "slug": "Font metadata extractor.",
+        "description": ""
+      },
+      {
+        "slug": "Image resizer and cropper.",
+        "description": ""
+      },
+      {
+        "slug": "SVG optimizer.",
+        "description": ""
+      },
+      {
+        "slug": "CSS gradient and shadow builder.",
+        "description": ""
+      },
+      {
+        "slug": "Color palette generator.",
+        "description": ""
+      },
+      {
+        "slug": "Image palette extractor.",
+        "description": ""
+      },
+      {
+        "slug": "JSON formatter and validator.",
+        "description": ""
+      },
+      {
+        "slug": "HTML meta-tag generator.",
+        "description": ""
+      },
+      {
+        "slug": "Markdown-to-HTML converter.",
+        "description": ""
+      },
+      {
+        "slug": "HTML/CSS/JavaScript minifiers.",
+        "description": ""
+      },
+      {
+        "slug": "Regex tester.",
+        "description": ""
+      },
+      {
+        "slug": "Code snippet library.",
+        "description": ""
+      },
+      {
+        "slug": "CSS animation library.",
+        "description": ""
+      },
+      {
+        "slug": "Typography pairings.",
+        "description": ""
+      },
+      {
+        "slug": "Tailwind UI components.",
+        "description": ""
+      },
+      {
+        "slug": "Public API directory.",
+        "description": ""
+      },
+      {
+        "slug": "SEO checklist tracker.",
+        "description": ""
+      }
+    ]
+  },
+  "free-tools": {
+    "name": "Free Tools",
+    "slug": "free-tools",
+    "daughters": [
+      {
+        "slug": "svg-vector",
+        "description": "In-browser SVG optimization, React/JSX/Vue/Flutter conversions, and vector generators"
+      },
+      {
+        "slug": "typography-fonts",
+        "description": "CSS @font-face generator, typographic scale calculator, and variable font tester"
+      },
+      {
+        "slug": "audio-sound",
+        "description": "Web Audio waveform trimmer, volume normalizer, and frequency tone synthesizer"
+      },
+      {
+        "slug": "css-styling",
+        "description": "Neumorphic soft shadows, layered elevation, fluid clamp() typography, and Tailwind palette generator"
+      },
+      {
+        "slug": "image-media",
+        "description": "Client-side image resizer, WebP/PNG converter, dominant palette extractor, and EXIF stripper"
+      },
+      {
+        "slug": "code-data",
+        "description": "JSON formatter, JSON to TypeScript interface converter, Base64/HTML encoders, and UUID/Nanoid generators"
+      },
+      {
+        "slug": "web-seo",
+        "description": "Open Graph meta tag previewer, robots.txt & sitemap.xml generator, and vector QR code builder"
+      }
+    ]
+  }
+}

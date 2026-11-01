@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { GlowWord } from '@/components/GlowWord';
 import { ITEMS_DATABASE, ItemRecord } from '@/lib/items-data';
 import { PreFooter } from '@/components/PreFooter';
-import { Copy, Check, Terminal, Download, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Copy, Check, Terminal, Download, ArrowRight, ShieldCheck, Sparkles, Layers, Box } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function SkillsPage() {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
-  const [copiedMasterSkill, setCopiedMasterSkill] = useState(false);
+  const [copiedSkillType, setCopiedSkillType] = useState<string | null>(null);
 
   const skills = ITEMS_DATABASE.filter((i) => i.type === 'skill');
 
@@ -25,16 +25,16 @@ export default function SkillsPage() {
     } catch {}
   };
 
-  const handleCopyMasterSkill = async () => {
+  const handleCopyNamedSkill = async (type: 'merged' | 'axeslab' | 'axeskit') => {
     try {
-      const res = await fetch('/api/skill/download');
+      const res = await fetch(`/api/skill/download?type=${type}`);
       const text = await res.text();
       await navigator.clipboard.writeText(text);
-      setCopiedMasterSkill(true);
-      toast.success('Copied axeslab skill (SKILL.md)!', {
+      setCopiedSkillType(type);
+      toast.success(`Copied ${type.toUpperCase()} SKILL.md!`, {
         description: 'Ready to paste into your .gemini/skills/ or project agent config.',
       });
-      setTimeout(() => setCopiedMasterSkill(false), 2000);
+      setTimeout(() => setCopiedSkillType(null), 2000);
     } catch {}
   };
 
@@ -44,7 +44,7 @@ export default function SkillsPage() {
       <section className="max-w-4xl mx-auto text-center relative mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-violet-500/15 border border-violet-500/25 text-violet-300 text-xs font-mono mb-6">
           <Terminal className="w-3.5 h-3.5 text-violet-400" />
-          <span>axeslab skill &amp; intelligence</span>
+          <span>axeslab &amp; axeskit unified intelligence</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08]">
@@ -52,62 +52,62 @@ export default function SkillsPage() {
         </h1>
 
         <p className="max-w-xl mx-auto text-base sm:text-lg text-zinc-400 mt-5 mb-8">
-          Download or copy the official <strong>axeslab skill</strong> to guide Claude Code, Cursor, Windsurf, or Google Antigravity in scaffolding verified, production-grade UI components.
+          Equip Claude Code, Cursor, Windsurf, or Google Antigravity with verified UI/UX design intelligence, design tokens, and motion scaffolding blueprints.
         </p>
       </section>
 
-      {/* Featured Master: axeslab skill */}
-      <section className="max-w-4xl mx-auto mb-16">
-        <div className="relative rounded-3xl bg-gradient-to-b from-[#12111E] to-[#0A0A0F] border border-violet-500/30 p-8 sm:p-10 shadow-[0_0_50px_rgba(139,92,246,0.12)]">
+      {/* Featured Master Merged Skill */}
+      <section className="max-w-4xl mx-auto mb-10">
+        <div className="relative rounded-3xl bg-gradient-to-b from-[#161226] to-[#0A0A0F] border border-violet-500/40 p-8 sm:p-10 shadow-[0_0_60px_rgba(139,92,246,0.18)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-2xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-400 shadow-inner">
-                <Sparkles className="w-5 h-5" />
+              <span className="w-12 h-12 rounded-2xl bg-violet-600/25 border border-violet-500/40 flex items-center justify-center text-violet-300 shadow-inner">
+                <Sparkles className="w-6 h-6" />
               </span>
               <div>
-                <div className="flex items-center gap-2">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">axeslab skill</h2>
-                  <span className="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400">
-                    Official
+                <div className="flex items-center gap-2.5">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Axes Lab &amp; AxesKit Master Skill</h2>
+                  <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
+                    Unified v2.0
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 font-mono mt-0.5">SKILL.md · Autonomous UI Scaffolding</p>
+                <p className="text-xs text-zinc-400 font-mono mt-1">Merged SKILL.md · Full UI/UX Design System + Motion Scaffolding</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 shrink-0">
               <a
-                href="/api/skill/download"
-                download="SKILL.md"
+                href="/api/skill/download?type=merged"
+                download="axeslab-axeskit-master-SKILL.md"
                 className="bg-white hover:bg-zinc-200 text-black font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md active:scale-95 flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                <span>Download SKILL.md</span>
+                <span>Download Master SKILL.md</span>
               </a>
 
               <button
-                onClick={handleCopyMasterSkill}
+                onClick={() => handleCopyNamedSkill('merged')}
                 className="bg-white/[0.08] hover:bg-white/[0.15] border border-white/[0.12] text-white text-xs sm:text-sm px-4 py-2.5 rounded-xl font-medium transition-all flex items-center gap-2"
               >
-                {copiedMasterSkill ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                <span>{copiedMasterSkill ? 'Copied!' : 'Copy Skill'}</span>
+                {copiedSkillType === 'merged' ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                <span>{copiedSkillType === 'merged' ? 'Copied!' : 'Copy'}</span>
               </button>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-            <div className="space-y-2">
-              <h4 className="text-xs font-mono uppercase text-zinc-400">Target Agents</h4>
-              <p className="text-xs text-zinc-300">Claude Code, Cursor, Windsurf, Codex, Google Antigravity</p>
+            <div className="space-y-1.5">
+              <h4 className="text-xs font-mono uppercase text-zinc-400">AxesKit Layer</h4>
+              <p className="text-xs text-zinc-300">Design systems, style taxonomies, icon libraries, fonts, and sound effects.</p>
             </div>
-            <div className="space-y-2">
-              <h4 className="text-xs font-mono uppercase text-zinc-400">What It Does</h4>
-              <p className="text-xs text-zinc-300">Enforces dark luxury palette, Framer Motion choreography, and accessible Next.js scaffolding</p>
+            <div className="space-y-1.5">
+              <h4 className="text-xs font-mono uppercase text-zinc-400">Axes Lab Layer</h4>
+              <p className="text-xs text-zinc-300">137 production motion blueprints, 3D interactive cubes, and Next.js scaffolds.</p>
             </div>
-            <div className="space-y-2">
-              <h4 className="text-xs font-mono uppercase text-zinc-400">Companion Server</h4>
+            <div className="space-y-1.5">
+              <h4 className="text-xs font-mono uppercase text-zinc-400">Live MCP Server</h4>
               <Link href="/mcp" className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
-                <span>axeslab mcp server</span>
+                <span>axeslab mcp server (Merged v2.0)</span>
                 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
@@ -115,7 +115,68 @@ export default function SkillsPage() {
         </div>
       </section>
 
-      {/* Skills Grid */}
+      {/* Individual Skill Cards */}
+      <section className="max-w-4xl mx-auto mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {/* Axes Lab Standalone */}
+        <div className="p-6 rounded-3xl bg-[#0B0B10] border border-white/[0.08] flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Box className="w-5 h-5 text-violet-400" />
+              <h3 className="text-lg font-bold text-white">axeslab skill</h3>
+            </div>
+            <p className="text-xs text-zinc-400 leading-relaxed mb-4">
+              Focuses specifically on Framer Motion choreography, dark canvas architecture, and component scaffolding.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 pt-4 border-t border-white/[0.06]">
+            <a
+              href="/api/skill/download?type=axeslab"
+              download="axeslab-SKILL.md"
+              className="flex-1 bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs py-2 rounded-xl text-center font-medium transition-all"
+            >
+              Download
+            </a>
+            <button
+              onClick={() => handleCopyNamedSkill('axeslab')}
+              className="px-3 py-2 bg-white/[0.06] hover:bg-white/[0.12] rounded-xl text-xs text-zinc-300 transition-all flex items-center gap-1"
+            >
+              {copiedSkillType === 'axeslab' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+
+        {/* AxesKit Standalone */}
+        <div className="p-6 rounded-3xl bg-[#0B0B10] border border-white/[0.08] flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Layers className="w-5 h-5 text-emerald-400" />
+              <h3 className="text-lg font-bold text-white">axeskit skill</h3>
+            </div>
+            <p className="text-xs text-zinc-400 leading-relaxed mb-4">
+              Focuses on UI/UX Pro design tokens, 79 style taxonomies, color palette logic, and multi-asset libraries.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 pt-4 border-t border-white/[0.06]">
+            <a
+              href="/api/skill/download?type=axeskit"
+              download="axeskit-SKILL.md"
+              className="flex-1 bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs py-2 rounded-xl text-center font-medium transition-all"
+            >
+              Download
+            </a>
+            <button
+              onClick={() => handleCopyNamedSkill('axeskit')}
+              className="px-3 py-2 bg-white/[0.06] hover:bg-white/[0.12] rounded-xl text-xs text-zinc-300 transition-all flex items-center gap-1"
+            >
+              {copiedSkillType === 'axeskit' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Blueprints Grid */}
       <section className="max-w-5xl mx-auto">
         <h3 className="text-xl font-bold text-white mb-6 tracking-tight">Specialized Design Blueprints</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
