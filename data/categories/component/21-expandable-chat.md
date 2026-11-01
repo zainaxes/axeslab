@@ -8,8 +8,8 @@ collection: "sections"
 likes: 203
 tier: "free"
 chars: 4437
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/78b721fa4bb6f599.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/f0103565d7e1a8ca-c.jpg"
+preview_video: "/media/videos/21-expandable-chat.mp4"
+preview_poster: "/media/posters/21-expandable-chat.jpg"
 ---
 
 # Expandable Chat (Component)

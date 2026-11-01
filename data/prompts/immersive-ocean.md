@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 112
 tier: "free"
 chars: 4307
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/immersive-ocean-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/immersive-ocean.webp"
 ---
 
 # Immersive Ocean (Hero)

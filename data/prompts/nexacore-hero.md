@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 148
 tier: "free"
 chars: 4389
-preview_video: "https://meez.design/web/prompt-previews/nexacore-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexacore-hero-poster-c.jpg"
+preview_video: "/media/videos/nexacore-hero.mp4"
+preview_poster: "/media/posters/nexacore-hero.jpg"
 ---
 
 # NexaCore (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 46
 tier: "free"
 chars: 4444
-preview_video: "https://meez.design/web/prompt-previews/portfolio-cosmic-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/portfolio-cosmic-hero-poster-c.jpg"
+preview_video: "/media/videos/portfolio-cosmic-hero.mp4"
+preview_poster: "/media/posters/portfolio-cosmic-hero.jpg"
 ---
 
 # Portfolio Cosmic (Portfolio)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 81
 tier: "free"
 chars: 4378
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/149c1121a2a79c48.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/orbis-cards-poster.jpg"
+preview_video: "/media/videos/orbis-cards.mp4"
+preview_poster: "/media/posters/orbis-cards.jpg"
 ---
 
 # Orbis Cards (Cards)

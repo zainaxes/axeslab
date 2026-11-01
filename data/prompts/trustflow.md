@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 82
 tier: "free"
 chars: 6192
-preview_video: "https://meez.design/web/prompt-previews/trustflow-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/trustflow-poster.webp"
+preview_video: "/media/videos/trustflow.mp4"
+preview_poster: "/media/posters/trustflow.webp"
 ---
 
 # TrustFlow (Landing Page)

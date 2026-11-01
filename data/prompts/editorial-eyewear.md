@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 30
 tier: "free"
 chars: 4437
-preview_video: "https://meez.design/web/prompt-previews/editorial-eyewear-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/editorial-eyewear-poster.webp"
+preview_video: "/media/videos/editorial-eyewear.mp4"
+preview_poster: "/media/posters/editorial-eyewear.webp"
 ---
 
 # Editorial Eyewear (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 163
 tier: "free"
 chars: 4412
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/568a0622a1220463.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/financialfocus-poster.jpg"
+preview_video: "/media/videos/financialfocus.mp4"
+preview_poster: "/media/posters/financialfocus.jpg"
 ---
 
 # FinancialFocus (Hero)

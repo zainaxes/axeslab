@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 48
 tier: "free"
 chars: 4372
-preview_video: "https://meez.design/web/prompt-previews/sky-estate-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/sky-estate-poster.jpg"
+preview_video: "/media/videos/sky-estate.mp4"
+preview_poster: "/media/posters/sky-estate.jpg"
 ---
 
 # Sky Estate (Real Estate)

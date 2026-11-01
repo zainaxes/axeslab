@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 73
 tier: "free"
 chars: 4392
-preview_video: "https://meez.design/web/prompt-previews/inner-quest-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/inner-quest-poster.webp"
+preview_video: "/media/videos/inner-quest.mp4"
+preview_poster: "/media/posters/inner-quest.webp"
 ---
 
 # Inner Quest (Landing Page)

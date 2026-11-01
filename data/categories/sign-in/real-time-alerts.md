@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 88
 tier: "free"
 chars: 21739
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/685b827bb6e32ba9-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/real-time-alerts.jpg"
 ---
 
 # Real-Time Alerts (Sign in)

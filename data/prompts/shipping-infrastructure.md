@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 46
 tier: "free"
 chars: 4472
-preview_video: "https://meez.design/web/prompt-previews/shipping-infrastructure-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/shipping-infrastructure-poster.webp"
+preview_video: "/media/videos/shipping-infrastructure.mp4"
+preview_poster: "/media/posters/shipping-infrastructure.webp"
 ---
 
 # Shipping Infrastructure (SaaS)

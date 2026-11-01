@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 34
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/media/preview_videos/layered-depth.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/layered-depth-poster-c.jpg"
+preview_video: "/media/videos/layered-depth.mp4"
+preview_poster: "/media/posters/layered-depth.jpg"
 ---
 
 # Layered Depth (Landing Page)

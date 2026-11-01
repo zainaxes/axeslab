@@ -8,8 +8,8 @@ collection: "sections"
 likes: 96
 tier: "free"
 chars: 4436
-preview_video: "https://meez.design/web/prompt-previews/designpro-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/designpro-hero-poster-c.jpg"
+preview_video: "/media/videos/designpro-hero.mp4"
+preview_poster: "/media/posters/designpro-hero.jpg"
 ---
 
 # DesignPro Academy (Hero Section)

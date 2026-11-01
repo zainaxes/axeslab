@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 99
 tier: "free"
 chars: 4365
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1a2c5b0c55943a48.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/guardnet-benefits-poster.jpg"
+preview_video: "/media/videos/guardnet-benefits.mp4"
+preview_poster: "/media/posters/guardnet-benefits.jpg"
 ---
 
 # Guardnet Benefits (Benefits)

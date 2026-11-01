@@ -8,8 +8,8 @@ collection: "sections"
 likes: 176
 tier: "free"
 chars: 4389
-preview_video: "https://meez.design/web/media/preview_videos/cursor-follow.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cursor-follow-poster.webp"
+preview_video: "/media/videos/cursor-follow.mp4"
+preview_poster: "/media/posters/cursor-follow.webp"
 ---
 
 # Cursor Follow (Hero Section)

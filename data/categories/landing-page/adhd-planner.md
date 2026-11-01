@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 128
 tier: "free"
 chars: 8481
-preview_video: "https://meez.design/web/prompt-previews/adhd-planner-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/adhd-planner-poster.webp"
+preview_video: "/media/videos/adhd-planner.mp4"
+preview_poster: "/media/posters/adhd-planner.webp"
 ---
 
 # ADHD Planner (Landing Page)

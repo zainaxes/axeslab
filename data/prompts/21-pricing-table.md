@@ -8,8 +8,8 @@ collection: "sections"
 likes: 165
 tier: "free"
 chars: 4416
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/d239d8e2bf7ed856.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/74aacf06e7de9828.jpg"
+preview_video: "/media/videos/21-pricing-table.mp4"
+preview_poster: "/media/posters/21-pricing-table.jpg"
 ---
 
 # Pricing Table (Pricing)

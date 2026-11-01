@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 30
 tier: "free"
 chars: 4458
-preview_video: "https://meez.design/web/prompt-previews/prisma-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prisma-landing-poster-c.jpg"
+preview_video: "/media/videos/prisma-landing.mp4"
+preview_poster: "/media/posters/prisma-landing.jpg"
 ---
 
 # Prisma Creative Studio (Landing Page)

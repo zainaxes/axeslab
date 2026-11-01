@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 61
 tier: "free"
 chars: 4206
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/4fca046242e09552-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-background-paths.jpg"
 ---
 
 # Background Paths (Background)

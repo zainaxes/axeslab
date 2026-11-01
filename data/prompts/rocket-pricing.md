@@ -8,8 +8,8 @@ collection: "sections"
 likes: 159
 tier: "free"
 chars: 4400
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/4d39d1f6d18e0974.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/rocket-pricing-poster.jpg"
+preview_video: "/media/videos/rocket-pricing.mp4"
+preview_poster: "/media/posters/rocket-pricing.jpg"
 ---
 
 # Rocket Pricing (Pricing)

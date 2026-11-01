@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 194
 tier: "free"
 chars: 4434
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/ac655a2050bb7145.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/projects-catalog-poster-c.jpg"
+preview_video: "/media/videos/projects-catalog.mp4"
+preview_poster: "/media/posters/projects-catalog.jpg"
 ---
 
 # Projects Catalog (Projects)

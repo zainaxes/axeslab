@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 114
 tier: "free"
 chars: 4348
-preview_video: "https://meez.design/web/prompt-previews/slate-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/slate-hero-poster-c.jpg"
+preview_video: "/media/videos/slate-hero.mp4"
+preview_poster: "/media/posters/slate-hero.jpg"
 ---
 
 # Slate (SaaS)

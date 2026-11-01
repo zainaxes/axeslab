@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 110
 tier: "free"
 chars: 4341
-preview_video: "https://meez.design/web/media/preview_videos/bl.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bl-poster.webp"
+preview_video: "/media/videos/bl.mp4"
+preview_poster: "/media/posters/bl.webp"
 ---
 
 # Bloom (Landing Page)

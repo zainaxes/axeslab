@@ -8,8 +8,8 @@ collection: "apps"
 likes: 129
 tier: "free"
 chars: 6365
-preview_video: "https://meez.design/web/prompt-previews/cross-border-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cross-border-poster.jpg"
+preview_video: "/media/videos/cross-border.mp4"
+preview_poster: "/media/posters/cross-border.jpg"
 ---
 
 # Cross-Border (Mobile App)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 117
 tier: "free"
 chars: 4402
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7b9d42bff494ac6a.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/halo-use-case-poster.jpg"
+preview_video: "/media/videos/halo-use-case.mp4"
+preview_poster: "/media/posters/halo-use-case.jpg"
 ---
 
 # Halo Use Case (Use Case)

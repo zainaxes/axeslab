@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 114
 tier: "free"
 chars: 4390
-preview_video: "https://meez.design/web/media/preview_videos/wellness-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wellness-hero-poster.webp"
+preview_video: "/media/videos/wellness-hero.mp4"
+preview_poster: "/media/posters/wellness-hero.webp"
 ---
 
 # Wellness Hero (Hero)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 144
 tier: "free"
 chars: 4400
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/40a7fcaea75cea25.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/98e0096c6acf5d79.jpg"
+preview_video: "/media/videos/21-gravity.mp4"
+preview_poster: "/media/posters/21-gravity.jpg"
 ---
 
 # Gravity (Component)

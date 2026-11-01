@@ -8,8 +8,8 @@ collection: "sections"
 likes: 182
 tier: "free"
 chars: 4467
-preview_video: "https://meez.design/web/prompt-previews/duolingo-styleguide-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/duolingo-styleguide-hero-poster.png"
+preview_video: "/media/videos/duolingo-styleguide-hero.mp4"
+preview_poster: "/media/posters/duolingo-styleguide-hero.png"
 ---
 
 # Duolingo Styleguide (Hero Section)

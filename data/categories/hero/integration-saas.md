@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 121
 tier: "free"
 chars: 4411
-preview_video: "https://meez.design/web/prompt-previews/integration-saas-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/integration-saas-poster.jpg"
+preview_video: "/media/videos/integration-saas.mp4"
+preview_poster: "/media/posters/integration-saas.jpg"
 ---
 
 # Integration SaaS (Hero)

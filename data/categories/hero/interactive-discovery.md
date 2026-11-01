@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 127
 tier: "free"
 chars: 4439
-preview_video: "https://meez.design/web/media/preview_videos/interactive-discovery.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/interactive-discovery-poster.webp"
+preview_video: "/media/videos/interactive-discovery.mp4"
+preview_poster: "/media/posters/interactive-discovery.webp"
 ---
 
 # Interactive Discovery (Hero)

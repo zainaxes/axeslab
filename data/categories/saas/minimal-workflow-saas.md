@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 38
 tier: "free"
 chars: 4345
-preview_video: "https://meez.design/web/media/preview_videos/minimal-workflow-saas.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/minimal-workflow-saas-poster.webp"
+preview_video: "/media/videos/minimal-workflow-saas.mp4"
+preview_poster: "/media/posters/minimal-workflow-saas.webp"
 ---
 
 # Minimal Workflow SaaS (SaaS)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 98
 tier: "free"
 chars: 4430
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/3898ab4c12f313fd.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/0a039d15bbcc2def-c.jpg"
+preview_video: "/media/videos/build-with-us.mp4"
+preview_poster: "/media/posters/build-with-us.jpg"
 ---
 
 # Build With Us (Contact us)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 198
 tier: "free"
 chars: 32412
-preview_video: "https://meez.design/web/prompt-previews/cargo-group-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cargo-group-poster-c.jpg"
+preview_video: "/media/videos/cargo-group.mp4"
+preview_poster: "/media/posters/cargo-group.jpg"
 ---
 
 # Cargo Group (Hero)

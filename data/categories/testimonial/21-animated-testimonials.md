@@ -8,8 +8,8 @@ collection: "sections"
 likes: 184
 tier: "free"
 chars: 4475
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/44e11e07091079c2.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/287d7b37fa7e41f3-c.jpg"
+preview_video: "/media/videos/21-animated-testimonials.mp4"
+preview_poster: "/media/posters/21-animated-testimonials.jpg"
 ---
 
 # Animated Testimonials (Testimonial)

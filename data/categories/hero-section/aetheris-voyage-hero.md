@@ -8,8 +8,8 @@ collection: "sections"
 likes: 174
 tier: "free"
 chars: 4439
-preview_video: "https://meez.design/web/prompt-previews/aetheris-voyage-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/aetheris-voyage-hero-poster-c.jpg"
+preview_video: "/media/videos/aetheris-voyage-hero.mp4"
+preview_poster: "/media/posters/aetheris-voyage-hero.jpg"
 ---
 
 # Aetheris Voyage (Hero Section)

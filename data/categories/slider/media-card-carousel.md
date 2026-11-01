@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 160
 tier: "free"
 chars: 4434
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/ea31f2a9630dd11b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/media-card-carousel-poster.jpg"
+preview_video: "/media/videos/media-card-carousel.mp4"
+preview_poster: "/media/posters/media-card-carousel.jpg"
 ---
 
 # Media Card Carousel (Slider)

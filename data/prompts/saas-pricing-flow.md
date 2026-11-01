@@ -8,8 +8,8 @@ collection: "sections"
 likes: 94
 tier: "free"
 chars: 4353
-preview_video: "https://meez.design/web/media/preview_videos/saas-pricing-flow.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/saas-pricing-flow-poster.webp"
+preview_video: "/media/videos/saas-pricing-flow.mp4"
+preview_poster: "/media/posters/saas-pricing-flow.webp"
 ---
 
 # SaaS Pricing Flow (Pricing)

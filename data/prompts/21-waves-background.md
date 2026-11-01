@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 47
 tier: "free"
 chars: 4444
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/fa97d3b4e3afa702.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/30e50bca08bd32ee-c.jpg"
+preview_video: "/media/videos/21-waves-background.mp4"
+preview_poster: "/media/posters/21-waves-background.jpg"
 ---
 
 # Waves Background (Background)

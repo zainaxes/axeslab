@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 198
 tier: "free"
 chars: 4397
-preview_video: "https://meez.design/web/prompt-previews/innovation-studio-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/innovation-studio-poster.jpg"
+preview_video: "/media/videos/innovation-studio.mp4"
+preview_poster: "/media/posters/innovation-studio.jpg"
 ---
 
 # Innovation Studio (Hero)

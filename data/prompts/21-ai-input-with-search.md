@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 39
 tier: "free"
 chars: 4441
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/b8cf85e99dd86f7a.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/a77697027fabcf9b.jpg"
+preview_video: "/media/videos/21-ai-input-with-search.mp4"
+preview_poster: "/media/posters/21-ai-input-with-search.jpg"
 ---
 
 # AI Input With Search (Form)

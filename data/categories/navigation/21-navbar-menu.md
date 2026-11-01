@@ -8,8 +8,8 @@ collection: "sections"
 likes: 26
 tier: "free"
 chars: 4306
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/4056f6a0bc12679d.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/cbf496106263f48d-c.jpg"
+preview_video: "/media/videos/21-navbar-menu.mp4"
+preview_poster: "/media/posters/21-navbar-menu.jpg"
 ---
 
 # Navbar Menu (Navigation)

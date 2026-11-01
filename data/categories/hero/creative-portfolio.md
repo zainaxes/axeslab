@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 94
 tier: "free"
 chars: 28196
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/creative-portfolio-preview-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/creative-portfolio.jpg"
 ---
 
 # Creative Portfolio (Hero)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 192
 tier: "free"
 chars: 4367
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/d81c39118bd84fe8.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/arceage-contact-us-poster.jpg"
+preview_video: "/media/videos/arceage-contact-us.mp4"
+preview_poster: "/media/posters/arceage-contact-us.jpg"
 ---
 
 # Arceage Contact Us (Form)

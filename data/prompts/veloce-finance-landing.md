@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 203
 tier: "free"
 chars: 4442
-preview_video: "https://meez.design/web/prompt-previews/veloce-finance-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/veloce-finance-landing-poster-c.jpg"
+preview_video: "/media/videos/veloce-finance-landing.mp4"
+preview_poster: "/media/posters/veloce-finance-landing.jpg"
 ---
 
 # Veloce Finance (Landing Page)

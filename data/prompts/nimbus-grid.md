@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 173
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/media/preview_videos/nimbus-grid.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nimbus-grid-poster.webp"
+preview_video: "/media/videos/nimbus-grid.mp4"
+preview_poster: "/media/posters/nimbus-grid.webp"
 ---
 
 # Nimbus Grid (Landing Page)

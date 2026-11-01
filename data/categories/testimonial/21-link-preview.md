@@ -8,8 +8,8 @@ collection: "sections"
 likes: 55
 tier: "free"
 chars: 4294
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c1ea70f6cd50170b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/22c1fe1cec31b71c-c.jpg"
+preview_video: "/media/videos/21-link-preview.mp4"
+preview_poster: "/media/posters/21-link-preview.jpg"
 ---
 
 # Link Preview (Testimonial)

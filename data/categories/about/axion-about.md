@@ -8,8 +8,8 @@ collection: "sections"
 likes: 131
 tier: "free"
 chars: 4383
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/82611e18c8d32164.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/axion-about-poster.jpg"
+preview_video: "/media/videos/axion-about.mp4"
+preview_poster: "/media/posters/axion-about.jpg"
 ---
 
 # Axion About (About)

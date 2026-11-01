@@ -8,8 +8,8 @@ collection: "apps"
 likes: 136
 tier: "free"
 chars: 3944
-preview_video: "https://meez.design/web/prompt-previews/wellness-companion-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wellness-companion-poster.jpg"
+preview_video: "/media/videos/wellness-companion.mp4"
+preview_poster: "/media/posters/wellness-companion.jpg"
 ---
 
 # Wellness Companion (Mobile App)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 37
 tier: "free"
 chars: 4301
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/glitch-pulse-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/glitch-pulse.webp"
 ---
 
 # Glitch Pulse (Landing Page)

@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 57
 tier: "free"
 chars: 4426
-preview_video: "https://meez.design/web/prompt-previews/3d-studio-pricing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/3d-studio-pricing-poster.jpg"
+preview_video: "/media/videos/3d-studio-pricing.mp4"
+preview_poster: "/media/posters/3d-studio-pricing.jpg"
 ---
 
 # 3D Studio Pricing (Pricing)

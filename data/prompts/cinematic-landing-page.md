@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 49
 tier: "free"
 chars: 4473
-preview_video: "https://stream.mux.com/ehPIuMBxzv1o1npbn92tO6tndB01L3uFuFD01q6f5PfiY.m3u8"
-preview_poster: "https://image.mux.com/ehPIuMBxzv1o1npbn92tO6tndB01L3uFuFD01q6f5PfiY/thumbnail.webp?width=1200&time=2"
+preview_video: "/media/videos/cinematic-landing-page.mp4"
+preview_poster: "/media/posters/cinematic-landing-page.webp"
 ---
 
 # Cinematic Landing Page (Landing Page)

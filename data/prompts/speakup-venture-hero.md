@@ -8,8 +8,8 @@ collection: "sections"
 likes: 72
 tier: "free"
 chars: 4457
-preview_video: "https://meez.design/web/media/preview_videos/speakup-venture-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/speakup-venture-hero-poster.webp"
+preview_video: "/media/videos/speakup-venture-hero.mp4"
+preview_poster: "/media/posters/speakup-venture-hero.webp"
 ---
 
 # SpeakUp Venture Hero (Hero Section)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 161
 tier: "free"
 chars: 4157
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/97d65bd5338f30b5.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-filters.jpg"
 ---
 
 # Filters (Component)

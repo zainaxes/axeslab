@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 34
 tier: "free"
 chars: 4406
-preview_video: "https://meez.design/web/prompt-previews/neovision-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/neovision-landing-poster-c.jpg"
+preview_video: "/media/videos/neovision-landing.mp4"
+preview_poster: "/media/posters/neovision-landing.jpg"
 ---
 
 # NeoVision (Landing Page)

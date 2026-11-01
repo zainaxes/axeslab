@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 42
 tier: "free"
 chars: 4454
-preview_video: "https://meez.design/web/prompt-previews/vortex-studio-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vortex-studio-hero-poster.png"
+preview_video: "/media/videos/vortex-studio-hero.mp4"
+preview_poster: "/media/posters/vortex-studio-hero.png"
 ---
 
 # AI Designer Portfolio (Landing Page)

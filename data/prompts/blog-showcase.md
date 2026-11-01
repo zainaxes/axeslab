@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 172
 tier: "free"
 chars: 4387
-preview_video: "https://meez.design/web/media/preview_videos/blog-showcase.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/blog-showcase-poster.webp"
+preview_video: "/media/videos/blog-showcase.mp4"
+preview_poster: "/media/posters/blog-showcase.webp"
 ---
 
 # Blog Showcase (Blog)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 37
 tier: "free"
 chars: 4502
-preview_video: "https://meez.design/web/media/preview_videos/luxury-editorial-ecommerce-design.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/luxury-editorial-ecommerce-design-poster-c.jpg"
+preview_video: "/media/videos/luxury-editorial-ecommerce-design.mp4"
+preview_poster: "/media/posters/luxury-editorial-ecommerce-design.jpg"
 ---
 
 # Luxury Ecommerce Design (Ecommerce)

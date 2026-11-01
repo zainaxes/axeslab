@@ -8,8 +8,8 @@ collection: "sections"
 likes: 145
 tier: "free"
 chars: 4373
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/284867689d089450.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/tech-noir-about-poster.jpg"
+preview_video: "/media/videos/tech-noir-about.mp4"
+preview_poster: "/media/posters/tech-noir-about.jpg"
 ---
 
 # Tech-Noir About (About)

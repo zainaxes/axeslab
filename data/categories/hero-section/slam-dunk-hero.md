@@ -8,8 +8,8 @@ collection: "sections"
 likes: 129
 tier: "free"
 chars: 4283
-preview_video: "https://meez.design/web/prompt-previews/slam-dunk-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/slam-dunk-hero-poster-c.jpg"
+preview_video: "/media/videos/slam-dunk-hero.mp4"
+preview_poster: "/media/posters/slam-dunk-hero.jpg"
 ---
 
 # Slam Dunk (Hero Section)

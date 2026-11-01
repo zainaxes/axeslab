@@ -8,8 +8,8 @@ collection: "sections"
 likes: 25
 tier: "free"
 chars: 4281
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7ce64512ff9c41aa.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/e00a6ed0bfe1dd43-c.jpg"
+preview_video: "/media/videos/21-compare.mp4"
+preview_poster: "/media/posters/21-compare.jpg"
 ---
 
 # Compare (Component)

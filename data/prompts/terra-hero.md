@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 49
 tier: "free"
 chars: 4383
-preview_video: "https://meez.design/web/prompt-previews/terra-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/terra-hero-poster-c.jpg"
+preview_video: "/media/videos/terra-hero.mp4"
+preview_poster: "/media/posters/terra-hero.jpg"
 ---
 
 # Terra Geo Map (SaaS)

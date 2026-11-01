@@ -8,8 +8,8 @@ collection: "sections"
 likes: 63
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/prompt-previews/celestia-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/celestia-hero-poster-c.jpg"
+preview_video: "/media/videos/celestia-hero.mp4"
+preview_poster: "/media/posters/celestia-hero.jpg"
 ---
 
 # Celestia (Hero Section)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 56
 tier: "free"
 chars: 3828
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/b9debafa3356cae5.jpg"
+preview_video: ""
+preview_poster: "/media/posters/nietzsche-sustainibilty.jpg"
 ---
 
 # Nietzsche sustainibilty (Footer)

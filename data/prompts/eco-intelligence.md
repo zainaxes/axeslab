@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 129
 tier: "free"
 chars: 4320
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/eco-intelligence-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/eco-intelligence.webp"
 ---
 
 # Eco Intelligence (Hero)

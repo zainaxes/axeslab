@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 99
 tier: "free"
 chars: 4394
-preview_video: "https://meez.design/web/prompt-previews/focus-ai-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/focus-ai-landing-poster-c.jpg"
+preview_video: "/media/videos/focus-ai-landing.mp4"
+preview_poster: "/media/posters/focus-ai-landing.jpg"
 ---
 
 # Focus AI (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 179
 tier: "free"
 chars: 4394
-preview_video: "https://meez.design/web/media/preview_videos/bio-active.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bio-active-poster.webp"
+preview_video: "/media/videos/bio-active.mp4"
+preview_poster: "/media/posters/bio-active.webp"
 ---
 
 # Clarity Core (Landing Page)

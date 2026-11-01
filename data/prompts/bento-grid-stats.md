@@ -8,8 +8,8 @@ collection: "sections"
 likes: 183
 tier: "free"
 chars: 4420
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7697f21ad67c8414.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bento-grid-stats-poster.jpg"
+preview_video: "/media/videos/bento-grid-stats.mp4"
+preview_poster: "/media/posters/bento-grid-stats.jpg"
 ---
 
 # Bento Grid Stats (Bento)

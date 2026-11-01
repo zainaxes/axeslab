@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 165
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/media/preview_videos/wanderful-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wanderful-hero-poster.webp"
+preview_video: "/media/videos/wanderful-hero.mp4"
+preview_poster: "/media/posters/wanderful-hero.webp"
 ---
 
 # Wanderful Hero (Travel)

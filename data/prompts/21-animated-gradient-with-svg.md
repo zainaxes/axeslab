@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 178
 tier: "free"
 chars: 4484
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/ad7313bdc31849cb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/9789e477bbd72cef-c.jpg"
+preview_video: "/media/videos/21-animated-gradient-with-svg.mp4"
+preview_poster: "/media/posters/21-animated-gradient-with-svg.jpg"
 ---
 
 # Animated Gradient With SVG (Background)

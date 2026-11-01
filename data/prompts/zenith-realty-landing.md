@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 168
 tier: "free"
 chars: 4433
-preview_video: "https://meez.design/web/prompt-previews/zenith-realty-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/zenith-realty-landing-poster-c.jpg"
+preview_video: "/media/videos/zenith-realty-landing.mp4"
+preview_poster: "/media/posters/zenith-realty-landing.jpg"
 ---
 
 # Zenith Realty (Landing Page)

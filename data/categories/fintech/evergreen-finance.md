@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 146
 tier: "free"
 chars: 4424
-preview_video: "https://meez.design/web/media/preview_videos/evergreen-finance.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/evergreen-finance-poster-c.jpg"
+preview_video: "/media/videos/evergreen-finance.mp4"
+preview_poster: "/media/posters/evergreen-finance.jpg"
 ---
 
 # Evergreen Finance (Fintech)

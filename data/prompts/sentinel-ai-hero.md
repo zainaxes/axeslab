@@ -8,8 +8,8 @@ collection: "sections"
 likes: 46
 tier: "free"
 chars: 4405
-preview_video: "https://meez.design/web/prompt-previews/sentinel-ai-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/sentinel-ai-hero-poster-c.jpg"
+preview_video: "/media/videos/sentinel-ai-hero.mp4"
+preview_poster: "/media/posters/sentinel-ai-hero.jpg"
 ---
 
 # Sentinel AI (Hero Section)

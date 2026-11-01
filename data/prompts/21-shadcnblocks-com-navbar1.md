@@ -8,8 +8,8 @@ collection: "sections"
 likes: 75
 tier: "free"
 chars: 4240
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/1abb30d8782a9930.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-shadcnblocks-com-navbar1.jpg"
 ---
 
 # Navbar with Dropdowns (Navigation)

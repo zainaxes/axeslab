@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 199
 tier: "free"
 chars: 4326
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/fe4d485830d9c0e7.jpg"
+preview_video: "/media/videos/21-aurora-background.mp4"
+preview_poster: "/media/posters/21-aurora-background.jpg"
 ---
 
 # Aurora Background (Background)

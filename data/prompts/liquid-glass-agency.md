@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 29
 tier: "free"
 chars: 4444
-preview_video: "https://meez.design/web/prompt-previews/liquid-glass-agency-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/liquid-glass-agency-poster-c.jpg"
+preview_video: "/media/videos/liquid-glass-agency.mp4"
+preview_poster: "/media/posters/liquid-glass-agency.jpg"
 ---
 
 # Liquid Glass Agency (Landing Page)

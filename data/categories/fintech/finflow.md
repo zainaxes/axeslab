@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 159
 tier: "free"
 chars: 4364
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/b76b9090dfbd813b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/finflow-poster.jpg"
+preview_video: "/media/videos/finflow.mp4"
+preview_poster: "/media/posters/finflow.jpg"
 ---
 
 # FinFlow (Fintech)

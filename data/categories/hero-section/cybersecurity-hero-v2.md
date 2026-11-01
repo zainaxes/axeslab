@@ -8,8 +8,8 @@ collection: "sections"
 likes: 27
 tier: "free"
 chars: 4465
-preview_video: "https://meez.design/web/media/preview_videos/cybersecurity-hero-v2.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cybersecurity-hero-v2-poster.webp"
+preview_video: "/media/videos/cybersecurity-hero-v2.mp4"
+preview_poster: "/media/posters/cybersecurity-hero-v2.webp"
 ---
 
 # Cybersecurity Hero v2 (Hero Section)

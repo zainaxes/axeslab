@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 202
 tier: "free"
 chars: 4401
-preview_video: "https://meez.design/web/prompt-previews/orbis-nft-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/orbis-nft-landing-poster-c.jpg"
+preview_video: "/media/videos/orbis-nft-landing.mp4"
+preview_poster: "/media/posters/orbis-nft-landing.jpg"
 ---
 
 # Orbis NFT (Landing Page)

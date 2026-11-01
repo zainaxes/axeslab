@@ -8,8 +8,8 @@ collection: "sections"
 likes: 34
 tier: "free"
 chars: 4226
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/3f190755f83286c2.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-interactive-icon-cloud.jpg"
 ---
 
 # Interactive Icon Cloud (Component)

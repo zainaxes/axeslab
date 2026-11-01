@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 115
 tier: "free"
 chars: 4310
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7e9948f59d02d703.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/543d51315d5a9dd8-c.jpg"
+preview_video: "/media/videos/21-hero-highlight.mp4"
+preview_poster: "/media/posters/21-hero-highlight.jpg"
 ---
 
 # Hero Highlight (Hero)

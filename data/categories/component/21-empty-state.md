@@ -8,8 +8,8 @@ collection: "sections"
 likes: 107
 tier: "free"
 chars: 4291
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/70c0e3d61ed1e3e1.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/4df95fc84d82972d.jpg"
+preview_video: "/media/videos/21-empty-state.mp4"
+preview_poster: "/media/posters/21-empty-state.jpg"
 ---
 
 # Empty State (Component)

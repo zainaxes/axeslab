@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 87
 tier: "free"
 chars: 4399
-preview_video: "https://meez.design/web/prompt-previews/flowmate-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/flowmate-landing-poster-c.jpg"
+preview_video: "/media/videos/flowmate-landing.mp4"
+preview_poster: "/media/posters/flowmate-landing.jpg"
 ---
 
 # FlowMate (Landing Page)

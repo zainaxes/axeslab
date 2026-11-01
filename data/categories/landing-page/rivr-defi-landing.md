@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 52
 tier: "free"
 chars: 4304
-preview_video: "https://meez.design/web/prompt-previews/rivr-defi-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/rivr-defi-landing-poster-c.jpg"
+preview_video: "/media/videos/rivr-defi-landing.mp4"
+preview_poster: "/media/posters/rivr-defi-landing.jpg"
 ---
 
 # RIVR DeFi (Landing Page)

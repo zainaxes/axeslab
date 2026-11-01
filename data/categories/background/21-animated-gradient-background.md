@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 173
 tier: "free"
 chars: 4252
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/47ba8aa2542a932c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-animated-gradient-background.jpg"
 ---
 
 # Animated Gradient Background (Background)

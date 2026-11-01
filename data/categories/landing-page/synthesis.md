@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 56
 tier: "free"
 chars: 4375
-preview_video: "https://meez.design/web/media/preview_videos/synthesis.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/synthesis-poster.webp"
+preview_video: "/media/videos/synthesis.mp4"
+preview_poster: "/media/posters/synthesis.webp"
 ---
 
 # Synthesis (Landing Page)

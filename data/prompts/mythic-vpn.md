@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 41
 tier: "free"
 chars: 4369
-preview_video: "https://meez.design/web/prompt-previews/mythic-vpn-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/mythic-vpn-poster.webp"
+preview_video: "/media/videos/mythic-vpn.mp4"
+preview_poster: "/media/posters/mythic-vpn.webp"
 ---
 
 # Mythic VPN (SaaS)

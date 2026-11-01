@@ -8,8 +8,8 @@ collection: "sections"
 likes: 161
 tier: "free"
 chars: 4473
-preview_video: "https://meez.design/web/prompt-previews/automation-machines-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/automation-machines-hero-poster-c.jpg"
+preview_video: "/media/videos/automation-machines-hero.mp4"
+preview_poster: "/media/posters/automation-machines-hero.jpg"
 ---
 
 # Automation Machines (Hero Section)

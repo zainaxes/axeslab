@@ -8,8 +8,8 @@ collection: "sections"
 likes: 125
 tier: "free"
 chars: 4414
-preview_video: "https://meez.design/web/media/preview_videos/futuristic-tech.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/futuristic-tech-poster-c.jpg"
+preview_video: "/media/videos/futuristic-tech.mp4"
+preview_poster: "/media/posters/futuristic-tech.jpg"
 ---
 
 # Futuristic Tech (Hero Section)

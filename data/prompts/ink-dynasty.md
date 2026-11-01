@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 91
 tier: "free"
 chars: 4396
-preview_video: "https://meez.design/web/prompt-previews/ink-dynasty-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ink-dynasty-poster.webp"
+preview_video: "/media/videos/ink-dynasty.mp4"
+preview_poster: "/media/posters/ink-dynasty.webp"
 ---
 
 # Ink Dynasty (Landing Page)

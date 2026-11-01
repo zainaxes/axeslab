@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 137
 tier: "free"
 chars: 4419
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c35a76fa4d389986.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/gateway-portal-poster.jpg"
+preview_video: "/media/videos/gateway-portal.mp4"
+preview_poster: "/media/posters/gateway-portal.jpg"
 ---
 
 # Gateway Portal (Landing page)

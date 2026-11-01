@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 138
 tier: "free"
 chars: 4435
-preview_video: "https://meez.design/web/prompt-previews/f1-driver-profile-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/f1-driver-profile-poster.webp"
+preview_video: "/media/videos/f1-driver-profile.mp4"
+preview_poster: "/media/posters/f1-driver-profile.webp"
 ---
 
 # F1 Driver Profile (Portfolio)

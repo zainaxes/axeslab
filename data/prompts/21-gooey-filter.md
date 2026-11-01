@@ -8,8 +8,8 @@ collection: "sections"
 likes: 180
 tier: "free"
 chars: 4260
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/0d0a8a2724d08281.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-gooey-filter.jpg"
 ---
 
 # Gooey Filter (Component)

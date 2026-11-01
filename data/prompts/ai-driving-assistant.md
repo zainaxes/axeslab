@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 93
 tier: "free"
 chars: 4454
-preview_video: "https://meez.design/web/prompt-previews/ai-driving-assistant-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-driving-assistant-poster.webp"
+preview_video: "/media/videos/ai-driving-assistant.mp4"
+preview_poster: "/media/posters/ai-driving-assistant.webp"
 ---
 
 # AI Driving Assistant (SaaS)

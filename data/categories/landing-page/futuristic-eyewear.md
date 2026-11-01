@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 193
 tier: "free"
 chars: 4456
-preview_video: "https://meez.design/web/prompt-previews/futuristic-eyewear-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/futuristic-eyewear-poster.webp"
+preview_video: "/media/videos/futuristic-eyewear.mp4"
+preview_poster: "/media/posters/futuristic-eyewear.webp"
 ---
 
 # Futuristic Eyewear (Landing Page)

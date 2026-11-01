@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 200
 tier: "free"
 chars: 4293
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7a0d23330885ad52.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/8c9ec37dac9841ed-c.jpg"
+preview_video: "/media/videos/21-hero-parallax.mp4"
+preview_poster: "/media/posters/21-hero-parallax.jpg"
 ---
 
 # Hero Parallax (Hero)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 127
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/prompt-previews/vex-ventures-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vex-ventures-hero-poster-c.jpg"
+preview_video: "/media/videos/vex-ventures-hero.mp4"
+preview_poster: "/media/posters/vex-ventures-hero.jpg"
 ---
 
 # VEX Ventures (Hero Section)

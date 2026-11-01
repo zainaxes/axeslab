@@ -8,8 +8,8 @@ collection: "sections"
 likes: 104
 tier: "free"
 chars: 4419
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/b61887bb7aefc198.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/botanical-shadow-about-poster.jpg"
+preview_video: "/media/videos/botanical-shadow-about.mp4"
+preview_poster: "/media/posters/botanical-shadow-about.jpg"
 ---
 
 # Botanical Shadow About (About)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 131
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/media/preview_videos/bio-digital.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bio-digital-poster.webp"
+preview_video: "/media/videos/bio-digital.mp4"
+preview_poster: "/media/posters/bio-digital.webp"
 ---
 
 # Bio-Digital (Hero Section)

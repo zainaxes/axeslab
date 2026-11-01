@@ -8,8 +8,8 @@ collection: "apps"
 likes: 187
 tier: "free"
 chars: 4319
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/fa97d3b4e3afa702.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bio-age-dashboard-preview-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/bio-age-dashboard.jpg"
 ---
 
 # Bio-Age Dashboard (Hero)

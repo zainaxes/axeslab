@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 202
 tier: "free"
 chars: 4266
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/caec91417ca7adf4.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/6726d0d91f128a0f-c.jpg"
+preview_video: "/media/videos/21-3d-carousel.mp4"
+preview_poster: "/media/posters/21-3d-carousel.jpg"
 ---
 
 # 3D Carousel (Showcase)

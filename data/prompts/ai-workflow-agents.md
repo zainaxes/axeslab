@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 67
 tier: "free"
 chars: 3195
-preview_video: "https://meez.design/web/prompt-previews/ai-workflow-agents-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-workflow-agents-poster.webp"
+preview_video: "/media/videos/ai-workflow-agents.mp4"
+preview_poster: "/media/posters/ai-workflow-agents.webp"
 ---
 
 # AI Workflow Agents (SaaS)

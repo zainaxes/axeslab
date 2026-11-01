@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 149
 tier: "free"
 chars: 4444
-preview_video: "https://meez.design/web/prompt-previews/3d-jack-portfolio-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/3d-jack-portfolio-hero-poster-c.jpg"
+preview_video: "/media/videos/3d-jack-portfolio-hero.mp4"
+preview_poster: "/media/posters/3d-jack-portfolio-hero.jpg"
 ---
 
 # 3D Jack Portfolio (Portfolio)

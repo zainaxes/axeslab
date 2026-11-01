@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 61
 tier: "free"
 chars: 4364
-preview_video: "https://meez.design/web/media/preview_videos/pulse-3d.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/pulse-3d-poster.webp"
+preview_video: "/media/videos/pulse-3d.mp4"
+preview_poster: "/media/posters/pulse-3d.webp"
 ---
 
 # Pulse 3D (3D Website)

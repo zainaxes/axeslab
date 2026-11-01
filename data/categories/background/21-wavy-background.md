@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 104
 tier: "free"
 chars: 4306
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2bd8db9c028ea907.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/bce3a78f9898c5ec.jpg"
+preview_video: "/media/videos/21-wavy-background.mp4"
+preview_poster: "/media/posters/21-wavy-background.jpg"
 ---
 
 # Wavy Background (Background)

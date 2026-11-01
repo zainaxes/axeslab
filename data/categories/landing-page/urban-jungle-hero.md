@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 105
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/prompt-previews/urban-jungle-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/urban-jungle-hero-poster-c.jpg"
+preview_video: "/media/videos/urban-jungle-hero.mp4"
+preview_poster: "/media/posters/urban-jungle-hero.jpg"
 ---
 
 # Urban Jungle (Landing Page)

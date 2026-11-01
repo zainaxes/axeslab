@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 105
 tier: "free"
 chars: 4460
-preview_video: "https://meez.design/web/prompt-previews/design-rocket-email-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/design-rocket-email-hero-poster-c.jpg"
+preview_video: "/media/videos/design-rocket-email-hero.mp4"
+preview_poster: "/media/posters/design-rocket-email-hero.jpg"
 ---
 
 # Email Marketing (Email Marketing)

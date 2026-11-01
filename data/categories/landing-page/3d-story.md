@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 199
 tier: "free"
 chars: 4367
-preview_video: "https://meez.design/web/media/preview_videos/3d-story.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/3d-story-poster.webp"
+preview_video: "/media/videos/3d-story.mp4"
+preview_poster: "/media/posters/3d-story.webp"
 ---
 
 # 3D Story (Landing Page)

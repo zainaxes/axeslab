@@ -8,8 +8,8 @@ collection: "sections"
 likes: 107
 tier: "free"
 chars: 4297
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/32c0241bb454fc86.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-use-tags.jpg"
 ---
 
 # useTags (Component)

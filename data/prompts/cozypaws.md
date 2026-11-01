@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 176
 tier: "free"
 chars: 6206
-preview_video: "https://meez.design/web/prompt-previews/cozypaws-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cozypaws-poster.jpg"
+preview_video: "/media/videos/cozypaws.mp4"
+preview_poster: "/media/posters/cozypaws.jpg"
 ---
 
 # CozyPaws (Hero)

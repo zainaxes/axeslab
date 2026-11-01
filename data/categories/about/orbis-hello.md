@@ -8,8 +8,8 @@ collection: "sections"
 likes: 134
 tier: "free"
 chars: 4291
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/0960ec803a9dbd39.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/orbis-hello-poster.jpg"
+preview_video: "/media/videos/orbis-hello.mp4"
+preview_poster: "/media/posters/orbis-hello.jpg"
 ---
 
 # Orbis Hello (About)

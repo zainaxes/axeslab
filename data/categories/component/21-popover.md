@@ -8,8 +8,8 @@ collection: "sections"
 likes: 147
 tier: "free"
 chars: 4148
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/6778fcf8b6a41279.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-popover.jpg"
 ---
 
 # Popover (Component)

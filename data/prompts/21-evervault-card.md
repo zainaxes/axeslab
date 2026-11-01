@@ -8,8 +8,8 @@ collection: "sections"
 likes: 71
 tier: "free"
 chars: 4315
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1647b49a9f2fad28.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/9b19fc36c1bf8ff4-c.jpg"
+preview_video: "/media/videos/21-evervault-card.mp4"
+preview_poster: "/media/posters/21-evervault-card.jpg"
 ---
 
 # Evervault Card (Card)

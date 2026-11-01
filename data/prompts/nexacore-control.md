@@ -8,8 +8,8 @@ collection: "sections"
 likes: 81
 tier: "free"
 chars: 4425
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e804f36737ec6c1f.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexacore-control-poster.jpg"
+preview_video: "/media/videos/nexacore-control.mp4"
+preview_poster: "/media/posters/nexacore-control.jpg"
 ---
 
 # NexaCore Control (Features)

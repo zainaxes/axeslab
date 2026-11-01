@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 44
 tier: "free"
 chars: 4432
-preview_video: "https://meez.design/web/prompt-previews/digital-reality-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/digital-reality-hero-poster-c.jpg"
+preview_video: "/media/videos/digital-reality-hero.mp4"
+preview_poster: "/media/posters/digital-reality-hero.jpg"
 ---
 
 # Digital Reality (Social Media)

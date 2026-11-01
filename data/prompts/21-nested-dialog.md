@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 64
 tier: "free"
 chars: 4415
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2de540adfd56d470.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/09a7d91b657193cc-c.jpg"
+preview_video: "/media/videos/21-nested-dialog.mp4"
+preview_poster: "/media/posters/21-nested-dialog.jpg"
 ---
 
 # Nested Dialog (Form)

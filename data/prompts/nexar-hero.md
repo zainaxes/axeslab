@@ -8,8 +8,8 @@ collection: "sections"
 likes: 123
 tier: "free"
 chars: 4363
-preview_video: "https://meez.design/web/prompt-previews/nexar-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexar-hero-poster-c.jpg"
+preview_video: "/media/videos/nexar-hero.mp4"
+preview_poster: "/media/posters/nexar-hero.jpg"
 ---
 
 # Nexar (Hero Section)

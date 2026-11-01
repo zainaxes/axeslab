@@ -8,8 +8,8 @@ collection: "sections"
 likes: 183
 tier: "free"
 chars: 4441
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/a2ae6ca57c41b06e.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/af89308812c6dea8.jpg"
+preview_video: "/media/videos/21-tubelight-navbar.mp4"
+preview_poster: "/media/posters/21-tubelight-navbar.jpg"
 ---
 
 # Tubelight Navbar (Navigation)

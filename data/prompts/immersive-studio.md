@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 132
 tier: "free"
 chars: 4417
-preview_video: "https://meez.design/web/prompt-previews/immersive-studio-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/immersive-studio-poster.webp"
+preview_video: "/media/videos/immersive-studio.mp4"
+preview_poster: "/media/posters/immersive-studio.webp"
 ---
 
 # Immersive Studio (Agency)

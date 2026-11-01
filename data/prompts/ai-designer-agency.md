@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 130
 tier: "free"
 chars: 4448
-preview_video: "https://meez.design/web/prompt-previews/ai-designer-agency-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-designer-agency-poster-c.jpg"
+preview_video: "/media/videos/ai-designer-agency.mp4"
+preview_poster: "/media/posters/ai-designer-agency.jpg"
 ---
 
 # AI Designer Agency (Landing Page)

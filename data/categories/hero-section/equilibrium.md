@@ -8,8 +8,8 @@ collection: "sections"
 likes: 92
 tier: "free"
 chars: 4376
-preview_video: "https://meez.design/web/media/preview_videos/equilibrium.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/equilibrium-poster.webp"
+preview_video: "/media/videos/equilibrium.mp4"
+preview_poster: "/media/posters/equilibrium.webp"
 ---
 
 # Equilibrium (Hero Section)

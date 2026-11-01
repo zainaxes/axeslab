@@ -8,8 +8,8 @@ collection: "apps"
 likes: 157
 tier: "free"
 chars: 3787
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/fa97d3b4e3afa702.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/30e50bca08bd32ee-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/ai-assistant-app.jpg"
 ---
 
 # AI Assistant App (AI App)

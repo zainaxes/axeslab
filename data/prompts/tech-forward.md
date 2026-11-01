@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 166
 tier: "free"
 chars: 14648
-preview_video: "https://meez.design/web/prompt-previews/tech-forward-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/tech-forward-poster.jpg"
+preview_video: "/media/videos/tech-forward.mp4"
+preview_poster: "/media/posters/tech-forward.jpg"
 ---
 
 # Tech-Forward (Hero)

@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 77
 tier: "free"
 chars: 4200
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/2b58a62cd9580034.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-glow-effect.jpg"
 ---
 
 # Glow Effect (Background)

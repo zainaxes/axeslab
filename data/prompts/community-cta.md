@@ -8,8 +8,8 @@ collection: "sections"
 likes: 100
 tier: "free"
 chars: 4312
-preview_video: "https://meez.design/web/prompt-previews/community-cta-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/community-cta-poster-c.jpg"
+preview_video: "/media/videos/community-cta.mp4"
+preview_poster: "/media/posters/community-cta.jpg"
 ---
 
 # Community CTA (CTA Section)

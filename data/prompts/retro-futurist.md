@@ -8,8 +8,8 @@ collection: "sections"
 likes: 101
 tier: "free"
 chars: 4412
-preview_video: "https://meez.design/web/media/preview_videos/retro-futurist.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/retro-futurist-poster.webp"
+preview_video: "/media/videos/retro-futurist.mp4"
+preview_poster: "/media/posters/retro-futurist.webp"
 ---
 
 # Retro-Futurist (Hero Section)

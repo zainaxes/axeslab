@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 71
 tier: "free"
 chars: 4278
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/3a0cac13a9f1a646.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/3c86d09e12d4ff3f-c.jpg"
+preview_video: "/media/videos/21-timeline.mp4"
+preview_poster: "/media/posters/21-timeline.jpg"
 ---
 
 # Timeline (Scroll)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 28
 tier: "free"
 chars: 4376
-preview_video: "https://meez.design/web/prompt-previews/apex-saas-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/apex-saas-hero-poster-c.jpg"
+preview_video: "/media/videos/apex-saas-hero.mp4"
+preview_poster: "/media/posters/apex-saas-hero.jpg"
 ---
 
 # Apex SaaS (SaaS)

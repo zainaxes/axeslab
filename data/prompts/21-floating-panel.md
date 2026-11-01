@@ -8,8 +8,8 @@ collection: "sections"
 likes: 37
 tier: "free"
 chars: 4297
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/8053c48b0aee21d6.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/d9e367fbb3536a6c.jpg"
+preview_video: "/media/videos/21-floating-panel.mp4"
+preview_poster: "/media/posters/21-floating-panel.jpg"
 ---
 
 # Floating Panel (Component)

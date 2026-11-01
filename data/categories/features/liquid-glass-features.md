@@ -8,8 +8,8 @@ collection: "sections"
 likes: 93
 tier: "free"
 chars: 4461
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e803643294ea0772.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/liquid-glass-features-poster.jpg"
+preview_video: "/media/videos/liquid-glass-features.mp4"
+preview_poster: "/media/posters/liquid-glass-features.jpg"
 ---
 
 # Liquid Glass Features (Features)

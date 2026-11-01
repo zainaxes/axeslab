@@ -8,8 +8,8 @@ collection: "sections"
 likes: 132
 tier: "free"
 chars: 4419
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/9d421b2d64cfa404.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/portfolio-about-poster.jpg"
+preview_video: "/media/videos/portfolio-about.mp4"
+preview_poster: "/media/posters/portfolio-about.jpg"
 ---
 
 # Portfolio About (About)

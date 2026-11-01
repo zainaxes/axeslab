@@ -8,8 +8,8 @@ collection: "sections"
 likes: 78
 tier: "free"
 chars: 4378
-preview_video: "https://meez.design/web/prompt-previews/shamoni-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/shamoni-hero-poster-c.jpg"
+preview_video: "/media/videos/shamoni-hero.mp4"
+preview_poster: "/media/posters/shamoni-hero.jpg"
 ---
 
 # Shamoni (Hero Section)

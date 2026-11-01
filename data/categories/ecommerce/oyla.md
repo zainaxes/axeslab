@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 71
 tier: "free"
 chars: 4332
-preview_video: "https://meez.design/web/prompt-previews/oyla-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/oyla-poster.jpg"
+preview_video: "/media/videos/oyla.mp4"
+preview_poster: "/media/posters/oyla.jpg"
 ---
 
 # OYLA (Ecommerce)

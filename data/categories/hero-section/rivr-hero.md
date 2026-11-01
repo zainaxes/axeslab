@@ -8,8 +8,8 @@ collection: "sections"
 likes: 144
 tier: "free"
 chars: 4357
-preview_video: "https://meez.design/web/prompt-previews/rivr-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/rivr-hero-poster-c.jpg"
+preview_video: "/media/videos/rivr-hero.mp4"
+preview_poster: "/media/posters/rivr-hero.jpg"
 ---
 
 # RIVR (Hero Section)

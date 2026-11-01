@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 97
 tier: "free"
 chars: 4380
-preview_video: "https://meez.design/web/prompt-previews/cleantech-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cleantech-poster.jpg"
+preview_video: "/media/videos/cleantech.mp4"
+preview_poster: "/media/posters/cleantech.jpg"
 ---
 
 # CleanTech (Sustainability)

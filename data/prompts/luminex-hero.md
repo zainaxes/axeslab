@@ -8,8 +8,8 @@ collection: "sections"
 likes: 143
 tier: "free"
 chars: 4312
-preview_video: "https://meez.design/web/prompt-previews/luminex-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/luminex-hero-poster-c.jpg"
+preview_video: "/media/videos/luminex-hero.mp4"
+preview_poster: "/media/posters/luminex-hero.jpg"
 ---
 
 # Luminex (Hero Section)

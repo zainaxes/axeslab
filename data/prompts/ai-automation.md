@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 80
 tier: "free"
 chars: 4393
-preview_video: "https://meez.design/web/media/preview_videos/ai-automation.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-automation-poster.webp"
+preview_video: "/media/videos/ai-automation.mp4"
+preview_poster: "/media/posters/ai-automation.webp"
 ---
 
 # AI Automation (Landing Page)

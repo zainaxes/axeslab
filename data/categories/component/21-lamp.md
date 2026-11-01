@@ -8,8 +8,8 @@ collection: "sections"
 likes: 50
 tier: "free"
 chars: 4259
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/15918f8a22b5f51e.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/9f0a0cfd238c7639.jpg"
+preview_video: "/media/videos/21-lamp.mp4"
+preview_poster: "/media/posters/21-lamp.jpg"
 ---
 
 # Lamp (Component)

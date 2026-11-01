@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 74
 tier: "free"
 chars: 4393
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/ee9eafc965f241cf.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/0ba59846e0c6eaf7.jpg"
+preview_video: "/media/videos/21-hero-pill.mp4"
+preview_poster: "/media/posters/21-hero-pill.jpg"
 ---
 
 # Hero Pill (Hero)

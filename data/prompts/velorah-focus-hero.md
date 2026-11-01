@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 111
 tier: "free"
 chars: 4426
-preview_video: "https://meez.design/web/prompt-previews/velorah-focus-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/velorah-focus-hero-poster-c.jpg"
+preview_video: "/media/videos/velorah-focus-hero.mp4"
+preview_poster: "/media/posters/velorah-focus-hero.jpg"
 ---
 
 # Velorah Focus (Social Media)

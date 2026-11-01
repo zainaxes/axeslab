@@ -8,8 +8,8 @@ collection: "sections"
 likes: 93
 tier: "free"
 chars: 4473
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/185b746797a2971c.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/editorial-collection-cta-poster.jpg"
+preview_video: "/media/videos/editorial-collection-cta.mp4"
+preview_poster: "/media/posters/editorial-collection-cta.jpg"
 ---
 
 # Editorial Collection CTA (CTA)

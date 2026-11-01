@@ -8,8 +8,8 @@ collection: "sections"
 likes: 89
 tier: "free"
 chars: 4370
-preview_video: "https://meez.design/web/prompt-previews/taskly-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/taskly-hero-poster-c.jpg"
+preview_video: "/media/videos/taskly-hero.mp4"
+preview_poster: "/media/posters/taskly-hero.jpg"
 ---
 
 # Taskly (Hero Section)

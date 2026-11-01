@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 180
 tier: "free"
 chars: 4272
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c595c3de587b76d2.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/3bbc9e0baa5e0851.jpg"
+preview_video: "/media/videos/21-logo-carousel.mp4"
+preview_poster: "/media/posters/21-logo-carousel.jpg"
 ---
 
 # Logo Carousel (Showcase)

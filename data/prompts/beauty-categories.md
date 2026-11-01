@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 193
 tier: "free"
 chars: 4438
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/0d8fea5c7c1fab47.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/beauty-categories-poster.jpg"
+preview_video: "/media/videos/beauty-categories.mp4"
+preview_poster: "/media/posters/beauty-categories.jpg"
 ---
 
 # Beauty Categories (Categories)

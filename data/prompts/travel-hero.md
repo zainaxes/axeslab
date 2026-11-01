@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 75
 tier: "free"
 chars: 4396
-preview_video: "https://meez.design/web/media/preview_videos/travel-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/travel-hero-poster.webp"
+preview_video: "/media/videos/travel-hero.mp4"
+preview_poster: "/media/posters/travel-hero.webp"
 ---
 
 # Scenic Travel (Landing Page)

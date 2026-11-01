@@ -8,8 +8,8 @@ collection: "sections"
 likes: 165
 tier: "free"
 chars: 4227
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/fb5490bc009b07a1.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-google-gemini-effect.jpg"
 ---
 
 # Google Gemini Effect (Component)

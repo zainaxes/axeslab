@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 39
 tier: "free"
 chars: 4406
-preview_video: "https://meez.design/web/prompt-previews/custom-spaces-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/custom-spaces-poster.webp"
+preview_video: "/media/videos/custom-spaces.mp4"
+preview_poster: "/media/posters/custom-spaces.webp"
 ---
 
 # Custom Spaces (Landing Page)

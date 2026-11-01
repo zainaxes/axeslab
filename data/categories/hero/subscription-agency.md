@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 71
 tier: "free"
 chars: 5915
-preview_video: "https://meez.design/web/prompt-previews/subscription-agency-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/subscription-agency-poster.jpg"
+preview_video: "/media/videos/subscription-agency.mp4"
+preview_poster: "/media/posters/subscription-agency.jpg"
 ---
 
 # Subscription Agency (Hero)

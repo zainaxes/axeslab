@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 127
 tier: "free"
 chars: 4419
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/3d4a25e39a272850.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/96dbe81de314d2de.jpg"
+preview_video: "/media/videos/21-typewriter.mp4"
+preview_poster: "/media/posters/21-typewriter.jpg"
 ---
 
 # Typewriter (Text Effect)

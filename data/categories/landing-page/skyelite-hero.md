@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 179
 tier: "free"
 chars: 4434
-preview_video: "https://meez.design/web/prompt-previews/skyelite-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/skyelite-hero-poster-c.jpg"
+preview_video: "/media/videos/skyelite-hero.mp4"
+preview_poster: "/media/posters/skyelite-hero.jpg"
 ---
 
 # SkyElite Private Jets (Landing Page)

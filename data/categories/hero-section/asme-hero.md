@@ -8,8 +8,8 @@ collection: "sections"
 likes: 129
 tier: "free"
 chars: 4345
-preview_video: "https://meez.design/web/prompt-previews/asme-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/asme-hero-poster-c.jpg"
+preview_video: "/media/videos/asme-hero.mp4"
+preview_poster: "/media/posters/asme-hero.jpg"
 ---
 
 # Asme (Hero Section)

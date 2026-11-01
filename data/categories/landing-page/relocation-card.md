@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 139
 tier: "free"
 chars: 4424
-preview_video: "https://meez.design/web/prompt-previews/relocation-card-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/relocation-card-poster.webp"
+preview_video: "/media/videos/relocation-card.mp4"
+preview_poster: "/media/posters/relocation-card.webp"
 ---
 
 # Relocation Card (Landing Page)

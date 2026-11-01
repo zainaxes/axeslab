@@ -8,8 +8,8 @@ collection: "sections"
 likes: 158
 tier: "free"
 chars: 4422
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/a25ff1adbdfee3f0.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/cf29490d8fe16de7.jpg"
+preview_video: "/media/videos/21-sidebar-news.mp4"
+preview_poster: "/media/posters/21-sidebar-news.jpg"
 ---
 
 # Sidebar News (Navigation)

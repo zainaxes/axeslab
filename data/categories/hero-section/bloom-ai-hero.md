@@ -8,8 +8,8 @@ collection: "sections"
 likes: 173
 tier: "free"
 chars: 4384
-preview_video: "https://meez.design/web/prompt-previews/bloom-ai-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bloom-ai-hero-poster-c.jpg"
+preview_video: "/media/videos/bloom-ai-hero.mp4"
+preview_poster: "/media/posters/bloom-ai-hero.jpg"
 ---
 
 # Bloom AI (Hero Section)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 122
 tier: "free"
 chars: 4379
-preview_video: "https://meez.design/web/prompt-previews/pro-ai-deck-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/pro-ai-deck-poster-c.jpg"
+preview_video: "/media/videos/pro-ai-deck.mp4"
+preview_poster: "/media/posters/pro-ai-deck.jpg"
 ---
 
 # Pro AI Deck (Presentation)

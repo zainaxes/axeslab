@@ -8,8 +8,8 @@ collection: "apps"
 likes: 60
 tier: "free"
 chars: 4599
-preview_video: "https://meez.design/web/prompt-previews/travel-journal-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/travel-journal-poster.jpg"
+preview_video: "/media/videos/travel-journal.mp4"
+preview_poster: "/media/posters/travel-journal.jpg"
 ---
 
 # Travel Journal (Mobile App)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 100
 tier: "free"
 chars: 4457
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/778781df8a2d9164.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/launchex-submissions-poster.jpg"
+preview_video: "/media/videos/launchex-submissions.mp4"
+preview_poster: "/media/posters/launchex-submissions.jpg"
 ---
 
 # LaunchEx Submissions (Features)

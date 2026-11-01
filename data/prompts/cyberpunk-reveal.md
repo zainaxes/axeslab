@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 49
 tier: "free"
 chars: 4415
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/be3e9540c818c806.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cyberpunk-reveal-poster.jpg"
+preview_video: "/media/videos/cyberpunk-reveal.mp4"
+preview_poster: "/media/posters/cyberpunk-reveal.jpg"
 ---
 
 # Cyberpunk Reveal (Hero)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 194
 tier: "free"
 chars: 4392
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/ed8dd2aa545a6515.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/veloce-cards-poster.jpg"
+preview_video: "/media/videos/veloce-cards.mp4"
+preview_poster: "/media/posters/veloce-cards.jpg"
 ---
 
 # Veloce Cards (Cards)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 134
 tier: "free"
 chars: 4432
-preview_video: "https://meez.design/web/prompt-previews/benefits-features-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/benefits-features-poster-c.jpg"
+preview_video: "/media/videos/benefits-features.mp4"
+preview_poster: "/media/posters/benefits-features.jpg"
 ---
 
 # Benefits Features (Features Section)

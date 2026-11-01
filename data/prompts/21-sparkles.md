@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 195
 tier: "free"
 chars: 4305
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/07f11be64d675186.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/6a344fd245624504.jpg"
+preview_video: "/media/videos/21-sparkles.mp4"
+preview_poster: "/media/posters/21-sparkles.jpg"
 ---
 
 # Sparkles (Text Effect)

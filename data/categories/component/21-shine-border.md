@@ -8,8 +8,8 @@ collection: "sections"
 likes: 136
 tier: "free"
 chars: 4189
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/2886f646b5b4aa35.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-shine-border.jpg"
 ---
 
 # Shine Border (Component)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 49
 tier: "free"
 chars: 4430
-preview_video: "https://meez.design/web/media/preview_videos/scroll-landing.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/scroll-landing-poster.webp"
+preview_video: "/media/videos/scroll-landing.mp4"
+preview_poster: "/media/posters/scroll-landing.webp"
 ---
 
 # Scroll Landing Page (Interactive)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 180
 tier: "free"
 chars: 4430
-preview_video: "https://meez.design/web/prompt-previews/deck-investor-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/deck-investor-poster-c.jpg"
+preview_video: "/media/videos/deck-investor.mp4"
+preview_poster: "/media/posters/deck-investor.jpg"
 ---
 
 # Investor Deck (Investor Presentations)

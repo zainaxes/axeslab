@@ -8,8 +8,8 @@ collection: "sections"
 likes: 154
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/prompt-previews/zenith-footer-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/zenith-footer-poster-c.jpg"
+preview_video: "/media/videos/zenith-footer.mp4"
+preview_poster: "/media/posters/zenith-footer.jpg"
 ---
 
 # Zenith Footer (Footer Section)

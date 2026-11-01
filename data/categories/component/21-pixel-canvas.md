@@ -8,8 +8,8 @@ collection: "sections"
 likes: 107
 tier: "free"
 chars: 4167
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/23db1d9284e1d92b.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-pixel-canvas.jpg"
 ---
 
 # Pixel Canvas (Component)

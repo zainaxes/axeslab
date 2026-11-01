@@ -8,8 +8,8 @@ collection: "sections"
 likes: 137
 tier: "free"
 chars: 4434
-preview_video: "https://meez.design/web/media/preview_videos/solar-energy-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/solar-energy-hero-poster.webp"
+preview_video: "/media/videos/solar-energy-hero.mp4"
+preview_poster: "/media/posters/solar-energy-hero.webp"
 ---
 
 # Solar Energy Hero (Hero Section)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 51
 tier: "free"
 chars: 4365
-preview_video: "https://meez.design/web/prompt-previews/orbit-web3-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/orbit-web3-hero-poster-c.jpg"
+preview_video: "/media/videos/orbit-web3-hero.mp4"
+preview_poster: "/media/posters/orbit-web3-hero.jpg"
 ---
 
 # Orbit Web3 (Web3)

@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 121
 tier: "free"
 chars: 4412
-preview_video: "https://meez.design/web/media/preview_videos/3d-collectible-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/3d-collectible-hero-poster.webp"
+preview_video: "/media/videos/3d-collectible-hero.mp4"
+preview_poster: "/media/posters/3d-collectible-hero.webp"
 ---
 
 # 3D Collectible Hero (3D Website)

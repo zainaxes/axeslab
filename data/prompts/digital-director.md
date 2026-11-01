@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 111
 tier: "free"
 chars: 8882
-preview_video: "https://meez.design/web/prompt-previews/digital-director-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/digital-director-poster.webp"
+preview_video: "/media/videos/digital-director.mp4"
+preview_poster: "/media/posters/digital-director.webp"
 ---
 
 # Digital Director (Portfolio)

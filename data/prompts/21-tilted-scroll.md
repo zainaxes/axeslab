@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 24
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/fd8d6a10e0fb281a.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/86668c9172c160a1.jpg"
+preview_video: "/media/videos/21-tilted-scroll.mp4"
+preview_poster: "/media/posters/21-tilted-scroll.jpg"
 ---
 
 # Tilted Scroll (Scroll)

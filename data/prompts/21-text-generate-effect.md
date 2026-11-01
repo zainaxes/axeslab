@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 117
 tier: "free"
 chars: 4338
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e9ee6051f6e5a8e1.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/2322d77e8d927722.jpg"
+preview_video: "/media/videos/21-text-generate-effect.mp4"
+preview_poster: "/media/posters/21-text-generate-effect.jpg"
 ---
 
 # Text Generate Effect (Text Effect)

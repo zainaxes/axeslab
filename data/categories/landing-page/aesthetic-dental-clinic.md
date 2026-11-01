@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 90
 tier: "free"
 chars: 4476
-preview_video: "https://meez.design/web/prompt-previews/aesthetic-dental-clinic-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/aesthetic-dental-clinic-poster.jpg"
+preview_video: "/media/videos/aesthetic-dental-clinic.mp4"
+preview_poster: "/media/posters/aesthetic-dental-clinic.jpg"
 ---
 
 # Aesthetic Dental Clinic (Landing Page)

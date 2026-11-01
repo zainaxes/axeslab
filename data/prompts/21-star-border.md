@@ -8,8 +8,8 @@ collection: "sections"
 likes: 149
 tier: "free"
 chars: 4414
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/d7a90aee2096ba81.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/774586e4aa4ab88d.jpg"
+preview_video: "/media/videos/21-star-border.mp4"
+preview_poster: "/media/posters/21-star-border.jpg"
 ---
 
 # Star Border (Component)

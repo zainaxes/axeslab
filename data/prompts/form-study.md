@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 132
 tier: "free"
 chars: 4382
-preview_video: "https://meez.design/web/prompt-previews/form-study-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/form-study-poster.webp"
+preview_video: "/media/videos/form-study.mp4"
+preview_poster: "/media/posters/form-study.webp"
 ---
 
 # Form Study (Landing Page)

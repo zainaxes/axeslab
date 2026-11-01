@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 167
 tier: "free"
 chars: 4411
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/75427e18d30f13ea.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/kova-features-poster.jpg"
+preview_video: "/media/videos/kova-features.mp4"
+preview_poster: "/media/posters/kova-features.jpg"
 ---
 
 # Kova Features (Benefits)

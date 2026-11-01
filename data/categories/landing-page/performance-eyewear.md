@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 167
 tier: "free"
 chars: 4455
-preview_video: "https://meez.design/web/prompt-previews/performance-eyewear-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/performance-eyewear-poster.webp"
+preview_video: "/media/videos/performance-eyewear.mp4"
+preview_poster: "/media/posters/performance-eyewear.webp"
 ---
 
 # Performance Eyewear (Landing Page)

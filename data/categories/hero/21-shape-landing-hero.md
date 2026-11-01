@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 34
 tier: "free"
 chars: 4195
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/226154654508cd2e.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-shape-landing-hero.jpg"
 ---
 
 # Shape Landing Hero (Hero)

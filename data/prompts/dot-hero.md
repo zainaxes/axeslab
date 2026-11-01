@@ -8,8 +8,8 @@ collection: "sections"
 likes: 42
 tier: "free"
 chars: 4281
-preview_video: "https://meez.design/web/prompt-previews/dot-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/dot-hero-poster-c.jpg"
+preview_video: "/media/videos/dot-hero.mp4"
+preview_poster: "/media/posters/dot-hero.jpg"
 ---
 
 # Dot (Hero Section)

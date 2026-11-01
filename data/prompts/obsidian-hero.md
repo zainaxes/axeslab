@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 36
 tier: "free"
 chars: 4297
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/obsidian-hero-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/obsidian-hero.webp"
 ---
 
 # Obsidian Hero (Hero)

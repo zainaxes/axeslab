@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 76
 tier: "free"
 chars: 4394
-preview_video: "https://meez.design/web/media/preview_videos/luxury-focus.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/luxury-focus-poster.webp"
+preview_video: "/media/videos/luxury-focus.mp4"
+preview_poster: "/media/posters/luxury-focus.webp"
 ---
 
 # Luxury Focus (E-commerce)

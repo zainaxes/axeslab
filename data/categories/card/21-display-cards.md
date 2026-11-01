@@ -8,8 +8,8 @@ collection: "sections"
 likes: 134
 tier: "free"
 chars: 4416
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/5b79a54604038721.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/3628afa9e86d1e0a.jpg"
+preview_video: "/media/videos/21-display-cards.mp4"
+preview_poster: "/media/posters/21-display-cards.jpg"
 ---
 
 # Display Cards (Card)

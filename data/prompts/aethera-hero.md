@@ -8,8 +8,8 @@ collection: "sections"
 likes: 153
 tier: "free"
 chars: 4413
-preview_video: "https://meez.design/web/prompt-previews/aethera-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/aethera-hero-poster-c.jpg"
+preview_video: "/media/videos/aethera-hero.mp4"
+preview_poster: "/media/posters/aethera-hero.jpg"
 ---
 
 # Aethera Studio (Hero Section)

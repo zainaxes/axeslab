@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 130
 tier: "free"
 chars: 4237
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/b91089cbe0a5ec51-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-interactive-bento-gallery.jpg"
 ---
 
 # Interactive Bento Gallery (Showcase)

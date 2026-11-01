@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 42
 tier: "free"
 chars: 4415
-preview_video: "https://meez.design/web/prompt-previews/price-calculator-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/price-calculator-poster-c.jpg"
+preview_video: "/media/videos/price-calculator.mp4"
+preview_poster: "/media/posters/price-calculator.jpg"
 ---
 
 # Price Calculator (SaaS)

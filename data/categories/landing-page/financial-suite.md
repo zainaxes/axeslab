@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 136
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/prompt-previews/financial-suite-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/financial-suite-poster.jpg"
+preview_video: "/media/videos/financial-suite.mp4"
+preview_poster: "/media/posters/financial-suite.jpg"
 ---
 
 # Financial Suite (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 52
 tier: "free"
 chars: 4402
-preview_video: "https://meez.design/web/prompt-previews/outdoor-apparel-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/outdoor-apparel-poster.jpg"
+preview_video: "/media/videos/outdoor-apparel.mp4"
+preview_poster: "/media/posters/outdoor-apparel.jpg"
 ---
 
 # Outdoor Apparel (Fashion)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 55
 tier: "free"
 chars: 4447
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/f1c0d4eab69d3bd1.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/8e087837dc8a6a76.jpg"
+preview_video: "/media/videos/21-ai-input-with-loading.mp4"
+preview_poster: "/media/posters/21-ai-input-with-loading.jpg"
 ---
 
 # AI Input With Loading (Form)

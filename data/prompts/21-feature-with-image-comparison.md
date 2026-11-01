@@ -8,8 +8,8 @@ collection: "sections"
 likes: 139
 tier: "free"
 chars: 4362
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/123b203ae268fde5.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/7b09800aec47891e.jpg"
+preview_video: "/media/videos/21-feature-with-image-comparison.mp4"
+preview_poster: "/media/posters/21-feature-with-image-comparison.jpg"
 ---
 
 # Feature with Image Comparison (Component)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 133
 tier: "free"
 chars: 6873
-preview_video: "https://meez.design/web/prompt-previews/innovation-lab-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/innovation-lab-poster.webp"
+preview_video: "/media/videos/innovation-lab.mp4"
+preview_poster: "/media/posters/innovation-lab.webp"
 ---
 
 # Innovation Lab (Landing Page)

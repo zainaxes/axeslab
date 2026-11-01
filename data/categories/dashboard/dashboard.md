@@ -8,8 +8,8 @@ collection: "apps"
 likes: 152
 tier: "free"
 chars: 4378
-preview_video: "https://meez.design/web/media/preview_videos/dashboard.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/dashboard-poster.webp"
+preview_video: "/media/videos/dashboard.mp4"
+preview_poster: "/media/posters/dashboard.webp"
 ---
 
 # Dashboard UI (Dashboard)

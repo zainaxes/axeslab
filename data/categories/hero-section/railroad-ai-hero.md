@@ -8,8 +8,8 @@ collection: "sections"
 likes: 52
 tier: "free"
 chars: 4403
-preview_video: "https://meez.design/web/prompt-previews/railroad-ai-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/railroad-ai-hero-poster-c.jpg"
+preview_video: "/media/videos/railroad-ai-hero.mp4"
+preview_poster: "/media/posters/railroad-ai-hero.jpg"
 ---
 
 # Railroad.ai (Hero Section)

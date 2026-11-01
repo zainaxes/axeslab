@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 34
 tier: "free"
 chars: 4287
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c1fd797387d3d409.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/2f0b886f92993f61-c.jpg"
+preview_video: "/media/videos/21-animated-hero.mp4"
+preview_poster: "/media/posters/21-animated-hero.jpg"
 ---
 
 # Animated hero (Hero)

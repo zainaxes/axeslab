@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 140
 tier: "free"
 chars: 4413
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cd2cb2d0bbf6e675.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/442083d2d79cc4bb-c.jpg"
+preview_video: "/media/videos/21-hero-section.mp4"
+preview_poster: "/media/posters/21-hero-section.jpg"
 ---
 
 # Hero Section (Hero)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 152
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/prompt-previews/product-studio-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/product-studio-poster.jpg"
+preview_video: "/media/videos/product-studio.mp4"
+preview_poster: "/media/posters/product-studio.jpg"
 ---
 
 # Product Studio (Agency Website)

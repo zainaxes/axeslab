@@ -8,8 +8,8 @@ collection: "sections"
 likes: 97
 tier: "free"
 chars: 4332
-preview_video: "https://meez.design/web/media/preview_videos/visual-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/visual-hero-poster.webp"
+preview_video: "/media/videos/visual-hero.mp4"
+preview_poster: "/media/posters/visual-hero.webp"
 ---
 
 # Visual Hero (Hero Section)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 193
 tier: "free"
 chars: 4393
-preview_video: "https://meez.design/web/prompt-previews/cloud-kicks-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cloud-kicks-poster.webp"
+preview_video: "/media/videos/cloud-kicks.mp4"
+preview_poster: "/media/posters/cloud-kicks.webp"
 ---
 
 # Cloud Kicks (Landing Page)

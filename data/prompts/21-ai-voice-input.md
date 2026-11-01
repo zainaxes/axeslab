@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 164
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1ed8736972c2c3d4.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/5357fe4f224d6014.jpg"
+preview_video: "/media/videos/21-ai-voice-input.mp4"
+preview_poster: "/media/posters/21-ai-voice-input.jpg"
 ---
 
 # AI Voice Input (Form)

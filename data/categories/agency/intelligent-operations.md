@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 46
 tier: "free"
 chars: 10266
-preview_video: "https://meez.design/web/prompt-previews/intelligent-operations-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/intelligent-operations-poster.webp"
+preview_video: "/media/videos/intelligent-operations.mp4"
+preview_poster: "/media/posters/intelligent-operations.webp"
 ---
 
 # Intelligent Operations (Agency)

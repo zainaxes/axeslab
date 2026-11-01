@@ -8,8 +8,8 @@ collection: "sections"
 likes: 201
 tier: "free"
 chars: 4390
-preview_video: "https://stream.mux.com/iK2ACd5wEwi7ORN8i16kl59Cck01IREnB3hX6EnnqiUk.m3u8"
-preview_poster: "https://image.mux.com/iK2ACd5wEwi7ORN8i16kl59Cck01IREnB3hX6EnnqiUk/thumbnail.webp?width=1200&time=2"
+preview_video: "/media/videos/ember-dsgn-hero.mp4"
+preview_poster: "/media/posters/ember-dsgn-hero.webp"
 ---
 
 # EMBER.dsgn (Hero Section)

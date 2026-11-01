@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 62
 tier: "free"
 chars: 4463
-preview_video: "https://meez.design/web/prompt-previews/codenest-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/codenest-hero-poster-c.jpg"
+preview_video: "/media/videos/codenest-hero.mp4"
+preview_poster: "/media/posters/codenest-hero.jpg"
 ---
 
 # CodeNest Coding Platform (Landing Page)

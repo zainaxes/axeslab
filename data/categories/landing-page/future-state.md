@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 147
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/media/preview_videos/future-state.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/future-state-poster.webp"
+preview_video: "/media/videos/future-state.mp4"
+preview_poster: "/media/posters/future-state.webp"
 ---
 
 # Future-State (Landing Page)

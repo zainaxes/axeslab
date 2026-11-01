@@ -8,8 +8,8 @@ collection: "sections"
 likes: 52
 tier: "free"
 chars: 4424
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/5a91d39040365f47.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexacore-results-poster.jpg"
+preview_video: "/media/videos/nexacore-results.mp4"
+preview_poster: "/media/posters/nexacore-results.jpg"
 ---
 
 # NexaCore Results (Features)

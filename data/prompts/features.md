@@ -8,8 +8,8 @@ collection: "sections"
 likes: 151
 tier: "free"
 chars: 4436
-preview_video: "https://meez.design/web/media/preview_videos/features.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/features-poster.webp"
+preview_video: "/media/videos/features.mp4"
+preview_poster: "/media/posters/features.webp"
 ---
 
 # Capabilities Overview (Features Section)

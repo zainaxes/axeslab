@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 97
 tier: "free"
 chars: 4361
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/eb70e3ec6669e8b7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/620ca982a5f5eede.jpg"
+preview_video: "/media/videos/21-placeholders-and-vanish-input.mp4"
+preview_poster: "/media/posters/21-placeholders-and-vanish-input.jpg"
 ---
 
 # Placeholders And Vanish Input (Form)

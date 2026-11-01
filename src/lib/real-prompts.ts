@@ -37,7 +37,8 @@ export const ALL_REAL_PROMPTS: PromptItem[] = (rawPrompts as any[]).map((r) => {
   const catSlug = r.category_slug || catName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   const rawPoster = meta.posterUrl;
-  const rawVideo = meta.custom_video_url || meta.effectUrl || meta.default_video_url;
+  // Strictly exact local video only — zero alternate or generic fallback loops
+  const rawVideo = meta.custom_video_url || undefined;
   const isYT = isYouTubeUrl(rawVideo);
 
   const fallbackPoster = getCategoryFallbackPoster(catName, r.title);

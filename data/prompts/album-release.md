@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 155
 tier: "free"
 chars: 3721
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/685b827bb6e32ba9-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/album-release.jpg"
 ---
 
 # Album App (Music)

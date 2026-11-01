@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 132
 tier: "free"
 chars: 4381
-preview_video: "https://meez.design/web/prompt-previews/automotive-ai-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/automotive-ai-poster.webp"
+preview_video: "/media/videos/automotive-ai.mp4"
+preview_poster: "/media/posters/automotive-ai.webp"
 ---
 
 # Automotive AI (SaaS)

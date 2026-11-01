@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 202
 tier: "free"
 chars: 4261
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/647bd61f0b72a8dd-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-parallax-floating.jpg"
 ---
 
 # Parallax Floating (Scroll)

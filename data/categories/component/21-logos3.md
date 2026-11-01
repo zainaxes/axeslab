@@ -8,8 +8,8 @@ collection: "sections"
 likes: 99
 tier: "free"
 chars: 4173
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/d3d15a646336f68a.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-logos3.jpg"
 ---
 
 # Logos 3 (Component)

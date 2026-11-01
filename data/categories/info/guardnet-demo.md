@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 192
 tier: "free"
 chars: 4366
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/8c632280bb41154b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/guardnet-demo-poster.jpg"
+preview_video: "/media/videos/guardnet-demo.mp4"
+preview_poster: "/media/posters/guardnet-demo.jpg"
 ---
 
 # Guardnet Demo (Info)

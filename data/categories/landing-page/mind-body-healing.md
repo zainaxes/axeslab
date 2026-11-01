@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 118
 tier: "free"
 chars: 5212
-preview_video: "https://meez.design/web/prompt-previews/mind-body-healing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/mind-body-healing-poster.webp"
+preview_video: "/media/videos/mind-body-healing.mp4"
+preview_poster: "/media/posters/mind-body-healing.webp"
 ---
 
 # Mind-Body Healing (Landing Page)

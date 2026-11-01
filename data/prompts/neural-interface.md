@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 149
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/media/preview_videos/neural-interface.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/neural-interface-poster.webp"
+preview_video: "/media/videos/neural-interface.mp4"
+preview_poster: "/media/posters/neural-interface.webp"
 ---
 
 # Neural Interface (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 58
 tier: "free"
 chars: 19622
-preview_video: "https://meez.design/web/prompt-previews/fun-404-page-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/fun-404-page-poster.webp"
+preview_video: "/media/videos/fun-404-page.mp4"
+preview_poster: "/media/posters/fun-404-page.webp"
 ---
 
 # Fun 404 Page (Landing Page)

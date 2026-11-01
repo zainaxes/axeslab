@@ -8,8 +8,8 @@ collection: "sections"
 likes: 65
 tier: "free"
 chars: 4273
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1452773c5d11d37a.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/41121da547cdf0ce.jpg"
+preview_video: "/media/videos/21-globe.mp4"
+preview_poster: "/media/posters/21-globe.jpg"
 ---
 
 # Globe (Component)

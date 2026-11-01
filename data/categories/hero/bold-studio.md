@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 98
 tier: "free"
 chars: 4391
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2028331250ceef0f.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/bold-studio-poster-c.jpg"
+preview_video: "/media/videos/bold-studio.mp4"
+preview_poster: "/media/posters/bold-studio.jpg"
 ---
 
 # Bold Studio (Hero)

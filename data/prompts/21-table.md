@@ -8,8 +8,8 @@ collection: "sections"
 likes: 156
 tier: "free"
 chars: 4151
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/b56f1d1f8ff4b704-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-table.jpg"
 ---
 
 # Table (Component)

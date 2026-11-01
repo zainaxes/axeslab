@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 57
 tier: "free"
 chars: 4393
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/4cac5675c89edafb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/9dce17eff3d1d19a.jpg"
+preview_video: "/media/videos/21-tag-input.mp4"
+preview_poster: "/media/posters/21-tag-input.jpg"
 ---
 
 # Tag Input (Form)

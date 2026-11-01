@@ -8,8 +8,8 @@ collection: "sections"
 likes: 190
 tier: "free"
 chars: 4416
-preview_video: "https://meez.design/web/prompt-previews/vertex-ai-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vertex-ai-hero-poster-c.jpg"
+preview_video: "/media/videos/vertex-ai-hero.mp4"
+preview_poster: "/media/posters/vertex-ai-hero.jpg"
 ---
 
 # VertexAI Hero (Hero Section)

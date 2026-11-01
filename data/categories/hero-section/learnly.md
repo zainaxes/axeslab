@@ -8,8 +8,8 @@ collection: "sections"
 likes: 25
 tier: "free"
 chars: 4362
-preview_video: "https://meez.design/web/media/preview_videos/learnly.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/learnly-poster.webp"
+preview_video: "/media/videos/learnly.mp4"
+preview_poster: "/media/posters/learnly.webp"
 ---
 
 # Learnly (Hero Section)

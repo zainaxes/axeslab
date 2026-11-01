@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 48
 tier: "free"
 chars: 4172
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/499cc625fcf82d81.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-marquee.jpg"
 ---
 
 # Marquee (Text Effect)

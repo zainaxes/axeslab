@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 46
 tier: "free"
 chars: 4426
-preview_video: "https://meez.design/web/prompt-previews/akor-security-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/akor-security-landing-poster-c.jpg"
+preview_video: "/media/videos/akor-security-landing.mp4"
+preview_poster: "/media/posters/akor-security-landing.jpg"
 ---
 
 # AKOR Security (Landing Page)

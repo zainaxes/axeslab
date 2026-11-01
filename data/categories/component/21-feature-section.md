@@ -8,8 +8,8 @@ collection: "sections"
 likes: 116
 tier: "free"
 chars: 4435
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/4b9a4b11ed7cc89b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/59f36df68b2a00ec-c.jpg"
+preview_video: "/media/videos/21-feature-section.mp4"
+preview_poster: "/media/posters/21-feature-section.jpg"
 ---
 
 # Feature Section (Component)

@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 95
 tier: "free"
 chars: 4438
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/3f66bba58bde5cee.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/5de22c87bf93b41a.jpg"
+preview_video: "/media/videos/21-gradient-button.mp4"
+preview_poster: "/media/posters/21-gradient-button.jpg"
 ---
 
 # Gradient Button (Background)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 88
 tier: "free"
 chars: 4415
-preview_video: "https://meez.design/web/prompt-previews/kresna-footer-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/kresna-footer-poster-c.jpg"
+preview_video: "/media/videos/kresna-footer.mp4"
+preview_poster: "/media/posters/kresna-footer.jpg"
 ---
 
 # Kresna Footer (Footer Section)

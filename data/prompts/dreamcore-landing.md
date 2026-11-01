@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 84
 tier: "free"
 chars: 4435
-preview_video: "https://meez.design/web/media/preview_videos/dreamcore-landing.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/dreamcore-landing-poster-c.jpg"
+preview_video: "/media/videos/dreamcore-landing.mp4"
+preview_poster: "/media/posters/dreamcore-landing.jpg"
 ---
 
 # Dreamcore Landing (Landing Page)

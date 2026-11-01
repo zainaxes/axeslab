@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 129
 tier: "free"
 chars: 4390
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/dc2f60e04d9d91e1.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/halo-benefits-poster.jpg"
+preview_video: "/media/videos/halo-benefits.mp4"
+preview_poster: "/media/posters/halo-benefits.jpg"
 ---
 
 # Halo Benefits (Why Us)

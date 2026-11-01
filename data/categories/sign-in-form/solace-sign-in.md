@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 159
 tier: "free"
 chars: 4423
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/74487dca3f3ac5a5.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/solace-sign-in-poster-c.jpg"
+preview_video: "/media/videos/solace-sign-in.mp4"
+preview_poster: "/media/posters/solace-sign-in.jpg"
 ---
 
 # Solace sign-in (Sign In Form)

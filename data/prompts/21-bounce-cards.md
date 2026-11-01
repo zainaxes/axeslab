@@ -8,8 +8,8 @@ collection: "sections"
 likes: 100
 tier: "free"
 chars: 4414
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/70cecb6a2c90a8db.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/bf8d72f038672041-c.jpg"
+preview_video: "/media/videos/21-bounce-cards.mp4"
+preview_poster: "/media/posters/21-bounce-cards.jpg"
 ---
 
 # Bounce Cards (Card)

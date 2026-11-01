@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 133
 tier: "free"
 chars: 4384
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/0b22c576558f65dd.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/intelligentx-poster.jpg"
+preview_video: "/media/videos/intelligentx.mp4"
+preview_poster: "/media/posters/intelligentx.jpg"
 ---
 
 # IntelligentX (Hero)

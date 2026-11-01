@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 71
 tier: "free"
 chars: 4402
-preview_video: "https://meez.design/web/prompt-previews/innovation-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/innovation-landing-poster-c.jpg"
+preview_video: "/media/videos/innovation-landing.mp4"
+preview_poster: "/media/posters/innovation-landing.jpg"
 ---
 
 # Innovation (Landing Page)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 177
 tier: "free"
 chars: 4258
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/745532e38b41a0bf.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/21-highlighter-poster.jpg"
+preview_video: "/media/videos/21-highlighter.mp4"
+preview_poster: "/media/posters/21-highlighter.jpg"
 ---
 
 # Highlighter (Component)

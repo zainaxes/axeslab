@@ -8,8 +8,8 @@ collection: "sections"
 likes: 68
 tier: "free"
 chars: 4383
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/814adebbdcbb7a93.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nike-hover-poster.jpg"
+preview_video: "/media/videos/nike-hover.mp4"
+preview_poster: "/media/posters/nike-hover.jpg"
 ---
 
 # Nike Hover (Features)

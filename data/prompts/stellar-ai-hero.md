@@ -8,8 +8,8 @@ collection: "sections"
 likes: 83
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/prompt-previews/stellar-ai-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/stellar-ai-hero-poster-c.jpg"
+preview_video: "/media/videos/stellar-ai-hero.mp4"
+preview_poster: "/media/posters/stellar-ai-hero.jpg"
 ---
 
 # Stellar AI (Hero Section)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 130
 tier: "free"
 chars: 4433
-preview_video: "https://meez.design/web/prompt-previews/datacore-booking-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/datacore-booking-hero-poster-c.jpg"
+preview_video: "/media/videos/datacore-booking-hero.mp4"
+preview_poster: "/media/posters/datacore-booking-hero.jpg"
 ---
 
 # Datacore Booking (SaaS)

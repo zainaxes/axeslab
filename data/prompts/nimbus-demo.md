@@ -8,8 +8,8 @@ collection: "apps"
 likes: 142
 tier: "free"
 chars: 4368
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/bd5278e4bb192bca.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nimbus-demo-poster.jpg"
+preview_video: "/media/videos/nimbus-demo.mp4"
+preview_poster: "/media/posters/nimbus-demo.jpg"
 ---
 
 # Nimbus Demo (Dashboard Demo)

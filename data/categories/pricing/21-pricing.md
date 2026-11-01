@@ -8,8 +8,8 @@ collection: "sections"
 likes: 116
 tier: "free"
 chars: 4391
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7f1aa6ac88449d1a.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/bcb39a3ba8757527-c.jpg"
+preview_video: "/media/videos/21-pricing.mp4"
+preview_poster: "/media/posters/21-pricing.jpg"
 ---
 
 # Pricing (Pricing)

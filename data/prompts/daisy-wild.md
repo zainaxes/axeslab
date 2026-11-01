@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 139
 tier: "free"
 chars: 4381
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/96d937da0bfc4d51.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/daisy-wild-poster.jpg"
+preview_video: "/media/videos/daisy-wild.mp4"
+preview_poster: "/media/posters/daisy-wild.jpg"
 ---
 
 # Daisy Wild (Product)

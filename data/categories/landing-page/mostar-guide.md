@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 161
 tier: "free"
 chars: 27463
-preview_video: "https://meez.design/web/prompt-previews/mostar-guide-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/mostar-guide-poster.webp"
+preview_video: "/media/videos/mostar-guide.mp4"
+preview_poster: "/media/posters/mostar-guide.webp"
 ---
 
 # Mostar Guide (Landing Page)

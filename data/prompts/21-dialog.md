@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 134
 tier: "free"
 chars: 4133
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/8c964590b202f8f6.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-dialog.jpg"
 ---
 
 # Dialog (Form)

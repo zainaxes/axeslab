@@ -8,8 +8,8 @@ collection: "sections"
 likes: 107
 tier: "free"
 chars: 4426
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/0b4c3b766af32340.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/2e77ca31f9b3eee2-c.jpg"
+preview_video: "/media/videos/21-expandable-card.mp4"
+preview_poster: "/media/posters/21-expandable-card.jpg"
 ---
 
 # Expandable Card (Card)

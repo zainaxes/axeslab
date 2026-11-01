@@ -8,8 +8,8 @@ collection: "sections"
 likes: 184
 tier: "free"
 chars: 4406
-preview_video: "https://meez.design/web/media/preview_videos/waitlist-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/waitlist-hero-poster.webp"
+preview_video: "/media/videos/waitlist-hero.mp4"
+preview_poster: "/media/posters/waitlist-hero.webp"
 ---
 
 # Waitlist Hero (Hero Section)

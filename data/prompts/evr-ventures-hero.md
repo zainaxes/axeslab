@@ -8,8 +8,8 @@ collection: "sections"
 likes: 169
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/prompt-previews/evr-ventures-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/evr-ventures-hero-poster-c.jpg"
+preview_video: "/media/videos/evr-ventures-hero.mp4"
+preview_poster: "/media/posters/evr-ventures-hero.jpg"
 ---
 
 # EVR Ventures (Hero Section)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 184
 tier: "free"
 chars: 4458
-preview_video: "https://meez.design/web/prompt-previews/deep-neural-interface-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/deep-neural-interface-poster.webp"
+preview_video: "/media/videos/deep-neural-interface.mp4"
+preview_poster: "/media/posters/deep-neural-interface.webp"
 ---
 
 # Deep Neural Interface (SaaS)

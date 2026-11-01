@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 135
 tier: "free"
 chars: 4437
-preview_video: "https://meez.design/web/prompt-previews/securify-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/securify-hero-poster-c.jpg"
+preview_video: "/media/videos/securify-hero.mp4"
+preview_poster: "/media/posters/securify-hero.jpg"
 ---
 
 # Securify Data Security (SaaS)

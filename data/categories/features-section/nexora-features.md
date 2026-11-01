@@ -8,8 +8,8 @@ collection: "sections"
 likes: 119
 tier: "free"
 chars: 4437
-preview_video: "https://meez.design/web/prompt-previews/nexora-features-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexora-features-poster-c.jpg"
+preview_video: "/media/videos/nexora-features.mp4"
+preview_poster: "/media/posters/nexora-features.jpg"
 ---
 
 # Nexora Features (Features Section)

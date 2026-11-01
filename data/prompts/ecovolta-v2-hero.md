@@ -8,8 +8,8 @@ collection: "sections"
 likes: 39
 tier: "free"
 chars: 4386
-preview_video: "https://meez.design/web/prompt-previews/ecovolta-v2-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ecovolta-v2-hero-poster-c.jpg"
+preview_video: "/media/videos/ecovolta-v2-hero.mp4"
+preview_poster: "/media/posters/ecovolta-v2-hero.jpg"
 ---
 
 # EcoVolta V2 (Hero Section)

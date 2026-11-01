@@ -8,8 +8,8 @@ collection: "apps"
 likes: 180
 tier: "free"
 chars: 10036
-preview_video: "https://meez.design/web/prompt-previews/f1-racing-hub-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/f1-racing-hub-poster.webp"
+preview_video: "/media/videos/f1-racing-hub.mp4"
+preview_poster: "/media/posters/f1-racing-hub.webp"
 ---
 
 # F1 Racing Hub (Mobile App)

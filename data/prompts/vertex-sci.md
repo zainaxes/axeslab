@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 124
 tier: "free"
 chars: 4272
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vertex-sci-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/vertex-sci.webp"
 ---
 
 # Vertex Sci (Hero)

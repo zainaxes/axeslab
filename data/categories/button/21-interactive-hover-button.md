@@ -8,8 +8,8 @@ collection: "sections"
 likes: 48
 tier: "free"
 chars: 4410
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/d4eb986d8f0927fb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/c80949f43dd02daf.jpg"
+preview_video: "/media/videos/21-interactive-hover-button.mp4"
+preview_poster: "/media/posters/21-interactive-hover-button.jpg"
 ---
 
 # Interactive Hover Button (Button)

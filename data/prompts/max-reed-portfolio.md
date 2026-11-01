@@ -8,8 +8,8 @@ collection: "sections"
 likes: 202
 tier: "free"
 chars: 4450
-preview_video: "https://meez.design/web/media/preview_videos/max-reed-portfolio.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/max-reed-portfolio-poster.webp"
+preview_video: "/media/videos/max-reed-portfolio.mp4"
+preview_poster: "/media/posters/max-reed-portfolio.webp"
 ---
 
 # Max Reed Portfolio (Features Section)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 83
 tier: "free"
 chars: 4366
-preview_video: "https://meez.design/web/media/preview_videos/404-planet.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/404-planet-poster.webp"
+preview_video: "/media/videos/404-planet.mp4"
+preview_poster: "/media/posters/404-planet.webp"
 ---
 
 # 404 Planet (404)

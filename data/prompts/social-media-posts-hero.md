@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 143
 tier: "free"
 chars: 4461
-preview_video: "https://meez.design/web/prompt-previews/social-media-posts-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/social-media-posts-hero-poster-c.jpg"
+preview_video: "/media/videos/social-media-posts-hero.mp4"
+preview_poster: "/media/posters/social-media-posts-hero.jpg"
 ---
 
 # Social Media Posts (Social Media)

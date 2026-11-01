@@ -8,8 +8,8 @@ collection: "sections"
 likes: 196
 tier: "free"
 chars: 4233
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/c2f9c47344502120.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-calendar.jpg"
 ---
 
 # Calendar [React Day Picker] (Component)

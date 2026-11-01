@@ -8,8 +8,8 @@ collection: "sections"
 likes: 48
 tier: "free"
 chars: 4261
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2f261f4a58521884.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/orbis-cta-poster-c.jpg"
+preview_video: "/media/videos/orbis-cta.mp4"
+preview_poster: "/media/posters/orbis-cta.jpg"
 ---
 
 # Orbis CTA (CTA)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 127
 tier: "free"
 chars: 4357
-preview_video: "https://meez.design/web/media/preview_videos/faq-cta.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/faq-cta-poster.webp"
+preview_video: "/media/videos/faq-cta.mp4"
+preview_poster: "/media/posters/faq-cta.webp"
 ---
 
 # FAQ CTA (CTA Section)

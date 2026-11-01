@@ -8,8 +8,8 @@ collection: "sections"
 likes: 44
 tier: "free"
 chars: 4307
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/97d92a11a0f77442.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/f7a4942a4526d9dc.jpg"
+preview_video: "/media/videos/21-file-upload.mp4"
+preview_poster: "/media/posters/21-file-upload.jpg"
 ---
 
 # File Upload (Component)

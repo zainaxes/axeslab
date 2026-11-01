@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 141
 tier: "free"
 chars: 7215
-preview_video: "https://meez.design/web/prompt-previews/celestial-renewal-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/celestial-renewal-poster.jpg"
+preview_video: "/media/videos/celestial-renewal.mp4"
+preview_poster: "/media/posters/celestial-renewal.jpg"
 ---
 
 # Celestial Renewal (Wellness)

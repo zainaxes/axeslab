@@ -8,8 +8,8 @@ collection: "sections"
 likes: 128
 tier: "free"
 chars: 4468
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/132f3e4a3a972f86.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/apex-program-accordion-poster.jpg"
+preview_video: "/media/videos/apex-program-accordion.mp4"
+preview_poster: "/media/posters/apex-program-accordion.jpg"
 ---
 
 # Apex Program Accordion (Accordion)

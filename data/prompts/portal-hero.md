@@ -8,8 +8,8 @@ collection: "sections"
 likes: 157
 tier: "free"
 chars: 4372
-preview_video: "https://meez.design/web/prompt-previews/portal-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/portal-hero-poster-c.jpg"
+preview_video: "/media/videos/portal-hero.mp4"
+preview_poster: "/media/posters/portal-hero.jpg"
 ---
 
 # Portal (Hero Section)

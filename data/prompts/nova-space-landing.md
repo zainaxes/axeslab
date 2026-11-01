@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 55
 tier: "free"
 chars: 4447
-preview_video: "https://meez.design/web/prompt-previews/nova-space-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nova-space-landing-poster-c.jpg"
+preview_video: "/media/videos/nova-space-landing.mp4"
+preview_poster: "/media/posters/nova-space-landing.jpg"
 ---
 
 # NOVA Space Systems (Landing Page)

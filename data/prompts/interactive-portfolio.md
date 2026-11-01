@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 161
 tier: "free"
 chars: 4283
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/interactive-portfolio-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/interactive-portfolio.webp"
 ---
 
 # Interactive Portfolio (Hero)

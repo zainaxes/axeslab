@@ -8,8 +8,8 @@ collection: "apps"
 likes: 127
 tier: "free"
 chars: 5359
-preview_video: "https://meez.design/web/prompt-previews/church-community-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/church-community-poster.jpg"
+preview_video: "/media/videos/church-community.mp4"
+preview_poster: "/media/posters/church-community.jpg"
 ---
 
 # Church Community (Mobile App)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 121
 tier: "free"
 chars: 4415
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/a3ebfd6e1a74a136.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/kova-testimonial-poster.jpg"
+preview_video: "/media/videos/kova-testimonial.mp4"
+preview_poster: "/media/posters/kova-testimonial.jpg"
 ---
 
 # Kova Testimonial (Testimonial)

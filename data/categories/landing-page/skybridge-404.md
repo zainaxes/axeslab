@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 161
 tier: "free"
 chars: 7087
-preview_video: "https://meez.design/web/prompt-previews/skybridge-404-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/skybridge-404-poster.webp"
+preview_video: "/media/videos/skybridge-404.mp4"
+preview_poster: "/media/posters/skybridge-404.webp"
 ---
 
 # Skybridge 404 (Landing Page)

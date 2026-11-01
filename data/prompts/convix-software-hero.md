@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 146
 tier: "free"
 chars: 4408
-preview_video: "https://meez.design/web/prompt-previews/convix-software-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/convix-software-hero-poster-c.jpg"
+preview_video: "/media/videos/convix-software-hero.mp4"
+preview_poster: "/media/posters/convix-software-hero.jpg"
 ---
 
 # SAAS Software (SaaS)

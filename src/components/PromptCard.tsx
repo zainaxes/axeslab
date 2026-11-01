@@ -135,8 +135,8 @@ export function PromptCard({ item }: PromptCardProps) {
             alt={item.title}
             loading="lazy"
             decoding="async"
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-              isHovered && (isVideoLoaded || isAnimatedWebp) ? 'opacity-0' : 'opacity-100'
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+              isHovered && item.videoUrl && (isVideoLoaded || isAnimatedWebp) ? 'opacity-0' : 'opacity-100'
             }`}
           />
         )}

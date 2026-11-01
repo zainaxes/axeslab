@@ -8,8 +8,8 @@ collection: "sections"
 likes: 171
 tier: "free"
 chars: 4383
-preview_video: "https://meez.design/web/prompt-previews/power-ai-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/power-ai-hero-poster-c.jpg"
+preview_video: "/media/videos/power-ai-hero.mp4"
+preview_poster: "/media/posters/power-ai-hero.jpg"
 ---
 
 # Power AI (Hero Section)

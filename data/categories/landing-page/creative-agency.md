@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 199
 tier: "free"
 chars: 4391
-preview_video: "https://meez.design/web/media/preview_videos/creative-agency.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/creative-agency-poster.webp"
+preview_video: "/media/videos/creative-agency.mp4"
+preview_poster: "/media/posters/creative-agency.webp"
 ---
 
 # Creative Agency (Landing Page)

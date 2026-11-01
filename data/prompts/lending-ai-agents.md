@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 143
 tier: "free"
 chars: 4419
-preview_video: "https://meez.design/web/prompt-previews/lending-ai-agents-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/lending-ai-agents-poster.webp"
+preview_video: "/media/videos/lending-ai-agents.mp4"
+preview_poster: "/media/posters/lending-ai-agents.webp"
 ---
 
 # Lending AI Agents (SaaS)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 57
 tier: "free"
 chars: 4456
-preview_video: "https://meez.design/web/prompt-previews/modern-dental-clinic-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/modern-dental-clinic-poster.jpg"
+preview_video: "/media/videos/modern-dental-clinic.mp4"
+preview_poster: "/media/posters/modern-dental-clinic.jpg"
 ---
 
 # Modern Dental Clinic (Landing Page)

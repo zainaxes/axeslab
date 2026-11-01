@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 137
 tier: "free"
 chars: 4433
-preview_video: "https://meez.design/web/media/preview_videos/luxury-botanical.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/luxury-botanical-poster.webp"
+preview_video: "/media/videos/luxury-botanical.mp4"
+preview_poster: "/media/posters/luxury-botanical.webp"
 ---
 
 # Luxury Botanical (Landing Page)

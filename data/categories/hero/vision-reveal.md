@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 194
 tier: "free"
 chars: 16643
-preview_video: "https://meez.design/web/prompt-previews/vision-reveal-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vision-reveal-poster.jpg"
+preview_video: "/media/videos/vision-reveal.mp4"
+preview_poster: "/media/posters/vision-reveal.jpg"
 ---
 
 # Vision Reveal (Hero)

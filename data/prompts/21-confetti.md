@@ -8,8 +8,8 @@ collection: "sections"
 likes: 150
 tier: "free"
 chars: 4189
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/cf2d0069d6cf298c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-confetti.jpg"
 ---
 
 # Confetti (Component)

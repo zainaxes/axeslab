@@ -8,8 +8,8 @@ collection: "sections"
 likes: 68
 tier: "free"
 chars: 4194
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/haul-footer-preview-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/haul-footer.jpg"
 ---
 
 # HAUL! (Footer Section)

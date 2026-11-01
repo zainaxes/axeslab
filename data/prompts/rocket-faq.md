@@ -8,8 +8,8 @@ collection: "sections"
 likes: 121
 tier: "free"
 chars: 4346
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1bdcfb348e1c3bfb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/rocket-faq-poster.jpg"
+preview_video: "/media/videos/rocket-faq.mp4"
+preview_poster: "/media/posters/rocket-faq.jpg"
 ---
 
 # Rocket FAQ (FAQ)

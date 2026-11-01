@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 112
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/media/preview_videos/creative-studio.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/creative-studio-poster.webp"
+preview_video: "/media/videos/creative-studio.mp4"
+preview_poster: "/media/posters/creative-studio.webp"
 ---
 
 # Creative Studio (Agency)

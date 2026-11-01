@@ -8,8 +8,8 @@ collection: "sections"
 likes: 158
 tier: "free"
 chars: 4307
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cc279c0d76d24862.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/cb0ff59896344070.jpg"
+preview_video: "/media/videos/21-theme-toggle.mp4"
+preview_poster: "/media/posters/21-theme-toggle.jpg"
 ---
 
 # Theme Toggle (Component)

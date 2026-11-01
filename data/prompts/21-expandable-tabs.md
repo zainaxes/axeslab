@@ -8,8 +8,8 @@ collection: "sections"
 likes: 93
 tier: "free"
 chars: 4439
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/fdd380b61b003bad.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/1ba8261550428c39.jpg"
+preview_video: "/media/videos/21-expandable-tabs.mp4"
+preview_poster: "/media/posters/21-expandable-tabs.jpg"
 ---
 
 # Expandable Tabs (Navigation)

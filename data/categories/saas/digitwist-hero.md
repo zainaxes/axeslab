@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 185
 tier: "free"
 chars: 4426
-preview_video: "https://meez.design/web/prompt-previews/digitwist-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/digitwist-hero-poster-c.jpg"
+preview_video: "/media/videos/digitwist-hero.mp4"
+preview_poster: "/media/posters/digitwist-hero.jpg"
 ---
 
 # Digitwist AI Builder (SaaS)

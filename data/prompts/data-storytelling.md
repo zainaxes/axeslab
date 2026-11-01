@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 181
 tier: "free"
 chars: 4416
-preview_video: "https://meez.design/web/prompt-previews/data-storytelling-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/data-storytelling-poster.webp"
+preview_video: "/media/videos/data-storytelling.mp4"
+preview_poster: "/media/posters/data-storytelling.webp"
 ---
 
 # Data Storytelling (SaaS)

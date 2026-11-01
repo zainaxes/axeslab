@@ -8,8 +8,8 @@ collection: "sections"
 likes: 189
 tier: "free"
 chars: 4389
-preview_video: "https://meez.design/web/media/preview_videos/vaultshield.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vaultshield-poster.webp"
+preview_video: "/media/videos/vaultshield.mp4"
+preview_poster: "/media/posters/vaultshield.webp"
 ---
 
 # VaultShield (Hero Section)

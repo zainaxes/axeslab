@@ -8,8 +8,8 @@ collection: "sections"
 likes: 30
 tier: "free"
 chars: 4261
-preview_video: "https://meez.design/web/prompt-previews/wisa-space-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wisa-space-hero-poster-c.jpg"
+preview_video: "/media/videos/wisa-space-hero.mp4"
+preview_poster: "/media/posters/wisa-space-hero.jpg"
 ---
 
 # WISA Space (Hero Section)

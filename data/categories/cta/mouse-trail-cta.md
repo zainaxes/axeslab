@@ -8,8 +8,8 @@ collection: "sections"
 likes: 147
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2a8de40eab619801.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/mouse-trail-cta-poster.jpg"
+preview_video: "/media/videos/mouse-trail-cta.mp4"
+preview_poster: "/media/posters/mouse-trail-cta.jpg"
 ---
 
 # Mouse Trail CTA (CTA)

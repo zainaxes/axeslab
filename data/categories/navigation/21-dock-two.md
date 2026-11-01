@@ -8,8 +8,8 @@ collection: "sections"
 likes: 80
 tier: "free"
 chars: 4131
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/04c201490ee84fe2.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-dock-two.jpg"
 ---
 
 # Dock (Navigation)

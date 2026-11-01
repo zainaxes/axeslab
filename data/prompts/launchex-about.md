@@ -8,8 +8,8 @@ collection: "sections"
 likes: 174
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/8d3ae9862a5c521f.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/launchex-about-poster.jpg"
+preview_video: "/media/videos/launchex-about.mp4"
+preview_poster: "/media/posters/launchex-about.jpg"
 ---
 
 # LaunchEx About (About)

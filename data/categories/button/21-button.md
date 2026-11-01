@@ -8,8 +8,8 @@ collection: "sections"
 likes: 180
 tier: "free"
 chars: 4137
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/753266f70f46a14d.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-button.jpg"
 ---
 
 # Button (Button)

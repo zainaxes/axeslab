@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 199
 tier: "free"
 chars: 4387
-preview_video: "https://meez.design/web/media/preview_videos/art-landing.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/art-landing-poster.webp"
+preview_video: "/media/videos/art-landing.mp4"
+preview_poster: "/media/posters/art-landing.webp"
 ---
 
 # Art Landing (Landing Page)

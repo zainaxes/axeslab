@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 67
 tier: "free"
 chars: 4233
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/71ba6314bacf3beb.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-background-beams.jpg"
 ---
 
 #  Background Beams (Background)

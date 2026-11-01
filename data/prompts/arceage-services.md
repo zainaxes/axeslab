@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 105
 tier: "free"
 chars: 4354
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/a21f67f74647407f.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/arceage-services-poster.jpg"
+preview_video: "/media/videos/arceage-services.mp4"
+preview_poster: "/media/posters/arceage-services.jpg"
 ---
 
 # Arceage Services (Services)

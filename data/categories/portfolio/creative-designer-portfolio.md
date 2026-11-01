@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 76
 tier: "free"
 chars: 4501
-preview_video: "https://meez.design/web/prompt-previews/creative-designer-portfolio-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/creative-designer-portfolio-poster.webp"
+preview_video: "/media/videos/creative-designer-portfolio.mp4"
+preview_poster: "/media/posters/creative-designer-portfolio.webp"
 ---
 
 # Creative Designer Portfolio (Portfolio)

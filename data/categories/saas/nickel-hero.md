@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 195
 tier: "free"
 chars: 4397
-preview_video: "https://meez.design/web/prompt-previews/nickel-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nickel-hero-poster-c.jpg"
+preview_video: "/media/videos/nickel-hero.mp4"
+preview_poster: "/media/posters/nickel-hero.jpg"
 ---
 
 # Nickel Payments (SaaS)

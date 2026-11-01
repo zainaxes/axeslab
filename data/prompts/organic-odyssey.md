@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 42
 tier: "free"
 chars: 4403
-preview_video: "https://meez.design/web/media/preview_videos/organic-odyssey.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/organic-odyssey-poster.webp"
+preview_video: "/media/videos/organic-odyssey.mp4"
+preview_poster: "/media/posters/organic-odyssey.webp"
 ---
 
 # Organic Odyssey (Hero)

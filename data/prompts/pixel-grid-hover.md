@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 80
 tier: "free"
 chars: 4433
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/5ea20aac683443ff.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/pixel-grid-hover-poster.jpg"
+preview_video: "/media/videos/pixel-grid-hover.mp4"
+preview_poster: "/media/posters/pixel-grid-hover.jpg"
 ---
 
 # Pixel Grid Hover (Case Studies)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 182
 tier: "free"
 chars: 4312
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/jewelry-store-poster.jpg"
+preview_video: ""
+preview_poster: "/media/posters/jewelry-store.jpg"
 ---
 
 # Jewelry Store (Landing Page)

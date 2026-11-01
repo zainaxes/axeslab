@@ -202,30 +202,37 @@ export function PromptModal() {
           )}
 
           {/* Top-Right Toggle Switch */}
-          <div className="absolute top-4 right-4 z-10 flex items-center bg-black/70 backdrop-blur-md border border-white/[0.1] rounded-full p-1 text-[11px] font-mono">
-            <button
-              onClick={() => setViewMode('video')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-                viewMode === 'video'
-                  ? 'bg-white text-black font-semibold'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Play className="w-3 h-3" />
-              <span>Video Preview</span>
-            </button>
-            <button
-              onClick={() => setViewMode('interactive')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-                viewMode === 'interactive'
-                  ? 'bg-white text-black font-semibold'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Zap className="w-3 h-3 text-amber-400" />
-              <span>Full Spec</span>
-            </button>
-          </div>
+          {item.videoUrl ? (
+            <div className="absolute top-4 right-4 z-10 flex items-center bg-black/70 backdrop-blur-md border border-white/[0.1] rounded-full p-1 text-[11px] font-mono">
+              <button
+                onClick={() => setViewMode('video')}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
+                  viewMode === 'video'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Play className="w-3 h-3" />
+                <span>Video Preview</span>
+              </button>
+              <button
+                onClick={() => setViewMode('interactive')}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
+                  viewMode === 'interactive'
+                    ? 'bg-white text-black font-semibold'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Zap className="w-3 h-3 text-amber-400" />
+                <span>Full Spec</span>
+              </button>
+            </div>
+          ) : (
+            <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 bg-black/75 backdrop-blur-md border border-white/[0.1] rounded-full text-[11px] font-mono text-zinc-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <span>UI Design Preview</span>
+            </div>
+          )}
 
           <div className="absolute bottom-4 left-4 z-10 px-3 py-1 rounded-xl bg-black/75 backdrop-blur-md border border-white/[0.1] text-xs font-mono text-zinc-300">
             {item.category} · Axes Lab Verified

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 92
 tier: "free"
 chars: 4429
-preview_video: "https://meez.design/web/prompt-previews/mindloop-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/mindloop-landing-poster-c.jpg"
+preview_video: "/media/videos/mindloop-landing.mp4"
+preview_poster: "/media/posters/mindloop-landing.jpg"
 ---
 
 # Mindloop Landing (Landing Page)

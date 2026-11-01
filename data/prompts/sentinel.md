@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 192
 tier: "free"
 chars: 4351
-preview_video: "https://meez.design/web/prompt-previews/sentinel-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/sentinel-poster.webp"
+preview_video: "/media/videos/sentinel.mp4"
+preview_poster: "/media/posters/sentinel.webp"
 ---
 
 # Sentinel (SaaS)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 142
 tier: "free"
 chars: 4345
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/b4473b0219e5f152.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/arceage-stats-poster.jpg"
+preview_video: "/media/videos/arceage-stats.mp4"
+preview_poster: "/media/posters/arceage-stats.jpg"
 ---
 
 # Arceage Stats (Stats)

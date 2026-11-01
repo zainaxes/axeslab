@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 80
 tier: "free"
 chars: 4368
-preview_video: "https://meez.design/web/prompt-previews/velorah-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/velorah-hero-poster-c.jpg"
+preview_video: "/media/videos/velorah-hero.mp4"
+preview_poster: "/media/posters/velorah-hero.jpg"
 ---
 
 # Velorah (Agency)

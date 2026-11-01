@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 38
 tier: "free"
 chars: 4454
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/70abb645ef88220b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/e5e7fa744bb67f96.jpg"
+preview_video: "/media/videos/21-gooey-text-morphing.mp4"
+preview_poster: "/media/posters/21-gooey-text-morphing.jpg"
 ---
 
 # Gooey Text Morphing (Text Effect)

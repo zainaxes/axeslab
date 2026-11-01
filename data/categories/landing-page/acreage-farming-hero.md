@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 98
 tier: "free"
 chars: 4352
-preview_video: "https://meez.design/web/prompt-previews/acreage-farming-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/acreage-farming-hero-poster-c.jpg"
+preview_video: "/media/videos/acreage-farming-hero.mp4"
+preview_poster: "/media/posters/acreage-farming-hero.jpg"
 ---
 
 # Acreage Farming (Landing Page)

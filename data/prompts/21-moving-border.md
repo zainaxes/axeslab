@@ -8,8 +8,8 @@ collection: "sections"
 likes: 29
 tier: "free"
 chars: 4310
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/385a2eded54b89ac.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/26aba266651c7c85.jpg"
+preview_video: "/media/videos/21-moving-border.mp4"
+preview_poster: "/media/posters/21-moving-border.jpg"
 ---
 
 # Moving Border (Component)

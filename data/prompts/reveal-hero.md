@@ -8,8 +8,8 @@ collection: "sections"
 likes: 194
 tier: "free"
 chars: 4385
-preview_video: "https://meez.design/web/media/preview_videos/reveal-hero.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/reveal-hero-poster.webp"
+preview_video: "/media/videos/reveal-hero.mp4"
+preview_poster: "/media/posters/reveal-hero.webp"
 ---
 
 # Reveal Hero (Hero Section)

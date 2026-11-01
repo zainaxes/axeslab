@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 79
 tier: "free"
 chars: 4439
-preview_video: "https://meez.design/web/media/preview_videos/mythic-naturecore.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/mythic-naturecore-poster.webp"
+preview_video: "/media/videos/mythic-naturecore.mp4"
+preview_poster: "/media/posters/mythic-naturecore.webp"
 ---
 
 # Mythic Naturecore (Landing Page)

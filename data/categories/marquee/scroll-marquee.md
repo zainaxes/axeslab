@@ -8,8 +8,8 @@ collection: "sections"
 likes: 90
 tier: "free"
 chars: 4412
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/76ccd48323e32b67.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/scroll-marquee-poster-c.jpg"
+preview_video: "/media/videos/scroll-marquee.mp4"
+preview_poster: "/media/posters/scroll-marquee.jpg"
 ---
 
 # Scroll Marquee (Marquee)

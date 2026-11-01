@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 142
 tier: "free"
 chars: 4377
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1b4126cd47116afb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/398a36f9d0ad84d8-c.jpg"
+preview_video: "/media/videos/21-container-scroll-animation.mp4"
+preview_poster: "/media/posters/21-container-scroll-animation.jpg"
 ---
 
 # Container Scroll Animation (Scroll)

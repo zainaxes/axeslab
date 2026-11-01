@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 106
 tier: "free"
 chars: 4429
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/a1f3cebaaa3f4641.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/flowmate-carousal-poster.jpg"
+preview_video: "/media/videos/flowmate-carousal.mp4"
+preview_poster: "/media/posters/flowmate-carousal.jpg"
 ---
 
 # FlowMate Carousal (Carousal)

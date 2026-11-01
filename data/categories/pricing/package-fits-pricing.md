@@ -8,8 +8,8 @@ collection: "sections"
 likes: 190
 tier: "free"
 chars: 4417
-preview_video: "https://meez.design/web/prompt-previews/package-fits-pricing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/package-fits-pricing-poster.png"
+preview_video: "/media/videos/package-fits-pricing.mp4"
+preview_poster: "/media/posters/package-fits-pricing.png"
 ---
 
 # What Package Fits You (Pricing)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 182
 tier: "free"
 chars: 4294
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/apex-pulse-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/apex-pulse.webp"
 ---
 
 # Apex Pulse (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 180
 tier: "free"
 chars: 4334
-preview_video: "https://meez.design/web/prompt-previews/ai-interface-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-interface-poster.jpg"
+preview_video: "/media/videos/ai-interface.mp4"
+preview_poster: "/media/posters/ai-interface.jpg"
 ---
 
 # AI Interface (Landing Page)

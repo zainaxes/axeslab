@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 202
 tier: "free"
 chars: 4400
-preview_video: "https://meez.design/web/prompt-previews/nexora-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexora-hero-poster-c.jpg"
+preview_video: "/media/videos/nexora-hero.mp4"
+preview_poster: "/media/posters/nexora-hero.jpg"
 ---
 
 # Nexora Automation (SaaS)

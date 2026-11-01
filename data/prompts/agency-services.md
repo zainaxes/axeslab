@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 102
 tier: "free"
 chars: 4424
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/81ae93400bc46dec.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/agency-services-poster.jpg"
+preview_video: "/media/videos/agency-services.mp4"
+preview_poster: "/media/posters/agency-services.jpg"
 ---
 
 # Agency Services (Services)

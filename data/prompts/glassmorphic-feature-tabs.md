@@ -8,8 +8,8 @@ collection: "sections"
 likes: 60
 tier: "free"
 chars: 4478
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/be09546796b666c3.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/glassmorphic-feature-tabs-poster.jpg"
+preview_video: "/media/videos/glassmorphic-feature-tabs.mp4"
+preview_poster: "/media/posters/glassmorphic-feature-tabs.jpg"
 ---
 
 # Glassmorphic Feature Tabs (Tabs)

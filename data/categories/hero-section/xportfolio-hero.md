@@ -8,8 +8,8 @@ collection: "sections"
 likes: 111
 tier: "free"
 chars: 4421
-preview_video: "https://meez.design/web/prompt-previews/xportfolio-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/xportfolio-hero-poster-c.jpg"
+preview_video: "/media/videos/xportfolio-hero.mp4"
+preview_poster: "/media/posters/xportfolio-hero.jpg"
 ---
 
 # xPortfolio Hero (Hero Section)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 98
 tier: "free"
 chars: 4435
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c02e50d48f6fe8dc.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/interior-features-poster-c.jpg"
+preview_video: "/media/videos/interior-features.mp4"
+preview_poster: "/media/posters/interior-features.jpg"
 ---
 
 # Interior Features (Features)

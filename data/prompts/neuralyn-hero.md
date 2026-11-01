@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 95
 tier: "free"
 chars: 4370
-preview_video: "https://meez.design/web/prompt-previews/neuralyn-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/neuralyn-hero-poster-c.jpg"
+preview_video: "/media/videos/neuralyn-hero.mp4"
+preview_poster: "/media/posters/neuralyn-hero.jpg"
 ---
 
 # Neuralyn (SaaS)

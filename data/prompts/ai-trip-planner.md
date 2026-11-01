@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 177
 tier: "free"
 chars: 13798
-preview_video: "https://meez.design/web/prompt-previews/ai-trip-planner-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-trip-planner-poster.webp"
+preview_video: "/media/videos/ai-trip-planner.mp4"
+preview_poster: "/media/posters/ai-trip-planner.webp"
 ---
 
 # AI Trip Planner (SaaS)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 77
 tier: "free"
 chars: 4421
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/bf8ba7277b98b290.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/beauty-products-poster.jpg"
+preview_video: "/media/videos/beauty-products.mp4"
+preview_poster: "/media/posters/beauty-products.jpg"
 ---
 
 # Beauty Products (Products)

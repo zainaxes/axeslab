@@ -8,8 +8,8 @@ collection: "sections"
 likes: 173
 tier: "free"
 chars: 4376
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7c19a0cda659fe74.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nimbus-pricing-poster.jpg"
+preview_video: "/media/videos/nimbus-pricing.mp4"
+preview_poster: "/media/posters/nimbus-pricing.jpg"
 ---
 
 # NimBus Pricing (Pricing)

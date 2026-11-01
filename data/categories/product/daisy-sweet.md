@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 103
 tier: "free"
 chars: 4390
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/873fe1a9171e8bdb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/daisy-sweet-poster.jpg"
+preview_video: "/media/videos/daisy-sweet.mp4"
+preview_poster: "/media/posters/daisy-sweet.jpg"
 ---
 
 # Daisy Sweet (Product)

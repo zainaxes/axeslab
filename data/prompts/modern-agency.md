@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 83
 tier: "free"
 chars: 4388
-preview_video: "https://meez.design/web/media/preview_videos/modern-agency.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/modern-agency-poster-c.jpg"
+preview_video: "/media/videos/modern-agency.mp4"
+preview_poster: "/media/posters/modern-agency.jpg"
 ---
 
 # Modern Agency (Agency)

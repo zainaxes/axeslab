@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 42
 tier: "free"
 chars: 4347
-preview_video: "https://meez.design/web/media/preview_videos/auramail.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/auramail-poster.webp"
+preview_video: "/media/videos/auramail.mp4"
+preview_poster: "/media/posters/auramail.webp"
 ---
 
 # AuraMail (SaaS)

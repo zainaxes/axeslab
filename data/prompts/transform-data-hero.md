@@ -8,8 +8,8 @@ collection: "sections"
 likes: 24
 tier: "free"
 chars: 4422
-preview_video: "https://meez.design/web/prompt-previews/transform-data-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/transform-data-hero-poster-c.jpg"
+preview_video: "/media/videos/transform-data-hero.mp4"
+preview_poster: "/media/posters/transform-data-hero.jpg"
 ---
 
 # Transform Data (Hero Section)

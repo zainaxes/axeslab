@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 142
 tier: "free"
 chars: 4385
-preview_video: "https://meez.design/web/prompt-previews/imperial-vpn-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/imperial-vpn-poster.webp"
+preview_video: "/media/videos/imperial-vpn.mp4"
+preview_poster: "/media/posters/imperial-vpn.webp"
 ---
 
 # Imperial VPN (SaaS)

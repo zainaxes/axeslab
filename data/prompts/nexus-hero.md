@@ -8,8 +8,8 @@ collection: "sections"
 likes: 152
 tier: "free"
 chars: 4418
-preview_video: "https://meez.design/web/prompt-previews/nexus-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexus-hero-poster-c.jpg"
+preview_video: "/media/videos/nexus-hero.mp4"
+preview_poster: "/media/posters/nexus-hero.jpg"
 ---
 
 # Nexus IT Solutions (Hero Section)

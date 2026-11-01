@@ -8,8 +8,8 @@ collection: "sections"
 likes: 110
 tier: "free"
 chars: 4351
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/9d2b58f4d76dd1d5.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-fullscreen-calendar.jpg"
 ---
 
 # Fullscreen Calendar (Component)

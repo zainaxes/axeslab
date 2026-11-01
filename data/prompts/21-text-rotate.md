@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 47
 tier: "free"
 chars: 4191
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/e6edcc3f2ff7f8a8.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-text-rotate.jpg"
 ---
 
 # Text Rotate (Text Effect)

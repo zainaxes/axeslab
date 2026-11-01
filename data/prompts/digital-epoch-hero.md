@@ -8,8 +8,8 @@ collection: "sections"
 likes: 35
 tier: "free"
 chars: 4425
-preview_video: "https://meez.design/web/prompt-previews/digital-epoch-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/digital-epoch-hero-poster-c.jpg"
+preview_video: "/media/videos/digital-epoch-hero.mp4"
+preview_poster: "/media/posters/digital-epoch-hero.jpg"
 ---
 
 # Digital Epoch (Hero Section)

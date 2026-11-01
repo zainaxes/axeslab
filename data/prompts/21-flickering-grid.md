@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 95
 tier: "free"
 chars: 4329
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/4c0174c038aea25a-c.jpg"
+preview_video: "/media/videos/21-flickering-grid.mp4"
+preview_poster: "/media/posters/21-flickering-grid.jpg"
 ---
 
 # Flickering Grid (Background)

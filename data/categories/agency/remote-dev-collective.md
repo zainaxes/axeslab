@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 35
 tier: "free"
 chars: 4456
-preview_video: "https://meez.design/web/prompt-previews/remote-dev-collective-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/remote-dev-collective-poster.webp"
+preview_video: "/media/videos/remote-dev-collective.mp4"
+preview_poster: "/media/posters/remote-dev-collective.webp"
 ---
 
 # Remote Dev Collective (Agency)

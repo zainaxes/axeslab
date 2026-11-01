@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 38
 tier: "free"
 chars: 4439
-preview_video: "https://meez.design/web/media/preview_videos/email-landing-page.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/email-landing-page-poster.webp"
+preview_video: "/media/videos/email-landing-page.mp4"
+preview_poster: "/media/posters/email-landing-page.webp"
 ---
 
 # Email Landing Page (Landing Page)

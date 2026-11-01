@@ -8,8 +8,8 @@ collection: "sections"
 likes: 196
 tier: "free"
 chars: 4406
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/01acc891d08923ba.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cognitra-offer-poster.jpg"
+preview_video: "/media/videos/cognitra-offer.mp4"
+preview_poster: "/media/posters/cognitra-offer.jpg"
 ---
 
 # Cognitra Offer (Cards)

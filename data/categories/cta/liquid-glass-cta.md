@@ -8,8 +8,8 @@ collection: "sections"
 likes: 186
 tier: "free"
 chars: 4415
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/8ac4dd84838c5e50.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/liquid-glass-cta-poster.jpg"
+preview_video: "/media/videos/liquid-glass-cta.mp4"
+preview_poster: "/media/posters/liquid-glass-cta.jpg"
 ---
 
 # Liquid Glass CTA (CTA)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 102
 tier: "free"
 chars: 4366
-preview_video: "https://meez.design/web/prompt-previews/cosmos-interface-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cosmos-interface-poster.jpg"
+preview_video: "/media/videos/cosmos-interface.mp4"
+preview_poster: "/media/posters/cosmos-interface.jpg"
 ---
 
 # Cosmos Interface (Landing Page)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 174
 tier: "free"
 chars: 4396
-preview_video: "https://meez.design/web/prompt-previews/guardnet-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/guardnet-landing-poster-c.jpg"
+preview_video: "/media/videos/guardnet-landing.mp4"
+preview_poster: "/media/posters/guardnet-landing.jpg"
 ---
 
 # Guardnet (Landing Page)

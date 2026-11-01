@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 144
 tier: "free"
 chars: 4468
-preview_video: "https://meez.design/web/prompt-previews/ecommerce-website-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ecommerce-website-landing-poster-c.jpg"
+preview_video: "/media/videos/ecommerce-website-landing.mp4"
+preview_poster: "/media/posters/ecommerce-website-landing.jpg"
 ---
 
 # E-commerce Website (Landing Page)

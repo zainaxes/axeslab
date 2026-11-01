@@ -8,8 +8,8 @@ collection: "sections"
 likes: 115
 tier: "free"
 chars: 4451
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c95dcfc198a60edf.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/stark-minimal-footer-poster.jpg"
+preview_video: "/media/videos/stark-minimal-footer.mp4"
+preview_poster: "/media/posters/stark-minimal-footer.jpg"
 ---
 
 # Stark Minimal Footer (Footer)

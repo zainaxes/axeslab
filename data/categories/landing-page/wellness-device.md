@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 42
 tier: "free"
 chars: 6695
-preview_video: "https://meez.design/web/prompt-previews/wellness-device-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wellness-device-poster.webp"
+preview_video: "/media/videos/wellness-device.mp4"
+preview_poster: "/media/posters/wellness-device.webp"
 ---
 
 # Wellness Device (Landing Page)

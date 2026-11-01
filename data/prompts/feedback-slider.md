@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 73
 tier: "free"
 chars: 4408
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/32cc4aca9dabc6de.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/feedback-slider-poster.jpg"
+preview_video: "/media/videos/feedback-slider.mp4"
+preview_poster: "/media/posters/feedback-slider.jpg"
 ---
 
 # Feedback Slider (Slider)

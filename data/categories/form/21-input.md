@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 56
 tier: "free"
 chars: 4129
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/f28451f5816ff8a3.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-input.jpg"
 ---
 
 # Input (Form)

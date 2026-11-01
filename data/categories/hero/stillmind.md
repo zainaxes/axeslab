@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 138
 tier: "free"
 chars: 5730
-preview_video: "https://meez.design/web/prompt-previews/stillmind-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/stillmind-poster.jpg"
+preview_video: "/media/videos/stillmind.mp4"
+preview_poster: "/media/posters/stillmind.jpg"
 ---
 
 # Stillmind (Hero)

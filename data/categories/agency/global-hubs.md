@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 136
 tier: "free"
 chars: 3778
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/685b827bb6e32ba9-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/global-hubs.jpg"
 ---
 
 # Global Hubs (Agency)

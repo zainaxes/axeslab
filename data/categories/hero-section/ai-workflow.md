@@ -8,8 +8,8 @@ collection: "sections"
 likes: 48
 tier: "free"
 chars: 4408
-preview_video: "https://meez.design/web/media/preview_videos/ai-workflow.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-workflow-poster.webp"
+preview_video: "/media/videos/ai-workflow.mp4"
+preview_poster: "/media/posters/ai-workflow.webp"
 ---
 
 # AI Workflow Hero (Hero Section)

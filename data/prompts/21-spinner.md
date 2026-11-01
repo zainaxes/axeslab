@@ -8,8 +8,8 @@ collection: "sections"
 likes: 169
 tier: "free"
 chars: 4199
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/44aa7ca464eb9558.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-spinner.jpg"
 ---
 
 # Spinner (Component)

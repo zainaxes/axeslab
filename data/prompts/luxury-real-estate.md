@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 193
 tier: "free"
 chars: 4446
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/5b9f66ee04bd8356.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/luxury-real-estate-poster.jpg"
+preview_video: "/media/videos/luxury-real-estate.mp4"
+preview_poster: "/media/posters/luxury-real-estate.jpg"
 ---
 
 # Luxury Real Estate (Landing Page)

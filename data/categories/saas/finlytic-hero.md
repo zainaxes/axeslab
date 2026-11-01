@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 71
 tier: "free"
 chars: 4405
-preview_video: "https://meez.design/web/prompt-previews/finlytic-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/finlytic-hero-poster-c.jpg"
+preview_video: "/media/videos/finlytic-hero.mp4"
+preview_poster: "/media/posters/finlytic-hero.jpg"
 ---
 
 # Finlytic AI Agent (SaaS)

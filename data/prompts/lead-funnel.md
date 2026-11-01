@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 149
 tier: "free"
 chars: 4379
-preview_video: "https://meez.design/web/prompt-previews/lead-funnel-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/lead-funnel-poster.jpg"
+preview_video: "/media/videos/lead-funnel.mp4"
+preview_poster: "/media/posters/lead-funnel.jpg"
 ---
 
 # Lead Funnel (Hero)

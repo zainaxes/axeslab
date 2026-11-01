@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 152
 tier: "free"
 chars: 4397
-preview_video: "https://meez.design/web/media/preview_videos/audio-showcase.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/audio-showcase-poster.webp"
+preview_video: "/media/videos/audio-showcase.mp4"
+preview_poster: "/media/posters/audio-showcase.webp"
 ---
 
 # Audio Showcase (Hero)

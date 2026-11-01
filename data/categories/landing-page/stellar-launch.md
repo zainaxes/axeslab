@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 117
 tier: "free"
 chars: 4404
-preview_video: "https://meez.design/web/media/preview_videos/stellar-launch.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/stellar-launch-poster.webp"
+preview_video: "/media/videos/stellar-launch.mp4"
+preview_poster: "/media/posters/stellar-launch.webp"
 ---
 
 # Stellar Launch (Landing Page)

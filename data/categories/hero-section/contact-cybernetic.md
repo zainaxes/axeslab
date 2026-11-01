@@ -8,8 +8,8 @@ collection: "sections"
 likes: 135
 tier: "free"
 chars: 4401
-preview_video: "https://meez.design/web/media/preview_videos/contact-cybernetic.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/contact-cybernetic-poster.webp"
+preview_video: "/media/videos/contact-cybernetic.mp4"
+preview_poster: "/media/posters/contact-cybernetic.webp"
 ---
 
 # Contact Cybernetic (Hero Section)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 46
 tier: "free"
 chars: 4354
-preview_video: "https://meez.design/web/media/preview_videos/shop.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/shop-poster.webp"
+preview_video: "/media/videos/shop.mp4"
+preview_poster: "/media/posters/shop.webp"
 ---
 
 # Daisy Shop (Ecommerce)

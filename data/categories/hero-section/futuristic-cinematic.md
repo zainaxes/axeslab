@@ -8,8 +8,8 @@ collection: "sections"
 likes: 194
 tier: "free"
 chars: 4459
-preview_video: "https://meez.design/web/media/preview_videos/futuristic-cinematic.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/futuristic-cinematic-poster.webp"
+preview_video: "/media/videos/futuristic-cinematic.mp4"
+preview_poster: "/media/posters/futuristic-cinematic.webp"
 ---
 
 # Futuristic Cinematic (Hero Section)

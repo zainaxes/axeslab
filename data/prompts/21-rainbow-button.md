@@ -8,8 +8,8 @@ collection: "sections"
 likes: 121
 tier: "free"
 chars: 4287
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/c34f4591da47bcaf.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/d18129f9c157ce9a.jpg"
+preview_video: "/media/videos/21-rainbow-button.mp4"
+preview_poster: "/media/posters/21-rainbow-button.jpg"
 ---
 
 # Rainbow Button (Button)

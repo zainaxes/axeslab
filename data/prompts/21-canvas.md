@@ -8,8 +8,8 @@ collection: "sections"
 likes: 62
 tier: "free"
 chars: 4247
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/01a39ba3ffedda2f.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/4d1b9aed2a1c34fb-c.jpg"
+preview_video: "/media/videos/21-canvas.mp4"
+preview_poster: "/media/posters/21-canvas.jpg"
 ---
 
 # Canvas (Component)

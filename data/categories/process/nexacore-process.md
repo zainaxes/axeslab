@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 131
 tier: "free"
 chars: 4424
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/ee4d2dff45c7cec8.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nexacore-process-poster.jpg"
+preview_video: "/media/videos/nexacore-process.mp4"
+preview_poster: "/media/posters/nexacore-process.jpg"
 ---
 
 # NexaCore Process (Process)

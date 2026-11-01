@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 184
 tier: "free"
 chars: 4370
-preview_video: "https://meez.design/web/prompt-previews/vitara-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/vitara-hero-poster-c.jpg"
+preview_video: "/media/videos/vitara-hero.mp4"
+preview_poster: "/media/posters/vitara-hero.jpg"
 ---
 
 # Vitara (Landing Page)

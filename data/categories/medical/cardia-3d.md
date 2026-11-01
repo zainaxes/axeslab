@@ -8,8 +8,8 @@ collection: "3d-websites"
 likes: 66
 tier: "free"
 chars: 3773
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2ea8993c4cac1424.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/a0068929de407c71.jpg"
+preview_video: ""
+preview_poster: "/media/posters/cardia-3d.jpg"
 ---
 
 # Cardia 3D (Medical)

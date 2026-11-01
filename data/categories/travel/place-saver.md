@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 41
 tier: "free"
 chars: 4673
-preview_video: "https://heydesign.ai/api/design-prompt-media/v1/effects/place-saver.mp4"
-preview_poster: "https://heydesign.ai/api/design-prompt-media/v1/effects/place-saver.mp4"
+preview_video: "/media/videos/place-saver.mp4"
+preview_poster: "/media/posters/place-saver.jpg"
 ---
 
 # Place Saver (Travel)

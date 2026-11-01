@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 70
 tier: "free"
 chars: 6779
-preview_video: "https://meez.design/web/prompt-previews/personal-showcase-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/personal-showcase-poster.webp"
+preview_video: "/media/videos/personal-showcase.mp4"
+preview_poster: "/media/posters/personal-showcase.webp"
 ---
 
 # Personal Showcase (Portfolio)

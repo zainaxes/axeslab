@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 99
 tier: "free"
 chars: 4220
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/c91ec50768294946-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-glowing-effect.jpg"
 ---
 
 # Glowing Effect (Background)

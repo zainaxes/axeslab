@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 156
 tier: "free"
 chars: 24470
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wellness-balance-preview-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/wellness-balance.jpg"
 ---
 
 # Wellness Balance (Hero)

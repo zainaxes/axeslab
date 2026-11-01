@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 125
 tier: "free"
 chars: 4445
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/31315244238c9a91.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/433b2dd52b0da057.jpg"
+preview_video: "/media/videos/21-squares-background.mp4"
+preview_poster: "/media/posters/21-squares-background.jpg"
 ---
 
 # Squares Background (Background)

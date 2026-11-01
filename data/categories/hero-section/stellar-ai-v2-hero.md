@@ -8,8 +8,8 @@ collection: "sections"
 likes: 86
 tier: "free"
 chars: 4394
-preview_video: "https://meez.design/web/prompt-previews/stellar-ai-v2-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/stellar-ai-v2-hero-poster-c.jpg"
+preview_video: "/media/videos/stellar-ai-v2-hero.mp4"
+preview_poster: "/media/posters/stellar-ai-v2-hero.jpg"
 ---
 
 # Sync AI (Hero Section)

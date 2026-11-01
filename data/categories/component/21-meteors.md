@@ -8,8 +8,8 @@ collection: "sections"
 likes: 63
 tier: "free"
 chars: 4282
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/62f0911b361691fd.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/bb4493ccefa38b67.jpg"
+preview_video: "/media/videos/21-meteors.mp4"
+preview_poster: "/media/posters/21-meteors.jpg"
 ---
 
 # Meteors (Component)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 121
 tier: "free"
 chars: 4440
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/05404e59e79620fb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/3868948bc41064e2.jpg"
+preview_video: "/media/videos/21-animated-tooltip.mp4"
+preview_poster: "/media/posters/21-animated-tooltip.jpg"
 ---
 
 # Animated Tooltip (Component)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 79
 tier: "free"
 chars: 4409
-preview_video: "https://meez.design/web/prompt-previews/clubx-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/clubx-hero-poster-c.jpg"
+preview_video: "/media/videos/clubx-hero.mp4"
+preview_poster: "/media/posters/clubx-hero.jpg"
 ---
 
 # ClubX Investors (Landing Page)

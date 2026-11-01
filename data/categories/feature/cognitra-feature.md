@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 102
 tier: "free"
 chars: 4426
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/32edac92d869b63d.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cognitra-feature-poster.jpg"
+preview_video: "/media/videos/cognitra-feature.mp4"
+preview_poster: "/media/posters/cognitra-feature.jpg"
 ---
 
 # Cognitra Feature (Feature)

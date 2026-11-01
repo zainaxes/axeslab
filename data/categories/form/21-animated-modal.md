@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 109
 tier: "free"
 chars: 4299
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/0b93e994343c1445.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/f90d9abee088dc47-c.jpg"
+preview_video: "/media/videos/21-animated-modal.mp4"
+preview_poster: "/media/posters/21-animated-modal.jpg"
 ---
 
 # Animated Modal (Form)

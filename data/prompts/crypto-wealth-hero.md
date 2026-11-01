@@ -8,8 +8,8 @@ collection: "sections"
 likes: 66
 tier: "free"
 chars: 4427
-preview_video: "https://meez.design/web/prompt-previews/crypto-wealth-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/crypto-wealth-hero-poster-c.jpg"
+preview_video: "/media/videos/crypto-wealth-hero.mp4"
+preview_poster: "/media/posters/crypto-wealth-hero.jpg"
 ---
 
 # Crypto Wealth (Hero Section)

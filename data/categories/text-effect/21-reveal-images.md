@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 58
 tier: "free"
 chars: 4285
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/1bc2a52878a407ac.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/0b9b42c49ab8748f.jpg"
+preview_video: "/media/videos/21-reveal-images.mp4"
+preview_poster: "/media/posters/21-reveal-images.jpg"
 ---
 
 # Reveal images (Text Effect)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 63
 tier: "free"
 chars: 4443
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/d687178088c686e9.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/8593c9e7d40385d3.jpg"
+preview_video: "/media/videos/21-chat-message-list.mp4"
+preview_poster: "/media/posters/21-chat-message-list.jpg"
 ---
 
 # Chat Message List (Component)

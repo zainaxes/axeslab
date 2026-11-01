@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 118
 tier: "free"
 chars: 4401
-preview_video: "https://meez.design/web/prompt-previews/ai-meeting-notes-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/ai-meeting-notes-poster.jpg"
+preview_video: "/media/videos/ai-meeting-notes.mp4"
+preview_poster: "/media/posters/ai-meeting-notes.jpg"
 ---
 
 # AI Meeting Notes (SaaS)

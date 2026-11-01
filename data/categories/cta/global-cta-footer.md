@@ -8,8 +8,8 @@ collection: "sections"
 likes: 146
 tier: "free"
 chars: 4414
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/72386e40ad227193.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/global-cta-footer-poster.jpg"
+preview_video: "/media/videos/global-cta-footer.mp4"
+preview_poster: "/media/posters/global-cta-footer.jpg"
 ---
 
 # Global CTA Footer (CTA)

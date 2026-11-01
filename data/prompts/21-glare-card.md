@@ -8,8 +8,8 @@ collection: "sections"
 likes: 40
 tier: "free"
 chars: 4279
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/33c20b823ac9b951.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/872c274805ea3dd6-c.jpg"
+preview_video: "/media/videos/21-glare-card.mp4"
+preview_poster: "/media/posters/21-glare-card.jpg"
 ---
 
 # Glare Card (Card)

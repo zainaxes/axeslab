@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 103
 tier: "free"
 chars: 4310
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/impact-ventures-poster.webp"
+preview_video: ""
+preview_poster: "/media/posters/impact-ventures.webp"
 ---
 
 # Impact Ventures (Hero)

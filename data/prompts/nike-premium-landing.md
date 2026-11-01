@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 39
 tier: "free"
 chars: 4463
-preview_video: "https://meez.design/web/prompt-previews/nike-premium-landing-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nike-premium-landing-poster-c.jpg"
+preview_video: "/media/videos/nike-premium-landing.mp4"
+preview_poster: "/media/posters/nike-premium-landing.jpg"
 ---
 
 # Nike Premium Landing (Landing Page)

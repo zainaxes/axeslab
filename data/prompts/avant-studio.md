@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 119
 tier: "free"
 chars: 4384
-preview_video: "https://meez.design/web/prompt-previews/avant-studio-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/avant-studio-poster.webp"
+preview_video: "/media/videos/avant-studio.mp4"
+preview_poster: "/media/posters/avant-studio.webp"
 ---
 
 # Avant Studio (Agency)

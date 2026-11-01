@@ -8,8 +8,8 @@ collection: "sections"
 likes: 133
 tier: "free"
 chars: 4406
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7509334783ba9450.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/animated-cards-poster.jpg"
+preview_video: "/media/videos/animated-cards.mp4"
+preview_poster: "/media/posters/animated-cards.jpg"
 ---
 
 # Animated Cards (Component)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 193
 tier: "free"
 chars: 4477
-preview_video: "https://meez.design/web/prompt-previews/spatial-mapping-platform-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/spatial-mapping-platform-poster.webp"
+preview_video: "/media/videos/spatial-mapping-platform.mp4"
+preview_poster: "/media/posters/spatial-mapping-platform.webp"
 ---
 
 # Spatial Mapping Platform (SaaS)

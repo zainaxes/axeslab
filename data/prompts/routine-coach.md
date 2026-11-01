@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 143
 tier: "free"
 chars: 4407
-preview_video: "https://meez.design/web/prompt-previews/routine-coach-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/routine-coach-poster.webp"
+preview_video: "/media/videos/routine-coach.mp4"
+preview_poster: "/media/posters/routine-coach.webp"
 ---
 
 # Routine Coach (Landing Page)

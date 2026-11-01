@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 173
 tier: "free"
 chars: 4398
-preview_video: "https://meez.design/web/prompt-previews/cybersecurity-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cybersecurity-poster.webp"
+preview_video: "/media/videos/cybersecurity.mp4"
+preview_poster: "/media/posters/cybersecurity.webp"
 ---
 
 # Cybersecurity (SaaS)

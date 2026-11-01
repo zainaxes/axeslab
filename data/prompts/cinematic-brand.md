@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 31
 tier: "free"
 chars: 4399
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/8b48188e491d687d.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cinematic-brand-poster-c.jpg"
+preview_video: "/media/videos/cinematic-brand.mp4"
+preview_poster: "/media/posters/cinematic-brand.jpg"
 ---
 
 # Cinematic Brand (Hero)

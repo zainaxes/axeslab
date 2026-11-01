@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 55
 tier: "free"
 chars: 4310
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/d56abd52df425283.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/e7d548cece6521ee.jpg"
+preview_video: "/media/videos/21-text-shimmer.mp4"
+preview_poster: "/media/posters/21-text-shimmer.jpg"
 ---
 
 # Text Shimmer (Text Effect)

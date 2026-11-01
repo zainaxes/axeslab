@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 196
 tier: "free"
 chars: 4363
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/55a84efa482f0a31.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/6a96fc71cc0dff12.jpg"
+preview_video: "/media/videos/21-hero.mp4"
+preview_poster: "/media/posters/21-hero.jpg"
 ---
 
 # Hero (Hero)

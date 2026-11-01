@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 196
 tier: "free"
 chars: 4421
-preview_video: "https://meez.design/web/prompt-previews/augmented-sight-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/augmented-sight-poster.webp"
+preview_video: "/media/videos/augmented-sight.mp4"
+preview_poster: "/media/posters/augmented-sight.webp"
 ---
 
 # Augmented Sight (Landing Page)

@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 152
 tier: "free"
 chars: 4318
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e06f52762d89609b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/e1aa9aebc481d1cd-c.jpg"
+preview_video: "/media/videos/21-background-boxes.mp4"
+preview_poster: "/media/posters/21-background-boxes.jpg"
 ---
 
 # Background Boxes (Background)

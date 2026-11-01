@@ -8,8 +8,8 @@ collection: "apps"
 likes: 81
 tier: "free"
 chars: 11399
-preview_video: "https://meez.design/web/prompt-previews/forecast-center-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/forecast-center-poster.webp"
+preview_video: "/media/videos/forecast-center.mp4"
+preview_poster: "/media/posters/forecast-center.webp"
 ---
 
 # Forecast Center (Mobile App)

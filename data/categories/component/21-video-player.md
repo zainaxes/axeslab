@@ -8,8 +8,8 @@ collection: "sections"
 likes: 65
 tier: "free"
 chars: 4200
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/1abb6f2e75519ac7-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-video-player.jpg"
 ---
 
 # Video Player (Component)

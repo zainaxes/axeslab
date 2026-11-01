@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 100
 tier: "free"
 chars: 5004
-preview_video: "https://meez.design/web/prompt-previews/wellbeing-os-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/wellbeing-os-poster.jpg"
+preview_video: "/media/videos/wellbeing-os.mp4"
+preview_poster: "/media/posters/wellbeing-os.jpg"
 ---
 
 # Wellbeing OS (Hero)

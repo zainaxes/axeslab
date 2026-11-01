@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 191
 tier: "free"
 chars: 4423
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/2ea8993c4cac1424.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/a0068929de407c71.jpg"
+preview_video: "/media/videos/21-splite.mp4"
+preview_poster: "/media/posters/21-splite.jpg"
 ---
 
 # Spline Scene (Background)

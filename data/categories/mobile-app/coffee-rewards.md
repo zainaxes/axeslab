@@ -8,8 +8,8 @@ collection: "apps"
 likes: 141
 tier: "free"
 chars: 22606
-preview_video: "https://meez.design/web/prompt-previews/coffee-rewards-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/coffee-rewards-poster.jpg"
+preview_video: "/media/videos/coffee-rewards.mp4"
+preview_poster: "/media/posters/coffee-rewards.jpg"
 ---
 
 # Coffee Rewards (Mobile App)

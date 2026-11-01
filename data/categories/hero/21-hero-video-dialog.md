@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 163
 tier: "free"
 chars: 4190
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/7d9ebbbaf8e0e081.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/634a0b801c5bd864-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-hero-video-dialog.jpg"
 ---
 
 # Hero Video Dialog (Hero)

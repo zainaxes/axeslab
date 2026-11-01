@@ -8,8 +8,8 @@ collection: "sections"
 likes: 31
 tier: "free"
 chars: 4377
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/5ff85adb6036c16d.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nimbus-ops-poster.jpg"
+preview_video: "/media/videos/nimbus-ops.mp4"
+preview_poster: "/media/posters/nimbus-ops.jpg"
 ---
 
 # Nimbus Ops (CTA)

@@ -8,8 +8,8 @@ collection: "sections"
 likes: 115
 tier: "free"
 chars: 4385
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e0a074c1a59b8817.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/42b5aaabfb7280ce-c.jpg"
+preview_video: "/media/videos/21-feature-section-with-hover-effects.mp4"
+preview_poster: "/media/posters/21-feature-section-with-hover-effects.jpg"
 ---
 
 # Feature Section with hover effects (Component)

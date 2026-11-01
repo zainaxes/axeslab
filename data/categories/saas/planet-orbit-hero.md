@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 38
 tier: "free"
 chars: 4380
-preview_video: "https://meez.design/web/prompt-previews/planet-orbit-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/planet-orbit-hero-poster-c.jpg"
+preview_video: "/media/videos/planet-orbit-hero.mp4"
+preview_poster: "/media/posters/planet-orbit-hero.jpg"
 ---
 
 # Planet Orbit (SaaS)

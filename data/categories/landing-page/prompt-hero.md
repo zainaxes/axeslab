@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 47
 tier: "free"
 chars: 42478
-preview_video: "https://meez.design/web/prompt-previews/prompt-hero-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-hero-poster.jpg"
+preview_video: "/media/videos/prompt-hero.mp4"
+preview_poster: "/media/posters/prompt-hero.jpg"
 ---
 
 # PROMPT (Landing Page)

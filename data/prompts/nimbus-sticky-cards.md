@@ -8,8 +8,8 @@ collection: "sections"
 likes: 126
 tier: "free"
 chars: 4442
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/20851191c23066b4.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nimbus-sticky-cards-poster.jpg"
+preview_video: "/media/videos/nimbus-sticky-cards.mp4"
+preview_poster: "/media/posters/nimbus-sticky-cards.jpg"
 ---
 
 # Nimbus Sticky Cards (Cards)

@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 158
 tier: "free"
 chars: 4421
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e09a0acd27836c16.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/c66bc3744192d9ea-c.jpg"
+preview_video: "/media/videos/21-splash-cursor.mp4"
+preview_poster: "/media/posters/21-splash-cursor.jpg"
 ---
 
 # Splash Cursor (Cursor)

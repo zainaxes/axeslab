@@ -8,8 +8,8 @@ collection: "sections"
 likes: 32
 tier: "free"
 chars: 4376
-preview_video: "https://meez.design/web/prompt-previews/lumina-footer-preview.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/lumina-footer-poster-c.jpg"
+preview_video: "/media/videos/lumina-footer.mp4"
+preview_poster: "/media/posters/lumina-footer.jpg"
 ---
 
 # Lumina (Footer Section)

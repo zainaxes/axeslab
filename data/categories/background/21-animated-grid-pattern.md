@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 97
 tier: "free"
 chars: 4358
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/acebfe17840979cb.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/34cee1c34a7e2181.jpg"
+preview_video: "/media/videos/21-animated-grid-pattern.mp4"
+preview_poster: "/media/posters/21-animated-grid-pattern.jpg"
 ---
 
 # Animated Grid Pattern (Background)

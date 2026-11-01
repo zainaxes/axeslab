@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 32
 tier: "free"
 chars: 4339
-preview_video: "https://meez.design/web/media/preview_videos/cosmic.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/cosmic-poster.webp"
+preview_video: "/media/videos/cosmic.mp4"
+preview_poster: "/media/posters/cosmic.webp"
 ---
 
 # Cosmic (Hero)

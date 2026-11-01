@@ -8,8 +8,8 @@ collection: "prompts"
 likes: 114
 tier: "free"
 chars: 4488
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/10a6a69e2e32bcbd.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/eb884371e944c5f8-c.jpg"
+preview_video: "/media/videos/21-testimonials-with-marquee.mp4"
+preview_poster: "/media/posters/21-testimonials-with-marquee.jpg"
 ---
 
 # Testimonials with Marquee (Text Effect)

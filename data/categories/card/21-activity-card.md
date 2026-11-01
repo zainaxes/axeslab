@@ -8,8 +8,8 @@ collection: "sections"
 likes: 44
 tier: "free"
 chars: 4412
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/61fb0cbc0a4d8495.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/35fe16f7354833d3.jpg"
+preview_video: "/media/videos/21-activity-card.mp4"
+preview_poster: "/media/posters/21-activity-card.jpg"
 ---
 
 # Activity Card (Card)

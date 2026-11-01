@@ -8,8 +8,8 @@ collection: "sections"
 likes: 83
 tier: "free"
 chars: 4186
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/e4a7257d3dce3be7.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/38f5c0fe2e5de7f8-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-world-map.jpg"
 ---
 
 # World Map (Component)

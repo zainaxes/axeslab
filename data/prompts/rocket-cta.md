@@ -8,8 +8,8 @@ collection: "sections"
 likes: 151
 tier: "free"
 chars: 4377
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/3ba6e1684db9065e.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/rocket-cta-poster-c.jpg"
+preview_video: "/media/videos/rocket-cta.mp4"
+preview_poster: "/media/posters/rocket-cta.jpg"
 ---
 
 # Rocket CTA (CTA)

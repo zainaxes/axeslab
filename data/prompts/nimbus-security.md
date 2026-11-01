@@ -8,8 +8,8 @@ collection: "sections"
 likes: 37
 tier: "free"
 chars: 4383
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/53986700835b679f.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/nimbus-security-poster-c.jpg"
+preview_video: "/media/videos/nimbus-security.mp4"
+preview_poster: "/media/posters/nimbus-security.jpg"
 ---
 
 # Nimbus Security (Cards)

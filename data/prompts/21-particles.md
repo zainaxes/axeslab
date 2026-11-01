@@ -8,8 +8,8 @@ collection: "backgrounds"
 likes: 69
 tier: "free"
 chars: 4229
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/cee13c8739283f5b.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/22ca70edbf05a346.jpg"
+preview_video: ""
+preview_poster: "/media/posters/21-particles.jpg"
 ---
 
 # Particles (Background)

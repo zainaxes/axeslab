@@ -8,8 +8,8 @@ collection: "apps"
 likes: 170
 tier: "free"
 chars: 3804
-preview_video: "https://meez.design/web/prompt-previews/prompt-media/fa97d3b4e3afa702.mp4"
-preview_poster: "https://meez.design/web/prompt-previews/prompt-media/30e50bca08bd32ee-c.jpg"
+preview_video: ""
+preview_poster: "/media/posters/pet-products.jpg"
 ---
 
 # Pet Products (Ecommerce App)
