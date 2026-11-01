@@ -31,10 +31,14 @@ export default function Header() {
         <div className="max-w-[1440px] mx-auto h-full px-4 sm:px-8 flex items-center justify-between gap-4">
           {/* Left — Brand Identity */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            {/* Geometric SVG Icon mark */}
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1px] shadow-glow flex items-center justify-center">
-              <div className="w-full h-full bg-[#050507] rounded-[11px] flex items-center justify-center">
-                <Terminal className="w-4 h-4 text-violet-300 group-hover:text-cyan-300 transition-colors" />
+            {/* Official Axes Lab Brand Icon */}
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1px] shadow-glow flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full bg-[#050507] rounded-[11px] flex items-center justify-center overflow-hidden p-1">
+                <img
+                  src="/icon.ico"
+                  alt="Axes Lab Icon"
+                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
+                />
               </div>
             </div>
             <div className="flex items-center gap-1.5">

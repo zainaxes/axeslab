@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   const categories = getCategories();
-  const baseUrl = "https://axeslab.org";
+  const baseUrl = "https://axeslab.zainaxes.com";
 
   const categoryLines = categories
     .map((c) => `- [${c.name}](${baseUrl}/${c.slug}): ${c.description || ""}`)

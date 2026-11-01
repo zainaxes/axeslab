@@ -31,6 +31,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/account/", "/api/admin/", "/preview/"],
       },
     ],
-    sitemap: "https://axeslab.org/sitemap.xml",
+    sitemap: "https://axeslab.zainaxes.com/sitemap.xml",
   };
 }

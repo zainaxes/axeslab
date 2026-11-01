@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     '3D WebGL websites',
     'Animated backgrounds',
   ],
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.ico', sizes: 'any' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
