@@ -1,14 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ItemRecord } from '@/lib/items-data';
-import { AnimatedCanvasPreview } from './AnimatedCanvasPreview';
-import { Copy, Check, Heart, ArrowUpRight } from 'lucide-react';
+import { PromptItem } from '@/lib/real-prompts';
+import { Copy, Check, Heart, Play, Eye } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface PromptCardProps {
-  item: ItemRecord;
+  item: PromptItem;
 }
 
 export function PromptCard({ item }: PromptCardProps) {
@@ -17,18 +16,34 @@ export function PromptCard({ item }: PromptCardProps) {
   const [copied, setCopied] = useState(false);
   const [likes, setLikes] = useState(item.likes);
   const [hasLiked, setHasLiked] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current && item.videoUrl) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current && item.videoUrl) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   const handleCopyPrompt = async (e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      await navigator.clipboard.writeText(item.rawPrompt);
+      await navigator.clipboard.writeText(item.contentBody);
       setCopied(true);
       toast.success(`Copied "${item.title}" prompt!`, {
-        description: "Ready to paste into Cursor, Claude Code, or Lovable.",
+        description: `${item.chars.toLocaleString()} characters ready for Cursor, Claude Code, or Lovable.`,
       });
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast.error("Failed to copy prompt.");
+      toast.error('Failed to copy prompt.');
     }
   };
 
@@ -40,7 +55,7 @@ export function PromptCard({ item }: PromptCardProps) {
     } else {
       setLikes((prev) => prev + 1);
       setHasLiked(true);
-      toast("Added to favorites!", { description: item.title });
+      toast('Added to favorites!', { description: item.title });
     }
   };
 
@@ -50,20 +65,55 @@ export function PromptCard({ item }: PromptCardProps) {
 
   return (
     <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
       className="group relative rounded-2xl bg-[#0B0B0F] border border-white/[0.07] hover:border-white/[0.18] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7)] cursor-pointer flex flex-col justify-between"
     >
-      {/* 16:10 Live Animated Motion Viewport */}
+      {/* 16:10 Live Preview Viewport */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#060609]">
-        <AnimatedCanvasPreview theme={item.previewTheme} isHovered={isHovered} />
+        {/* Poster Image */}
+        {item.posterUrl && (
+          <img
+            src={item.posterUrl}
+            alt={item.title}
+            loading="lazy"
+            decoding="async"
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+              isHovered && item.videoUrl ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+        )}
 
-        {/* Top-Left Badge */}
-        {item.badge && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="rounded-full bg-black/60 border border-white/[0.1] px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-300 backdrop-blur-md">
-              {item.badge}
+        {/* Looping Hover Video (Streaming on demand, zero memory blocking) */}
+        {item.videoUrl && (
+          <video
+            ref={videoRef}
+            src={item.videoUrl}
+            poster={item.posterUrl}
+            muted
+            loop
+            playsInline
+            preload="none"
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        )}
+
+        {/* Top-Left Category Badge */}
+        <div className="absolute top-3 left-3 z-10">
+          <span className="rounded-full bg-black/70 border border-white/[0.1] px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-300 backdrop-blur-md">
+            {item.category}
+          </span>
+        </div>
+
+        {/* Video Indicator Pill */}
+        {item.videoUrl && (
+          <div className="absolute bottom-2.5 right-2.5 z-10 opacity-70 group-hover:opacity-0 transition-opacity">
+            <span className="rounded-md bg-black/80 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-zinc-400 backdrop-blur-md flex items-center gap-1">
+              <Play className="w-2.5 h-2.5 fill-current" />
+              <span>Preview</span>
             </span>
           </div>
         )}
@@ -93,31 +143,28 @@ export function PromptCard({ item }: PromptCardProps) {
 
       {/* Card Footer Metadata Bar */}
       <div className="px-4 py-3.5 flex items-center justify-between bg-[#0B0B0F] border-t border-white/[0.04]">
-        {/* Left: Title */}
+        {/* Left: Title & Character count */}
         <div className="min-w-0 pr-2">
           <h3 className="text-[15px] font-semibold text-zinc-100 group-hover:text-white truncate">
             {item.title}
           </h3>
-          <p className="text-xs text-zinc-500 line-clamp-1 mt-0.5 font-normal">
-            {item.description}
+          <p className="text-[11px] font-mono text-zinc-500 line-clamp-1 mt-0.5 font-normal">
+            {item.chars.toLocaleString()} chars · Verified Axes Lab
           </p>
         </div>
 
-        {/* Right: Category Pill & Like Button */}
+        {/* Right: Like Button */}
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-xs font-medium text-zinc-400 bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 rounded-full">
-            {item.category}
-          </span>
           <button
             type="button"
             onClick={handleLike}
             className={`flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full border transition-all ${
               hasLiked
-                ? "bg-rose-500/20 border-rose-500/40 text-rose-300"
-                : "bg-white/[0.03] border-white/[0.06] text-zinc-500 hover:text-zinc-300"
+                ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
+                : 'bg-white/[0.03] border-white/[0.06] text-zinc-500 hover:text-zinc-300'
             }`}
           >
-            <Heart className={`w-3 h-3 ${hasLiked ? "fill-current" : ""}`} />
+            <Heart className={`w-3 h-3 ${hasLiked ? 'fill-current' : ''}`} />
             <span>{likes}</span>
           </button>
         </div>

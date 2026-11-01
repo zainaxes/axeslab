@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react';
 import { GlowWord } from '@/components/GlowWord';
-import { ITEMS_DATABASE, ItemRecord } from '@/lib/items-data';
-import { AnimatedCanvasPreview } from '@/components/AnimatedCanvasPreview';
+import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
 import { PreFooter } from '@/components/PreFooter';
-import { Copy, Check, Maximize2, Code, ArrowUpRight } from 'lucide-react';
+import { Copy, Check, Code } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function BackgroundsPage() {
@@ -14,12 +13,17 @@ export default function BackgroundsPage() {
   const [activeSort, setActiveSort] = useState<'Featured' | 'Popular' | 'Recent'>('Featured');
   const [activeTag, setActiveTag] = useState('All');
 
-  const backgrounds = ITEMS_DATABASE.filter((i) => i.type === 'background');
+  // Filter real background items
+  const backgrounds = ALL_REAL_PROMPTS.filter((item) => {
+    const c = item.category.toLowerCase();
+    const t = item.title.toLowerCase();
+    return c.includes('background') || t.includes('gradient') || t.includes('shader') || t.includes('tunnel');
+  });
 
-  const tags = ['All', 'Dark', 'Light', 'Abstract', 'Nature', 'Space', 'Surreal', 'Tech'];
+  const tags = ['All', 'Dark', 'Light', 'Abstract', 'Space', 'Surreal', 'Tech'];
 
-  const handleCopyUrl = async (bg: ItemRecord) => {
-    const url = bg.backgroundUrl || `https://assets.zainaxes.com/backgrounds/${bg.slug}.mp4`;
+  const handleCopyUrl = async (bg: any) => {
+    const url = bg.videoUrl || bg.posterUrl;
     try {
       await navigator.clipboard.writeText(url);
       setCopiedUrl(bg.slug);
@@ -30,7 +34,7 @@ export default function BackgroundsPage() {
     } catch {}
   };
 
-  const handleCopyCode = async (bg: ItemRecord) => {
+  const handleCopyCode = async (bg: any) => {
     const snippet = `<div className="fixed inset-0 -z-10 overflow-hidden bg-[#050507]">
   <video
     autoPlay
@@ -38,7 +42,7 @@ export default function BackgroundsPage() {
     muted
     playsInline
     className="w-full h-full object-cover opacity-60"
-    src="${bg.backgroundUrl || `https://assets.zainaxes.com/backgrounds/${bg.slug}.mp4`}"
+    src="${bg.videoUrl || bg.posterUrl}"
   />
   <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#050507] opacity-80" />
 </div>`;
@@ -55,7 +59,7 @@ export default function BackgroundsPage() {
       {/* 1. Hero Section */}
       <section className="max-w-4xl mx-auto text-center relative mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 text-xs font-mono mb-6">
-          <span>New Videos &amp; Shaders Added Daily</span>
+          <span>{backgrounds.length} Motion Backgrounds &amp; Shaders Online</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08]">
@@ -63,7 +67,7 @@ export default function BackgroundsPage() {
         </h1>
 
         <p className="max-w-xl mx-auto text-base sm:text-lg text-zinc-400 mt-5">
-          A huge collection of handcrafted Animated Video Loops &amp; WebGL Shaders ready to drop into any hero section.
+          Handcrafted Animated Video Loops &amp; WebGL Shaders ready to drop into any hero section.
         </p>
       </section>
 
@@ -113,9 +117,21 @@ export default function BackgroundsPage() {
           >
             {/* Viewport */}
             <div className="relative aspect-video w-full bg-black overflow-hidden">
-              <AnimatedCanvasPreview theme={bg.previewTheme} isHovered={true} />
+              {bg.videoUrl ? (
+                <video
+                  src={bg.videoUrl}
+                  poster={bg.posterUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img src={bg.posterUrl} alt={bg.title} className="w-full h-full object-cover" />
+              )}
               <div className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-black/60 border border-white/[0.1] text-[10px] font-mono text-zinc-300 backdrop-blur-md">
-                Seamless Loop
+                Seamless Video Loop
               </div>
             </div>
 
@@ -123,7 +139,7 @@ export default function BackgroundsPage() {
             <div className="p-5 space-y-4">
               <div>
                 <h3 className="text-base font-bold text-white">{bg.title}</h3>
-                <p className="text-xs text-zinc-400 line-clamp-1 mt-1">{bg.description}</p>
+                <p className="text-xs text-zinc-400 line-clamp-1 mt-1">{bg.summary}</p>
               </div>
 
               {/* Direct Card Actions (Bottom Overlay Bar) */}
@@ -132,16 +148,24 @@ export default function BackgroundsPage() {
                   onClick={() => handleCopyUrl(bg)}
                   className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold text-xs transition-all shadow-md active:scale-95"
                 >
-                  {copiedUrl === bg.slug ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedUrl === bg.slug ? "Copied URL!" : "Copy URL"}</span>
+                  {copiedUrl === bg.slug ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                  <span>{copiedUrl === bg.slug ? 'Copied URL!' : 'Copy URL'}</span>
                 </button>
 
                 <button
                   onClick={() => handleCopyCode(bg)}
                   className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-white font-medium text-xs transition-all active:scale-95"
                 >
-                  {copiedCode === bg.slug ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Code className="w-3.5 h-3.5" />}
-                  <span>{copiedCode === bg.slug ? "Copied Code!" : "Copy Code"}</span>
+                  {copiedCode === bg.slug ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Code className="w-3.5 h-3.5" />
+                  )}
+                  <span>{copiedCode === bg.slug ? 'Copied Code!' : 'Copy Code'}</span>
                 </button>
               </div>
             </div>
