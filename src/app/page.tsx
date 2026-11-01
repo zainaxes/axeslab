@@ -1,288 +1,173 @@
-import React from "react";
-import Link from "next/link";
-import { getCategories, getResources, getCollections, getStats } from "@/lib/queries";
-import ResourceCard from "@/components/ResourceCard";
-import { HeroSection } from "@/components/HeroSection";
-import {
-  Terminal,
-  Boxes,
-  Server,
-  Cpu,
-  GitBranch,
-  Sliders,
-  LayoutTemplate,
-  Box,
-  Database,
-  Wrench,
-  BookOpen,
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  FileCheck2,
-  Search,
-} from "lucide-react";
+'use client';
 
-export const dynamic = "force-dynamic";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { GlowWord } from '@/components/GlowWord';
+import { PromptCard } from '@/components/PromptCard';
+import { PreFooter } from '@/components/PreFooter';
+import { ITEMS_DATABASE } from '@/lib/items-data';
+import { Sparkles, ArrowRight, Video, Flame } from 'lucide-react';
+import { AnimatedCanvasPreview } from '@/components/AnimatedCanvasPreview';
 
 export default function HomePage() {
-  const categories = getCategories();
-  const { resources: featuredResources } = getResources({ limit: 6, sort: "featured" });
-  const { resources: recentlyVerified } = getResources({ limit: 4, sort: "verified" });
-  const collections = getCollections();
-  const stats = getStats();
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const iconMap: Record<string, React.ElementType> = {
-    Terminal,
-    Boxes,
-    Server,
-    Cpu,
-    GitBranch,
-    Sliders,
-    LayoutTemplate,
-    Box,
-    Database,
-    Wrench,
-    BookOpen,
-  };
+  const categories = [
+    'All',
+    'Recent',
+    'Apps',
+    'Sections',
+    'Skills',
+    'Hero',
+    'Landing Page',
+    'SaaS',
+    '3D',
+    'Creative',
+    'Agency',
+    'Portfolio',
+    'AI',
+    'Travel',
+    'Fintech',
+    'Technology',
+    'Wellness',
+    '3D Website',
+    'Ecommerce',
+    'Interactive',
+  ];
+
+  const filteredItems = ITEMS_DATABASE.filter((item) => {
+    if (selectedCategory === 'All') return true;
+    if (selectedCategory === 'Recent') return true;
+    if (selectedCategory === 'Sections') return item.type === 'section';
+    if (selectedCategory === 'Skills') return item.type === 'skill';
+    if (selectedCategory === '3D' || selectedCategory === '3D Website') return item.type === '3d';
+    return item.category.toLowerCase() === selectedCategory.toLowerCase();
+  });
+
+  const firstBatch = filteredItems.slice(0, 9);
+  const secondBatch = filteredItems.slice(9);
 
   return (
-    <div className="space-y-16 py-4">
-      {/* 1. Above-the-fold Rebuilt Hero with Vibrant Abstract Video & High-Contrast Typography */}
-      <HeroSection totalPublished={stats.totalPublished} />
+    <div className="min-h-screen bg-[#050507] text-[#FAFAFA]">
+      {/* 1. Hero Section */}
+      <section className="relative pt-16 pb-12 px-4 text-center overflow-hidden">
+        {/* Radial Ambient Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] hero-glow pointer-events-none -z-10" />
 
-      {/* Quick Search Suggestions */}
-      <div className="-mt-8 flex items-center justify-center gap-2 flex-wrap text-xs text-mutedText">
-        <span className="text-[11px] uppercase tracking-wider font-semibold">Popular queries:</span>
-        {["Postgres MCP", "Code review skill", "Product photography", "SWE-bench", "Local model", "Web design"].map((term) => (
-          <Link
-            key={term}
-            href={`/explore?q=${encodeURIComponent(term)}`}
-            className="px-3 py-1 rounded-full bg-surface border border-subtleBorder hover:bg-state-hover text-primaryText transition-colors font-medium shadow-2xs"
-          >
-            {term}
-          </Link>
-        ))}
-      </div>
-
-      {/* 2. Browse by Resource Type */}
-      <section>
-        <div className="flex items-end justify-between mb-6">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-primaryText tracking-tight">
-              Browse by Resource Type
-            </h2>
-            <p className="text-xs sm:text-sm text-mutedText-secondary mt-1">
-              Structured taxonomies separated by protocol, runtime, and execution model.
-            </p>
-          </div>
-          <Link
-            href="/explore"
-            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-primaryText hover:underline"
-          >
-            All Resources <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+        {/* Live Status Pill */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-medium text-zinc-300 mb-6 backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Fresh Drops Everyday</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((cat) => {
-            const Icon = iconMap[cat.icon_key || ""] || Terminal;
-            return (
-              <Link
-                key={cat.id}
-                href={`/${cat.slug}`}
-                className="group p-5 rounded-card border border-subtleBorder bg-surface hover:bg-surface-strong hover:border-subtleBorder-strong transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-btn bg-canvas border border-subtleBorder flex items-center justify-center text-primaryText group-hover:bg-state-hover transition-colors">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-mono font-medium px-2 py-0.5 rounded bg-canvas border border-subtleBorder text-mutedText-secondary">
-                      {cat.resource_count || 0} items
-                    </span>
-                  </div>
-                  <h3 className="text-base font-bold text-primaryText group-hover:underline mb-1.5">
-                    {cat.name}
-                  </h3>
-                  <p className="text-xs text-mutedText-secondary leading-relaxed line-clamp-2">
-                    {cat.description}
-                  </p>
-                </div>
+        {/* Main Headline with Signature Glow Word */}
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] max-w-4xl mx-auto">
+          Unlock your AI <br />
+          Design <GlowWord text="Superpowers" />
+        </h1>
 
-                {cat.subcategories && cat.subcategories.length > 0 && (
-                  <div className="mt-4 pt-3 border-t border-subtleBorder/60 flex items-center gap-1.5 flex-wrap">
-                    {cat.subcategories.slice(0, 3).map((sub) => (
-                      <span
-                        key={sub.id}
-                        className="text-[11px] text-mutedText hover:text-primaryText font-medium"
-                      >
-                        {sub.name}
-                        {cat.subcategories && sub !== cat.subcategories.slice(0, 3)[cat.subcategories.slice(0, 3).length - 1] ? " •" : ""}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </Link>
+        {/* Subtitle */}
+        <p className="max-w-xl mx-auto text-base sm:text-lg text-zinc-400 font-normal leading-relaxed mt-5 mb-8">
+          Build beautiful landing pages, animated interfaces, and agentic workflows in minutes with our ready-to-use prompts, skills, and MCP. Just copy, paste, and launch.
+        </p>
+
+        {/* Hero Action Bar */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="#grid"
+            className="bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.12] text-white font-medium text-xs sm:text-sm px-5 py-3 rounded-full transition-all"
+          >
+            Explore Full Library ↓
+          </a>
+          <Link
+            href="/mcp"
+            className="bg-white text-black hover:bg-zinc-200 font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(255,255,255,0.25)] flex items-center gap-2"
+          >
+            <span>Install MCP in 60s</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* 2. Sticky Category Filter Bar */}
+      <section id="grid" className="sticky top-16 z-30 bg-[#050507]/85 backdrop-blur-lg py-3 border-b border-white/[0.05]">
+        <div className="no-scrollbar flex items-center gap-2 overflow-x-auto max-w-[1440px] mx-auto px-4 sm:px-8">
+          {categories.map((cat) => {
+            const isSelected = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
+                  isSelected
+                    ? "bg-white text-[#050507] border border-white font-semibold shadow-sm"
+                    : "bg-white/[0.03] text-zinc-400 hover:text-white hover:bg-white/[0.07] border border-white/[0.05]"
+                }`}
+              >
+                {cat}
+              </button>
             );
           })}
         </div>
       </section>
 
-      {/* 3. Featured & Editor-Selected Resources */}
-      <section>
-        <div className="flex items-end justify-between mb-6">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-primaryText tracking-tight">
-              Featured Verified Resources
-            </h2>
-            <p className="text-xs sm:text-sm text-mutedText-secondary mt-1">
-              Inspected for authentic provenance, permissive licensing, and immediate utility.
-            </p>
-          </div>
-          <Link
-            href="/explore"
-            className="text-xs font-semibold text-primaryText hover:underline flex items-center gap-1"
-          >
-            Explore All ({stats.totalPublished}) <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featuredResources.map((resource) => (
-            <ResourceCard key={resource.id} resource={resource} />
+      {/* 3. Site Preview Card Grid */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {firstBatch.map((item) => (
+            <PromptCard key={item.id} item={item} />
           ))}
-        </div>
-      </section>
 
-      {/* 4. Curated Task-Oriented Collections */}
-      {collections.length > 0 && (
-        <section className="p-6 sm:p-8 rounded-panel border border-subtleBorder bg-surface">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <span className="text-xs font-bold text-mutedText uppercase tracking-wider block mb-1">
-                Editorial Stacks
-              </span>
-              <h2 className="text-xl font-bold text-primaryText tracking-tight">
-                Curated Task Collections
-              </h2>
-            </div>
-            <Link
-              href="/collections"
-              className="text-xs font-semibold text-primaryText hover:underline"
-            >
-              View All Collections →
-            </Link>
-          </div>
+          {/* 3.4 Mid-Grid Interstitial Banner */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 my-4">
+            <div className="relative rounded-3xl overflow-hidden border border-white/[0.1] bg-gradient-to-r from-[#0E0E18] via-[#131124] to-[#0B1520] p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+              {/* Left Content */}
+              <div className="max-w-xl space-y-3 text-left">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/15 border border-violet-500/25 text-violet-300 text-xs font-mono uppercase tracking-wider">
+                  <Flame className="w-3.5 h-3.5 text-violet-400" />
+                  Backgrounds & Motion Shaders
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+                  Animated backgrounds designed to convert, impress, and amaze.
+                </h3>
+                <p className="text-sm text-zinc-400">
+                  Drop ultra-fast WebGL canvas shaders and looping video backgrounds straight into your hero sections with one click.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    href="/backgrounds"
+                    className="inline-flex items-center gap-2 bg-white text-black hover:bg-zinc-200 font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg"
+                  >
+                    <span>Explore Videos →</span>
+                  </Link>
+                </div>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {collections.map((col) => (
-              <Link
-                key={col.id}
-                href={`/collections/${col.slug}`}
-                className="group p-5 rounded-card border border-subtleBorder bg-surface-strong hover:border-subtleBorder-strong transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-mutedText font-medium">
-                      Editor: {col.editor_name}
-                    </span>
-                    <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-surface border border-subtleBorder text-primaryText">
-                      {col.resource_count || 0} tools
-                    </span>
+              {/* Right Visual Floating Preview Cards */}
+              <div className="flex items-center gap-3 w-full md:w-auto justify-center">
+                {['neon-pulse', 'synaptic-forge', 'shelf-hero'].map((th, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-28 sm:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border border-white/[0.15] bg-black shadow-2xl transition-transform hover:scale-110 ${
+                      idx === 1 ? "-translate-y-2 border-violet-500/50" : ""
+                    }`}
+                  >
+                    <AnimatedCanvasPreview theme={th} isHovered={true} />
                   </div>
-                  <h3 className="text-base font-bold text-primaryText group-hover:underline mb-2">
-                    {col.title}
-                  </h3>
-                  <p className="text-xs text-mutedText-secondary leading-relaxed mb-3">
-                    {col.description}
-                  </p>
-                </div>
-                <div className="pt-3 border-t border-subtleBorder/60 flex items-center justify-between text-xs font-semibold text-primaryText">
-                  <span>Inspect collection</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
-        </section>
-      )}
 
-      {/* 5. Recently Verified Resources */}
-      <section>
-        <div className="mb-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-primaryText tracking-tight">
-            Recently Checked & Verified
-          </h2>
-          <p className="text-xs sm:text-sm text-mutedText-secondary mt-1">
-            Rechecked periodically to verify repository health, valid links, and accurate terms.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {recentlyVerified.map((r) => (
-            <Link
-              key={r.id}
-              href={`/resource/${r.slug}`}
-              className="p-4 rounded-card border border-subtleBorder bg-surface hover:bg-surface-strong transition-all flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-canvas border border-subtleBorder text-mutedText-secondary mb-2 inline-block">
-                  {r.resource_type.replace("_", " ")}
-                </span>
-                <h4 className="text-sm font-bold text-primaryText line-clamp-1 mb-1">{r.title}</h4>
-                <p className="text-xs text-mutedText-secondary line-clamp-2">{r.summary}</p>
-              </div>
-              <div className="mt-3 pt-2 border-t border-subtleBorder/60 text-[11px] text-state-success flex items-center gap-1 font-medium">
-                <CheckCircle2 className="w-3 h-3" />
-                <span>
-                  {r.last_checked_at
-                    ? `Checked ${new Date(r.last_checked_at).toLocaleDateString("en-GB", {
-                        month: "short",
-                        day: "numeric",
-                      })}`
-                    : "Verified"}
-                </span>
-              </div>
-            </Link>
+          {/* Remaining Items */}
+          {secondBatch.map((item) => (
+            <PromptCard key={item.id} item={item} />
           ))}
         </div>
       </section>
 
-      {/* 6. How the Library is Curated (Trust & Standards) */}
-      <section className="p-6 sm:p-8 rounded-panel border border-subtleBorder bg-surface grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <div className="w-8 h-8 rounded-btn bg-canvas border border-subtleBorder flex items-center justify-center text-primaryText mb-3">
-            <ShieldCheck className="w-4 h-4 text-state-success" />
-          </div>
-          <h3 className="text-sm font-bold text-primaryText mb-1.5">Rigorous Rights Review</h3>
-          <p className="text-xs text-mutedText-secondary leading-relaxed">
-            Every entry is evaluated for true distribution rights. We distinguish between open source,
-            open weights, and external-only links without making legal assumptions.
-          </p>
-        </div>
-
-        <div>
-          <div className="w-8 h-8 rounded-btn bg-canvas border border-subtleBorder flex items-center justify-center text-primaryText mb-3">
-            <FileCheck2 className="w-4 h-4 text-state-info" />
-          </div>
-          <h3 className="text-sm font-bold text-primaryText mb-1.5">No Fabricated Metrics</h3>
-          <p className="text-xs text-mutedText-secondary leading-relaxed">
-            No synthetic star ratings, fake download numbers, or AI generated marketing fluff.
-            Descriptions are written objectively and technical specs are grounded in source evidence.
-          </p>
-        </div>
-
-        <div>
-          <div className="w-8 h-8 rounded-btn bg-canvas border border-subtleBorder flex items-center justify-center text-primaryText mb-3">
-            <CheckCircle2 className="w-4 h-4 text-primaryText" />
-          </div>
-          <h3 className="text-sm font-bold text-primaryText mb-1.5">Least-Privilege Security</h3>
-          <p className="text-xs text-mutedText-secondary leading-relaxed">
-            MCP servers and agent skills feature explicit permission matrices (filesystem, network,
-            command execution) so developers can evaluate risks before running code.
-          </p>
-        </div>
-      </section>
+      {/* 4. Pre-Footer Academy & Showcase */}
+      <PreFooter />
     </div>
   );
 }

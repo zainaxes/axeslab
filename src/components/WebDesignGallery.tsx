@@ -128,12 +128,7 @@ export function WebDesignGallery({
         </div>
       )}
 
-      {/* Interactive Modal */}
-      <PromptModal
-        resource={selectedResource}
-        isOpen={Boolean(selectedResource)}
-        onClose={() => setSelectedResource(null)}
-      />
+      {/* Interactive Modal (Controlled globally via ?prompt=slug) */}
     </div>
   );
 }

@@ -1,63 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Dark Mode Foundation for Axes Lab */
 :root {
-  --color-canvas: #09090B;
-  --color-text: #F4F4F5;
-  --color-surface: #121215;
-  --color-surface-strong: #18181B;
-  --color-text-secondary: #A1A1AA;
-  --color-text-muted: #71717A;
-  --color-border: #27272A;
-  --color-border-strong: #3F3F46;
-  --color-hover: #1F1F23;
-  --color-selected: #27272A;
-  --color-inverse: #FFFFFF;
-  --color-inverse-text: #09090B;
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
-  --color-info: #0EA5E9;
+  --canvas: #050507;
+  --surface: #0B0B0F;
+  --surface-elevated: #0E0E14;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-body {
-  background-color: var(--color-canvas);
-  color: var(--color-text);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+html, body {
+  background-color: #050507;
+  color: #FAFAFA;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Accessible focus styling */
-:focus-visible {
-  outline: 2px solid #FFFFFF;
-  outline-offset: 2px;
-}
-
-/* Code block scrollbars */
-pre::-webkit-scrollbar {
-  height: 6px;
+/* Custom Scrollbars */
+::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
-pre::-webkit-scrollbar-track {
-  background: #121215;
+::-webkit-scrollbar-track {
+  background: #050507;
 }
-pre::-webkit-scrollbar-thumb {
-  background: #27272A;
-  border-radius: 3px;
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
 }
-pre::-webkit-scrollbar-thumb:hover {
-  background: #3F3F46;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-/* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Radial Hero Ambient Glow */
+.hero-glow {
+  background: radial-gradient(
+    60% 50% at 50% 0%,
+    rgba(139, 92, 246, 0.18) 0%,
+    rgba(99, 102, 241, 0.12) 25%,
+    rgba(56, 189, 248, 0.05) 50%,
+    transparent 100%
+  );
 }
