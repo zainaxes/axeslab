@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { PromptItem } from '@/lib/real-prompts';
-import { Copy, Check, ChevronDown, ChevronUp, Terminal, Cpu, Sparkles, Flame, ExternalLink, Code2 } from 'lucide-react';
+import { Copy, Check, ChevronDown, Code2, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface PromptRegistryRowProps {
@@ -20,14 +20,12 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!item.contentBody) {
-      toast.error('No prompt text available to copy');
+      toast.error('No prompt text available');
       return;
     }
     navigator.clipboard.writeText(item.contentBody);
     setCopied(true);
-    toast.success('Prompt copied to clipboard', {
-      description: item.title,
-    });
+    toast.success('Prompt copied to clipboard');
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -38,35 +36,35 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
   return (
     <div
       onClick={handleRowClick}
-      className={`group border-b border-white/[0.06] transition-colors duration-100 cursor-pointer ${
-        expanded ? 'bg-white/[0.03]' : 'hover:bg-white/[0.015]'
+      className={`group border-b border-rule transition-colors duration-150 cursor-pointer ${
+        expanded ? 'bg-paper-2' : 'hover:bg-paper-2/60'
       }`}
     >
       {/* 1. Primary & Secondary Layers: Dense Data Row */}
-      <div className="px-3 sm:px-4 py-2.5 flex items-center justify-between gap-3 text-xs">
+      <div className="px-3 sm:px-4 py-2 flex items-center justify-between gap-3 text-xs">
         
         {/* Left: Index, Status Dot, Title, Category Tag */}
         <div className="flex items-center gap-3 min-w-0 flex-1">
           {/* Numerical ID */}
-          <span className="font-mono text-[11px] text-zinc-600 w-7 flex-shrink-0 text-right select-none">
+          <span className="font-mono text-xs text-muted w-7 flex-shrink-0 text-right select-none">
             {String(index + 1).padStart(3, '0')}
           </span>
 
-          {/* Status Ping Dot */}
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/80 flex-shrink-0" />
+          {/* Status Instrument Dot */}
+          <span className="w-1.5 h-1.5 rounded-full bg-cool flex-shrink-0" />
 
           {/* Title & Slug Identifier */}
           <div className="flex items-center gap-2 truncate min-w-0">
-            <span className="font-medium text-white group-hover:text-violet-300 transition-colors truncate">
+            <span className="font-sans font-medium text-ink truncate">
               {item.title}
             </span>
-            <span className="hidden md:inline-block font-mono text-[11px] text-zinc-500 truncate">
+            <span className="hidden md:inline-block font-sans text-xs text-muted truncate">
               /{item.slug}
             </span>
           </div>
 
           {/* Category Technical Badge */}
-          <span className="flex-shrink-0 font-mono text-[11px] px-1.5 py-0.5 rounded-[4px] bg-white/[0.04] text-zinc-400 border border-white/[0.07]">
+          <span className="flex-shrink-0 font-sans text-xs px-1.5 py-0.5 rounded-pill bg-paper-3 text-muted border border-rule">
             {item.category}
           </span>
         </div>
@@ -75,12 +73,12 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
         <div className="flex items-center gap-2.5 flex-shrink-0">
           
           {/* Metadata: Token Estimate */}
-          <div className="hidden lg:flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
-            <span className="px-1.5 py-0.5 rounded-[4px] bg-white/[0.02] border border-white/[0.06]">
-              ~{tokenCount} tokens
+          <div className="hidden lg:flex items-center gap-1.5 text-xs text-muted">
+            <span className="px-1.5 py-0.5 rounded-pill bg-paper-3 border border-rule">
+              <span className="font-mono">{tokenCount}</span> tok
             </span>
-            <span className="px-1.5 py-0.5 rounded-[4px] bg-white/[0.02] border border-white/[0.06] text-zinc-400">
-              verified ✓
+            <span className="px-1.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-ok">
+              verified
             </span>
           </div>
 
@@ -88,20 +86,20 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
           <button
             onClick={handleCopy}
             title="Copy prompt directly"
-            className={`font-mono text-[11px] font-semibold px-2.5 py-1 rounded-[4px] border transition-all flex items-center gap-1.5 cursor-pointer active:scale-95 ${
+            className={`font-sans text-xs font-medium px-2.5 py-1 rounded-pill border transition-colors duration-150 flex items-center gap-1.5 cursor-pointer active:opacity-80 focus-visible:outline-2 focus-visible:outline-accent ${
               copied
-                ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400'
-                : 'bg-white text-black hover:bg-zinc-200 border-white'
+                ? 'bg-ok-soft border-ok text-ok'
+                : 'bg-paper-3 text-ink hover:bg-rule border-rule'
             }`}
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span>copied!</span>
+                <Check className="w-3.5 h-3.5 text-ok" />
+                <span>copied</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-black" />
+                <Copy className="w-3.5 h-3.5 text-muted" />
                 <span>copy</span>
               </>
             )}
@@ -109,8 +107,8 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
 
           {/* Drawer Expand Toggle */}
           <div
-            className={`p-1 rounded-[4px] text-zinc-500 hover:text-white transition-transform duration-150 ${
-              expanded ? 'rotate-180 text-white' : ''
+            className={`p-1 rounded-pill text-muted hover:text-ink motion-safe:transition-transform motion-safe:duration-150 ${
+              expanded ? 'rotate-180 text-ink' : ''
             }`}
           >
             <ChevronDown className="w-3.5 h-3.5" />
@@ -123,15 +121,15 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
       {expanded && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="border-t border-white/[0.07] bg-[#030305] px-4 py-3.5 space-y-3 cursor-default"
+          className="border-t border-rule bg-paper-3 px-4 py-3 space-y-3 cursor-default"
         >
           {/* Drawer Top Utility Header */}
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-zinc-400 pb-1 border-b border-white/[0.05]">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-sans text-muted pb-1 border-b border-rule">
             <div className="flex items-center gap-2">
-              <Code2 className="w-3.5 h-3.5 text-violet-400" />
-              <span className="text-zinc-200 font-semibold">{item.title}</span>
-              <span className="text-zinc-600">·</span>
-              <span className="text-zinc-400">{item.chars} characters</span>
+              <Code2 className="w-3.5 h-3.5 text-cool" />
+              <span className="text-ink font-medium">{item.title}</span>
+              <span className="text-muted">·</span>
+              <span><span className="font-mono">{item.chars}</span> chars</span>
             </div>
             
             <div className="flex items-center gap-3">
@@ -141,39 +139,39 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
                   e.stopPropagation();
                   window.location.search = `?prompt=${item.slug}`;
                 }}
-                className="text-violet-400 hover:text-violet-300 underline underline-offset-2 flex items-center gap-1"
+                className="text-cool hover:underline flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-accent"
               >
-                <span>Full Modal View</span>
+                <span>Full details</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
               <button
                 onClick={handleCopy}
-                className="hover:text-white transition-colors flex items-center gap-1 bg-white/[0.05] hover:bg-white/[0.1] px-2 py-0.5 rounded-[4px] border border-white/[0.08]"
+                className="text-muted hover:text-ink transition-colors duration-150 flex items-center gap-1 bg-paper-2 hover:bg-rule px-2 py-0.5 rounded-pill border border-rule active:opacity-80 focus-visible:outline-2 focus-visible:outline-accent"
               >
                 <Copy className="w-3 h-3" />
-                <span>Copy Full Prompt</span>
+                <span>Copy full text</span>
               </button>
             </div>
           </div>
 
           {/* Raw Prompt Specification Terminal Viewer */}
-          <div className="relative rounded-[4px] border border-white/[0.08] bg-[#07070B] p-3 text-xs font-mono overflow-hidden">
-            <div className="flex items-center justify-between text-[11px] text-zinc-500 mb-2 pb-1.5 border-b border-white/[0.05]">
-              <span>SYSTEM_DIRECTIVE_BODY</span>
-              <span>READ_ONLY</span>
+          <div className="relative rounded-card border border-rule bg-paper-3 p-3 text-xs overflow-hidden">
+            <div className="flex items-center justify-between text-xs font-sans text-muted mb-2 pb-1.5 border-b border-rule">
+              <span>prompt specification</span>
+              <span>read-only</span>
             </div>
-            <pre className="text-zinc-300 whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto font-mono selection:bg-violet-600/40 text-[11px]">
+            <pre className="text-ink-2 whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto font-mono selection:bg-accent-soft text-xs">
               {item.contentBody || item.summary}
             </pre>
           </div>
 
           {/* Quick Technical Badges inside drawer */}
-          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-mono text-zinc-500 pt-1">
-            <span className="text-zinc-400">Target Models:</span>
-            <span className="px-1.5 py-0.5 rounded-[4px] bg-white/[0.03] border border-white/[0.06] text-zinc-300">Claude 3.7 Sonnet</span>
-            <span className="px-1.5 py-0.5 rounded-[4px] bg-white/[0.03] border border-white/[0.06] text-zinc-300">Cursor / Cline</span>
-            <span className="px-1.5 py-0.5 rounded-[4px] bg-white/[0.03] border border-white/[0.06] text-zinc-300">Gemini 2.0 Flash</span>
-            <span className="px-1.5 py-0.5 rounded-[4px] bg-white/[0.03] border border-white/[0.06] text-zinc-300">GPT-4.5</span>
+          <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted pt-1">
+            <span>Verified targets:</span>
+            <span className="px-1.5 py-0.5 rounded-pill bg-paper-2 border border-rule text-ink">Claude 3.7 Sonnet</span>
+            <span className="px-1.5 py-0.5 rounded-pill bg-paper-2 border border-rule text-ink">Cursor / Cline</span>
+            <span className="px-1.5 py-0.5 rounded-pill bg-paper-2 border border-rule text-ink">Gemini 2.0 Flash</span>
+            <span className="px-1.5 py-0.5 rounded-pill bg-paper-2 border border-rule text-ink">GPT-4.5</span>
           </div>
         </div>
       )}

@@ -1,43 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* Hallmark · shape: Index-First · genre: modern-minimal · theme: Console (by request) · redesign: full
+ * hero: Banner · nav: search-led bar · footer: mast · imagery: none · signature: hairline audit trail of verified system prompts · console: graphite
+ * axes: dark/grotesk-sans/chromatic-amber · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · weakest: H, tightened hero sentence to 8 words */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,400..700;1,400..700&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+@import "./tokens.css";
+@import "./base.css" layer(base);
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --canvas: #050507;
-  --surface: #0B0B0F;
-  --surface-elevated: #0E0E14;
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
 html, body {
-  background-color: #050507;
-  color: #FAFAFA;
-  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
-/* Custom Scrollbars */
+/* Custom Scrollbars adhering to Console tokens */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: var(--color-paper-3);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
+  background: var(--color-rule);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: var(--color-rule-2);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -46,15 +41,4 @@ html, body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Radial Hero Ambient Glow */
-.hero-glow {
-  background: radial-gradient(
-    60% 50% at 50% 0%,
-    rgba(139, 92, 246, 0.18) 0%,
-    rgba(99, 102, 241, 0.12) 25%,
-    rgba(56, 189, 248, 0.05) 50%,
-    transparent 100%
-  );
 }

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Terminal, Search, Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, Menu, X, ArrowRight } from 'lucide-react';
 import { CommandPalette } from './CommandPalette';
 
 export default function Header() {
@@ -12,134 +12,125 @@ export default function Header() {
   const [paletteOpen, setPaletteOpen] = useState(false);
 
   const navLinks = [
-    { label: "MCP", href: "/mcp", isMCP: true },
-    { label: "Prompts", href: "/" },
-    { label: "Apps", href: "/apps" },
-    { label: "Skills", href: "/skills" },
-    { label: "Backgrounds", href: "/backgrounds" },
-    { label: "Sections", href: "/sections" },
-    { label: "3D", href: "/3d-websites" },
-    { label: "TOP", href: "/top" },
-    { label: "Restyle", href: "/restyle" },
-    { label: "Submit", href: "/submit" },
-    { label: "Contact", href: "/contact" },
+    { label: "mcp", href: "/mcp" },
+    { label: "prompts", href: "/" },
+    { label: "apps", href: "/apps" },
+    { label: "skills", href: "/skills" },
+    { label: "backgrounds", href: "/backgrounds" },
+    { label: "sections", href: "/sections" },
+    { label: "3d", href: "/3d-websites" },
+    { label: "top", href: "/top" },
+    { label: "restyle", href: "/restyle" },
+    { label: "submit", href: "/submit" },
+    { label: "contact", href: "/contact" },
   ];
 
   return (
     <>
-      <header className="sticky top-0 z-50 h-16 w-full border-b border-white/[0.07] bg-[#050507]/80 backdrop-blur-xl">
-        <div className="max-w-[1440px] mx-auto h-full px-4 sm:px-8 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-[var(--z-sticky-nav)] h-14 w-full border-b border-rule bg-paper/95 backdrop-blur-md">
+        <div className="max-w-[var(--container)] mx-auto h-full px-4 sm:px-8 flex items-center justify-between gap-4">
+          
           {/* Left — Brand Identity */}
-          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            {/* Official Axes Lab Brand Icon */}
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1px] shadow-glow flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full bg-[#050507] rounded-[11px] flex items-center justify-center overflow-hidden p-1.5">
-                <img
-                  src="/logo-white.png"
-                  alt="Axes Lab Logo"
-                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
-                />
-              </div>
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 shrink-0 focus-visible:outline-2 focus-visible:outline-accent outline-offset-2"
+          >
+            <div className="w-7 h-7 rounded-pill bg-paper-2 border border-rule flex items-center justify-center p-1">
+              <img
+                src="/logo-white.png"
+                alt="Axes Lab"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-lg font-bold tracking-tight text-white">Axes Lab</span>
-              <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/[0.08] text-zinc-300 border border-white/[0.1]">
-                AI
+              <span className="text-sm font-display font-medium text-ink">
+                Axes Lab
+              </span>
+              <span className="text-xs text-muted px-1.5 py-0.5 rounded-pill bg-paper-2 border border-rule">
+                registry
               </span>
             </div>
           </Link>
 
-          {/* Center — Primary Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Center: Clean Nav Items */}
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-xs font-medium px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${
+                  className={`text-xs px-2.5 py-1 rounded-pill transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent ${
                     isActive
-                      ? "bg-white/[0.09] text-white border border-white/[0.12]"
-                      : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                      ? "text-ink bg-paper-2 border border-rule-2 font-medium"
+                      : "text-muted hover:text-ink hover:bg-paper-2"
                   }`}
                 >
-                  {link.isMCP && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-                  )}
-                  <span>{link.label}</span>
+                  {link.label}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Right — Search Trigger & Action (Zero Auth) */}
-          <div className="flex items-center gap-3">
-            {/* Cmd+K Search Trigger */}
+          {/* Right: Search & Action */}
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setPaletteOpen(true)}
-              className="bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] rounded-full px-3.5 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 flex items-center gap-2.5 transition-all"
+              className="flex items-center gap-2 px-2.5 py-1 rounded-pill bg-paper-2 border border-rule text-xs text-muted hover:text-ink hover:border-rule-2 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+              title="Search directory (Ctrl+K)"
             >
-              <Search className="w-3.5 h-3.5 text-zinc-400" />
-              <span className="hidden sm:inline">Search library...</span>
-              <kbd className="hidden sm:inline font-mono text-[10px] bg-white/[0.06] border border-white/[0.08] px-1.5 py-0.5 rounded text-zinc-400">
+              <Search className="w-3.5 h-3.5 text-muted" />
+              <span className="hidden sm:inline font-sans">Search</span>
+              <kbd className="hidden sm:inline font-mono text-xs text-muted px-1 bg-paper-3 rounded border border-rule">
                 ⌘K
               </kbd>
             </button>
 
-            {/* Connect MCP Primary Action Pill */}
             <Link
               href="/mcp"
-              className="hidden sm:inline-flex items-center gap-1.5 bg-white text-black hover:bg-zinc-200 font-semibold text-xs px-4 py-2 rounded-full transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="hidden sm:inline-flex items-center gap-1 text-xs px-3 py-1 rounded-pill bg-accent text-accent-ink font-medium hover:opacity-90 active:opacity-100 transition-opacity duration-150 focus-visible:outline-2 focus-visible:outline-accent"
             >
-              <span>Connect MCP</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Install MCP</span>
             </Link>
 
-            {/* Mobile Drawer Trigger */}
+            {/* Mobile Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/[0.05]"
-              aria-label="Toggle Navigation"
+              className="lg:hidden p-1.5 rounded-pill text-muted hover:text-ink bg-paper-2 border border-rule focus-visible:outline-2 focus-visible:outline-accent"
+              aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Sheet */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 z-40 bg-[#050507]/95 backdrop-blur-2xl p-6 lg:hidden flex flex-col justify-between overflow-y-auto">
-          <div className="space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.05] text-zinc-300 hover:text-white font-medium text-sm"
-              >
-                <div className="flex items-center gap-2">
-                  {link.isMCP && <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />}
-                  <span>{link.label}</span>
-                </div>
-                <ArrowRight className="w-4 h-4 text-zinc-600" />
-              </Link>
-            ))}
-          </div>
-
-          <div className="pt-6 border-t border-white/[0.08]">
+        <div className="fixed inset-0 top-14 z-[var(--z-modal)] bg-paper/98 border-b border-rule p-4 lg:hidden space-y-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-pill text-sm text-ink hover:bg-paper-2 transition-colors duration-150"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="pt-3 border-t border-rule">
             <Link
               href="/mcp"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 bg-white text-black font-semibold text-sm py-3 rounded-xl shadow-lg"
+              className="block w-full text-center px-4 py-2 rounded-pill bg-accent text-accent-ink text-sm font-medium"
             >
-              <span>Install Open MCP Server →</span>
+              Install MCP Server
             </Link>
           </div>
         </div>
       )}
 
-      {/* Global Command Palette */}
+      {/* Command Palette */}
       <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
     </>
   );
