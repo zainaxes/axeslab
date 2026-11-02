@@ -25,7 +25,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="space-y-6">
       {/* Top Admin Notice Bar */}
       <div className="flex items-center justify-between p-3.5 rounded-btn bg-surface border border-subtleBorder text-xs">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
+          <img src="/logo-white.png" alt="Axes Lab Logo" className="w-5 h-5 object-contain" />
           <span className="w-2 h-2 rounded-full bg-state-success" />
           <span className="font-bold text-primaryText uppercase tracking-wider text-[11px]">
             Axes Lab Administration Console

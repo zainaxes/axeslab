@@ -33,10 +33,10 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
             {/* Official Axes Lab Brand Icon */}
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1px] shadow-glow flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full bg-[#050507] rounded-[11px] flex items-center justify-center overflow-hidden p-1">
+              <div className="w-full h-full bg-[#050507] rounded-[11px] flex items-center justify-center overflow-hidden p-1.5">
                 <img
-                  src="/icon.ico"
-                  alt="Axes Lab Icon"
+                  src="/logo-white.png"
+                  alt="Axes Lab Logo"
                   className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
                 />
               </div>

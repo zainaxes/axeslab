@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { Terminal } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -9,7 +8,7 @@ export default function Footer() {
         {/* Left: Brand Copyright & Creator Attribution */}
         <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
           <div className="flex items-center gap-2">
-            <img src="/icon.ico" alt="Axes Lab" className="w-4 h-4 object-contain opacity-80" />
+            <img src="/logo-white.png" alt="Axes Lab" className="w-4 h-4 object-contain opacity-90" />
             <span>© 2026 Axes Lab · Official AI Website Prompts, Skills &amp; MCP</span>
           </div>
           <span className="hidden sm:inline text-zinc-600">·</span>

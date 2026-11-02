@@ -12,9 +12,13 @@ export function PreFooter() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-40 bg-violet-600/20 blur-[90px] pointer-events-none" />
 
         {/* Brand Logo Mark */}
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1px] shadow-glow mx-auto mb-6 flex items-center justify-center">
-          <div className="w-full h-full bg-[#050507] rounded-[15px] flex items-center justify-center">
-            <Terminal className="w-6 h-6 text-violet-300" />
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 p-[1px] shadow-glow mx-auto mb-6 flex items-center justify-center">
+          <div className="w-full h-full bg-[#050507] rounded-[15px] flex items-center justify-center p-2.5">
+            <img
+              src="/logo-white.png"
+              alt="Axes Lab Mark"
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
 
