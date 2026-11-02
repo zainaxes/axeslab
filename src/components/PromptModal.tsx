@@ -1,19 +1,17 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ALL_REAL_PROMPTS, PromptItem } from '@/lib/real-prompts';
 import {
   X,
   Copy,
   Check,
-  Heart,
-  Share2,
-  FileText,
   Code2,
   Terminal,
-  Play,
-  Zap,
+  ExternalLink,
+  Layers,
+  Sparkles,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -22,411 +20,201 @@ export function PromptModal() {
   const router = useRouter();
   const promptSlug = searchParams.get('prompt');
 
-  const [activeTab, setActiveTab] = useState<'prompt' | 'code' | 'skill'>('prompt');
-  const [copiedType, setCopiedType] = useState<string | null>(null);
-  const [likes, setLikes] = useState(0);
-  const [hasLiked, setHasLiked] = useState(false);
-  const [viewMode, setViewMode] = useState<'video' | 'interactive'>('video');
-  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
-
-  const item: PromptItem | undefined = ALL_REAL_PROMPTS.find((i) => i.slug === promptSlug);
+  const [item, setItem] = useState<PromptItem | null>(null);
+  const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<'prompt' | 'spec' | 'mcp'>('prompt');
 
   useEffect(() => {
-    if (item) {
-      setLikes(item.likes);
-      setHasLiked(false);
+    if (!promptSlug) {
+      setItem(null);
+      return;
     }
-  }, [item]);
-
-  useEffect(() => {
-    const video = modalVideoRef.current;
-    if (!video || !item?.videoUrl) return;
-
-    let hlsInstance: any = null;
-    let isCancelled = false;
-    const isM3u8 = item.videoUrl.includes('.m3u8');
-    const isWebp = item.videoUrl.includes('.webp');
-
-    if (isM3u8) {
-      import('hls.js').then(({ default: Hls }) => {
-        if (isCancelled || !modalVideoRef.current) return;
-        if (Hls.isSupported()) {
-          hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
-          hlsInstance.loadSource(item.videoUrl!);
-          hlsInstance.attachMedia(modalVideoRef.current);
-        } else if (modalVideoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-          modalVideoRef.current.src = item.videoUrl!;
-        }
-      });
-    } else if (!isWebp) {
-      video.src = item.videoUrl;
+    const found = ALL_REAL_PROMPTS.find((p) => p.slug === promptSlug);
+    if (found) {
+      setItem(found);
     }
+  }, [promptSlug]);
 
-    return () => {
-      isCancelled = true;
-      if (hlsInstance) hlsInstance.destroy();
-    };
-  }, [item?.videoUrl]);
-
-  if (!promptSlug || !item) return null;
-
-  const handleClose = () => {
+  const closeModal = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete('prompt');
-    const newPath = params.toString() ? `?${params.toString()}` : window.location.pathname;
-    router.push(newPath, { scroll: false });
+    const newQuery = params.toString();
+    router.replace(newQuery ? `/?${newQuery}` : '/', { scroll: false });
   };
 
-  const copyToClipboard = async (text: string, type: string, label: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedType(type);
-      toast.success(`Copied ${label}!`, {
-        description: '100% Free & Unlocked. Paste directly into your project.',
-      });
-      setTimeout(() => setCopiedType(null), 2000);
-    } catch {
-      toast.error('Failed to copy.');
-    }
+  const handleCopy = (text: string, label: string) => {
+    if (!text) return;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    toast.success(`${label} copied to clipboard`);
+    setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleShare = async () => {
-    const url = window.location.href;
-    try {
-      await navigator.clipboard.writeText(url);
-      toast.success('Link copied to clipboard!');
-    } catch {}
-  };
-
-  const handleLike = () => {
-    if (hasLiked) {
-      setLikes((prev) => prev - 1);
-      setHasLiked(false);
-    } else {
-      setLikes((prev) => prev + 1);
-      setHasLiked(true);
-      toast('Favorited prompt!', { description: item.title });
-    }
-  };
-
-  // Find related items by category
-  const relatedItems = ALL_REAL_PROMPTS.filter(
-    (i) => i.category === item.category && i.slug !== item.slug
-  ).slice(0, 3);
-
-  // Extract component code block if available, or generate standard component snippet
-  const codeBlockMatch = item.contentBody.match(/```(?:tsx|jsx|html|css)?\n([\s\S]*?)```/);
-  const extractedCode = codeBlockMatch ? codeBlockMatch[1] : item.contentBody;
+  if (!item) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-md">
-      <div className="fixed inset-0" onClick={handleClose} />
+    <div className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-paper-3/80"
+        onClick={closeModal}
+      />
 
-      {/* Main Modal Dialog */}
-      <div className="relative z-10 max-w-5xl w-full max-h-[92vh] overflow-y-auto rounded-3xl bg-[#0B0B10] border border-white/[0.12] shadow-2xl p-0 text-white flex flex-col">
-        {/* 1. Sticky Modal Header */}
-        <div className="px-6 py-4 border-b border-white/[0.07] flex items-center justify-between sticky top-0 z-20 bg-[#0B0B10]/95 backdrop-blur-xl">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-semibold uppercase px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-violet-300">
-              {item.category}
-            </span>
-            <h2 className="text-base sm:text-lg font-bold text-white truncate max-w-xs sm:max-w-md">
+      {/* Modal Dialog */}
+      <div className="relative z-10 max-w-4xl w-full bg-paper border border-rule-2 rounded-card overflow-hidden my-auto">
+        
+        {/* Header Bar */}
+        <div className="px-5 py-3.5 border-b border-rule bg-paper-2 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-cool flex-shrink-0" />
+            <h2 className="text-sm font-sans font-medium text-ink truncate">
               {item.title}
             </h2>
-            <div className="hidden md:flex items-center gap-1.5 pl-2 border-l border-white/[0.08]">
-              <span className="text-[10px] font-mono text-zinc-500 bg-white/[0.03] px-2 py-0.5 rounded">
-                {item.chars.toLocaleString()} chars
-              </span>
-              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                100% Verified
-              </span>
-            </div>
+            <span className="font-sans text-xs px-2 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted">
+              {item.category}
+            </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button
-              onClick={handleLike}
-              className={`flex items-center gap-1 text-xs font-mono px-3 py-1.5 rounded-xl border transition-all ${
-                hasLiked
-                  ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
-                  : 'bg-white/[0.04] border-white/[0.08] text-zinc-400 hover:text-white'
+              onClick={() => handleCopy(item.contentBody, 'Prompt')}
+              className={`text-xs font-sans font-medium px-3 py-1 rounded-pill border transition-colors duration-150 flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent ${
+                copied
+                  ? 'bg-ok-soft border-ok text-ok'
+                  : 'bg-accent text-accent-ink border-transparent hover:opacity-90'
               }`}
             >
-              <Heart className={`w-3.5 h-3.5 ${hasLiked ? 'fill-current' : ''}`} />
-              <span>{likes}</span>
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-ok" />
+                  <span>copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy prompt</span>
+                </>
+              )}
             </button>
 
             <button
-              onClick={handleShare}
-              className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-zinc-400 hover:text-white transition-colors"
-              title="Copy share link"
-            >
-              <Share2 className="w-3.5 h-3.5" />
-            </button>
-
-            <button
-              onClick={handleClose}
-              className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-zinc-400 hover:text-white transition-colors"
-              aria-label="Close modal"
+              onClick={closeModal}
+              className="p-1 rounded-pill text-muted hover:text-ink hover:bg-paper-3 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+              aria-label="Close dialog"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* 2. Main 16:9 Interactive Real Preview Stage */}
-        <div className="bg-black relative aspect-[16/10] sm:aspect-video w-full overflow-hidden border-b border-white/[0.07]">
-          {item.videoUrl && item.videoUrl.includes('.webp') ? (
-            <img
-              src={item.videoUrl}
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-          ) : item.videoUrl ? (
-            <video
-              ref={modalVideoRef}
-              poster={item.posterUrl}
-              controls
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          ) : item.posterUrl ? (
-            <img
-              src={item.posterUrl}
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center font-mono text-xs text-zinc-500">
-              Visual Preview Generating...
-            </div>
-          )}
-
-          {/* Top-Right Toggle Switch */}
-          {item.videoUrl ? (
-            <div className="absolute top-4 right-4 z-10 flex items-center bg-black/70 backdrop-blur-md border border-white/[0.1] rounded-full p-1 text-[11px] font-mono">
-              <button
-                onClick={() => setViewMode('video')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-                  viewMode === 'video'
-                    ? 'bg-white text-black font-semibold'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Play className="w-3 h-3" />
-                <span>Video Preview</span>
-              </button>
-              <button
-                onClick={() => setViewMode('interactive')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-                  viewMode === 'interactive'
-                    ? 'bg-white text-black font-semibold'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Zap className="w-3 h-3 text-amber-400" />
-                <span>Full Spec</span>
-              </button>
-            </div>
-          ) : (
-            <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 bg-black/75 backdrop-blur-md border border-white/[0.1] rounded-full text-[11px] font-mono text-zinc-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-              <span>UI Design Preview</span>
-            </div>
-          )}
-
-          <div className="absolute bottom-4 left-4 z-10 px-3 py-1 rounded-xl bg-black/75 backdrop-blur-md border border-white/[0.1] text-xs font-mono text-zinc-300">
-            {item.category} · Axes Lab Verified
-          </div>
+        {/* Tab Navigation */}
+        <div className="px-5 pt-3 border-b border-rule bg-paper-3 flex items-center gap-2 text-xs">
+          <button
+            onClick={() => setActiveTab('prompt')}
+            className={`pb-2.5 px-2 border-b-2 font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent ${
+              activeTab === 'prompt'
+                ? 'border-accent text-ink'
+                : 'border-transparent text-muted hover:text-ink'
+            }`}
+          >
+            System prompt
+          </button>
+          <button
+            onClick={() => setActiveTab('spec')}
+            className={`pb-2.5 px-2 border-b-2 font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent ${
+              activeTab === 'spec'
+                ? 'border-accent text-ink'
+                : 'border-transparent text-muted hover:text-ink'
+            }`}
+          >
+            Specification
+          </button>
+          <button
+            onClick={() => setActiveTab('mcp')}
+            className={`pb-2.5 px-2 border-b-2 font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent ${
+              activeTab === 'mcp'
+                ? 'border-accent text-ink'
+                : 'border-transparent text-muted hover:text-ink'
+            }`}
+          >
+            Agent MCP directive
+          </button>
         </div>
 
-        {/* 3. Primary Action & Instant Copy Bar (All 100% Free & Unlocked) */}
-        <div className="p-6 bg-[#0E0E15] border-b border-white/[0.07] flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Copy Prompt */}
-            <button
-              onClick={() => copyToClipboard(item.contentBody, 'prompt', 'Full AI Prompt')}
-              className="bg-white text-black hover:bg-zinc-200 font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 text-xs sm:text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-transform hover:scale-105 active:scale-95"
-            >
-              {copiedType === 'prompt' ? (
-                <Check className="w-4 h-4 text-emerald-600" />
-              ) : (
-                <Copy className="w-4 h-4 text-black" />
-              )}
-              <span>{copiedType === 'prompt' ? 'Copied Prompt!' : 'Copy Prompt'}</span>
-            </button>
-
-            {/* Copy Source Code */}
-            <button
-              onClick={() => copyToClipboard(extractedCode, 'code', 'Component Source Code')}
-              className="bg-white/[0.07] hover:bg-white/[0.12] border border-white/[0.1] text-white font-medium px-4 py-2.5 rounded-xl flex items-center gap-2 text-xs sm:text-sm transition-transform hover:scale-105 active:scale-95"
-            >
-              {copiedType === 'code' ? (
-                <Check className="w-4 h-4 text-emerald-400" />
-              ) : (
-                <Code2 className="w-4 h-4 text-zinc-300" />
-              )}
-              <span>{copiedType === 'code' ? 'Copied Code!' : 'Copy Source Code'}</span>
-            </button>
-
-            {/* Copy Agent Skill */}
-            <button
-              onClick={() =>
-                copyToClipboard(
-                  `---
-name: ${item.slug}-spec
-category: ${item.category}
----
-# Specification for ${item.title}
-${item.contentBody}`,
-                  'skill',
-                  'Agent SKILL.md'
-                )
-              }
-              className="bg-violet-500/15 hover:bg-violet-500/25 border border-violet-500/30 text-violet-200 font-medium px-4 py-2.5 rounded-xl flex items-center gap-2 text-xs sm:text-sm transition-transform hover:scale-105 active:scale-95"
-            >
-              {copiedType === 'skill' ? (
-                <Check className="w-4 h-4 text-emerald-400" />
-              ) : (
-                <Terminal className="w-4 h-4 text-violet-400" />
-              )}
-              <span>{copiedType === 'skill' ? 'Copied Skill!' : 'Copy SKILL.md'}</span>
-            </button>
+        {/* Body Content */}
+        <div className="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
+          
+          {/* Summary */}
+          <div className="p-3.5 rounded-pill bg-paper-2 border border-rule text-xs text-muted leading-relaxed">
+            {item.summary}
           </div>
 
-          {/* "Open directly in" AI Launchers */}
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-            <span className="hidden sm:inline">Open in:</span>
-            <div className="flex items-center gap-1.5">
-              {[
-                { name: 'Lovable', url: 'https://lovable.dev' },
-                { name: 'Cursor', url: 'cursor://open' },
-                { name: 'Claude', url: 'https://claude.ai' },
-                { name: 'Bolt', url: 'https://bolt.new' },
-              ].map((tool) => (
-                <a
-                  key={tool.name}
-                  href={tool.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => copyToClipboard(item.contentBody, 'prompt', `${tool.name} Prompt`)}
-                  className="px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-300 hover:text-white transition-colors"
-                >
-                  {tool.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 4. Full Prompt & Source Code Inspector Tabs */}
-        <div className="p-6 space-y-6">
-          {/* Tab Selector Buttons */}
-          <div className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
-            {[
-              { id: 'prompt', label: 'Full AI Prompt Specification', icon: FileText },
-              { id: 'code', label: 'Extracted Source Code', icon: Code2 },
-              { id: 'skill', label: 'MCP & Agent Directive', icon: Terminal },
-            ].map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                    isActive
-                      ? 'bg-white/[0.1] text-white border border-white/[0.15]'
-                      : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.03]'
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Tab Panel */}
+          {/* Active Tab View */}
           {activeTab === 'prompt' && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-                <span>Production AI System Prompt</span>
-                <span>{item.chars.toLocaleString()} characters</span>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs text-muted">
+                <span>Verbatim system instructions:</span>
+                <span><span className="font-mono">{item.chars}</span> characters</span>
               </div>
-              <pre className="max-h-96 overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#07070B] p-5 font-mono text-xs text-zinc-200 leading-relaxed whitespace-pre-wrap select-text">
-                <code>{item.contentBody}</code>
+              <pre className="p-3.5 rounded-pill bg-paper-3 border border-rule text-ink-2 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap selection:bg-accent-soft max-h-80">
+                {item.contentBody}
               </pre>
             </div>
           )}
 
-          {activeTab === 'code' && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-                <span>Production Implementation Code</span>
-                <span>Drop straight into project</span>
+          {activeTab === 'spec' && (
+            <div className="space-y-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-3 rounded-pill bg-paper-2 border border-rule">
+                  <span className="text-muted block mb-1">Target models:</span>
+                  <span className="text-ink font-medium">Claude 3.7 Sonnet, Cursor, Gemini 2.0 Flash</span>
+                </div>
+                <div className="p-3 rounded-pill bg-paper-2 border border-rule">
+                  <span className="text-muted block mb-1">Estimated token weight:</span>
+                  <span className="text-ink font-medium">~<span className="font-mono">{Math.round(item.chars / 4)}</span> tokens</span>
+                </div>
               </div>
-              <pre className="max-h-96 overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#07070B] p-5 font-mono text-xs text-zinc-200 leading-relaxed whitespace-pre-wrap select-text">
-                <code>{extractedCode}</code>
-              </pre>
+              <div className="p-3.5 rounded-pill bg-paper-3 border border-rule space-y-2">
+                <span className="text-ink font-medium block">Verification checklist</span>
+                <ul className="space-y-1 text-muted list-disc pl-4">
+                  <li>Zero placeholder strings or unfinished markup.</li>
+                  <li>Responsive layout tested for desktop and mobile viewport constraints.</li>
+                  <li>Clean semantic structure ready to paste directly into code editors.</li>
+                </ul>
+              </div>
             </div>
           )}
 
-          {activeTab === 'skill' && (
-            <div className="space-y-4">
-              <div className="p-4 rounded-2xl bg-violet-500/10 border border-violet-500/20 text-xs text-violet-300">
-                <span className="font-bold">Axes Lab MCP Agent Directive:</span>
-                <p className="mt-1 font-mono text-zinc-300">
-                  Ask your agent: Use Axes Lab MCP to fetch and apply the &ldquo;{item.title}&rdquo; design system.
-                </p>
-              </div>
-              <pre className="max-h-96 overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#07070B] p-5 font-mono text-xs text-zinc-200 leading-relaxed whitespace-pre-wrap select-text">
-                <code>{`claude mcp add axeslab --scope user --transport http https://mcp.axeslab.ai/v1/mcp
-
-// Prompt your coding agent:
-"Fetch prompt '${item.slug}' from Axes Lab MCP and implement this ${item.category} in my current app."`}</code>
+          {activeTab === 'mcp' && (
+            <div className="space-y-3 text-xs">
+              <p className="text-muted">
+                Run this directive inside any agent environment connected to the Axes Lab MCP server:
+              </p>
+              <pre className="p-3.5 rounded-pill bg-paper-3 border border-rule text-cool font-mono text-xs overflow-x-auto selection:bg-accent-soft">
+                {`axeslab fetch-prompt --slug "${item.slug}" --apply`}
               </pre>
+              <button
+                onClick={() => handleCopy(`axeslab fetch-prompt --slug "${item.slug}" --apply`, 'Command')}
+                className="px-3 py-1.5 rounded-pill bg-paper-2 border border-rule text-xs text-ink hover:bg-rule transition-colors duration-150 flex items-center gap-1.5"
+              >
+                <Copy className="w-3.5 h-3.5 text-muted" />
+                <span>Copy CLI directive</span>
+              </button>
             </div>
           )}
+
         </div>
 
-        {/* 5. Related Prompts Grid */}
-        {relatedItems.length > 0 && (
-          <div className="px-6 pb-8 border-t border-white/[0.06] pt-6">
-            <h3 className="text-sm font-bold text-white mb-4">More in {item.category}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {relatedItems.map((r) => (
-                <div
-                  key={r.id}
-                  onClick={() => router.push(`/?prompt=${r.slug}`, { scroll: false })}
-                  className="group p-3 rounded-2xl bg-[#09090D] border border-white/[0.07] hover:border-white/[0.18] cursor-pointer transition-all flex items-center gap-3"
-                >
-                  <div className="w-16 h-12 rounded-xl overflow-hidden bg-black shrink-0 relative">
-                    {r.posterUrl ? (
-                      <img
-                        src={r.posterUrl}
-                        alt={r.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-zinc-900" />
-                    )}
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-xs font-bold text-white group-hover:text-violet-300 truncate">
-                      {r.title}
-                    </h4>
-                    <span className="text-[10px] font-mono text-zinc-500">{r.category}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* Modal Footer */}
+        <div className="px-5 py-3 bg-paper-2 border-t border-rule flex items-center justify-between text-xs text-muted">
+          <span>Identifier: /{item.slug}</span>
+          <div className="flex items-center gap-2">
+            <span>Press</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-paper-3 border border-rule font-sans text-xs">ESC</kbd>
+            <span>to dismiss</span>
           </div>
-        )}
+        </div>
+
       </div>
     </div>
   );

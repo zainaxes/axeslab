@@ -33,70 +33,92 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-md">
-      <div className="fixed inset-0" onClick={onClose} />
-      <div className="relative z-10 w-full max-w-2xl rounded-3xl bg-[#0E0E14] border border-white/[0.12] shadow-2xl overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-[var(--z-modal)] flex items-start justify-center pt-20 px-4">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-paper-3/80"
+        onClick={onClose}
+      />
+
+      {/* Console Modal Container */}
+      <div className="relative z-10 w-full max-w-2xl bg-paper border border-rule-2 rounded-card overflow-hidden">
         {/* Search Input Bar */}
-        <div className="flex items-center px-5 py-4 border-b border-white/[0.08] gap-3">
-          <Search className="w-5 h-5 text-zinc-400" />
+        <div className="flex items-center px-4 py-3 border-b border-rule bg-paper-2">
+          <Search className="w-4 h-4 text-muted mr-3 flex-shrink-0" />
           <input
             type="text"
-            placeholder="Search across all 640+ Prompts & 125+ Categories (e.g. Hero, SaaS, Glass, 3D, Bento)..."
+            autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            autoFocus
-            className="w-full bg-transparent text-sm text-white placeholder:text-zinc-500 outline-none"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') onClose();
+            }}
+            placeholder="Search prompts, categories, or keywords…"
+            className="w-full bg-transparent text-ink placeholder:text-muted text-sm outline-none font-sans"
           />
-          <button onClick={onClose} className="p-1 rounded-lg text-zinc-500 hover:text-white">
+          {query && (
+            <button
+              onClick={() => setQuery('')}
+              className="text-xs text-muted hover:text-ink px-1.5 py-0.5 rounded-pill bg-paper-3 border border-rule mr-2"
+            >
+              Clear
+            </button>
+          )}
+          <button
+            onClick={onClose}
+            className="p-1 rounded-pill text-muted hover:text-ink hover:bg-paper-3 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+          >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Results List */}
-        <div className="max-h-[380px] overflow-y-auto p-3 space-y-1">
+        <div className="max-h-96 overflow-y-auto divide-y divide-rule p-1">
           {results.length === 0 ? (
-            <div className="py-12 text-center text-zinc-500 text-xs font-mono">
-              No matching prompts found in the 640+ library.
+            <div className="py-10 text-center text-muted text-xs">
+              No matching prompts found for &ldquo;{query}&rdquo;
             </div>
           ) : (
-            results.map((item) => (
-              <div
+            results.map((item, idx) => (
+              <button
                 key={item.id}
                 onClick={() => handleSelect(item)}
-                className="group p-3 rounded-2xl hover:bg-white/[0.06] transition-colors cursor-pointer flex items-center justify-between gap-4"
+                className="w-full text-left px-3.5 py-2.5 hover:bg-paper-2 rounded-pill transition-colors duration-150 flex items-center justify-between gap-3 group focus-visible:outline-2 focus-visible:outline-accent"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-7 rounded-lg overflow-hidden bg-black shrink-0 relative border border-white/[0.08]">
-                    {item.posterUrl ? (
-                      <img src={item.posterUrl} alt={item.title} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full bg-zinc-900" />
-                    )}
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white group-hover:text-violet-300 transition-colors">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="font-sans font-medium text-ink group-hover:text-cool text-xs truncate">
                       {item.title}
-                    </h4>
-                    <p className="text-xs text-zinc-400 line-clamp-1 font-mono">
-                      {item.chars.toLocaleString()} chars · {item.summary}
-                    </p>
+                    </span>
+                    <span className="text-xs text-muted font-sans px-1.5 py-0.5 rounded-pill bg-paper-3 border border-rule">
+                      {item.category}
+                    </span>
                   </div>
+                  <p className="text-xs text-muted line-clamp-1">
+                    {item.summary}
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/[0.08] text-zinc-400 uppercase">
-                    {item.category}
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <span className="text-xs text-muted">
+                    <span className="font-mono">{item.chars}</span> chars
                   </span>
-                  <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-white" />
+                  <span className="text-xs font-sans text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                    Open
+                  </span>
                 </div>
-              </div>
+              </button>
             ))
           )}
         </div>
 
-        {/* Footer info */}
-        <div className="px-5 py-3 bg-[#08080C] border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-500 font-mono">
-          <span>Axes Lab · 642 Real Production Prompts Index</span>
-          <span>ESC to close · Press ↵ to inspect</span>
+        {/* Footer Info */}
+        <div className="px-4 py-2.5 bg-paper-3 border-t border-rule flex items-center justify-between text-xs text-muted">
+          <span>{ALL_REAL_PROMPTS.length} verified system prompts</span>
+          <div className="flex items-center gap-2">
+            <span>Press</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-paper-2 border border-rule font-sans text-xs">ESC</kbd>
+            <span>to close</span>
+          </div>
         </div>
       </div>
     </div>

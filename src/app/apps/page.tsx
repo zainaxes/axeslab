@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { GlowWord } from '@/components/GlowWord';
-import { PromptCard } from '@/components/PromptCard';
+import { PromptRegistryRow } from '@/components/PromptRegistryRow';
 import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
 import { PreFooter } from '@/components/PreFooter';
-import { Smartphone, Search } from 'lucide-react';
+import { Search, ChevronDown, Smartphone } from 'lucide-react';
 
 const APP_CATEGORIES = [
   'All',
@@ -21,6 +20,7 @@ const APP_CATEGORIES = [
 export default function AppsPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [displayCount, setDisplayCount] = useState(50);
 
   const appItems = useMemo(() => {
     return ALL_REAL_PROMPTS.filter((item) => {
@@ -54,58 +54,99 @@ export default function AppsPage() {
     });
   }, [selectedCategory, searchQuery]);
 
+  const displayedItems = appItems.slice(0, displayCount);
+
   return (
-    <div className="min-h-screen bg-[#050507] text-[#FAFAFA] px-4 py-16">
-      {/* 1. Hero Section */}
-      <section className="max-w-4xl mx-auto text-center relative mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-violet-500/15 border border-violet-500/25 text-violet-300 text-xs font-mono mb-6">
-          <Smartphone className="w-3.5 h-3.5 text-violet-400" />
-          <span>{appItems.length} Production Web &amp; Mobile App Prompts</span>
-        </div>
+    <div className="min-h-screen bg-paper text-ink font-sans antialiased">
+      {/* Header */}
+      <section className="border-b border-rule bg-paper-2 pt-10 pb-6 px-4 sm:px-8">
+        <div className="max-w-[var(--container)] mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted text-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-cool" />
+            <span>Full applications</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-display font-medium text-ink">
+            Web applications and mobile interfaces
+          </h1>
+          <p className="text-sm text-muted max-w-xl leading-relaxed">
+            Production specifications for dashboards, SaaS platforms, and mobile layouts.
+          </p>
 
-        <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08]">
-          AI Web &amp; Mobile App <GlowWord text="Prompts" />
-        </h1>
+          {/* Filter Bar */}
+          <div className="flex items-center border border-rule focus-within:border-accent rounded-pill bg-paper-3 overflow-hidden">
+            <div className="pl-3.5 pr-2 text-muted">
+              <Search className="w-4 h-4" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search application prompts…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-transparent px-2 py-2 text-xs sm:text-sm text-ink placeholder:text-muted outline-none"
+            />
+          </div>
 
-        <p className="max-w-xl mx-auto text-base sm:text-lg text-zinc-400 mt-5 mb-8">
-          Production prompts engineered for mobile apps, dashboards, conversational AI interfaces, and complex SaaS applications.
-        </p>
-
-        {/* Search Bar */}
-        <div className="max-w-md mx-auto relative mb-8">
-          <input
-            type="text"
-            placeholder="Search app prompts..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#0B0B10]/90 border border-white/[0.12] focus:border-violet-500/60 rounded-2xl px-5 py-3 pl-11 text-sm text-white placeholder:text-zinc-500 outline-none backdrop-blur-xl transition-all"
-          />
-          <Search className="w-4 h-4 text-zinc-400 absolute left-4 top-3.5" />
-        </div>
-
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {APP_CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`rounded-full px-4 py-1.5 text-xs font-mono font-medium transition-all ${
-                selectedCategory === cat
-                  ? 'bg-white text-[#050507] font-semibold shadow-sm'
-                  : 'bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.06]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {/* Category Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1">
+            {APP_CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`text-xs px-2.5 py-1 rounded-pill border transition-colors duration-150 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-accent ${
+                  selectedCategory === cat
+                    ? 'bg-ink text-paper font-medium border-ink'
+                    : 'bg-paper-3 text-muted hover:text-ink border-rule'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 2. Apps Grid */}
-      <section className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {appItems.map((item) => (
-          <PromptCard key={item.id} item={item} />
-        ))}
+      {/* Table Section */}
+      <section className="max-w-[var(--container)] mx-auto px-4 sm:px-8 py-6">
+        <div className="flex items-center justify-between text-xs text-muted pb-3 border-b border-rule">
+          <span>Showing <strong className="text-ink font-medium">{displayedItems.length}</strong> of {appItems.length} application prompts</span>
+          <span>Click row to inspect</span>
+        </div>
+
+        <div className="border border-rule rounded-card bg-paper-2 overflow-hidden mt-3">
+          <div className="px-4 py-2 border-b border-rule bg-paper-3 flex items-center justify-between text-xs text-muted">
+            <div className="flex items-center gap-3">
+              <span className="w-7 text-right">No.</span>
+              <span className="w-1.5"></span>
+              <span>Application and interface</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <span className="hidden lg:inline-block">Tokens</span>
+              <span className="w-20 text-center">Action</span>
+            </div>
+          </div>
+
+          {displayedItems.length === 0 ? (
+            <div className="py-16 text-center text-muted text-xs">
+              No matching applications found.
+            </div>
+          ) : (
+            displayedItems.map((item, idx) => (
+              <PromptRegistryRow key={item.id} item={item} index={idx} />
+            ))
+          )}
+        </div>
+
+        {displayCount < appItems.length && (
+          <div className="text-center pt-8 pb-4">
+            <button
+              onClick={() => setDisplayCount((prev) => prev + 50)}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-pill bg-paper-2 hover:bg-paper-3 border border-rule text-xs font-medium text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <span>Load more ({appItems.length - displayCount} remaining)</span>
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
       </section>
 
       <PreFooter />

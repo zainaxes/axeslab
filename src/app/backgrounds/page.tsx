@@ -1,176 +1,99 @@
 'use client';
 
-import React, { useState } from 'react';
-import { GlowWord } from '@/components/GlowWord';
+import React, { useState, useMemo } from 'react';
+import { PromptRegistryRow } from '@/components/PromptRegistryRow';
 import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
 import { PreFooter } from '@/components/PreFooter';
-import { Copy, Check, Code } from 'lucide-react';
-import { toast } from 'sonner';
+import { Search, ChevronDown } from 'lucide-react';
 
 export default function BackgroundsPage() {
-  const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
-  const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const [activeSort, setActiveSort] = useState<'Featured' | 'Popular' | 'Recent'>('Featured');
-  const [activeTag, setActiveTag] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [displayCount, setDisplayCount] = useState(50);
 
-  // Filter real background items
-  const backgrounds = ALL_REAL_PROMPTS.filter((item) => {
-    const c = item.category.toLowerCase();
-    const t = item.title.toLowerCase();
-    return c.includes('background') || t.includes('gradient') || t.includes('shader') || t.includes('tunnel');
-  });
+  const bgItems = useMemo(() => {
+    return ALL_REAL_PROMPTS.filter((item) => {
+      const c = item.category.toLowerCase();
+      const t = item.title.toLowerCase();
+      const isBg = c.includes('background') || t.includes('background') || t.includes('shader') || t.includes('gradient');
+      if (!isBg) return false;
+      const q = searchQuery.trim().toLowerCase();
+      return q === '' || t.includes(q) || item.summary.toLowerCase().includes(q);
+    });
+  }, [searchQuery]);
 
-  const tags = ['All', 'Dark', 'Light', 'Abstract', 'Space', 'Surreal', 'Tech'];
-
-  const handleCopyUrl = async (bg: any) => {
-    const url = bg.videoUrl || bg.posterUrl;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopiedUrl(bg.slug);
-      toast.success("Copied direct background video URL!", {
-        description: "Drop this direct CDN URL straight into your video tag.",
-      });
-      setTimeout(() => setCopiedUrl(null), 2000);
-    } catch {}
-  };
-
-  const handleCopyCode = async (bg: any) => {
-    const snippet = `<div className="fixed inset-0 -z-10 overflow-hidden bg-[#050507]">
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="w-full h-full object-cover opacity-60"
-    src="${bg.videoUrl || bg.posterUrl}"
-  />
-  <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#050507] opacity-80" />
-</div>`;
-    try {
-      await navigator.clipboard.writeText(snippet);
-      setCopiedCode(bg.slug);
-      toast.success("Copied React/Tailwind Background snippet!");
-      setTimeout(() => setCopiedCode(null), 2000);
-    } catch {}
-  };
+  const displayedItems = bgItems.slice(0, displayCount);
 
   return (
-    <div className="min-h-screen bg-[#050507] text-[#FAFAFA] px-4 py-16">
-      {/* 1. Hero Section */}
-      <section className="max-w-4xl mx-auto text-center relative mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 text-xs font-mono mb-6">
-          <span>{backgrounds.length} Motion Backgrounds &amp; Shaders Online</span>
-        </div>
+    <div className="min-h-screen bg-paper text-ink font-sans antialiased">
+      <section className="border-b border-rule bg-paper-2 pt-10 pb-6 px-4 sm:px-8">
+        <div className="max-w-[var(--container)] mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted text-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-cool" />
+            <span>WebGL shaders and video canvas</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-display font-medium text-ink">
+            Animated backgrounds and shaders
+          </h1>
+          <p className="text-sm text-muted max-w-xl leading-relaxed">
+            Looping video backgrounds, Three.js shaders, and procedural gradient canvases.
+          </p>
 
-        <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.08]">
-          Jaw-dropping <GlowWord text="Animated Backgrounds" />
-        </h1>
-
-        <p className="max-w-xl mx-auto text-base sm:text-lg text-zinc-400 mt-5">
-          Handcrafted Animated Video Loops &amp; WebGL Shaders ready to drop into any hero section.
-        </p>
-      </section>
-
-      {/* 2. Dual-Row Filter Bar */}
-      <section className="max-w-6xl mx-auto mb-10 space-y-3">
-        {/* Row 1: Sort */}
-        <div className="flex items-center gap-2">
-          {(['Featured', 'Popular', 'Recent'] as const).map((s) => (
-            <button
-              key={s}
-              onClick={() => setActiveSort(s)}
-              className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
-                activeSort === s
-                  ? 'bg-white text-black font-semibold'
-                  : 'text-zinc-400 hover:text-white bg-white/[0.04]'
-              }`}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-
-        {/* Row 2: Style Tags */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
-          {tags.map((t) => (
-            <button
-              key={t}
-              onClick={() => setActiveTag(t)}
-              className={`px-3.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                activeTag === t
-                  ? 'bg-white/[0.12] text-white border border-white/[0.15]'
-                  : 'text-zinc-400 hover:text-white bg-white/[0.03] border border-white/[0.05]'
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Backgrounds Card Grid */}
-      <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {backgrounds.map((bg) => (
-          <div
-            key={bg.id}
-            className="group rounded-3xl bg-[#0B0B10] border border-white/[0.08] hover:border-white/[0.2] overflow-hidden transition-all duration-300 flex flex-col justify-between"
-          >
-            {/* Viewport */}
-            <div className="relative aspect-video w-full bg-black overflow-hidden">
-              {bg.videoUrl ? (
-                <video
-                  src={bg.videoUrl}
-                  poster={bg.posterUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <img src={bg.posterUrl} alt={bg.title} className="w-full h-full object-cover" />
-              )}
-              <div className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-black/60 border border-white/[0.1] text-[10px] font-mono text-zinc-300 backdrop-blur-md">
-                Seamless Video Loop
-              </div>
+          <div className="flex items-center border border-rule focus-within:border-accent rounded-pill bg-paper-3 overflow-hidden">
+            <div className="pl-3.5 pr-2 text-muted">
+              <Search className="w-4 h-4" />
             </div>
+            <input
+              type="text"
+              placeholder="Search backgrounds…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-transparent px-2 py-2 text-xs sm:text-sm text-ink placeholder:text-muted outline-none"
+            />
+          </div>
+        </div>
+      </section>
 
-            {/* Metadata & Actions */}
-            <div className="p-5 space-y-4">
-              <div>
-                <h3 className="text-base font-bold text-white">{bg.title}</h3>
-                <p className="text-xs text-zinc-400 line-clamp-1 mt-1">{bg.summary}</p>
-              </div>
+      <section className="max-w-[var(--container)] mx-auto px-4 sm:px-8 py-6">
+        <div className="flex items-center justify-between text-xs text-muted pb-3 border-b border-rule">
+          <span>Showing <strong className="text-ink font-medium">{displayedItems.length}</strong> of {bgItems.length} background prompts</span>
+          <span>Click row to inspect</span>
+        </div>
 
-              {/* Direct Card Actions (Bottom Overlay Bar) */}
-              <div className="pt-3 border-t border-white/[0.06] flex items-center gap-2">
-                <button
-                  onClick={() => handleCopyUrl(bg)}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white text-black hover:bg-zinc-200 font-bold text-xs transition-all shadow-md active:scale-95"
-                >
-                  {copiedUrl === bg.slug ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                  <span>{copiedUrl === bg.slug ? 'Copied URL!' : 'Copy URL'}</span>
-                </button>
-
-                <button
-                  onClick={() => handleCopyCode(bg)}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] text-white font-medium text-xs transition-all active:scale-95"
-                >
-                  {copiedCode === bg.slug ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  ) : (
-                    <Code className="w-3.5 h-3.5" />
-                  )}
-                  <span>{copiedCode === bg.slug ? 'Copied Code!' : 'Copy Code'}</span>
-                </button>
-              </div>
+        <div className="border border-rule rounded-card bg-paper-2 overflow-hidden mt-3">
+          <div className="px-4 py-2 border-b border-rule bg-paper-3 flex items-center justify-between text-xs text-muted">
+            <div className="flex items-center gap-3">
+              <span className="w-7 text-right">No.</span>
+              <span className="w-1.5"></span>
+              <span>Background and shader style</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <span className="hidden lg:inline-block">Tokens</span>
+              <span className="w-20 text-center">Action</span>
             </div>
           </div>
-        ))}
+
+          {displayedItems.length === 0 ? (
+            <div className="py-16 text-center text-muted text-xs">
+              No matching background prompts found.
+            </div>
+          ) : (
+            displayedItems.map((item, idx) => (
+              <PromptRegistryRow key={item.id} item={item} index={idx} />
+            ))
+          )}
+        </div>
+
+        {displayCount < bgItems.length && (
+          <div className="text-center pt-8 pb-4">
+            <button
+              onClick={() => setDisplayCount((prev) => prev + 50)}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-pill bg-paper-2 hover:bg-paper-3 border border-rule text-xs font-medium text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <span>Load more ({bgItems.length - displayCount} remaining)</span>
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
       </section>
 
       <PreFooter />
