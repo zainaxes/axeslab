@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   const directoryLinks = [
-    { label: "AI prompts", href: "/" },
+    { label: "AI prompts", href: "/prompts" },
     { label: "MCP server", href: "/mcp" },
     { label: "Agent skills", href: "/skills" },
     { label: "Full web apps", href: "/apps" },

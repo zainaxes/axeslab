@@ -13,7 +13,7 @@ export default function Header() {
 
   const navLinks = [
     { label: "mcp", href: "/mcp" },
-    { label: "prompts", href: "/" },
+    { label: "prompts", href: "/prompts" },
     { label: "apps", href: "/apps" },
     { label: "skills", href: "/skills" },
     { label: "backgrounds", href: "/backgrounds" },

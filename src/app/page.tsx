@@ -1,210 +1,224 @@
-'use client';
-
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
 import { PromptRegistryRow } from '@/components/PromptRegistryRow';
-import { ALL_REAL_PROMPTS, ALL_PROMPT_CATEGORIES } from '@/lib/real-prompts';
+import { PreFooter } from '@/components/PreFooter';
 import {
-  Search,
   Terminal,
   Cpu,
-  ChevronDown,
-  Command,
+  Layers,
+  Sparkles,
+  ArrowRight,
+  Code2,
+  Check,
+  ShieldCheck,
+  Zap,
 } from 'lucide-react';
 
 export default function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [displayCount, setDisplayCount] = useState(60);
-
-  // Filter items dynamically by category & search query
-  const filteredItems = useMemo(() => {
-    return ALL_REAL_PROMPTS.filter((item) => {
-      const matchesCategory =
-        selectedCategory === 'All' ||
-        item.category.toLowerCase() === selectedCategory.toLowerCase() ||
-        item.categorySlug === selectedCategory;
-
-      const q = searchQuery.trim().toLowerCase();
-      const matchesSearch =
-        q === '' ||
-        item.title.toLowerCase().includes(q) ||
-        item.category.toLowerCase().includes(q) ||
-        item.summary.toLowerCase().includes(q) ||
-        item.contentBody.toLowerCase().includes(q);
-
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, searchQuery]);
-
-  const displayedItems = filteredItems.slice(0, displayCount);
+  const featuredPrompts = ALL_REAL_PROMPTS.slice(0, 8);
+  const totalPrompts = ALL_REAL_PROMPTS.length;
 
   return (
     <div className="min-h-screen bg-paper text-ink font-sans antialiased">
       
-      {/* 1. Command Center Hero & Search Console */}
-      <section className="border-b border-rule bg-paper-2 pt-10 pb-6 px-4 sm:px-8">
-        <div className="max-w-[var(--container)] mx-auto space-y-5">
-          
-          {/* Header Title Bar */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted text-xs mb-2">
+      {/* 1. Hero Stage: The Developer Architecture Platform */}
+      <section className="border-b border-rule bg-paper-2 pt-16 sm:pt-24 pb-16 px-4 sm:px-8">
+        <div className="max-w-[var(--container)] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Column: Clear Value Proposition */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted text-xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-cool" />
-                <span>Axes Lab · Technical reference registry</span>
+                <span>Axes Lab · Production reference library</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-display font-medium text-ink">
-                AI prompts and agent specifications
+
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-medium text-ink tracking-display leading-[1.05]">
+                AI web design and agent registry
               </h1>
-              <p className="text-sm text-muted mt-1 max-w-2xl leading-relaxed">
-                640 verified system prompts, agent skills, WebGL modules, and MCP configurations.
+
+              <p className="text-base text-muted max-w-xl leading-relaxed">
+                640 verified system directives, WebGL shaders, and Model Context Protocol servers.
+              </p>
+
+              {/* Action Pair */}
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/prompts"
+                  className="px-5 py-2.5 rounded-pill bg-accent text-accent-ink font-sans font-medium text-xs hover:opacity-90 active:opacity-100 transition-opacity duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                  <span>Browse catalog ({totalPrompts})</span>
+                </Link>
+                <Link
+                  href="/mcp"
+                  className="px-5 py-2.5 rounded-pill bg-paper-3 border border-rule text-ink hover:bg-rule transition-colors duration-150 text-xs font-medium focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                  <span>Connect MCP server</span>
+                </Link>
+              </div>
+
+              {/* Verified Metrics Strip */}
+              <div className="pt-6 border-t border-rule grid grid-cols-3 gap-4 max-w-md text-xs">
+                <div>
+                  <span className="font-mono text-base font-medium text-ink block">642</span>
+                  <span className="text-muted">Verified prompts</span>
+                </div>
+                <div>
+                  <span className="font-mono text-base font-medium text-ink block">125+</span>
+                  <span className="text-muted">Categories</span>
+                </div>
+                <div>
+                  <span className="font-mono text-base font-medium text-ok block">100%</span>
+                  <span className="text-muted">Free and open</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Live Interactive CLI & Manifest Instrument */}
+            <div className="lg:col-span-5">
+              <div className="rounded-card bg-paper-3 border border-rule-2 p-5 space-y-4">
+                <div className="flex items-center justify-between text-xs pb-3 border-b border-rule text-muted">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-ok" />
+                    <span className="font-medium text-ink">axeslab-mcp-terminal</span>
+                  </div>
+                  <span className="font-mono text-xs">v2.4.0</span>
+                </div>
+
+                <div className="space-y-2 text-xs font-mono">
+                  <div className="text-muted"># Quick install via npx</div>
+                  <pre className="p-3 rounded-pill bg-paper border border-rule text-cool overflow-x-auto selection:bg-accent-soft">
+                    npx axeslab-mcp@latest
+                  </pre>
+                </div>
+
+                <div className="p-4 rounded-pill bg-paper-2 border border-rule space-y-2 text-xs">
+                  <span className="text-ink font-medium block">Agent directive example:</span>
+                  <p className="text-muted leading-relaxed font-sans">
+                    Ask Cursor or Claude Code: &ldquo;Fetch minimal bento hero from Axes Lab MCP and scaffold the design system.&rdquo;
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-muted pt-1">
+                  <span>Transport: stdio / JSON-RPC</span>
+                  <span className="text-ok">Schema verified</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Platform Architecture: 3 Pillars */}
+      <section className="py-16 px-4 sm:px-8 border-b border-rule">
+        <div className="max-w-[var(--container)] mx-auto space-y-10">
+          <div className="max-w-xl space-y-2">
+            <h2 className="text-2xl font-display font-medium text-ink">
+              Structured architecture for autonomous coding
+            </h2>
+            <p className="text-sm text-muted">
+              Designed specifically to eliminate non-deterministic guesswork when prompting frontier models.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-card bg-paper-2 border border-rule space-y-3">
+              <div className="w-8 h-8 rounded-pill bg-paper-3 border border-rule flex items-center justify-center text-cool">
+                <Code2 className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-sans font-medium text-ink">Production prompt specs</h3>
+              <p className="text-xs text-muted leading-relaxed">
+                Verbatim system directives structured with explicit variables, exact framework constraints, and verified responsiveness.
+              </p>
+              <Link href="/prompts" className="inline-block text-xs text-cool hover:underline pt-1">
+                Explore all prompts
+              </Link>
+            </div>
+
+            <div className="p-6 rounded-card bg-paper-2 border border-rule space-y-3">
+              <div className="w-8 h-8 rounded-pill bg-paper-3 border border-rule flex items-center justify-center text-cool">
+                <Terminal className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-sans font-medium text-ink">Model Context Protocol</h3>
+              <p className="text-xs text-muted leading-relaxed">
+                Direct JSON schema endpoints and local MCP servers so agents can query, read, and assemble components on demand.
+              </p>
+              <Link href="/mcp" className="inline-block text-xs text-cool hover:underline pt-1">
+                Read MCP documentation
+              </Link>
+            </div>
+
+            <div className="p-6 rounded-card bg-paper-2 border border-rule space-y-3">
+              <div className="w-8 h-8 rounded-pill bg-paper-3 border border-rule flex items-center justify-center text-cool">
+                <Layers className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-sans font-medium text-ink">Agent skill packages</h3>
+              <p className="text-xs text-muted leading-relaxed">
+                Pre-packaged skill folders (`SKILL.md`) providing strict aesthetic guardrails and token generation pipelines.
+              </p>
+              <Link href="/skills" className="inline-block text-xs text-cool hover:underline pt-1">
+                Install agent skills
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Featured Registry Preview Table */}
+      <section className="py-16 px-4 sm:px-8 border-b border-rule">
+        <div className="max-w-[var(--container)] mx-auto space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-display font-medium text-ink">
+                Featured specifications
+              </h2>
+              <p className="text-xs sm:text-sm text-muted mt-1">
+                Recent verified system prompts from the production index.
               </p>
             </div>
 
-            {/* Quick Actions */}
-            <div className="flex items-center gap-2 flex-wrap text-xs">
-              <Link
-                href="/mcp"
-                className="px-3 py-1.5 rounded-pill bg-accent text-accent-ink font-medium hover:opacity-90 transition-opacity duration-150 flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-              >
-                <Terminal className="w-3.5 h-3.5" />
-                <span>Install MCP</span>
-              </Link>
-              <Link
-                href="/skills"
-                className="px-3 py-1.5 rounded-pill bg-paper-3 border border-rule text-muted hover:text-ink hover:border-rule-2 transition-colors duration-150 flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-              >
-                <Cpu className="w-3.5 h-3.5" />
-                <span>Agent skills</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* 2. Global Filter & Command-K Search Bar */}
-          <div className="relative">
-            <div className="flex items-center border border-rule focus-within:border-accent rounded-pill bg-paper-3 transition-colors duration-150 overflow-hidden">
-              <div className="pl-3.5 pr-2 text-muted flex items-center">
-                <Search className="w-4 h-4" />
-              </div>
-              <input
-                type="text"
-                placeholder="Filter by keyword, model target, or syntax…"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent px-2 py-2.5 text-xs sm:text-sm text-ink placeholder:text-muted outline-none font-sans"
-              />
-              <div className="hidden sm:flex items-center gap-2 pr-3 flex-shrink-0">
-                {searchQuery ? (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="text-xs font-sans text-muted hover:text-ink px-2 py-0.5 rounded-pill bg-paper-2 border border-rule focus-visible:outline-2 focus-visible:outline-accent"
-                  >
-                    Clear
-                  </button>
-                ) : (
-                  <span className="text-xs font-mono text-muted flex items-center gap-1 border border-rule rounded px-1.5 py-0.5 bg-paper-2">
-                    <Command className="w-3 h-3" /> K
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* 3. Category Bar (Dense 1px border-pinned strip) */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 pb-1">
-            <button
-              onClick={() => setSelectedCategory('All')}
-              className={`text-xs px-3 py-1 rounded-pill border transition-colors duration-150 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-accent ${
-                selectedCategory === 'All'
-                  ? 'bg-ink text-paper font-medium border-ink'
-                  : 'bg-paper-3 text-muted hover:text-ink border-rule hover:border-rule-2'
-              }`}
+            <Link
+              href="/prompts"
+              className="text-xs font-medium text-ink hover:text-accent transition-colors duration-150 flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
             >
-              All ({ALL_REAL_PROMPTS.length})
-            </button>
-            {ALL_PROMPT_CATEGORIES.map((cat) => {
-              const isSelected =
-                selectedCategory.toLowerCase() === cat.name.toLowerCase() ||
-                selectedCategory === cat.slug;
-              return (
-                <button
-                  key={cat.slug}
-                  onClick={() => setSelectedCategory(cat.name)}
-                  className={`text-xs px-2.5 py-1 rounded-pill border transition-colors duration-150 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-accent ${
-                    isSelected
-                      ? 'bg-ink text-paper font-medium border-ink'
-                      : 'bg-paper-3 text-muted hover:text-ink border-rule hover:border-rule-2'
-                  }`}
-                >
-                  {cat.name} ({cat.count})
-                </button>
-              );
-            })}
+              <span>View full directory ({totalPrompts})</span>
+            </Link>
           </div>
 
-        </div>
-      </section>
-
-      {/* 4. Dense List-View Registry Table */}
-      <section className="max-w-[var(--container)] mx-auto px-4 sm:px-8 py-6">
-        
-        {/* Table Control Header */}
-        <div className="flex items-center justify-between text-xs text-muted pb-3 border-b border-rule">
-          <div className="flex items-center gap-3">
-            <span className="font-medium text-ink">Prompt registry</span>
-            <span className="text-muted">·</span>
-            <span>
-              Showing <strong className="text-ink font-medium">{displayedItems.length}</strong> of {filteredItems.length} records
-              {selectedCategory !== 'All' ? ` in ${selectedCategory}` : ''}
-            </span>
-          </div>
-          <div className="hidden sm:flex items-center gap-4 text-xs text-muted">
-            <span>verbatim prompt specifications</span>
-            <span>click row to inspect</span>
-          </div>
-        </div>
-
-        {/* Dense Rows Container */}
-        <div className="border border-rule rounded-card bg-paper-2 overflow-hidden mt-3 shadow-none">
-          {/* Table Header Bar */}
-          <div className="px-4 py-2 border-b border-rule bg-paper-3 flex items-center justify-between text-xs text-muted select-none">
-            <div className="flex items-center gap-3">
-              <span className="w-7 text-right">No.</span>
-              <span className="w-1.5"></span>
-              <span>Name and identifier</span>
+          <div className="border border-rule rounded-card bg-paper-2 overflow-hidden">
+            <div className="px-4 py-2 border-b border-rule bg-paper-3 flex items-center justify-between text-xs text-muted select-none">
+              <div className="flex items-center gap-3">
+                <span className="w-7 text-right">No.</span>
+                <span className="w-1.5"></span>
+                <span>Name and category</span>
+              </div>
+              <div className="flex items-center gap-6">
+                <span className="hidden lg:inline-block">Tokens</span>
+                <span className="w-20 text-center">Action</span>
+              </div>
             </div>
-            <div className="flex items-center gap-6">
-              <span className="hidden lg:inline-block">Tokens</span>
-              <span className="w-20 text-center">Action</span>
-            </div>
-          </div>
 
-          {/* Render List Items */}
-          {displayedItems.length === 0 ? (
-            <div className="py-16 text-center text-muted text-xs">
-              No matching prompts found for &ldquo;{searchQuery}&rdquo;. Try another query or clear filters.
-            </div>
-          ) : (
-            displayedItems.map((item, idx) => (
+            {featuredPrompts.map((item, idx) => (
               <PromptRegistryRow key={item.id} item={item} index={idx} />
-            ))
-          )}
-        </div>
-
-        {/* Load More Pagination */}
-        {displayCount < filteredItems.length && (
-          <div className="text-center pt-8 pb-4">
-            <button
-              onClick={() => setDisplayCount((prev) => prev + 60)}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-pill bg-paper-2 hover:bg-paper-3 border border-rule text-xs font-medium text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <span>Load more ({filteredItems.length - displayCount} remaining)</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
+            ))}
           </div>
-        )}
 
+          <div className="pt-2 text-center">
+            <Link
+              href="/prompts"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-pill bg-paper-2 hover:bg-paper-3 border border-rule text-xs font-medium text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <span>Explore all {totalPrompts} prompts in the command center</span>
+            </Link>
+          </div>
+        </div>
       </section>
+
+      {/* 4. PreFooter */}
+      <PreFooter />
+
     </div>
   );
 }

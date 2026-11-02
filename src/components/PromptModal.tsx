@@ -207,7 +207,7 @@ export function PromptModal() {
 
         {/* Modal Footer */}
         <div className="px-5 py-3 bg-paper-2 border-t border-rule flex items-center justify-between text-xs text-muted">
-          <span>Identifier: /{item.slug}</span>
+          <span>Axes Lab · Verified specification</span>
           <div className="flex items-center gap-2">
             <span>Press</span>
             <kbd className="px-1.5 py-0.5 rounded bg-paper-3 border border-rule font-sans text-xs">ESC</kbd>
