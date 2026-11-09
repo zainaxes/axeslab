@@ -29,9 +29,12 @@
 | `/templates/[id]/customize` | HTTP GET | 200 OK | **PASS** | Tested on `/templates/realtime/customize`. |
 | `/skills` | HTTP GET | 200 OK | **PASS** | Renders all 6 authentic open-source agent skills. |
 | `/mcp` | HTTP GET | 200 OK | **PASS** | Renders MCP instructions and server tools list. |
-| `/apps` | HTTP GET | 200 OK | **PASS** | Renders listing, but flagged for taxonomy remediation. |
-| `/backgrounds` | HTTP GET | 200 OK | **FAIL** | Renders 0 resources due to mismatched filter query. |
-| `/top` | HTTP GET | 200 OK | **FAIL** | Renders list, but copy claims false community save rankings. |
+| `/apps` | HTTP GET | 200 OK | **PASS** | Renders 114 verified interactive UI applications, mobile layouts, and agent skills. Promotional Motion Ads excluded. |
+| `/backgrounds` | HTTP GET | 200 OK | **PASS** | Renders 71 verified particle, shader, shape, and looping background directives. |
+| `/top` | HTTP GET | 200 OK | **PASS** | Curated Staff Picks & Essential Directives (top 50 by specification depth & architecture). |
+| `/sections` | HTTP GET | 200 OK | **PASS** | Renders 48 verified hero sections, pricing grids, and UI blocks with filter tabs. |
+| `/3d-websites` | HTTP GET | 200 OK | **PASS** | Renders 10 verified WebGL and spatial scenes. |
+| `/resource/[slug]` | HTTP GET | 200 OK | **PASS** | Tested on sample slugs `interactive-discovery` and `twoclipping-5cba86`. Full schema and rights protection. |
 | `/restyle` | HTTP GET | 200 OK | **PASS** | Interactive Restyle Studio loaded. |
 | `/sitemap.xml` | HTTP GET | 200 OK | **PASS** | Valid XML sitemap structure. |
 | `/robots.txt` | HTTP GET | 200 OK | **PASS** | Valid crawl rules. |
