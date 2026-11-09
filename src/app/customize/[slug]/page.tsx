@@ -28,3 +28,4 @@ export default async function IndividualPromptCustomizerPage({ params }: PagePro
 
   return <PromptCustomizerClient item={item} />;
 }
+

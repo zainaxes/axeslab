@@ -141,3 +141,4 @@ export default function TemplateDetailClient({ template }: { template: TemplateI
     </div>
   );
 }
+

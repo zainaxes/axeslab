@@ -341,3 +341,4 @@ export default function TemplateCustomizerClient({ template }: { template: Templ
     </div>
   );
 }
+

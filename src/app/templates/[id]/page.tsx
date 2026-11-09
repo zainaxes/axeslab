@@ -30,3 +30,4 @@ export default async function TemplateDetailPage({ params }: PageProps) {
 
   return <TemplateDetailClient template={tpl} />;
 }
+

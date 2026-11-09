@@ -28,3 +28,4 @@ export default async function TemplateCustomizerPage({ params }: PageProps) {
 
   return <TemplateCustomizerClient template={tpl} />;
 }
+
