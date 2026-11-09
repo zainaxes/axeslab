@@ -92,10 +92,13 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
           {/* Status Instrument Dot */}
           <span className="w-1.5 h-1.5 rounded-full bg-cool flex-shrink-0" />
 
-          {/* Title Identifier */}
+          {/* Title Identifier & Creator */}
           <div className="flex items-center gap-2 truncate min-w-0">
             <span className="font-sans font-medium text-ink truncate">
               {item.title}
+            </span>
+            <span className="text-[11px] text-muted truncate hidden md:inline">
+              @{item.handle}
             </span>
           </div>
 

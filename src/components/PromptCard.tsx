@@ -1,240 +1,200 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { PromptItem } from '@/lib/real-prompts';
-import { Copy, Check, Heart, Play } from 'lucide-react';
+import { RealPromptItem } from '@/lib/real-prompts';
+import { Copy, Check, SlidersHorizontal, Play, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface PromptCardProps {
-  item: PromptItem;
+  item: RealPromptItem;
+  index?: number;
+  copied?: boolean;
+  onCopy?: (e: React.MouseEvent) => void;
+  onClick?: () => void;
+  onCustomize?: (e: React.MouseEvent) => void;
 }
 
-export function PromptCard({ item }: PromptCardProps) {
-  const router = useRouter();
+export function PromptCard({
+  item,
+  index = 0,
+  copied: propCopied,
+  onCopy,
+  onClick,
+  onCustomize
+}: PromptCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [likes, setLikes] = useState(item.likes);
-  const [hasLiked, setHasLiked] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isInViewport, setIsInViewport] = useState(false);
-
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [localCopied, setLocalCopied] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
 
-  const isM3u8 = Boolean(item.videoUrl && item.videoUrl.includes('.m3u8'));
-  const isAnimatedWebp = Boolean(item.videoUrl && item.videoUrl.includes('.webp'));
+  const copied = propCopied !== undefined ? propCopied : localCopied;
 
-  // Attach HLS stream or standard source
+  // Static preview by default. Only play when user deliberately hovers or clicks play!
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !item.videoUrl || isAnimatedWebp) return;
+    if (!videoRef.current || !item.preview) return;
 
-    let hlsInstance: any = null;
-    let isCancelled = false;
-
-    if (isM3u8) {
-      import('hls.js').then(({ default: Hls }) => {
-        if (isCancelled || !videoRef.current) return;
-        if (Hls.isSupported()) {
-          hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
-          hlsInstance.loadSource(item.videoUrl!);
-          hlsInstance.attachMedia(videoRef.current);
-        } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-          videoRef.current.src = item.videoUrl!;
-        }
-      });
-    } else {
-      video.src = item.videoUrl;
+    // Check prefers-reduced-motion
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
     }
 
-    return () => {
-      isCancelled = true;
-      if (hlsInstance) hlsInstance.destroy();
-    };
-  }, [item.videoUrl, isM3u8, isAnimatedWebp]);
-
-  // Viewport IntersectionObserver
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInViewport(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(card);
-    return () => observer.disconnect();
-  }, []);
-
-  // Play video on hover or when visible in viewport
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !item.videoUrl || isAnimatedWebp) return;
-
-    if (isHovered && isInViewport) {
-      video.play().catch(() => {});
+    if (isHovered && item.preview) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
     } else {
-      video.pause();
+      videoRef.current.pause();
+      setIsPlaying(false);
     }
-  }, [isHovered, isInViewport, item.videoUrl, isAnimatedWebp]);
+  }, [isHovered, item.preview]);
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
-  const handleCopyPrompt = async (e: React.MouseEvent) => {
+  const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
-    try {
-      await navigator.clipboard.writeText(item.contentBody);
-      setCopied(true);
-      toast.success(`Copied "${item.title}" prompt!`, {
-        description: `${(item.chars || item.contentBody?.length || 0).toLocaleString()} characters ready for Cursor, Claude Code, or Lovable.`,
-      });
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      toast.error('Failed to copy prompt.');
+    if (onCopy) {
+      onCopy(e);
+      return;
     }
+    const textToCopy = item.originalPrompt || item.improvedPrompt || item.contentBody;
+    navigator.clipboard.writeText(textToCopy);
+    setLocalCopied(true);
+    toast.success(`Copied "${item.title}" prompt!`);
+    setTimeout(() => setLocalCopied(false), 2000);
   };
 
-  const handleLike = (e: React.MouseEvent) => {
+  const handleCustomize = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (hasLiked) {
-      setLikes((prev) => prev - 1);
-      setHasLiked(false);
-    } else {
-      setLikes((prev) => prev + 1);
-      setHasLiked(true);
-      toast('Added to favorites!', { description: item.title });
+    if (onCustomize) {
+      onCustomize(e);
+    } else if (onClick) {
+      onClick();
     }
-  };
-
-  const handleCardClick = () => {
-    router.push(`/?prompt=${item.slug}`, { scroll: false });
   };
 
   return (
     <article
-      ref={cardRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleCardClick}
-      className="group relative rounded-2xl bg-[#0B0B0F] border border-white/[0.07] hover:border-white/[0.2] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.75)] cursor-pointer flex flex-col justify-between"
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative flex flex-col rounded-card bg-paper-2 border border-rule hover:border-rule-2 transition-all duration-150 cursor-pointer overflow-hidden justify-between focus-within:outline-2 focus-within:outline-accent"
     >
-      {/* 16:10 Live Preview Viewport */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#050507] border-b border-white/[0.06]">
-        {/* Instant Poster Image */}
-        {item.posterUrl && (
+      {/* 1. Preview Media Viewport (Static poster by default, hover/interaction plays) */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-paper-3">
+        {item.poster && (
           <img
-            src={item.posterUrl}
+            src={item.poster}
             alt={item.title}
-            loading="lazy"
+            loading={index < 8 ? 'eager' : 'lazy'}
             decoding="async"
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-              isHovered && item.videoUrl && (isVideoLoaded || isAnimatedWebp) ? 'opacity-0' : 'opacity-100'
+            className={`w-full h-full object-cover transition-opacity duration-300 ${
+              isPlaying ? 'opacity-0' : 'opacity-100'
             }`}
           />
         )}
 
-        {/* Animated WebP stream fallback */}
-        {isAnimatedWebp && item.videoUrl && isHovered && (
-          <img
-            src={item.videoUrl}
-            alt={item.title}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          />
-        )}
-
-        {/* Real Looping Hover Video */}
-        {item.videoUrl && !isAnimatedWebp && (
+        {/* Video layer: only plays on deliberate hover/interaction */}
+        {item.preview && (
           <video
             ref={videoRef}
-            poster={item.posterUrl}
+            src={item.preview}
+            poster={item.poster}
             muted
             loop
             playsInline
-            preload="metadata"
-            onLoadedData={() => setIsVideoLoaded(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-[1.02] ${
-              isHovered && isVideoLoaded ? 'opacity-100' : 'opacity-0'
+            preload="none"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ${
+              isPlaying ? 'opacity-100' : 'opacity-0'
             }`}
           />
         )}
 
-        {/* Top-Left Category Badge */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="rounded-full bg-black/75 border border-white/[0.1] px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-wide text-zinc-300 backdrop-blur-md">
-            {item.category}
+        {/* Subcategory Badge (Top Left) */}
+        <div className="absolute top-2 left-2 z-10">
+          <span className="font-sans text-[11px] font-medium px-2 py-0.5 rounded-pill bg-paper/95 border border-rule text-ink backdrop-blur-sm shadow-sm">
+            {item.subcategory}
           </span>
         </div>
 
-        {/* Video Indicator Pill */}
-        {item.videoUrl && (
-          <div className="absolute bottom-2.5 right-2.5 z-10 opacity-70 group-hover:opacity-0 transition-opacity pointer-events-none">
-            <span className="rounded-md bg-black/80 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-zinc-400 backdrop-blur-md flex items-center gap-1">
-              <Play className="w-2.5 h-2.5 fill-current" />
-              <span>Preview</span>
-            </span>
-          </div>
-        )}
+        {/* Model Pill (Top Right, when not hovered) */}
+        <div className="absolute top-2 right-2 z-10 group-hover:opacity-0 transition-opacity duration-150">
+          <span className="font-mono text-[10px] px-1.5 py-0.5 rounded-pill bg-paper/90 border border-rule text-muted backdrop-blur-sm">
+            {item.model || 'Opus 5.5'}
+          </span>
+        </div>
 
-        {/* Top-Right Floating Quick-Copy Button on Hover */}
-        <div className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        {/* Hover Action Buttons (Top Right on Hover) */}
+        <div className="absolute top-2 right-2 z-20 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+          {item.hasCustomize && (
+            <button
+              type="button"
+              onClick={handleCustomize}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-pill text-xs font-medium border border-rule bg-paper/95 hover:bg-paper text-ink backdrop-blur-sm shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+              title="Customize prompt parameters"
+            >
+              <SlidersHorizontal className="w-3 h-3 text-cool" />
+              <span>Customize</span>
+            </button>
+          )}
+
           <button
             type="button"
-            onClick={handleCopyPrompt}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-zinc-200 text-[#050507] text-xs font-semibold shadow-xl transition-transform hover:scale-105 active:scale-95"
-            title="Copy complete AI prompt"
+            onClick={handleCopy}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-pill text-xs font-medium border transition-colors shadow-sm focus-visible:outline-2 focus-visible:outline-accent ${
+              copied
+                ? 'bg-cool-soft border-cool text-cool'
+                : 'bg-paper/95 hover:bg-paper border-rule text-ink backdrop-blur-sm'
+            }`}
+            title="Copy prompt text"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-cool" />
-                <span>Copied!</span>
+                <Check className="w-3 h-3 text-cool" />
+                <span>Copied</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5" />
-                <span>Copy Prompt</span>
+                <Copy className="w-3 h-3 text-muted" />
+                <span>Copy</span>
               </>
             )}
           </button>
         </div>
+
+        {/* Play indicator watermark (bottom right) */}
+        {item.preview && !isPlaying && (
+          <div className="absolute bottom-2 right-2 z-10 pointer-events-none opacity-60 group-hover:opacity-0 transition-opacity">
+            <span className="rounded-pill bg-paper/85 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-muted flex items-center gap-1 backdrop-blur-sm">
+              <Play className="w-2.5 h-2.5 fill-current" />
+              <span>Motion</span>
+            </span>
+          </div>
+        )}
       </div>
 
-      {/* Card Footer: Title Left, Category Pill & Likes Right */}
-      <div className="px-4 py-3.5 flex items-center justify-between gap-2 bg-[#0B0B0F]">
-        <div className="min-w-0 pr-2">
-          <h3 className="text-[15px] font-medium text-zinc-100 group-hover:text-white truncate">
+      {/* 2. Card Content & Creator Attribution */}
+      <div className="p-3.5 flex flex-col justify-between flex-1 gap-2.5 bg-paper-2">
+        <div>
+          <h3 className="font-sans font-medium text-xs text-ink line-clamp-1 group-hover:text-cool transition-colors duration-150">
             {item.title}
           </h3>
-          <p className="text-[11px] font-mono text-zinc-500 truncate mt-0.5 font-normal">
-            {(item.chars || item.contentBody?.length || 0).toLocaleString()} chars · Verified
+          <p className="font-sans text-[11px] text-muted line-clamp-2 mt-1 leading-relaxed">
+            {item.summary || item.originalPrompt?.slice(0, 100) || item.contentBody?.slice(0, 100)}
           </p>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            type="button"
-            onClick={handleLike}
-            className={`flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-full border transition-all ${
-              hasLiked
-                ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
-                : 'bg-white/[0.03] border-white/[0.06] text-zinc-500 hover:text-zinc-300'
-            }`}
-            title="Favorite"
-          >
-            <Heart className={`w-3 h-3 ${hasLiked ? 'fill-current' : ''}`} />
-            <span>{likes}</span>
-          </button>
+        {/* Creator Attribution & Verification Indicator */}
+        <div className="flex items-center justify-between text-[11px] pt-2 border-t border-rule/50">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="font-medium text-ink truncate">@{item.handle}</span>
+            <span className="text-muted truncate hidden sm:inline">({item.author})</span>
+          </div>
+
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span className={`font-mono text-[10px] px-1.5 py-0.2 rounded-pill border ${
+              item.rightsStatus === 'host_allowed'
+                ? 'bg-cool-soft border-cool text-cool'
+                : 'bg-paper-3 border-rule text-muted'
+            }`}>
+              {item.rightsStatus === 'host_allowed' ? 'Curated' : 'Official Source'}
+            </span>
+          </div>
         </div>
       </div>
     </article>

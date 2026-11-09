@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import promptsData from '@/lib/generated-prompts.json';
 import catalogData from '../../../../data/catalog.json';
 import axeskitTaxonomy from '../../../../data/axeskit_taxonomy.json';
+import { REAL_PROMPTS, RealPromptItem } from '@/lib/real-prompts';
 
 interface CatalogPrompt {
   id: string;
@@ -20,11 +21,32 @@ const typedCatalog = (catalogData as unknown) as CatalogPrompt[];
 const rawPromptsArray = (promptsData as unknown) as CatalogPrompt[];
 const typedTaxonomy = axeskitTaxonomy as Record<string, any>;
 
+// Add verified motion prompts into the search catalog
+const motionCatalogPrompts: CatalogPrompt[] = REAL_PROMPTS.map((p: RealPromptItem) => ({
+  id: p.id,
+  slug: p.slug,
+  title: p.title,
+  category: p.category,
+  categorySlug: p.categorySlug,
+  description: p.originalPrompt?.slice(0, 200) || p.skillDescription || '',
+  preview_video_url: p.preview || p.video,
+  videoUrl: p.video,
+  posterUrl: p.poster,
+  raw_prompt_original: p.originalPrompt,
+}));
+
+const combinedCatalog = [...typedCatalog, ...motionCatalogPrompts];
+
 // Build slug -> prompt map
 const promptMap: Record<string, string> = {};
 rawPromptsArray.forEach((item) => {
   if (item.slug && item.raw_prompt_original) {
     promptMap[item.slug] = item.raw_prompt_original;
+  }
+});
+REAL_PROMPTS.forEach((item: RealPromptItem) => {
+  if (item.slug && item.originalPrompt) {
+    promptMap[item.slug] = item.originalPrompt;
   }
 });
 
@@ -120,7 +142,7 @@ function handleSearchTemplates(params: any) {
   const category = (params?.category || '').toLowerCase().trim();
   const limit = Math.min(Math.max(params?.limit || 10, 1), 50);
 
-  let results = typedCatalog.filter((item) => {
+  let results = combinedCatalog.filter((item) => {
     if (category) {
       const matchCat =
         (item.category || '').toLowerCase().includes(category) ||
@@ -161,7 +183,7 @@ function handleGetPrompt(params: any) {
     throw new Error('Missing required parameter: slug');
   }
 
-  const catalogEntry = typedCatalog.find((c) => c.slug === slug);
+  const catalogEntry = combinedCatalog.find((c) => c.slug === slug);
   const promptText = promptMap[slug];
 
   if (!catalogEntry && !promptText) {
@@ -182,7 +204,7 @@ function handleGetPrompt(params: any) {
 function handleListCategories() {
   const map: Record<string, { name: string; slug: string; count: number }> = {};
 
-  typedCatalog.forEach((item) => {
+  combinedCatalog.forEach((item) => {
     const slug = item.categorySlug;
     if (!map[slug]) {
       map[slug] = {
@@ -198,7 +220,7 @@ function handleListCategories() {
 
   return {
     totalCategories: categories.length,
-    totalTemplates: typedCatalog.length,
+    totalTemplates: combinedCatalog.length,
     categories,
   };
 }
@@ -207,7 +229,7 @@ function handleGenerateScaffold(params: any) {
   const slug = (params?.slug || '').trim();
   const framework = params?.framework || 'nextjs';
 
-  const entry = typedCatalog.find((c) => c.slug === slug);
+  const entry = combinedCatalog.find((c) => c.slug === slug);
   const prompt = promptMap[slug];
 
   if (!entry && !prompt) {

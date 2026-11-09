@@ -2,36 +2,18 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Copy, Check, Terminal, ExternalLink, Cpu } from 'lucide-react';
+import { Copy, Check, ExternalLink, Terminal, GitBranch, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
+import { REAL_PROMPTS, RealPromptItem } from '@/lib/real-prompts';
 
 export default function SkillsPage() {
   const [copied, setCopied] = useState<string | null>(null);
 
-  const skills = [
-    {
-      name: 'axeslab-frontend-designer',
-      version: '1.4.0',
-      description: 'End-to-end design system scaffolding, color tokens, and anti-slop checks for web applications.',
-      command: 'npx skills add zainaxes/axeslab-frontend-designer',
-    },
-    {
-      name: 'axeslab-motion-choreography',
-      version: '1.1.2',
-      description: 'Tailwind and WebGL smooth interaction choreography, canvas shaders, and scroll timelines.',
-      command: 'npx skills add zainaxes/axeslab-motion-choreography',
-    },
-    {
-      name: 'axeslab-prompt-architect',
-      version: '2.0.1',
-      description: 'Generates structured system directives with explicit variables and zero vague instructions.',
-      command: 'npx skills add zainaxes/axeslab-prompt-architect',
-    },
-  ];
+  const skills: RealPromptItem[] = REAL_PROMPTS.filter((p: RealPromptItem) => p.category === 'Skills');
 
-  const handleCopy = (cmd: string, name: string) => {
+  const handleCopy = (cmd: string, id: string) => {
     navigator.clipboard.writeText(cmd);
-    setCopied(name);
+    setCopied(id);
     toast.success('Installation command copied');
     setTimeout(() => setCopied(null), 2000);
   };
@@ -50,50 +32,105 @@ export default function SkillsPage() {
             Standardized skills for autonomous agents
           </h1>
           <p className="text-sm text-muted max-w-2xl leading-relaxed">
-            Plug-and-play capability bundles adhering to the agent skill format for Claude Code, Cursor, and Antigravity.
+            Curated capability packages for Claude Code, Cursor, and agentic workflows. Build, animate, and score motion directly from code.
           </p>
         </header>
 
-        {/* Skills List */}
-        <div className="border border-rule rounded-card bg-paper-2 divide-y divide-rule overflow-hidden">
-          {skills.map((skill) => (
-            <div key={skill.name} className="p-5 space-y-3">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <h2 className="text-sm font-sans font-medium text-ink">
-                    {skill.name}
-                  </h2>
-                  <span className="font-mono text-xs text-muted px-1.5 py-0.5 rounded-pill bg-paper-3 border border-rule">
-                    v{skill.version}
-                  </span>
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {skills.map((skill: RealPromptItem) => {
+            const hasCommand = Boolean(skill.skillCommand);
+            const cmd = skill.skillCommand || (skill.skillRepo ? `git clone ${skill.skillRepo}` : '');
+
+            return (
+              <div
+                key={skill.id}
+                className="rounded-card border border-rule bg-paper-2 overflow-hidden flex flex-col justify-between hover:border-rule-2 transition-all duration-200"
+              >
+                <div>
+                  {/* Poster / Video Preview */}
+                  <div className="relative aspect-video bg-paper-3 border-b border-rule overflow-hidden group">
+                    <img
+                      src={skill.poster}
+                      alt={skill.title}
+                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-0.5 rounded-pill bg-paper/90 backdrop-blur-md border border-rule text-xs text-ink">
+                      <Sparkles className="w-3 h-3 text-cool" />
+                      <span>{skill.subcategory}</span>
+                    </div>
+                  </div>
+
+                  <div className="p-5 space-y-3">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <h2 className="text-base font-display font-medium text-ink">
+                          {skill.title}
+                        </h2>
+                        <div className="flex items-center gap-2 mt-1 text-xs text-muted">
+                          <span>by @{skill.handle}</span>
+                          <span>•</span>
+                          <span className="font-mono text-cool">{skill.model}</span>
+                        </div>
+                      </div>
+
+                      {skill.skillRepo && (
+                        <a
+                          href={skill.skillRepo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1.5 rounded-pill bg-paper-3 border border-rule text-muted hover:text-ink hover:border-rule-2 transition-colors duration-150"
+                          title="View repository on GitHub"
+                        >
+                          <GitBranch className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </div>
+
+                    <p className="text-xs text-muted leading-relaxed">
+                      {skill.skillDescription}
+                    </p>
+                  </div>
                 </div>
-                <button
-                  onClick={() => handleCopy(skill.command, skill.name)}
-                  className="self-start sm:self-auto px-3 py-1 rounded-pill bg-paper-3 border border-rule text-xs text-ink hover:bg-rule transition-colors duration-150 flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-                >
-                  {copied === skill.name ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-ok" />
-                      <span>copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5 text-muted" />
-                      <span>Copy install command</span>
-                    </>
+
+                {/* Command & Actions Footer */}
+                <div className="p-5 pt-0 space-y-3">
+                  {cmd && (
+                    <div className="flex items-center justify-between gap-2 p-2 rounded-card bg-paper-3 border border-rule font-mono text-xs">
+                      <span className="truncate text-cool select-all">{cmd}</span>
+                      <button
+                        onClick={() => handleCopy(cmd, skill.id)}
+                        className="shrink-0 p-1 rounded hover:bg-rule text-muted hover:text-ink transition-colors duration-150"
+                        title="Copy command"
+                      >
+                        {copied === skill.id ? (
+                          <Check className="w-3.5 h-3.5 text-cool" />
+                        ) : (
+                          <Copy className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                    </div>
                   )}
-                </button>
+
+                  <div className="flex items-center justify-between text-xs text-muted pt-2 border-t border-rule">
+                    <span className="text-[11px] font-mono text-muted">
+                      License: {skill.license || 'MIT'}
+                    </span>
+                    <a
+                      href={skill.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 hover:text-ink transition-colors"
+                    >
+                      <span>Creator post</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
               </div>
-
-              <p className="text-xs text-muted max-w-2xl leading-relaxed">
-                {skill.description}
-              </p>
-
-              <pre className="p-3 rounded-pill bg-paper-3 border border-rule font-mono text-xs text-cool overflow-x-auto selection:bg-accent-soft">
-                {skill.command}
-              </pre>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
