@@ -166,7 +166,7 @@ export default function TemplateCustomizerClient({ template }: { template: Templ
           <div className="lg:col-span-5 rounded-card bg-paper-2 border border-rule p-5 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-rule">
               <div>
-                <h2 className="text-xs font-sans font-medium text-ink uppercase tracking-wider">
+                <h2 className="text-xs font-sans font-medium text-ink">
                   Template Fields
                 </h2>
                 <span className="text-[11px] text-muted font-mono">
@@ -245,7 +245,7 @@ export default function TemplateCustomizerClient({ template }: { template: Templ
 
             {/* Dials Section */}
             <div className="pt-4 border-t border-rule space-y-4">
-              <h3 className="text-xs font-sans font-medium text-ink uppercase tracking-wider flex items-center gap-1.5">
+              <h3 className="text-xs font-sans font-medium text-ink flex items-center gap-1.5">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-cool" />
                 <span>Execution Dials</span>
               </h3>
@@ -299,7 +299,7 @@ export default function TemplateCustomizerClient({ template }: { template: Templ
             <div className="flex items-center justify-between pb-2 border-b border-rule">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-accent" />
-                <h2 className="text-xs font-sans font-medium text-ink uppercase tracking-wider">
+                <h2 className="text-xs font-sans font-medium text-ink">
                   Live Customized Output
                 </h2>
               </div>

@@ -242,7 +242,7 @@ export default function PromptCustomizerClient({ item }: { item: RealPromptItem 
           <div className="lg:col-span-5 rounded-card bg-paper-2 border border-rule p-5 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-rule">
               <div>
-                <h2 className="text-xs font-sans font-medium text-ink uppercase tracking-wider">
+                <h2 className="text-xs font-sans font-medium text-ink">
                   {isMethodA ? 'Prompt Parameters' : 'Make it yours'}
                 </h2>
                 <span className="text-[11px] text-muted font-mono">
@@ -375,7 +375,7 @@ export default function PromptCustomizerClient({ item }: { item: RealPromptItem 
 
             {/* Dials Section */}
             <div className="pt-4 border-t border-rule space-y-4">
-              <h3 className="text-xs font-sans font-medium text-ink uppercase tracking-wider flex items-center gap-1.5">
+              <h3 className="text-xs font-sans font-medium text-ink flex items-center gap-1.5">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-cool" />
                 <span>Execution Dials</span>
               </h3>

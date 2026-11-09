@@ -25,7 +25,7 @@ export default function CustomizeHubPage() {
             <span>Customize a prompt</span>
           </h1>
           <p className="mt-2 max-w-2xl text-xs sm:text-sm text-muted leading-relaxed">
-            Start from a prompt that already made something good. Add what your video is for, its format, colours and anything else, then copy a version made for you. It's free, and your details stay in your browser.
+            Start from a prompt that already made something good. Add what your video is for, its format, colours and anything else, then copy a version made for you. It’s free, and your details stay in your browser.
           </p>
         </section>
 
@@ -36,7 +36,7 @@ export default function CustomizeHubPage() {
               Templates
             </h2>
             <p className="text-xs text-muted">
-              Written to be customized: every part you'd change is an explicit parameter field.
+              Written to be customized: every part you’d change is an explicit parameter field.
             </p>
           </div>
 
@@ -45,13 +45,13 @@ export default function CustomizeHubPage() {
               <Link
                 key={tpl.id}
                 href={`/templates/${tpl.slug}/customize`}
-                className="group flex items-center gap-4 rounded-card bg-paper-2 border border-rule hover:border-rule-2 p-3 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+                className="group flex items-center gap-4 rounded-card bg-paper-2 hover:bg-paper-3 border border-rule hover:border-rule-2 p-3 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
               >
                 <div className="relative aspect-video w-32 shrink-0 overflow-hidden rounded-pill bg-paper-3">
                   <img
                     src={tpl.poster}
                     alt={tpl.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -86,14 +86,14 @@ export default function CustomizeHubPage() {
               <Link
                 key={item.id}
                 href={`/customize/${item.slug}`}
-                className="group flex items-center gap-3.5 rounded-card bg-paper-2 border border-rule hover:border-rule-2 p-3 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+                className="group flex items-center gap-3.5 rounded-card bg-paper-2 hover:bg-paper-3 border border-rule hover:border-rule-2 p-3 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
               >
                 <div className="relative aspect-square w-20 shrink-0 overflow-hidden rounded-pill bg-paper-3">
                   {item.poster && (
                     <img
                       src={item.poster}
                       alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover"
                     />
                   )}
                 </div>
