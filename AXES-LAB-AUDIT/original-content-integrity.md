@@ -52,3 +52,4 @@ In accordance with Axes Lab's Licensing & Rights policy (`/licensing`), public a
 - **Method A (`field_replacement`):** 210 prompts use token-based substitution. All `{{key}}` tokens match the exact schema extracted from the upstream flight tree.
 - **Method B (`additional_block`):** 22 prompts leave the original prompt 100% untouched and append the override block cleanly (`My details. Use them with the prompt above; where they differ from it, mine win:`).
 - **Skill Directives:** 6 agent skills provide direct CLI directives (`npx skills add <repo>`) without template substitution.
+

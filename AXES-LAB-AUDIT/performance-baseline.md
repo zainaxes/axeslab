@@ -47,3 +47,4 @@ Data extracted from official Next.js production build (`npm run build`):
    Videos only load and play when the user intentionally hovers over a card or opens the full-screen inspection modal.
 3. **Reduced Motion Compliance:**
    `prefers-reduced-motion: reduce` media query is respected across all video players, CSS transitions, and modal animations.
+

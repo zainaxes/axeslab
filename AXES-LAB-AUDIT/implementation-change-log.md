@@ -39,3 +39,4 @@
 In strict compliance with Part A & Part B of the project brief:
 - **No production code shall be deployed without user approval of representative previews.**
 - Isolated preview environments and prototypes will demonstrate proposed UI layouts before any production components are modified.
+

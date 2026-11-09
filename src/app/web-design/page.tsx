@@ -8,13 +8,13 @@ import { Sparkles, Layers, Video, ShieldCheck, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Web Design Prompts & UI Components — Axes Lab",
   description:
-    "Curated collection of 640+ production-grade web design prompts, hero sections, full landing pages, motion backgrounds, and interactive UI animations. Explore at axeslab.zainaxes.com.",
+    "Curated collection of production-grade web design prompts, hero sections, full landing pages, motion backgrounds, and interactive UI animations. Explore at axeslab.zainaxes.com.",
 };
 
 export default function WebDesignPage() {
   const result = getResources({
     categorySlug: "web-design",
-    limit: 1000, // retrieve all 640+ prompts
+    limit: 1000,
     sort: "recent",
   });
 
@@ -46,7 +46,7 @@ export default function WebDesignPage() {
             <div className="max-w-3xl space-y-4">
               <div className="inline-flex items-center gap-2 rounded-full border border-subtleBorder bg-surface-strong px-3 py-1 text-xs font-mono font-medium text-primaryText">
                 <Sparkles className="h-3.5 w-3.5 text-state-success" />
-                <span>640+ CURATED PROMPTS</span>
+                <span>{result.resources.length} CURATED LANDING PAGES</span>
                 <span>•</span>
                 <span className="text-mutedText">WEB DESIGN & UI MOTION</span>
               </div>
@@ -56,7 +56,7 @@ export default function WebDesignPage() {
               </h1>
 
               <p className="text-lg text-mutedText-secondary leading-relaxed max-w-2xl">
-                Explore 640+ production-grade web design prompts with pixel-perfect visual previews, interactive videos, motion backgrounds, and copy-ready specifications. Designed & verified by Axes Lab.
+                Explore {result.resources.length} production-grade web design prompts with pixel-perfect visual previews, interactive videos, motion backgrounds, and copy-ready specifications. Designed & verified by Axes Lab.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-mutedText">

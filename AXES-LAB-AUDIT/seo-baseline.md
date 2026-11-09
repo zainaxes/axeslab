@@ -54,3 +54,4 @@ In accordance with Section 7 of the execution brief, this audit strictly disting
 
 - **Modal vs Permalink:** Previously, clicking a prompt card only opened an in-memory client modal without a stable URL. Search engines could not crawl the full prompt text.
 - **Resolution:** Dedicated routes (`/customize/[slug]`, `/templates/[id]`, `/resource/[slug]`) ensure every single resource has a persistent, fully crawlable HTML page.
+

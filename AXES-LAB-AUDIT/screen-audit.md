@@ -103,3 +103,4 @@
   - **Identified Slop / Stale Metric:** Text states "Browse 640+ Prompts" and "Search 640+ design prompts". Actual verified count is **375** (238 motion prompts + 137 curated UI components).
   - **Required Remediation:** Reconcile copy to reflect true catalog metrics.
   - **Verdict:** **NEEDS_REMEDIATION (Metric reconciliation)**
+

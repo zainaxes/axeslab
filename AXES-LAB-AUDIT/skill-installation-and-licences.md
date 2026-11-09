@@ -86,3 +86,4 @@ Both mandated skills have been installed with complete directories (including `S
 | **Hallmark Existing-Site Workflow** | Read `references/redesign.md` and execute non-destructive audit against isolated preview | Verified |
 | **Unslop Inspection** | Read `references/signs.md` and check 9-layer redline pass | Local verification verified |
 | **Unslop Snapshot** | `node .agents/skills/unslop/scripts/snapshot.mjs` | Available via local Chromium |
+

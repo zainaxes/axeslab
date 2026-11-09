@@ -137,7 +137,7 @@ export default function McpPage() {
             <div className="divide-y divide-rule">
               <div className="p-4 flex items-center justify-between">
                 <span className="font-mono text-cool">axeslab_search_prompts</span>
-                <span className="text-muted">Search 640+ design prompts by category, keyword, or component style.</span>
+                <span className="text-muted">Search 375+ motion directives and UI design prompts by category, keyword, or style.</span>
               </div>
               <div className="p-4 flex items-center justify-between">
                 <span className="font-mono text-cool">axeslab_get_prompt</span>

@@ -86,3 +86,4 @@
 | XSS Protection | Prompt and code rendering | **PASS** | Escaped via React virtual DOM; no `dangerouslySetInnerHTML`. |
 | Rel Noopener | External links | **PASS** | `rel="noopener noreferrer"` present on all creator links. |
 | SSRF Mitigation | Media proxy whitelist | **PASS** | Private IP ranges and localhost blocked. |
+

@@ -98,3 +98,4 @@ All colors and fonts are bound to `:root` tokens. No literal colors or arbitrary
    - One bright moment per screen (the motion preview or dial output).
    - Icons from Lucide React at fixed stroke (1.5) and matching text color.
    - Zero emoji icons, zero purple-blue gradients, zero neon glows.
+

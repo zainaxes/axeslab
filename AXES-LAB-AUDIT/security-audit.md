@@ -80,3 +80,4 @@ In production deployment, the following HTTP headers must be enforced in `next.c
 - **Repository Scan:** Scanned for inadvertent exposure of private keys, Cloudflare tokens, or Together AI credentials.
 - **Findings:** Zero private keys, API secrets, or passwords are hardcoded in the codebase.
 - **Git State:** Clean working tree.
+

@@ -78,3 +78,4 @@ Every route discovered in `src/app/` has been accounted for and audited across f
    No resources exist with `category = 'backgrounds'`. The filter condition in `backgrounds/page.tsx` looked for the literal word "background" in titles.
 3. **The `/top` Fictional Ranking Claim:**
    The page claims ranking based on "verified community implementations", but simply slices the un-liked registry items.
+
