@@ -98,7 +98,7 @@ export function PromptCard({ item }: PromptCardProps) {
       await navigator.clipboard.writeText(item.contentBody);
       setCopied(true);
       toast.success(`Copied "${item.title}" prompt!`, {
-        description: `${item.chars.toLocaleString()} characters ready for Cursor, Claude Code, or Lovable.`,
+        description: `${(item.chars || item.contentBody?.length || 0).toLocaleString()} characters ready for Cursor, Claude Code, or Lovable.`,
       });
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -197,7 +197,7 @@ export function PromptCard({ item }: PromptCardProps) {
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <Check className="w-3.5 h-3.5 text-cool" />
                 <span>Copied!</span>
               </>
             ) : (
@@ -217,7 +217,7 @@ export function PromptCard({ item }: PromptCardProps) {
             {item.title}
           </h3>
           <p className="text-[11px] font-mono text-zinc-500 truncate mt-0.5 font-normal">
-            {item.chars.toLocaleString()} chars · Verified
+            {(item.chars || item.contentBody?.length || 0).toLocaleString()} chars · Verified
           </p>
         </div>
 

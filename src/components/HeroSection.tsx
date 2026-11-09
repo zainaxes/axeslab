@@ -104,7 +104,7 @@ export function HeroSection({ totalPublished }: HeroSectionProps) {
             href="/web-design"
             className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 font-mono text-xs font-medium text-zinc-300 backdrop-blur-md transition-all hover:border-white/25 hover:bg-white/10 hover:text-white"
           >
-            <Layers className="h-4 w-4 text-emerald-400" />
+            <Layers className="h-4 w-4 text-cool" />
             <span className="font-bold text-white">113</span>
             <span>UI Sections</span>
           </Link>
@@ -125,7 +125,7 @@ export function HeroSection({ totalPublished }: HeroSectionProps) {
             className="group inline-flex items-center gap-2 rounded-xl border border-sky-500/30 bg-sky-950/40 px-4 py-2.5 font-mono text-xs font-semibold text-sky-300 backdrop-blur-md transition-all hover:bg-sky-900/50"
           >
             <span>axeslab.zainaxes.com</span>
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-cool animate-pulse" />
           </a>
         </div>
       </div>

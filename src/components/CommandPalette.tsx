@@ -100,7 +100,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <span className="text-xs text-muted">
-                    <span className="font-mono">{item.chars}</span> chars
+                    <span className="font-mono">{item.contentBody?.length || 0}</span> chars
                   </span>
                   <span className="text-xs font-sans text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     Open

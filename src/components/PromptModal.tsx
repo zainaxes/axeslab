@@ -15,16 +15,26 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-export function PromptModal() {
+interface PromptModalProps {
+  item?: any;
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function PromptModal({ item: propItem, isOpen, onClose }: PromptModalProps = {}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const promptSlug = searchParams.get('prompt');
 
-  const [item, setItem] = useState<PromptItem | null>(null);
+  const [item, setItem] = useState<any>(propItem || null);
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<'prompt' | 'spec' | 'mcp'>('prompt');
 
   useEffect(() => {
+    if (propItem) {
+      setItem(propItem);
+      return;
+    }
     if (!promptSlug) {
       setItem(null);
       return;
@@ -33,9 +43,13 @@ export function PromptModal() {
     if (found) {
       setItem(found);
     }
-  }, [promptSlug]);
+  }, [promptSlug, propItem]);
 
   const closeModal = () => {
+    if (onClose) {
+      onClose();
+      return;
+    }
     const params = new URLSearchParams(searchParams.toString());
     params.delete('prompt');
     const newQuery = params.toString();

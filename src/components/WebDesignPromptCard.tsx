@@ -137,7 +137,7 @@ export function WebDesignPromptCard({
           >
             {copied ? (
               <>
-                <Check className="h-3.5 w-3.5 text-emerald-400" />
+                <Check className="h-3.5 h-3.5 text-cool" />
                 <span>Copied</span>
               </>
             ) : (

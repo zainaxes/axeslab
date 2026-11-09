@@ -17,7 +17,8 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Approximate tokens from char length (~4 chars per token)
-  const tokenCount = Math.round(item.chars / 4);
+  const charLength = item.chars || item.contentBody?.length || 0;
+  const tokenCount = Math.round(charLength / 4);
 
   const isM3u8 = Boolean(item.videoUrl && item.videoUrl.includes('.m3u8'));
   const isAnimatedWebp = Boolean(item.videoUrl && item.videoUrl.includes('.webp'));
