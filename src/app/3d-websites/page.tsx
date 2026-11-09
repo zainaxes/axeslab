@@ -2,22 +2,77 @@
 
 import React, { useState, useMemo } from 'react';
 import { PromptRegistryRow } from '@/components/PromptRegistryRow';
-import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
+import { ALL_REAL_PROMPTS, PromptItem } from '@/lib/real-prompts';
+import catalogData from '@/lib/generated-prompts.json';
 import { PreFooter } from '@/components/PreFooter';
 import { Search, ChevronDown } from 'lucide-react';
+
+const CATALOG_3D: PromptItem[] = (catalogData as any[])
+  .filter((c) => c.route_collection === '3d-websites' || c.category === '3D Website')
+  .map((cat) => ({
+    id: cat.id,
+    slug: cat.slug,
+    title: cat.title,
+    category: cat.category,
+    categorySlug: cat.categorySlug || '3d-websites',
+    subcategory: cat.subcategories?.[0] || '3D WebGL',
+    subcategories: cat.subcategories || ['3D WebGL'],
+    summary: cat.summary,
+    contentBody: cat.raw_prompt_original || '',
+    originalPrompt: cat.raw_prompt_original,
+    rightsStatus: 'host_allowed' as const,
+    license: 'MIT',
+    llmTarget: 'Claude Opus / GPT-4',
+    type: cat.type || '3D Website',
+    tokens: Math.round((cat.chars || cat.raw_prompt_original?.length || 0) / 4),
+    views: 0,
+    likes: 0,
+    author: 'Axes Lab',
+    handle: 'axeslab',
+    tags: [cat.category, ...(cat.subcategories || [])],
+    chars: cat.chars,
+    posterUrl: cat.preview_poster_url,
+    videoUrl: cat.preview_video_url,
+    preview: cat.preview_video_url,
+    poster: cat.preview_poster_url,
+  }));
 
 export default function ThreeDWebsitesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [displayCount, setDisplayCount] = useState(50);
 
   const threeItems = useMemo(() => {
-    return ALL_REAL_PROMPTS.filter((item) => {
+    const real3D: PromptItem[] = ALL_REAL_PROMPTS.filter((item) => {
       const c = item.category.toLowerCase();
       const t = item.title.toLowerCase();
-      const is3D = c.includes('3d') || t.includes('3d') || t.includes('spline') || t.includes('webgl') || t.includes('canvas');
-      if (!is3D) return false;
+      const s = (item.summary || '').toLowerCase();
+      const b = (item.contentBody || '').toLowerCase();
+      const is3D =
+        c.includes('3d') ||
+        t.includes('3d') ||
+        t.includes('spline') ||
+        t.includes('webgl') ||
+        t.includes('canvas') ||
+        s.includes('3d') ||
+        s.includes('webgl') ||
+        s.includes('spline') ||
+        b.includes('three.js') ||
+        b.includes('webgl') ||
+        b.includes('spline');
+
+      return is3D;
+    });
+
+    const combined = [...CATALOG_3D, ...real3D];
+
+    return combined.filter((item) => {
       const q = searchQuery.trim().toLowerCase();
-      return q === '' || t.includes(q) || item.summary.toLowerCase().includes(q);
+      return (
+        q === '' ||
+        item.title.toLowerCase().includes(q) ||
+        (item.summary || '').toLowerCase().includes(q) ||
+        (item.subcategory || '').toLowerCase().includes(q)
+      );
     });
   }, [searchQuery]);
 

@@ -27,12 +27,12 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     title: `${category.name} — AI Resource Directory`,
     description: category.description || `Browse verified ${category.name} in the Axes Lab independent AI directory.`,
     alternates: {
-      canonical: `https://axeslab.org/${category.slug}`,
+      canonical: `https://axeslab.zainaxes.com/${category.slug}`,
     },
     openGraph: {
       title: `${category.name} | Axes Lab`,
       description: category.description || undefined,
-      url: `https://axeslab.org/${category.slug}`,
+      url: `https://axeslab.zainaxes.com/${category.slug}`,
     },
   };
 }
@@ -56,14 +56,14 @@ export default async function MainCategoryPage({ params }: CategoryPageProps) {
     "@type": "CollectionPage",
     name: category.name,
     description: category.description,
-    url: `https://axeslab.org/${category.slug}`,
+    url: `https://axeslab.zainaxes.com/${category.slug}`,
     mainEntity: {
       "@type": "ItemList",
       itemListElement: resources.map((r, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: r.title,
-        url: `https://axeslab.org/resource/${r.slug}`,
+        url: `https://axeslab.zainaxes.com/resource/${r.slug}`,
       })),
     },
   };

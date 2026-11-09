@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
     title: `${sub.name} — ${parent.name} | Axes Lab`,
     description: sub.description || `Browse verified ${sub.name} resources in the Axes Lab directory.`,
     alternates: {
-      canonical: `https://axeslab.org/${parent.slug}/${sub.slug}`,
+      canonical: `https://axeslab.zainaxes.com/${parent.slug}/${sub.slug}`,
     },
     openGraph: {
       title: `${sub.name} | Axes Lab`,
       description: sub.description || undefined,
-      url: `https://axeslab.org/${parent.slug}/${sub.slug}`,
+      url: `https://axeslab.zainaxes.com/${parent.slug}/${sub.slug}`,
     },
   };
 }

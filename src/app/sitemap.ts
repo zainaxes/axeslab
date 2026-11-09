@@ -1,15 +1,27 @@
 import { MetadataRoute } from "next";
 import { getCategories, getResources, getCollections } from "@/lib/queries";
+import { ALL_REAL_PROMPTS } from "@/lib/real-prompts";
 
 export const dynamic = "force-dynamic";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://axeslab.org";
+  const baseUrl = "https://axeslab.zainaxes.com";
   const now = new Date();
 
   // Static core routes
   const staticRoutes = [
     "",
+    "/prompts",
+    "/motion-ads",
+    "/templates",
+    "/customize",
+    "/backgrounds",
+    "/sections",
+    "/3d-websites",
+    "/apps",
+    "/top",
+    "/web-design",
+    "/mcp",
     "/explore",
     "/collections",
     "/submit",
@@ -59,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Resources
+  // Curated UI Resources
   const { resources } = getResources({ limit: 1000 });
   const resourceRoutes = resources.map((r) => ({
     url: `${baseUrl}/resource/${r.slug}`,
@@ -68,5 +80,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...collectionRoutes, ...resourceRoutes];
+  // Discovered Motion Prompts
+  const promptRoutes = ALL_REAL_PROMPTS.map((p) => ({
+    url: `${baseUrl}/resource/${p.slug}`,
+    lastModified: new Date(p.date ? `${p.date}T00:00:00.000Z` : now),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...collectionRoutes,
+    ...resourceRoutes,
+    ...promptRoutes,
+  ];
 }

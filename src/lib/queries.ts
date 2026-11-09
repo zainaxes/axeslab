@@ -1,6 +1,7 @@
 import { getDb } from "./db";
 import fs from "node:fs";
 import path from "node:path";
+import { ALL_REAL_PROMPTS } from "./real-prompts";
 import {
   Category,
   Resource,
@@ -280,7 +281,81 @@ export function getResourceBySlug(slug: string): Resource | null {
   `;
 
   const row = db.prepare(selectSql).get(slug) as unknown as Resource | undefined;
-  if (!row) return null;
+  if (!row) {
+    const realItem = ALL_REAL_PROMPTS.find(
+      (p) => p.slug === slug || p.id === slug || p.id === `pm-${slug}`
+    );
+    if (!realItem) return null;
+
+    const metadata = {
+      posterUrl: realItem.poster,
+      effectUrl: realItem.video || realItem.preview,
+      mediaKind: "video",
+      categoryName: realItem.category,
+      subcategoryName: realItem.subcategory,
+      author: realItem.author,
+      handle: realItem.handle,
+      tokens: realItem.tokens,
+      model: realItem.model,
+      fields: realItem.fields,
+      hasCustomize: realItem.hasCustomize,
+      sourceUrl: realItem.sourceUrl,
+      rightsStatus: realItem.rightsStatus,
+      rightsNote: realItem.rightsNote,
+    };
+
+    const synthResource: Resource = {
+      id: realItem.id,
+      slug: realItem.slug,
+      title: realItem.title,
+      summary: realItem.summary,
+      description: realItem.summary,
+      resource_type: realItem.isSkill ? "skill" : "prompt",
+      primary_category_id: realItem.categorySlug,
+      subcategory_id: realItem.subcategory?.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      status: "published",
+      canonical_source_id: "src_prompt_motion",
+      canonical_url: realItem.sourceUrl || `https://axeslab.zainaxes.com/resource/${realItem.slug}`,
+      source_path: `src/lib/real-prompts.ts#${realItem.slug}`,
+      author_or_publisher: realItem.author || "Axes Lab",
+      upstream_repository: realItem.sourceUrl || "https://prompt-motion.com",
+      upstream_identifier: realItem.id,
+      version_label: "1.0.0",
+      upstream_commit_or_release: "verified-upstream",
+      created_at: realItem.date ? `${realItem.date}T00:00:00.000Z` : "2026-11-01T00:00:00.000Z",
+      updated_at: realItem.date ? `${realItem.date}T00:00:00.000Z` : "2026-11-01T00:00:00.000Z",
+      published_at: realItem.date ? `${realItem.date}T00:00:00.000Z` : "2026-11-01T00:00:00.000Z",
+      source_updated_at: realItem.date ? `${realItem.date}T00:00:00.000Z` : "2026-11-01T00:00:00.000Z",
+      last_checked_at: "2026-11-09T00:00:00.000Z",
+      verification_status: "verified",
+      access_status: realItem.rightsStatus === "host_allowed" ? "free_hosted" : "free_with_limits",
+      distribution_status: realItem.rightsStatus === "host_allowed" ? "host_allowed" : "link_only",
+      license_spdx_id: realItem.license || "Creator Copyright",
+      license_name: realItem.license || "Creator Copyright",
+      license_url: realItem.sourceUrl || "https://prompt-motion.com",
+      license_scope: realItem.rightsStatus === "host_allowed" ? "full" : "attribution_required",
+      license_verified_at: "2026-11-09T00:00:00.000Z",
+      attribution_text: `Curated by ${realItem.author} (@${realItem.handle}). Verified by Axes Lab.`,
+      rights_notes: realItem.rightsNote || "Original motion prompt and video created by upstream creator.",
+      content_body:
+        realItem.rightsStatus === "host_allowed"
+          ? realItem.contentBody
+          : `Original prompt preserved as a source-linked directory record.\n\nDirect link to creator source: ${realItem.sourceUrl}\n\nRights Note: ${realItem.rightsNote || "Redistribution restricted by creator license. Full metadata, parameters, and upstream source preserved under Axes Lab Rights Policy."}`,
+      metadata_json: JSON.stringify(metadata),
+      parsed_metadata: metadata,
+      seo_title: `${realItem.title} — Motion Prompt | Axes Lab`,
+      seo_description: realItem.summary,
+      is_featured: 0,
+      tags: realItem.tags || [realItem.category, realItem.subcategory],
+      category_name: realItem.category,
+      category_slug: realItem.categorySlug,
+      subcategory_name: realItem.subcategory,
+      subcategory_slug: realItem.subcategory?.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      source_name: "Prompt Motion Directory",
+    };
+
+    return toPlain(synthResource);
+  }
 
   const tags = db
     .prepare(

@@ -7,6 +7,7 @@ import { Toaster } from 'sonner';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://axeslab.zainaxes.com'),
   title: 'Axes Lab — AI Website Prompts, Agent Skills & MCP Server',
   description:
     'Build beautiful landing pages, animated interfaces, and agentic workflows in minutes with ready-to-use prompts, skills, and open MCP. 100% Free & Unlocked.',

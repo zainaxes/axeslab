@@ -41,12 +41,12 @@ export async function generateMetadata({ params }: ResourceDetailPageProps): Pro
     title: `${title} | Axes Lab`,
     description,
     alternates: {
-      canonical: `https://axeslab.org/resource/${resource.slug}`,
+      canonical: `https://axeslab.zainaxes.com/resource/${resource.slug}`,
     },
     openGraph: {
       title: `${resource.title} | Axes Lab`,
       description,
-      url: `https://axeslab.org/resource/${resource.slug}`,
+      url: `https://axeslab.zainaxes.com/resource/${resource.slug}`,
       type: "article",
     },
     twitter: {
@@ -87,7 +87,7 @@ export default async function ResourceDetailPage({ params }: ResourceDetailPageP
     "@type": schemaType,
     name: resource.title,
     description: resource.summary,
-    url: `https://axeslab.org/resource/${resource.slug}`,
+    url: `https://axeslab.zainaxes.com/resource/${resource.slug}`,
     license: resource.license_url || resource.license_name,
     creator: {
       "@type": "Organization",

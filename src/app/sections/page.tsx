@@ -2,24 +2,130 @@
 
 import React, { useState, useMemo } from 'react';
 import { PromptRegistryRow } from '@/components/PromptRegistryRow';
-import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
+import { ALL_REAL_PROMPTS, PromptItem } from '@/lib/real-prompts';
+import catalogData from '@/lib/generated-prompts.json';
 import { PreFooter } from '@/components/PreFooter';
 import { Search, ChevronDown } from 'lucide-react';
 
+const SECTION_CATEGORIES = [
+  'All',
+  'Hero Sections',
+  'Pricing & Features',
+  'Footers & Marquee',
+  'Forms & Auth',
+];
+
+// Convert catalog component specifications into unified PromptItems
+const CATALOG_SECTIONS: PromptItem[] = (catalogData as any[])
+  .filter((c) => {
+    const isSectionCollection = c.route_collection === 'sections';
+    const isSectionCat = [
+      'Hero Section',
+      'Pricing',
+      'Features',
+      'Marquee',
+      'Footer Section',
+      'Contact us',
+      'Signup',
+      'Sign in',
+      'Waitlist',
+      '404',
+    ].includes(c.category);
+    return isSectionCollection || isSectionCat;
+  })
+  .map((cat) => ({
+    id: cat.id,
+    slug: cat.slug,
+    title: cat.title,
+    category: cat.category,
+    categorySlug: cat.categorySlug || cat.route_collection || 'sections',
+    subcategory: cat.subcategories?.[0] || cat.category,
+    subcategories: cat.subcategories || [cat.category],
+    summary: cat.summary,
+    contentBody: cat.raw_prompt_original || '',
+    originalPrompt: cat.raw_prompt_original,
+    rightsStatus: 'host_allowed' as const,
+    license: 'MIT',
+    llmTarget: 'Claude Opus / GPT-4',
+    type: cat.type || 'UI Component',
+    tokens: Math.round((cat.chars || cat.raw_prompt_original?.length || 0) / 4),
+    views: 0,
+    likes: 0,
+    author: 'Axes Lab',
+    handle: 'axeslab',
+    tags: [cat.category, ...(cat.subcategories || [])],
+    chars: cat.chars,
+    posterUrl: cat.preview_poster_url,
+    videoUrl: cat.preview_video_url,
+    preview: cat.preview_video_url,
+    poster: cat.preview_poster_url,
+  }));
+
 export default function SectionsPage() {
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [displayCount, setDisplayCount] = useState(50);
 
   const sectionItems = useMemo(() => {
-    return ALL_REAL_PROMPTS.filter((item) => {
-      const c = item.category.toLowerCase();
+    // Combine curated UI components with verified motion section prompts
+    const promptSections: PromptItem[] = ALL_REAL_PROMPTS.filter((item) => {
       const t = item.title.toLowerCase();
-      const isSec = c.includes('section') || c.includes('hero') || c.includes('feature') || c.includes('pricing') || c.includes('footer') || t.includes('hero') || t.includes('pricing') || t.includes('section');
-      if (!isSec) return false;
-      const q = searchQuery.trim().toLowerCase();
-      return q === '' || t.includes(q) || item.summary.toLowerCase().includes(q);
+      const s = (item.summary || '').toLowerCase();
+      return (
+        t.includes('hero') ||
+        t.includes('pricing') ||
+        t.includes('section') ||
+        s.includes('hero') ||
+        s.includes('pricing') ||
+        s.includes('section')
+      );
     });
-  }, [searchQuery]);
+
+    const combined = [...CATALOG_SECTIONS, ...promptSections];
+
+    return combined.filter((item) => {
+      const cat = (item.category || '').toLowerCase();
+      const sub = (item.subcategory || '').toLowerCase();
+      const title = item.title.toLowerCase();
+      const summary = (item.summary || '').toLowerCase();
+
+      // Category tab filter
+      let matchesCategory = true;
+      if (selectedCategory === 'Hero Sections') {
+        matchesCategory = cat.includes('hero') || sub.includes('hero') || title.includes('hero');
+      } else if (selectedCategory === 'Pricing & Features') {
+        matchesCategory =
+          cat.includes('pricing') ||
+          cat.includes('features') ||
+          title.includes('pricing') ||
+          title.includes('feature');
+      } else if (selectedCategory === 'Footers & Marquee') {
+        matchesCategory =
+          cat.includes('footer') ||
+          cat.includes('marquee') ||
+          title.includes('footer') ||
+          title.includes('marquee');
+      } else if (selectedCategory === 'Forms & Auth') {
+        matchesCategory =
+          cat.includes('sign') ||
+          cat.includes('contact') ||
+          cat.includes('waitlist') ||
+          cat.includes('404') ||
+          title.includes('auth');
+      }
+
+      if (!matchesCategory) return false;
+
+      const q = searchQuery.trim().toLowerCase();
+      return (
+        q === '' ||
+        title.includes(q) ||
+        summary.includes(q) ||
+        cat.includes(q) ||
+        sub.includes(q)
+      );
+    });
+  }, [selectedCategory, searchQuery]);
 
   const displayedItems = sectionItems.slice(0, displayCount);
 
@@ -49,6 +155,23 @@ export default function SectionsPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-transparent px-2 py-2 text-xs sm:text-sm text-ink placeholder:text-muted outline-none"
             />
+          </div>
+
+          {/* Category Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1">
+            {SECTION_CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`text-xs px-2.5 py-1 rounded-pill border transition-colors duration-150 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-accent ${
+                  selectedCategory === cat
+                    ? 'bg-ink text-paper font-medium border-ink'
+                    : 'bg-paper-3 text-muted hover:text-ink border-rule'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
       </section>

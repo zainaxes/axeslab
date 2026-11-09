@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: CollectionDetailPageProps): P
     title: `${col.title} | Axes Lab Collections`,
     description: col.description,
     alternates: {
-      canonical: `https://axeslab.org/collections/${col.slug}`,
+      canonical: `https://axeslab.zainaxes.com/collections/${col.slug}`,
     },
   };
 }
