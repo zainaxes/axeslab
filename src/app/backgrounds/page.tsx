@@ -12,12 +12,36 @@ export default function BackgroundsPage() {
 
   const bgItems = useMemo(() => {
     return ALL_REAL_PROMPTS.filter((item) => {
-      const c = item.category.toLowerCase();
-      const t = item.title.toLowerCase();
-      const isBg = c.includes('background') || t.includes('background') || t.includes('shader') || t.includes('gradient');
+      const sub = (item.subcategory || '').toLowerCase();
+      const title = item.title.toLowerCase();
+      const summary = (item.summary || '').toLowerCase();
+      const tags = (item.subcategories || []).map((t) => t.toLowerCase());
+
+      const isBg =
+        sub === 'particles' ||
+        sub === 'shapes' ||
+        tags.includes('particles') ||
+        tags.includes('shapes') ||
+        tags.includes('background') ||
+        tags.includes('shader') ||
+        title.includes('background') ||
+        title.includes('shader') ||
+        title.includes('canvas') ||
+        title.includes('particle') ||
+        title.includes('gradient') ||
+        summary.includes('background') ||
+        summary.includes('shader') ||
+        summary.includes('particle');
+
       if (!isBg) return false;
       const q = searchQuery.trim().toLowerCase();
-      return q === '' || t.includes(q) || item.summary.toLowerCase().includes(q);
+      return (
+        q === '' ||
+        title.includes(q) ||
+        summary.includes(q) ||
+        sub.includes(q) ||
+        tags.some((t) => t.includes(q))
+      );
     });
   }, [searchQuery]);
 

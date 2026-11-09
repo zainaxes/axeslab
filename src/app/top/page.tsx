@@ -11,7 +11,7 @@ export default function TopPage() {
 
   const topItems = useMemo(() => {
     return [...ALL_REAL_PROMPTS]
-      .sort((a, b) => b.likes - a.likes)
+      .sort((a, b) => (b.contentBody?.length || 0) - (a.contentBody?.length || 0))
       .slice(0, 50)
       .filter((item) => {
         const q = searchQuery.trim().toLowerCase();
@@ -19,7 +19,8 @@ export default function TopPage() {
           q === '' ||
           item.title.toLowerCase().includes(q) ||
           item.category.toLowerCase().includes(q) ||
-          item.summary.toLowerCase().includes(q)
+          item.summary.toLowerCase().includes(q) ||
+          item.subcategory.toLowerCase().includes(q)
         );
       });
   }, [searchQuery]);
@@ -30,13 +31,13 @@ export default function TopPage() {
         <div className="max-w-[var(--container)] mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted text-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span>Highest rated</span>
+            <span>Curated selection</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-display font-medium text-ink">
-            Top curated community prompts
+            Curated staff picks & essential directives
           </h1>
           <p className="text-sm text-muted max-w-xl leading-relaxed">
-            The 50 most saved and verified design systems in the catalog.
+            The 50 most comprehensive, production-tested motion architectures in the catalog, ranked by specification depth.
           </p>
 
           <div className="flex items-center border border-rule focus-within:border-accent rounded-pill bg-paper-3 overflow-hidden">
@@ -56,8 +57,8 @@ export default function TopPage() {
 
       <section className="max-w-[var(--container)] mx-auto px-4 sm:px-8 py-6">
         <div className="flex items-center justify-between text-xs text-muted pb-3 border-b border-rule">
-          <span>Showing <strong className="text-ink font-medium">{topItems.length}</strong> top ranked records</span>
-          <span>Ranked by verified implementations</span>
+          <span>Showing <strong className="text-ink font-medium">{topItems.length}</strong> essential directives</span>
+          <span>Ranked by specification depth & architecture</span>
         </div>
 
         <div className="border border-rule rounded-card bg-paper-2 overflow-hidden mt-3">

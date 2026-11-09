@@ -8,13 +8,11 @@ import { Search, ChevronDown, Smartphone } from 'lucide-react';
 
 const APP_CATEGORIES = [
   'All',
-  'AI App',
-  'Mobile App',
-  'Dashboard',
-  'AI Assistant',
-  'SaaS',
-  'Analytics',
-  'Fintech',
+  'Product UI',
+  'Mobile (Phone)',
+  'Dashboards & Charts',
+  'Developer & Code',
+  'Agent Skills',
 ];
 
 export default function AppsPage() {
@@ -24,33 +22,62 @@ export default function AppsPage() {
 
   const appItems = useMemo(() => {
     return ALL_REAL_PROMPTS.filter((item) => {
-      const c = item.category.toLowerCase();
-      const t = item.title.toLowerCase();
-      const isApp =
-        c.includes('app') ||
-        c.includes('mobile') ||
-        c.includes('dashboard') ||
-        c.includes('assistant') ||
-        c.includes('analytics') ||
-        c.includes('saas') ||
-        t.includes('app') ||
-        t.includes('dashboard');
+      // Strictly exclude promotional Motion Ads to prevent taxonomy conflation
+      if (item.category === 'Motion Ads') return false;
 
-      if (!isApp) return false;
+      const sub = (item.subcategory || '').toLowerCase();
+      const tags = (item.subcategories || []).map((t) => t.toLowerCase());
+      const title = item.title.toLowerCase();
+      const summary = (item.summary || '').toLowerCase();
 
-      const matchesCategory =
-        selectedCategory === 'All' ||
-        c.includes(selectedCategory.toLowerCase()) ||
-        t.includes(selectedCategory.toLowerCase());
+      // Only include Product UI, application interfaces, mobile phone layouts, code directives, and agent skills
+      const isAppInterface =
+        sub === 'product ui' ||
+        tags.includes('product ui') ||
+        tags.includes('phone') ||
+        tags.includes('code') ||
+        item.category === 'Skills' ||
+        item.isSkill === true;
+
+      if (!isAppInterface) return false;
+
+      // Category tab filtering
+      let matchesCategory = true;
+      if (selectedCategory === 'Product UI') {
+        matchesCategory = sub === 'product ui' || tags.includes('product ui');
+      } else if (selectedCategory === 'Mobile (Phone)') {
+        matchesCategory =
+          tags.includes('phone') ||
+          title.includes('mobile') ||
+          title.includes('phone') ||
+          title.includes('ios');
+      } else if (selectedCategory === 'Dashboards & Charts') {
+        matchesCategory =
+          tags.includes('charts') ||
+          title.includes('dashboard') ||
+          title.includes('chart') ||
+          title.includes('analytics');
+      } else if (selectedCategory === 'Developer & Code') {
+        matchesCategory =
+          tags.includes('code') ||
+          title.includes('code') ||
+          title.includes('html') ||
+          title.includes('developer');
+      } else if (selectedCategory === 'Agent Skills') {
+        matchesCategory = item.category === 'Skills' || item.isSkill === true;
+      }
+
+      if (!matchesCategory) return false;
 
       const q = searchQuery.trim().toLowerCase();
       const matchesSearch =
         q === '' ||
-        t.includes(q) ||
-        c.includes(q) ||
-        item.summary.toLowerCase().includes(q);
+        title.includes(q) ||
+        summary.includes(q) ||
+        sub.includes(q) ||
+        tags.some((t) => t.includes(q));
 
-      return matchesCategory && matchesSearch;
+      return matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
 
