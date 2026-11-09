@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { PromptRegistryRow } from '@/components/PromptRegistryRow';
 import { ALL_REAL_PROMPTS, MAIN_CATEGORIES, SUBCATEGORIES, RealPromptItem } from '@/lib/real-prompts';
-import { PromptModal } from '@/components/PromptModal';
+import { PromptCustomizerModal } from '@/components/PromptCustomizerModal';
 import {
   Search,
   Terminal,
@@ -269,25 +269,23 @@ export default function CatalogPage() {
 
       </main>
 
-      {/* Interactive Modal when clicking a card */}
+      {/* Interactive Prompt Customizer & Generator Modal */}
       {activeModalItem && (
-        <PromptModal
+        <PromptCustomizerModal
           item={{
             id: activeModalItem.id,
             slug: activeModalItem.slug,
             title: activeModalItem.title,
             category: activeModalItem.category,
-            type: 'prompt',
-            previewType: 'video',
-            previewTheme: 'shelf-hero',
-            description: activeModalItem.summary,
+            subcategory: activeModalItem.subcategory,
+            contentBody: activeModalItem.contentBody,
+            summary: activeModalItem.summary,
+            video: activeModalItem.video,
+            preview: activeModalItem.preview,
+            poster: activeModalItem.poster,
             tags: activeModalItem.tags,
-            likes: activeModalItem.likes,
-            rawPrompt: activeModalItem.contentBody,
-            sourceCode: activeModalItem.contentBody,
-            skillContent: activeModalItem.contentBody,
-            mcpCommand: `npx axeslab-mcp@latest prompt ${activeModalItem.slug}`,
-            backgroundUrl: activeModalItem.video || activeModalItem.preview
+            width: activeModalItem.width,
+            height: activeModalItem.height
           }}
           isOpen={true}
           onClose={() => setActiveModalItem(null)}
@@ -363,8 +361,21 @@ function PreviewCard({
           </span>
         </div>
 
-        {/* Quick Copy Button on Hover */}
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+        {/* Action Buttons on Hover */}
+        <div className="absolute top-2 right-2 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-pill text-xs font-medium border border-rule bg-paper/90 hover:bg-paper text-ink backdrop-blur-sm transition-colors"
+            title="Customize parameters"
+          >
+            <SlidersHorizontal className="w-3 h-3 text-cool" />
+            <span>Customize</span>
+          </button>
+          
           <button
             type="button"
             onClick={onCopy}
