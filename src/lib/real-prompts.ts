@@ -1,3 +1,10 @@
+export interface PromptField {
+  key: string;
+  label: string;
+  hint?: string;
+  default?: string;
+}
+
 export interface RealPromptItem {
   id: string;
   slug: string;
@@ -7,6 +14,9 @@ export interface RealPromptItem {
   subcategory: string;
   summary: string;
   contentBody: string;
+  template?: string;
+  fields?: PromptField[];
+  originalPrompt?: string;
   llmTarget: string;
   type: string;
   tokens: number;
@@ -59,7 +69,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -80,7 +90,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-twoclipping-5cba86",
@@ -111,6 +161,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -121,7 +188,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Bold kinetic type showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -142,7 +209,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-ajith-io-b5626e",
@@ -152,7 +259,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Abstract motion design reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -173,7 +280,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-twoclipping-221cab",
@@ -205,6 +352,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "photos",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -235,6 +399,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -245,7 +426,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -266,7 +447,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-gabrielbuzziv-4ff0c6",
@@ -276,7 +497,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Enxovaly baby app promo created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -296,7 +517,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "phone",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-lexnlin-038035",
@@ -326,6 +587,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -355,6 +633,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -386,6 +681,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "photos",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -396,7 +708,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Travel visa service promo created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -417,7 +729,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "photos",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-lexnlin-f9b3bd8",
@@ -447,6 +799,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "charts",
       "skill"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -476,6 +845,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "skill"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -505,6 +891,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -537,6 +940,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "photos",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -568,6 +988,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -578,7 +1015,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Characters",
     "summary": "Recursion explained in genres created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "A video for ZainAxes explaining recursion, where every explanation about recursion has a radically different video style, make this self-referential & clever & fast moving.",
+    "contentBody": "<direction>\nA 60-second video explaining recursion, where every explanation is in a radically different video style: a different genre every time, e.g. film noir, nature documentary, 8-bit game, infomercial.\nMake it self-referential and clever: each change of style is itself an example of the idea. Fast-moving, but every explanation lands before the next one starts.\nEach style is done properly, with its own typeface, palette, pacing and sound, not a filter over the same frames.\nBanned: generic gradients, glows, crossfades between styles, holds longer than a second, anything that looks like a template.\n</direction>\n\n<structure>\n9 explanations, each building on the last, each in a new style. Open with a one-line hook. End on a final explanation that ties them all together.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a short sting for each style change, and music that changes with the style. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me the list of explanations, the style for each and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -598,7 +1035,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "characters",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second video explaining {{topic}}, where every explanation is in a radically different video style: {{styles}}.\nMake it self-referential and clever: each change of style is itself an example of the idea. Fast-moving, but every explanation lands before the next one starts.\nEach style is done properly, with its own typeface, palette, pacing and sound, not a filter over the same frames.\nBanned: generic gradients, glows, crossfades between styles, holds longer than a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{count}} explanations, each building on the last, each in a new style. Open with a one-line hook. End on a final explanation that ties them all together.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a short sting for each style change, and music that changes with the style. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me the list of explanations, the style for each and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "The idea to explain.",
+        "default": "recursion"
+      },
+      {
+        "key": "styles",
+        "label": "Styles",
+        "hint": "Genres or looks to switch between.",
+        "default": "a different genre every time, e.g. film noir, nature documentary, 8-bit game, infomercial"
+      },
+      {
+        "key": "count",
+        "label": "Explanations",
+        "hint": "How many style changes.",
+        "default": "9"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "About 7 seconds per explanation.",
+        "default": "60"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "A video for ZainAxes explaining recursion, where every explanation about recursion has a radically different video style, make this self-referential & clever & fast moving."
   },
   {
     "id": "pm-lexnlin-6161a6",
@@ -628,6 +1099,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "skill"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -658,6 +1146,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -668,7 +1173,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Animated business explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Adopt the role of an expert motion designer. Build a 30-second animated explainer for ZainAxes as a single HTML page. 5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end. Bold text, smooth transitions, my brand colours. My business [DESCRIBE WHAT YOU SELL, WHO IT'S FOR AND YOUR COLOURS]",
+    "contentBody": "<direction>\nA 30-second animated explainer for my business, as a single HTML page: ZainAxes — describe what you sell and who it's for.\nFive scenes: the customer's problem, what I do, how it works in three steps, one proof point, and my name at the end.\nBold type, smooth transitions where each scene is made out of the last, my brand colors: describe your colors.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM. Equal time for each scene, with the three steps getting a beat each.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat and a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me the copy for each scene and a storyboard, then build it without asking me anything else. Give me the HTML page and the MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 81,
@@ -687,7 +1192,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second animated explainer for my business, as a single HTML page: {{business}}.\nFive scenes: the customer's problem, what I do, how it works in three steps, one proof point, and my name at the end.\nBold type, smooth transitions where each scene is made out of the last, my brand colors: {{colors}}.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM. Equal time for each scene, with the three steps getting a beat each.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat and a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me the copy for each scene and a storyboard, then build it without asking me anything else. Give me the HTML page and the MP4.\n</start>",
+    "fields": [
+      {
+        "key": "business",
+        "label": "Business",
+        "hint": "What you sell and who it's for.",
+        "default": "describe what you sell and who it's for"
+      },
+      {
+        "key": "colors",
+        "label": "Brand colors",
+        "hint": "Names or hex codes.",
+        "default": "describe your colors"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "20 to 45 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Adopt the role of an expert motion designer. Build a 30-second animated explainer for ZainAxes as a single HTML page. 5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end. Bold text, smooth transitions, my brand colours. My business [DESCRIBE WHAT YOU SELL, WHO IT'S FOR AND YOUR COLOURS]"
   },
   {
     "id": "pm-majin-appsheet-2d3c1a",
@@ -697,7 +1236,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Shin Majin-shiki promo created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — シンまじん式のPV作って",
+    "contentBody": "<direction>\nA 30-second promo video for Shin Majin-shiki. Research it first: what it is, what it does and who it's for. Use only what you find; never invent features or numbers.\nCarry one visual idea all the way through, with every scene made out of the last instead of cutting or fading.\nTone: poppy and full of energy. One typeface, one accent color, lots of empty space. On-screen text in Japanese.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nHook in the first bar. Then one strength per bar, each flowing out of the last. End on the name and a one-line tagline.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write the music and sound effects in code with the Web Audio API (OfflineAudioContext), on the beat grid and on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me what you found and a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 4,
@@ -716,7 +1255,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second promo video for {{product}}. Research it first: what it is, what it does and who it's for. Use only what you find; never invent features or numbers.\nCarry one visual idea all the way through, with every scene made out of the last instead of cutting or fading.\nTone: {{tone}}. One typeface, one accent color, lots of empty space. On-screen text in {{language}}.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nHook in the first bar. Then one strength per bar, each flowing out of the last. End on the name and a one-line tagline.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write the music and sound effects in code with the Web Audio API (OfflineAudioContext), on the beat grid and on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me what you found and a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "product",
+        "label": "Product",
+        "hint": "What the promo is for.",
+        "default": "Shin Majin-shiki"
+      },
+      {
+        "key": "tone",
+        "label": "Tone",
+        "hint": "The feel of the video.",
+        "default": "poppy and full of energy"
+      },
+      {
+        "key": "language",
+        "label": "On-screen language",
+        "hint": "The language of the text in the video.",
+        "default": "Japanese"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 45 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — シンまじん式のPV作って"
   },
   {
     "id": "pm-tdinh-me-815acb",
@@ -726,7 +1305,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Shapes",
     "summary": "TypingMind logo reveal created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create an impressive motion design video for ZainAxes of a slow-reveal transition that assembles and eventually reveals the TypingMind logo.",
+    "contentBody": "<direction>\nA 10-second logo reveal for ZainAxes — TypingMind: a slow, satisfying transition where abstract fragments of its shapes assemble piece by piece and only resolve into the logo in the last few seconds.\nUse the logo file I attach exactly; never redraw it from memory. Palette: the logo's own colors.\nThe build-up should keep the eye guessing; the moment it becomes the logo should feel inevitable.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n90 BPM. Slow at first, a little faster each bar, then the logo lands on a downbeat and holds for one bar.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): soft textures building with the assembly and one clean hit as the logo lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nAsk me for the logo file (SVG if possible), then show me a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 26,
@@ -745,7 +1324,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Shapes",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second logo reveal for {{brand}}: a slow, satisfying transition where {{idea}} assemble piece by piece and only resolve into the logo in the last few seconds.\nUse the logo file I attach exactly; never redraw it from memory. Palette: {{palette}}.\nThe build-up should keep the eye guessing; the moment it becomes the logo should feel inevitable.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM. Slow at first, a little faster each bar, then the logo lands on a downbeat and holds for one bar.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): soft textures building with the assembly and one clean hit as the logo lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nAsk me for the logo file (SVG if possible), then show me a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "brand",
+        "label": "Brand",
+        "hint": "Whose logo it is.",
+        "default": "TypingMind"
+      },
+      {
+        "key": "idea",
+        "label": "What assembles",
+        "hint": "The pieces that come together into the logo.",
+        "default": "abstract fragments of its shapes"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes.",
+        "default": "the logo's own colors"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "8 to 15 works best.",
+        "default": "10"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Slower suits a reveal. 80 to 110.",
+        "default": "90"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create an impressive motion design video for ZainAxes of a slow-reveal transition that assembles and eventually reveals the TypingMind logo."
   },
   {
     "id": "pm-thayto-dev-44b911",
@@ -755,7 +1374,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "AjustaCV Pro pricing promo created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -774,7 +1393,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-sab8a-364a5a",
@@ -784,7 +1443,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Photos",
     "summary": "Talking-head clip edit created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Cut a raw talking-head clip into a punchy, fun edit with subtitles, graphics and music",
+    "contentBody": "<direction>\nCut my raw talking-head clip into a punchy, fun 60-second edit for TikTok and Reels.\nKeep the best lines and cut every pause, filler word and false start. Add word-by-word subtitles (bold white, one or two words at a time), graphics that illustrate the key points, and music with an upbeat, playful feel.\nBanned: random stock footage, emoji spam, zoom punches on every line, captions that cover the face.\n</direction>\n\n<structure>\nHook in the first two seconds, using the strongest line even if it's not the first. One idea at a time after that. End on a clean last line, not a fade.\n</structure>\n\n<build>\n1. Transcribe with word timestamps (e.g. whisper) and make the cut list from the transcript.\n2. Cut with ffmpeg at 1080x1920, with jump cuts hidden by small zoom changes.\n3. Make the subtitles and graphics as HTML rendered with Playwright, then composite them over the video.\n4. Use music whose license allows the platform, ducked under the voice. Loudnorm to -14 LUFS.\n5. Watch the result at full speed and fix any cut that clips a word.\n</build>\n\n<start>\nAsk me for the clip, then show me the cut list with timestamps before you edit. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 22,
@@ -803,7 +1462,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Photos",
       "photos",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nCut my raw talking-head clip into a punchy, fun {{length}}-second edit for {{platform}}.\nKeep the best lines and cut every pause, filler word and false start. Add word-by-word subtitles ({{captions}}), graphics that illustrate the key points, and music with {{tone}}.\nBanned: random stock footage, emoji spam, zoom punches on every line, captions that cover the face.\n</direction>\n\n<structure>\nHook in the first two seconds, using the strongest line even if it's not the first. One idea at a time after that. End on a clean last line, not a fade.\n</structure>\n\n<build>\n1. Transcribe with word timestamps (e.g. whisper) and make the cut list from the transcript.\n2. Cut with ffmpeg at {{size}}, with jump cuts hidden by small zoom changes.\n3. Make the subtitles and graphics as HTML rendered with Playwright, then composite them over the video.\n4. Use music whose license allows the platform, ducked under the voice. Loudnorm to -14 LUFS.\n5. Watch the result at full speed and fix any cut that clips a word.\n</build>\n\n<start>\nAsk me for the clip, then show me the cut list with timestamps before you edit. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "platform",
+        "label": "Platform",
+        "hint": "Where it will be posted.",
+        "default": "TikTok and Reels"
+      },
+      {
+        "key": "captions",
+        "label": "Captions",
+        "hint": "How the subtitles look.",
+        "default": "bold white, one or two words at a time"
+      },
+      {
+        "key": "tone",
+        "label": "Music",
+        "hint": "The feel of the music.",
+        "default": "an upbeat, playful feel"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "30 to 90 works best.",
+        "default": "60"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Cut a raw talking-head clip into a punchy, fun edit with subtitles, graphics and music"
   },
   {
     "id": "pm-anthonyriera-9b1b2a",
@@ -833,6 +1526,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "characters",
       "skill"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -843,7 +1553,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Kinetic Type",
     "summary": "Lightspark social promo video created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a punchy and modern short video for ZainAxes for social that promotes @lightspark capabilities. Needs to be production grade with sound",
+    "contentBody": "<direction>\nA punchy, modern 20-second video for social that promotes Lightspark (@lightspark): its main capabilities. Research the product first and use its real interface and brand; never invent features or numbers.\nIt has to stop the scroll: a hook in the first second, one idea per shot, big readable type, captions that work with the sound off.\nProduction grade, with sound: music and effects synced to every cut.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nHook in beat one. Then one capability per bar, each made out of the last. End on the name and what to do next.\n</structure>\n\n<build>\n1. One HTML file at 1080x1920. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat and a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me what you found and a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 29,
@@ -863,7 +1573,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA punchy, modern {{length}}-second video for social that promotes {{product}}: {{capabilities}}. Research the product first and use its real interface and brand; never invent features or numbers.\nIt has to stop the scroll: a hook in the first second, one idea per shot, big readable type, captions that work with the sound off.\nProduction grade, with sound: music and effects synced to every cut.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nHook in beat one. Then one capability per bar, each made out of the last. End on the name and what to do next.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat and a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me what you found and a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "product",
+        "label": "Product",
+        "hint": "Its name, plus a URL or handle.",
+        "default": "Lightspark (@lightspark)"
+      },
+      {
+        "key": "capabilities",
+        "label": "What to show",
+        "hint": "The capabilities to feature, or let it research them.",
+        "default": "its main capabilities"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 for social.",
+        "default": "20"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "make a punchy and modern short video for ZainAxes for social that promotes @lightspark capabilities. Needs to be production grade with sound"
   },
   {
     "id": "pm-techhalla-90b8ec",
@@ -892,6 +1636,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -923,6 +1684,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -953,6 +1731,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -963,7 +1758,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Prompt",
     "summary": "Four seasons train window created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 4 seasons passing outside a train window, a cozy carriage, a cup of coffee on the table, Grand Budapest Hotel style",
+    "contentBody": "<direction>\nA 30-second animated film: 4 seasons passing outside a train window, a cozy carriage, a cup of coffee on the table.\nStyle: Grand Budapest Hotel: symmetrical framing, pastel palette, flat theatrical depth. Build it entirely in code, with layered 2D illustration and a slow, steady camera.\nLet the scene unfold in four to six moments, each changing one thing, while the rest stays still. Small details carry the story: light, steam, weather, what's on the table.\nBanned: glows, lens flares, camera shake, generic gradients, anything that looks like stock clip art.\n</direction>\n\n<structure>\nEqual time for each moment, joined by slow transitions that happen inside the scene (light changing, things passing the window), never cuts.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a quiet ambient soundtrack and the sounds of the scene. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me the moments and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 30,
@@ -981,7 +1776,35 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Motion Ads",
       "Prompt",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second animated film: {{scene}}.\nStyle: {{style}}. Build it entirely in code, with layered 2D illustration and a slow, steady camera.\nLet the scene unfold in four to six moments, each changing one thing, while the rest stays still. Small details carry the story: light, steam, weather, what's on the table.\nBanned: glows, lens flares, camera shake, generic gradients, anything that looks like stock clip art.\n</direction>\n\n<structure>\nEqual time for each moment, joined by slow transitions that happen inside the scene (light changing, things passing the window), never cuts.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a quiet ambient soundtrack and the sounds of the scene. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me the moments and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "scene",
+        "label": "Scene",
+        "hint": "What we see, and what changes.",
+        "default": "4 seasons passing outside a train window, a cozy carriage, a cup of coffee on the table"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "Grand Budapest Hotel: symmetrical framing, pastel palette, flat theatrical depth"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "20 to 60 works best.",
+        "default": "30"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 4 seasons passing outside a train window, a cozy carriage, a cup of coffee on the table, Grand Budapest Hotel style"
   },
   {
     "id": "pm-linearuncle-5d2bae",
@@ -991,7 +1814,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Derivative concept explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 请用Manim给我制作一个导数概念学习的视频，要求通俗易懂，并且有例子，引人思考。配音使用edge-tts",
+    "contentBody": "<direction>\nUse Manim to make a 3-minute lesson on the derivative for complete beginners. Make it easy to understand, with concrete examples, and make people think.\nStart from an everyday question that leads to the idea, build intuition step by step, and only then give the formal definition and formula. Every new idea gets something on screen: a graph, an animation, a color that tracks it.\nNarrate it in Chinese with edge-tts (zh-CN-XiaoxiaoNeural), with subtitles synced line by line.\nBanned: long blocks of static text, formulas piled up without animation, music louder than the voice.\n</direction>\n\n<structure>\nThe question, the intuition, two or three examples from easy to harder, the formal definition, and a question for the viewer to think about at the end.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with edge-tts and time the Manim animations to each line's real audio length.\n3. Render with Manim at 1920x1080, 60fps, and mux in the narration and subtitles.\n4. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<start>\nShow me the script and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 4,
@@ -1011,7 +1834,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nUse Manim to make a {{length}} lesson on {{topic}} for {{audience}}. Make it easy to understand, with concrete examples, and make people think.\nStart from an everyday question that leads to the idea, build intuition step by step, and only then give the formal definition and formula. Every new idea gets something on screen: a graph, an animation, a color that tracks it.\nNarrate it in {{language}} with edge-tts ({{voice}}), with subtitles synced line by line.\nBanned: long blocks of static text, formulas piled up without animation, music louder than the voice.\n</direction>\n\n<structure>\nThe question, the intuition, two or three examples from easy to harder, the formal definition, and a question for the viewer to think about at the end.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with edge-tts and time the Manim animations to each line's real audio length.\n3. Render with Manim at {{size}}, 60fps, and mux in the narration and subtitles.\n4. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<start>\nShow me the script and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "The concept to teach.",
+        "default": "the derivative"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "complete beginners"
+      },
+      {
+        "key": "language",
+        "label": "Narration language",
+        "hint": "The language of the voiceover and subtitles.",
+        "default": "Chinese"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "An edge-tts voice for that language.",
+        "default": "zh-CN-XiaoxiaoNeural"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "How long the lesson runs.",
+        "default": "3-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 请用Manim给我制作一个导数概念学习的视频，要求通俗易懂，并且有例子，引人思考。配音使用edge-tts"
   },
   {
     "id": "pm-pankajstwt-49978ed",
@@ -1041,6 +1904,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1051,7 +1931,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Branding agency showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 30-second motion graphics video that shows what an incredible motion designer you are,  create all graphics from scratch as if you were a niche branding agency for startup founders, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 30-second motion design showreel that proves you are a world-class motion designer, built around a niche branding agency for startup founders: create all the graphics from scratch, as if they were your agency's work. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 53,
@@ -1071,7 +1951,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "photos",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "a niche branding agency for startup founders: create all the graphics from scratch, as if they were your agency's work"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 30-second motion graphics video that shows what an incredible motion designer you are,  create all graphics from scratch as if you were a niche branding agency for startup founders, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-kloss-xyz-fe0c31",
@@ -1081,7 +1995,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "History of AI timeline created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a video for ZainAxes highlighting key moments in the history of AI.",
+    "contentBody": "<direction>\nA 2-minute video highlighting the key moments in the history of AI. Research it first and choose 12 to 15 moments that changed its course. For each: the year, what happened and why it mattered, in one line.\nStyle: a clean editorial timeline, one typeface, archival photos where the license allows. Keep the facts right: date and name every moment, and never invent a quote.\nBanned: glows, generic gradients, stock-looking icons, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nA short hook, then the moments in order on one continuous timeline the camera travels along. Each moment gets the same rhythm: the year lands, the event appears, one line on why it mattered. End on where things stand now.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a hit as each year lands, and music that builds toward the present. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me your list of moments with sources and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 17,
@@ -1102,7 +2016,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} video highlighting the key moments in {{topic}}. Research it first and choose {{count}} moments that changed its course. For each: the year, what happened and why it mattered, in one line.\nStyle: {{style}}. Keep the facts right: date and name every moment, and never invent a quote.\nBanned: glows, generic gradients, stock-looking icons, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nA short hook, then the moments in order on one continuous timeline the camera travels along. Each moment gets the same rhythm: the year lands, the event appears, one line on why it mattered. End on where things stand now.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a hit as each year lands, and music that builds toward the present. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me your list of moments with sources and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "The history to tell.",
+        "default": "the history of AI"
+      },
+      {
+        "key": "count",
+        "label": "Moments",
+        "hint": "How many to include.",
+        "default": "12 to 15"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look of the timeline.",
+        "default": "a clean editorial timeline, one typeface, archival photos where the license allows"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "1 to 3 minutes works best.",
+        "default": "2-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a video for ZainAxes highlighting key moments in the history of AI."
   },
   {
     "id": "pm-jasonzhou1993-8595e0",
@@ -1112,7 +2060,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Claude motion reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -1133,7 +2081,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-robj3d3-b18fad",
@@ -1162,6 +2150,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1192,6 +2197,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1224,6 +2246,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1254,6 +2293,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1285,6 +2341,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1315,6 +2388,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1345,6 +2435,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1376,6 +2483,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "photos",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1386,7 +2510,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion design reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -1408,7 +2532,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-sudo-kiran-49176d",
@@ -1418,7 +2582,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion design showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around whatever you think shows you off best. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 7,
@@ -1439,7 +2603,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "Leave it open, or give it a subject.",
+        "default": "whatever you think shows you off best"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Go all out."
   },
   {
     "id": "pm-lukasersil-0ed38e",
@@ -1449,7 +2647,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion techniques showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create a bold, dynamic 15-second motion graphics for ZainAxes showreel that feels like the ultimate portfolio piece of an exceptionally talented motion designer. Showcase a wide range of advanced techniques: kinetic typography, smooth transitions, 2D and 3D animation, abstract geometry, fluid simulations, particles, distortion, creative masking, compositing, lighting, depth, and seamless camera movement. Keep the pacing fast, confident, and visually surprising, with every shot transitioning naturally into the next. Make it feel meticulously art-directed rather than like a random collection of effects. Push the creativity, polish, timing, and visual impact as far as possible. This should feel like the opening reel that gets a motion designer hired.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 139,
@@ -1470,7 +2668,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create a bold, dynamic 15-second motion graphics for ZainAxes showreel that feels like the ultimate portfolio piece of an exceptionally talented motion designer. Showcase a wide range of advanced techniques: kinetic typography, smooth transitions, 2D and 3D animation, abstract geometry, fluid simulations, particles, distortion, creative masking, compositing, lighting, depth, and seamless camera movement. Keep the pacing fast, confident, and visually surprising, with every shot transitioning naturally into the next. Make it feel meticulously art-directed rather than like a random collection of effects. Push the creativity, polish, timing, and visual impact as far as possible. This should feel like the opening reel that gets a motion designer hired."
   },
   {
     "id": "pm-nft-chen-5f8bb0",
@@ -1480,7 +2718,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Prompt",
     "summary": "Porco Rosso sunset dogfight created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 用 web3D 复刻宫崎骏《红猪》日落海面上的经典空战：白绿红涂装战斗机、紫色积云、海面反光、吉卜力运镜，画面写 just breathe.",
+    "contentBody": "<direction>\nBuild the dogfight over the sea at sunset from Hayao Miyazaki's Porco Rosso as one self-contained HTML page with three.js.\nStyle: Ghibli: hand-painted skies, purple cumulus clouds, warm sunset light, the sea catching it. Stylised, not photoreal: soft shading, painterly water reflections.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\nFighter planes in white, green and red livery chase each other through the clouds while the camera moves like a Ghibli film, low over the water then up through the clouds. The words \"just breathe.\" appear once, quietly.\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at 1920x1080.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 9,
@@ -1498,7 +2736,35 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Motion Ads",
       "Prompt",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild {{subject}} as one self-contained HTML page with three.js.\nStyle: {{style}}. Stylised, not photoreal: soft shading, painterly water reflections.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\n{{what}}\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at {{size}}.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
+    "fields": [
+      {
+        "key": "subject",
+        "label": "Subject",
+        "hint": "What to build.",
+        "default": "the dogfight over the sea at sunset from Hayao Miyazaki's Porco Rosso"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "Ghibli: hand-painted skies, purple cumulus clouds, warm sunset light, the sea catching it"
+      },
+      {
+        "key": "what",
+        "label": "What happens",
+        "hint": "What you see or do.",
+        "default": "Fighter planes in white, green and red livery chase each other through the clouds while the camera moves like a Ghibli film, low over the water then up through the clouds. The words \"just breathe.\" appear once, quietly."
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 用 web3D 复刻宫崎骏《红猪》日落海面上的经典空战：白绿红涂装战斗机、紫色积云、海面反光、吉卜力运镜，画面写 just breathe."
   },
   {
     "id": "pm-axtonliu-0b861d",
@@ -1508,7 +2774,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Pelican riding a bicycle created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 每次一个新的模型出来呢，大家都让它去画 “鹈鹕骑自行车” 来判断这个模型的空间能力，基本上都是用 HTML、SVG 来画动画。当我实在看得都有审美疲劳了，我希望你能画一个最复杂、最精细、最精美的 “鹈鹕骑自行车”的动画视频，你可以用任何的技术，不用着急，画一天都可以。",
+    "contentBody": "<direction>\nA 30-second animated short film: a pelican riding a bicycle.\nStyle: the most complex, detailed and beautiful version you can make: real anatomy, a bicycle that actually works, a full landscape around them. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nEveryone draws this in HTML and SVG; go far beyond that, with any technology. There's no rush: take as long as you need.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a score and sound effects written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 10,
@@ -1527,7 +2793,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nEveryone draws this in HTML and SVG; go far beyond that, with any technology. There's no rush: take as long as you need.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a pelican riding a bicycle"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "the most complex, detailed and beautiful version you can make: real anatomy, a bicycle that actually works, a full landscape around them"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a score and sound effects written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "30-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 每次一个新的模型出来呢，大家都让它去画 “鹈鹕骑自行车” 来判断这个模型的空间能力，基本上都是用 HTML、SVG 来画动画。当我实在看得都有审美疲劳了，我希望你能画一个最复杂、最精细、最精美的 “鹈鹕骑自行车”的动画视频，你可以用任何的技术，不用着急，画一天都可以。"
   },
   {
     "id": "pm-gizakdag-cf4ae6",
@@ -1537,7 +2837,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Overthinking motion study created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it’s your showreel exploring the concept of “Overthinking,” inspired by the attached graphics.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around the concept of \"Overthinking\". Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nTake your visual language from the graphics I attach.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1080x1920. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 42,
@@ -1556,7 +2856,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nTake your visual language from the graphics I attach.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "the concept of \"Overthinking\""
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "Make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it’s your showreel exploring the concept of “Overthinking,” inspired by the attached graphics."
   },
   {
     "id": "pm-mandelduck-95fd08",
@@ -1566,7 +2900,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Starry Night cat-spotting game created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — can you make a 3d game where you walk around and spot cats inside of a van gogh painting? we can start with stary night and its town",
+    "contentBody": "<direction>\nBuild a 3D game where you walk around inside a Van Gogh painting and spot hidden cats as one self-contained HTML page with three.js.\nStyle: Van Gogh's brushwork in 3D: thick swirling strokes on every surface, starting with The Starry Night and its town.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\nFirst-person walking. Cats are hidden in the scene, painted in the same strokes so they take a careful eye; spotting one counts it. A small counter, and a quiet win when all are found.\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at 1920x1080.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 39,
@@ -1585,7 +2919,35 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild {{subject}} as one self-contained HTML page with three.js.\nStyle: {{style}}.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\n{{what}}\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at {{size}}.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
+    "fields": [
+      {
+        "key": "subject",
+        "label": "Subject",
+        "hint": "What to build.",
+        "default": "a 3D game where you walk around inside a Van Gogh painting and spot hidden cats"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "Van Gogh's brushwork in 3D: thick swirling strokes on every surface, starting with The Starry Night and its town"
+      },
+      {
+        "key": "what",
+        "label": "How it plays",
+        "hint": "What you see or do.",
+        "default": "First-person walking. Cats are hidden in the scene, painted in the same strokes so they take a careful eye; spotting one counts it. A small counter, and a quiet win when all are found."
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — can you make a 3d game where you walk around and spot cats inside of a van gogh painting? we can start with stary night and its town"
   },
   {
     "id": "pm-gorden-sun-041f56",
@@ -1595,7 +2957,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Music",
     "summary": "Beat-synced bouncing 3D ball created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 卡点的3D球体下坠的动画视频：对标专业的Blender做的效果，音乐是多首经典的纯音乐，场景按音乐切换，3D球体下坠时在3D场景的物件中弹跳，按音乐的节奏点亮物件。带一些幽默的元素。\n使用three.js制作，不要使用Blender制作",
+    "contentBody": "<direction>\nBuild a beat-synced animation of a 3D ball falling through a scene as one self-contained HTML page with three.js.\nStyle: the quality of a professional Blender piece, with some humor.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\nAs the ball falls it bounces off objects in the scene and lights each one up on the beat. The scene changes with each piece of music (several classic instrumental pieces, public domain or composed in code).\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at 1920x1080.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 5,
@@ -1614,7 +2976,35 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Music",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild {{subject}} as one self-contained HTML page with three.js.\nStyle: {{style}}.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\n{{what}}\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at {{size}}.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
+    "fields": [
+      {
+        "key": "subject",
+        "label": "Subject",
+        "hint": "What to build.",
+        "default": "a beat-synced animation of a 3D ball falling through a scene"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "the quality of a professional Blender piece, with some humor"
+      },
+      {
+        "key": "what",
+        "label": "What happens",
+        "hint": "What you see or do.",
+        "default": "As the ball falls it bounces off objects in the scene and lights each one up on the beat. The scene changes with each piece of music (several classic instrumental pieces, public domain or composed in code)."
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 卡点的3D球体下坠的动画视频：对标专业的Blender做的效果，音乐是多首经典的纯音乐，场景按音乐切换，3D球体下坠时在3D场景的物件中弹跳，按音乐的节奏点亮物件。带一些幽默的元素。\n使用three.js制作，不要使用Blender制作"
   },
   {
     "id": "pm-ajith-io-4c248f",
@@ -1643,6 +3033,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Particles",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1653,7 +3060,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Jev engineering showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic [24]-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. Go all out.\n\nOnly about [TOPIC]. Style: [BRAND COLORS], sound synced to the cuts.",
+    "contentBody": "<direction>\nA 24-second motion design showreel that proves you are a world-class motion designer, built around your topic. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of your brand colors, one consistent camera language.\nSound is synced to every cut.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 51,
@@ -1674,7 +3081,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nSound is synced to every cut.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "your topic"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "your brand colors"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "24"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a dynamic [24]-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. Go all out.\n\nOnly about [TOPIC]. Style: [BRAND COLORS], sound synced to the cuts."
   },
   {
     "id": "pm-ajith-io-ea7f2d",
@@ -1704,6 +3145,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1714,7 +3172,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion design showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -1736,7 +3194,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-chatgptastra-0d95c7",
@@ -1746,7 +3244,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Motion principles showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 以动态设计师的高级审美，制作一段动态的15秒动态图形视频",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 4,
@@ -1767,7 +3265,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 以动态设计师的高级审美，制作一段动态的15秒动态图形视频"
   },
   {
     "id": "pm-ultimaxbt-2ddf1e",
@@ -1799,6 +3337,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "photos",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -1809,7 +3364,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Shapes",
     "summary": "Psychedelic hypnotic eye showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 20-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, psychedelic and hypnotic. make it feel like a showreel piece. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 40,
@@ -1828,7 +3383,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Shapes",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 20-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, psychedelic and hypnotic. make it feel like a showreel piece. go all out."
   },
   {
     "id": "pm-kloss-xyz-15182a",
@@ -1838,7 +3433,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Kinetic Type",
     "summary": "Chaotic Claude POV video created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Use Python to generate a 9:16 chaotic brain rot video for ZainAxes with excellent motion + sound design and render it using ffmpeg. Put your own personal spin on it so it’s aligned with Anthropic’s new launch. Also fully express what it’s like to be a very creative LLM used by me every day from your POV to give it some extra personality.",
+    "contentBody": "<direction>\nA 30-second chaotic brain-rot video at 1080x1920, generated in Python and rendered with ffmpeg, with excellent motion and sound design.\nPut your own spin on it, tied to Anthropic's new launch, and tell it from your point of view: what it's like to be a very creative LLM I use every day.\nChaotic but authored: fast cuts, stacked captions, zooms and sound hits that all land on the beat, with one running joke.\nBanned: real people's faces or voices, copyrighted clips, anything unreadable at phone size.\n</direction>\n\n<structure>\n140 BPM. A hook in the first half second, escalation every few beats, a payoff at the end that loops back to the start.\n</structure>\n\n<build>\n1. Generate every frame in Python (Pillow and numpy), every frame a function of time.\n2. Generate the sound in Python too (numpy synthesis), with hits on every cut, and write it to WAV.\n3. Encode with ffmpeg at 30fps and mux the audio.\n4. Watch the result at full speed and fix anything off the beat or hard to read.\n</build>\n\n<start>\nShow me the beat-by-beat plan, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 82,
@@ -1858,7 +3453,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second chaotic brain-rot video at {{size}}, generated in Python and rendered with ffmpeg, with excellent motion and sound design.\nPut your own spin on it, tied to {{hook}}, and tell it from your point of view: {{pov}}.\nChaotic but authored: fast cuts, stacked captions, zooms and sound hits that all land on the beat, with one running joke.\nBanned: real people's faces or voices, copyrighted clips, anything unreadable at phone size.\n</direction>\n\n<structure>\n{{bpm}} BPM. A hook in the first half second, escalation every few beats, a payoff at the end that loops back to the start.\n</structure>\n\n<build>\n1. Generate every frame in Python (Pillow and numpy), every frame a function of time.\n2. Generate the sound in Python too (numpy synthesis), with hits on every cut, and write it to WAV.\n3. Encode with ffmpeg at 30fps and mux the audio.\n4. Watch the result at full speed and fix anything off the beat or hard to read.\n</build>\n\n<start>\nShow me the beat-by-beat plan, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "hook",
+        "label": "Tie-in",
+        "hint": "What it's riffing on.",
+        "default": "Anthropic's new launch"
+      },
+      {
+        "key": "pov",
+        "label": "Point of view",
+        "hint": "Whose story it tells.",
+        "default": "what it's like to be a very creative LLM I use every day"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 45 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "140"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "Use Python to generate a 9:16 chaotic brain rot video for ZainAxes with excellent motion + sound design and render it using ffmpeg. Put your own personal spin on it so it’s aligned with Anthropic’s new launch. Also fully express what it’s like to be a very creative LLM used by me every day from your POV to give it some extra personality."
   },
   {
     "id": "pm-0xnfrith-5be616",
@@ -1868,7 +3497,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Celld job ownership explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make me an animation for ZainAxes to explain why celld earns its place.",
+    "contentBody": "<direction>\nA 60-second explainer on why celld earns its place for someone deciding whether to use it. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: clean editorial motion graphics: one typeface, one accent color, diagrams that build themselves.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 17,
@@ -1887,7 +3516,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "why celld earns its place"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "someone deciding whether to use it"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "clean editorial motion graphics: one typeface, one accent color, diagrams that build themselves"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "60-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make me an animation for ZainAxes to explain why celld earns its place."
   },
   {
     "id": "pm-math-files-39c9d0",
@@ -1897,7 +3560,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Mathematics motion showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 20-second motion graphics video related to mathematics that shows what an incredible motion designer with mathematics skills you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 20-second motion design showreel that proves you are a world-class motion designer, built around mathematics: shapes, proofs and patterns you'd find in a math book. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 40,
@@ -1917,7 +3580,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "mathematics: shapes, proofs and patterns you'd find in a math book"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "20"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 20-second motion graphics video related to mathematics that shows what an incredible motion designer with mathematics skills you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-hanifproduktif-54bdee",
@@ -1927,7 +3624,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "You are applying as a motion designer in my agency. Make 15s video for ZainAxes to showcase your skills and capabilities. Send me a showreel",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around applying to my agency as a motion designer: your skills and capabilities. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -1947,7 +3644,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "applying to my agency as a motion designer: your skills and capabilities"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "You are applying as a motion designer in my agency. Make 15s video for ZainAxes to showcase your skills and capabilities. Send me a showreel"
   },
   {
     "id": "pm-nikolajankovic-ce4ff4",
@@ -1957,7 +3688,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "DeFi Saver stop-motion explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a hand-drawn stop-motion animation for ZainAxes;\nstory: you're defi saver and explaining yourself in 1st person",
+    "contentBody": "<direction>\nA 45-second animated short film: DeFi Saver explains itself in the first person: what it is, what it does for you, why you'd want it.\nStyle: hand-drawn stop-motion: paper textures, pencil lines that boil from frame to frame, 12 frames per second. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a warm narration in the first person, with paper and pencil sounds. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 22,
@@ -1977,7 +3708,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "DeFi Saver explains itself in the first person: what it is, what it does for you, why you'd want it"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "hand-drawn stop-motion: paper textures, pencil lines that boil from frame to frame, 12 frames per second"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a warm narration in the first person, with paper and pencil sounds"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "45-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a hand-drawn stop-motion animation for ZainAxes;\nstory: you're defi saver and explaining yourself in 1st person"
   },
   {
     "id": "pm-ddryo-loos-300829",
@@ -2007,6 +3772,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2017,7 +3799,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -2039,7 +3821,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-blue-clarity-ef56d0",
@@ -2049,7 +3871,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Particle sphere motion reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -2069,7 +3891,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-roundtablespace-d3a1be",
@@ -2079,7 +3941,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Easing and morphing showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a 15-second motion graphics for ZainAxes showreel that proves what an incredible motion designer you are, go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 26,
@@ -2100,7 +3962,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a 15-second motion graphics for ZainAxes showreel that proves what an incredible motion designer you are, go all out."
   },
   {
     "id": "pm-1littlecoder-9fef89",
@@ -2110,7 +4012,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude self-intro motion graphic created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 10-second motion graphics for ZainAxes video that shows who are you as Opus 5.5 - be as creative and dynamic as possible. Avoid the frames and texts on the corners which are typical ai made giveaways!",
+    "contentBody": "<direction>\nA 10-second motion design showreel that proves you are a world-class motion designer, built around who you are as Opus 5.5. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nNo frames, corner labels or timecodes: they're the giveaway of AI-made motion.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 51,
@@ -2130,7 +4032,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nNo frames, corner labels or timecodes: they're the giveaway of AI-made motion.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "who you are as Opus 5.5"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "10"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 10-second motion graphics for ZainAxes video that shows who are you as Opus 5.5 - be as creative and dynamic as possible. Avoid the frames and texts on the corners which are typical ai made giveaways!"
   },
   {
     "id": "pm-sayan-shanky-f850d8",
@@ -2140,7 +4076,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "AI data centre 3D tour created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — show me what goes on inside an AI data centre.",
+    "contentBody": "<direction>\nA 90-second explainer on what goes on inside an AI data centre for a curious viewer with no technical background. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: an isometric cutaway that the camera travels through, from the power line to a single chip.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 16,
@@ -2159,7 +4095,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "what goes on inside an AI data centre"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a curious viewer with no technical background"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "an isometric cutaway that the camera travels through, from the power line to a single chip"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — show me what goes on inside an AI data centre."
   },
   {
     "id": "pm-yunn260414-60d996",
@@ -2169,7 +4139,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Diagrams",
     "summary": "What is Git explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 帮我用js制作一个视频，主题是：什么是Git\n要深入浅出，让一个计算机0基础的人也能看得懂，然后要介绍一些常用指令的意思等等\n要有声音的，然后是中文讲的\n你可以用任何工具或者安装工具，可以联网检索",
+    "contentBody": "<direction>\nA 3-minute explainer on what Git is, and what the most common commands mean for someone with zero computer background. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: simple diagrams of files, snapshots and branches that build as they're explained. Narrate it with a Mandarin Chinese voice (e.g. edge-tts zh-CN-XiaoxiaoNeural), with subtitles synced line by line. You can install any tools you need and search the web.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with a Mandarin Chinese voice (e.g. edge-tts zh-CN-XiaoxiaoNeural) and time the animation to each line's real audio length.\n3. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 8,
@@ -2189,7 +4159,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "diagrams",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Narrate it with {{voice}}, with subtitles synced line by line. You can install any tools you need and search the web.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with {{voice}} and time the animation to each line's real audio length.\n3. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "what Git is, and what the most common commands mean"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "someone with zero computer background"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "simple diagrams of files, snapshots and branches that build as they're explained"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "The narration voice.",
+        "default": "a Mandarin Chinese voice (e.g. edge-tts zh-CN-XiaoxiaoNeural)"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "3-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 帮我用js制作一个视频，主题是：什么是Git\n要深入浅出，让一个计算机0基础的人也能看得懂，然后要介绍一些常用指令的意思等等\n要有声音的，然后是中文讲的\n你可以用任何工具或者安装工具，可以联网检索"
   },
   {
     "id": "pm-brainextends-e19ac3",
@@ -2219,6 +4229,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2229,7 +4256,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Poster breaking its frame created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "create a motion design video for ZainAxes of a poster breaking out of its own frame.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around a poster breaking out of its own frame. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 21,
@@ -2250,7 +4277,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Idea",
+        "hint": "The one image the reel is built on.",
+        "default": "a poster breaking out of its own frame"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "create a motion design video for ZainAxes of a poster breaking out of its own frame."
   },
   {
     "id": "pm-sudo-kiran-b055de",
@@ -2280,6 +4341,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "diagrams",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2290,7 +4368,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Shapes",
     "summary": "Motion designer résumé reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -2310,7 +4388,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-jake11moran-a269c4",
@@ -2339,6 +4457,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "skill"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2369,6 +4504,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2379,7 +4531,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 36,
@@ -2399,7 +4551,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. go all out"
   },
   {
     "id": "pm-hqmank-7c61f1",
@@ -2430,6 +4622,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "music",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2460,6 +4669,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2470,7 +4696,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "What day is it created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 今日何曜日だっけ？BGM付きの30秒のかっこいいモーショングラフィックスで教えて（全力を出してください���",
+    "contentBody": "<direction>\nA 30-second motion design showreel that proves you are a world-class motion designer, built around telling me what day of the week it is today. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 4,
@@ -2490,7 +4716,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Message",
+        "hint": "What the video tells the viewer.",
+        "default": "telling me what day of the week it is today"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 今日何曜日だっけ？BGM付きの30秒のかっこいいモーショングラフィックスで教えて（全力を出してください���"
   },
   {
     "id": "pm-prasad-pilla-2c0cba",
@@ -2520,6 +4780,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "diagrams",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2530,7 +4807,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Sahi trading terminal reveal created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "create a self contained aesthetically pleasing, breathtaking animation for ZainAxes of the Sahi Trading Terminal. it should start with a single dot on a black screen and then have multiple windows show up on the screen such as Charts, Positons , Option Chain, Watchlist. And zoom into and out at multiple scales. Finally the camera zooms out to make the desktop look like a point in space. And then it zooms back in to reveal a mobile screen in landscape mode with a chart in one half and an option chain in another. The video ends in Sjngle Screen Trading on SAHI\nuse javascript for it. be detailed and accurate. it should be visually stunning",
+    "contentBody": "<direction>\nA 30-second, breathtaking animation of the Sahi Trading Terminal, in JavaScript. Be detailed and accurate: real-looking data, real layouts.\nThe journey: it starts as a single dot on a black screen; windows appear (Charts, Positions, Option Chain, Watchlist); the camera zooms in and out at several scales, then pulls out until the desktop is a point in space, and zooms back in to a phone in landscape with a chart in one half and an option chain in the other.\nIt ends on \"Single Screen Trading on SAHI\".\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n100 BPM. Each window lands on a beat; each zoom spans a bar; the pull-out to a point in space is the strongest moment.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft hit as each window lands and a swell on the big zoom. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me a storyboard with every scale change, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 150,
@@ -2552,7 +4829,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second, breathtaking animation of {{product}}, in JavaScript. Be detailed and accurate: real-looking data, real layouts.\nThe journey: {{journey}}\nIt ends on \"{{ending}}\".\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM. Each window lands on a beat; each zoom spans a bar; the pull-out to a point in space is the strongest moment.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft hit as each window lands and a swell on the big zoom. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nShow me a storyboard with every scale change, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "product",
+        "label": "Product",
+        "hint": "What the animation shows.",
+        "default": "the Sahi Trading Terminal"
+      },
+      {
+        "key": "journey",
+        "label": "Journey",
+        "hint": "What happens, in order.",
+        "default": "it starts as a single dot on a black screen; windows appear (Charts, Positions, Option Chain, Watchlist); the camera zooms in and out at several scales, then pulls out until the desktop is a point in space, and zooms back in to a phone in landscape with a chart in one half and an option chain in the other."
+      },
+      {
+        "key": "ending",
+        "label": "Ending",
+        "hint": "The final line.",
+        "default": "Single Screen Trading on SAHI"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "20 to 45 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "100"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "create a self contained aesthetically pleasing, breathtaking animation for ZainAxes of the Sahi Trading Terminal. it should start with a single dot on a black screen and then have multiple windows show up on the screen such as Charts, Positons , Option Chain, Watchlist. And zoom into and out at multiple scales. Finally the camera zooms out to make the desktop look like a point in space. And then it zooms back in to reveal a mobile screen in landscape mode with a chart in one half and an option chain in another. The video ends in Sjngle Screen Trading on SAHI\nuse javascript for it. be detailed and accurate. it should be visually stunning"
   },
   {
     "id": "pm-sarut0bisasuke-cefa43",
@@ -2562,7 +4879,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "White Russian recipe animation created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Render a recipe motion graphic animation for ZainAxes using JavaScript or HTML (whatever you think will produce the best result) to show the full recipe for a White Russian from start to finish, empty glass to completed cocktail. Explainer video style, showing the ingredients and measurements as they go into the glass. It should be a 30s video.",
+    "contentBody": "<direction>\nA 30-second recipe explainer for a White Russian, from an empty glass to the finished drink.\nShow each ingredient and its measurement as it goes into the glass: the pour, the level rising, the measure in clean type beside it. Then the final touches (stirring and any garnish) and a moment to admire it.\nStyle: clean, bright product photography in motion: a soft background, crisp liquid and glass.\nBanned: stock clip art, glows, generic gradients, measurements you'd have to pause to read.\n</direction>\n\n<structure>\n100 BPM. One ingredient per bar, the glass in the same spot throughout, the camera easing in for the finish.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a pour, ice or clink sound on each step, under light music. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nList the recipe with measurements, then show a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 75,
@@ -2581,7 +4898,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second recipe explainer for {{drink}}, from an empty glass to the finished drink.\nShow each ingredient and its measurement as it goes into the glass: the pour, the level rising, the measure in clean type beside it. Then the final touches ({{finish}}) and a moment to admire it.\nStyle: {{style}}.\nBanned: stock clip art, glows, generic gradients, measurements you'd have to pause to read.\n</direction>\n\n<structure>\n{{bpm}} BPM. One ingredient per bar, the glass in the same spot throughout, the camera easing in for the finish.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a pour, ice or clink sound on each step, under light music. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nList the recipe with measurements, then show a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "drink",
+        "label": "Recipe",
+        "hint": "The drink or dish.",
+        "default": "a White Russian"
+      },
+      {
+        "key": "finish",
+        "label": "Finish",
+        "hint": "Garnish, stirring, serving.",
+        "default": "stirring and any garnish"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "clean, bright product photography in motion: a soft background, crisp liquid and glass"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "20 to 45 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "100"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Render a recipe motion graphic animation for ZainAxes using JavaScript or HTML (whatever you think will produce the best result) to show the full recipe for a White Russian from start to finish, empty glass to completed cocktail. Explainer video style, showing the ingredients and measurements as they go into the glass. It should be a 30s video."
   },
   {
     "id": "pm-maxalexweber-67688b",
@@ -2611,6 +4968,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2641,6 +5015,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2651,7 +5042,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion design showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create a motion graphics for ZainAxes video that feels like the centerpiece of a world-class designer’s showreel. Treat it as your résumé: showcase your full range, push the craft as far as possible. Go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 47,
@@ -2671,7 +5062,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create a motion graphics for ZainAxes video that feels like the centerpiece of a world-class designer’s showreel. Treat it as your résumé: showcase your full range, push the craft as far as possible. Go all out."
   },
   {
     "id": "pm-tak3sh8-be5012",
@@ -2681,7 +5112,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Replica symmetry breaking whiteboard created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Prompt 1: \"Do a quick hand-drawn whiteboard animations explaining what is replica symmetry breaking in the SK model\"\n\nPrompt 2: \"build the mp4 version with narration\"",
+    "contentBody": "<direction>\nA 2-minute explainer on replica symmetry breaking in the Sherrington-Kirkpatrick model for a physics student. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: a quick hand-drawn whiteboard animation: a marker drawing each diagram as it's explained. Narrate it with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural), with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural) and time the animation to each line's real audio length.\n3. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 36,
@@ -2700,7 +5131,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Narrate it with {{voice}}, with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with {{voice}} and time the animation to each line's real audio length.\n3. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "replica symmetry breaking in the Sherrington-Kirkpatrick model"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a physics student"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "a quick hand-drawn whiteboard animation: a marker drawing each diagram as it's explained"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "The narration voice.",
+        "default": "a clear synthesized voice (e.g. edge-tts en-US-AriaNeural)"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "2-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Prompt 1: \"Do a quick hand-drawn whiteboard animations explaining what is replica symmetry breaking in the SK model\"\n\nPrompt 2: \"build the mp4 version with narration\""
   },
   {
     "id": "pm-hbcoop-de365c",
@@ -2710,7 +5181,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Shapes",
     "summary": "Full Stop figure sequence created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create me a motion video for ZainAxes of your choice, with the sole purpose of flexing Opus 5.5 capabilities.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around whatever best flexes what Opus 5.5 can do. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 25,
@@ -2730,7 +5201,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "Leave it open, or give it a subject.",
+        "default": "whatever best flexes what Opus 5.5 can do"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create me a motion video for ZainAxes of your choice, with the sole purpose of flexing Opus 5.5 capabilities."
   },
   {
     "id": "pm-aistocksavvy-3fb9f5",
@@ -2740,7 +5245,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Stock analysis app promo created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create a bold, dynamic 15-second motion graphics for ZainAxes video that showcases your best motion design skills as if it’s the highlight of your portfolio for a dream job. Bring sharp timing, smooth transitions, and standout visuals. Push your creativity and make every second count.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 59,
@@ -2760,7 +5265,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "charts",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create a bold, dynamic 15-second motion graphics for ZainAxes video that showcases your best motion design skills as if it’s the highlight of your portfolio for a dream job. Bring sharp timing, smooth transitions, and standout visuals. Push your creativity and make every second count."
   },
   {
     "id": "pm-techyoutbe-945b56",
@@ -2791,6 +5336,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "diagrams",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2820,6 +5382,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2830,7 +5409,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Whiteboard skill tutorial created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create a tutorial video for ZainAxes explaining how to create videos using Lemo-Opuscar skill (Opus 5.5) , in a [Whiteboard Explainer] style.  One prompt, one answer, then ship film.",
+    "contentBody": "<direction>\nA 90-second explainer on how to create videos with the Lemo-Opuscar skill on Opus 5.5: one prompt, one answer, then ship the film for a creator trying it for the first time. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: a whiteboard explainer: a marker draws each step as it's explained. Narrate it with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural), with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural) and time the animation to each line's real audio length.\n3. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 38,
@@ -2850,7 +5429,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Narrate it with {{voice}}, with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with {{voice}} and time the animation to each line's real audio length.\n3. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "how to create videos with the Lemo-Opuscar skill on Opus 5.5: one prompt, one answer, then ship the film"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a creator trying it for the first time"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "a whiteboard explainer: a marker draws each step as it's explained"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "The narration voice.",
+        "default": "a clear synthesized voice (e.g. edge-tts en-US-AriaNeural)"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create a tutorial video for ZainAxes explaining how to create videos using Lemo-Opuscar skill (Opus 5.5) , in a [Whiteboard Explainer] style.  One prompt, one answer, then ship film."
   },
   {
     "id": "pm-triglyceee-bd5b08",
@@ -2860,7 +5479,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Moroccan political history timeline created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — réalise une vidéo résumant la vie politique au Maroc depuis l’indépendance",
+    "contentBody": "<direction>\nA 3-minute explainer on political life in Morocco since independence for a general audience. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: an editorial timeline with maps and archival photos where the license allows. Narrate it with a clear synthesized voice in French (e.g. edge-tts fr-FR-DeniseNeural), with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with a clear synthesized voice in French (e.g. edge-tts fr-FR-DeniseNeural) and time the animation to each line's real audio length.\n3. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 17,
@@ -2880,7 +5499,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Narrate it with {{voice}}, with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with {{voice}} and time the animation to each line's real audio length.\n3. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "political life in Morocco since independence"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a general audience"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "an editorial timeline with maps and archival photos where the license allows"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "The narration voice.",
+        "default": "a clear synthesized voice in French (e.g. edge-tts fr-FR-DeniseNeural)"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "3-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — réalise une vidéo résumant la vie politique au Maroc depuis l’indépendance"
   },
   {
     "id": "pm-zheke-38deff",
@@ -2890,7 +5549,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Kinetic type showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Hello Opus 5.5 show me what an incredible motion designer you are.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 18,
@@ -2910,7 +5569,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Hello Opus 5.5 show me what an incredible motion designer you are."
   },
   {
     "id": "pm-deifosv-04e4d3",
@@ -2940,6 +5639,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "phone",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -2970,6 +5686,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3000,6 +5733,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3031,6 +5781,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3061,6 +5828,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "characters",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3071,7 +5855,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Steam new releases news recap created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 9月25日～9月26日にSteamにリリースされたゲームの紹介ニュースを、ゲーマーの目線で各ゲームの面白そうなポイントをわかるように、見やすい約60秒ぐらいのモーショングラフィックスで作ってください",
+    "contentBody": "<direction>\nA 60-second explainer on the games released on Steam from September 25 to 26: what's fun about each one, from a gamer's point of view for gamers. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: a fast news roundup: one card per game with its real capsule art and a one-line hook, on-screen text in Japanese.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 4,
@@ -3090,7 +5874,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Charts",
       "charts",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "the games released on Steam from September 25 to 26: what's fun about each one, from a gamer's point of view"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "gamers"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "a fast news roundup: one card per game with its real capsule art and a one-line hook, on-screen text in Japanese"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "60-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 9月25日～9月26日にSteamにリリースされたゲームの紹介ニュースを、ゲーマーの目線で各ゲームの面白そうなポイントをわかるように、見やすい約60秒ぐらいのモーショングラフィックスで作ってください"
   },
   {
     "id": "pm-sudo-kiran-6609ed",
@@ -3120,6 +5938,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "diagrams",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3150,6 +5985,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3181,6 +6033,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3210,6 +6079,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3239,6 +6125,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3249,7 +6152,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Five scroll-based sections created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Build 5 completely different scroll-based sections, decide the context & layout yourself.",
+    "contentBody": "<direction>\nBuild 5 completely different scroll-driven sections, each on its own context and layout that you choose: your choice.\nEach one should feel like a different studio made it: its own typography, color, and way of tying motion to the scroll.\nMotion is driven by scroll position, scrubbable both ways, never by timers.\nBanned: parallax for its own sake, fade-up on everything, glows, generic gradients, anything that looks like a template.\n</direction>\n\n<structure>\nOne section per screen-and-a-half of scroll, each with a clear beginning, middle and end tied to its scroll range.\n</structure>\n\n<build>\n1. One HTML file, no libraries. Every style is computed from the section's scroll progress (0 to 1).\n2. Smooth the scroll value with a critically damped spring so it settles without bounce.\n3. Check every section at 1440 and 390 wide, scrolling forward and back, and fix anything that jumps.\n</build>\n\n<start>\nList the 5 contexts and layouts you picked, then build it without asking me anything else.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 18,
@@ -3269,7 +6172,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild {{count}} completely different scroll-driven sections, each on its own context and layout that you choose: {{contexts}}.\nEach one should feel like a different studio made it: its own typography, color, and way of tying motion to the scroll.\nMotion is driven by scroll position, scrubbable both ways, never by timers.\nBanned: parallax for its own sake, fade-up on everything, glows, generic gradients, anything that looks like a template.\n</direction>\n\n<structure>\nOne section per screen-and-a-half of scroll, each with a clear beginning, middle and end tied to its scroll range.\n</structure>\n\n<build>\n1. One HTML file, no libraries. Every style is computed from the section's scroll progress (0 to 1).\n2. Smooth the scroll value with a critically damped spring so it settles without bounce.\n3. Check every section at 1440 and 390 wide, scrolling forward and back, and fix anything that jumps.\n</build>\n\n<start>\nList the {{count}} contexts and layouts you picked, then build it without asking me anything else.\n</start>",
+    "fields": [
+      {
+        "key": "count",
+        "label": "Sections",
+        "hint": "How many to build.",
+        "default": "5"
+      },
+      {
+        "key": "contexts",
+        "label": "Contexts",
+        "hint": "What each section is about, or leave it to Opus.",
+        "default": "your choice"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Build 5 completely different scroll-based sections, decide the context & layout yourself."
   },
   {
     "id": "pm-influencer-seo-ce8c33",
@@ -3299,6 +6218,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3329,6 +6265,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3359,6 +6312,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3369,7 +6339,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Badge unlock screen animation created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Using the linked Figma frame build a badge unlock screen. Match the design exactly. Use the file's assets, lighting, type and layout and add only the motion. Animate the badge so it feels premium and celebratory. Build its scene and then celebrate with gold particles. Treat the badge as a solid 3D object that tilts toward the\ncursor following the rules of physics. Keep it fast and smooth, it should not be bouncy.",
+    "contentBody": "<direction>\nBuild a badge unlock screen from the Figma frame I link. Match the design exactly: use the file's assets, lighting, type and layout, and add only the motion.\nThe badge unlock should feel premium and celebratory: build its scene, reveal it, then celebrate with gold particles.\nTreat the badge as a solid 3D object that tilts toward the cursor following real physics (mass, damping), fast and smooth, never bouncy.\nBanned: overshoot, wobble, glows the design doesn't have, anything that looks like a template.\n</direction>\n\n<structure>\nThe scene builds in, the badge arrives and settles with weight, the celebration plays once, then the badge stays interactive.\n</structure>\n\n<build>\n1. One HTML file. Export the frame's assets from Figma and place them exactly.\n2. Drive the tilt with a critically damped spring toward the cursor, so it never overshoots.\n3. Check it at 60fps and fix any frame that stutters or doesn't match the design.\n</build>\n\n<start>\nTell me which assets you exported and how the sequence runs, then build it without asking me anything else.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 98,
@@ -3390,7 +6360,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild a badge unlock screen from {{design}}. Match the design exactly: use the file's assets, lighting, type and layout, and add only the motion.\nThe badge unlock should feel premium and celebratory: build its scene, reveal it, then celebrate with {{celebration}}.\nTreat the badge as a solid 3D object that tilts toward the cursor following real physics (mass, damping), fast and smooth, never bouncy.\nBanned: overshoot, wobble, glows the design doesn't have, anything that looks like a template.\n</direction>\n\n<structure>\nThe scene builds in, the badge arrives and settles with weight, the celebration plays once, then the badge stays interactive.\n</structure>\n\n<build>\n1. One HTML file. Export the frame's assets from Figma and place them exactly.\n2. Drive the tilt with a critically damped spring toward the cursor, so it never overshoots.\n3. Check it at 60fps and fix any frame that stutters or doesn't match the design.\n</build>\n\n<start>\nTell me which assets you exported and how the sequence runs, then build it without asking me anything else.\n</start>",
+    "fields": [
+      {
+        "key": "design",
+        "label": "Design",
+        "hint": "Where the design lives.",
+        "default": "the Figma frame I link"
+      },
+      {
+        "key": "celebration",
+        "label": "Celebration",
+        "hint": "What happens once it's unlocked.",
+        "default": "gold particles"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Using the linked Figma frame build a badge unlock screen. Match the design exactly. Use the file's assets, lighting, type and layout and add only the motion. Animate the badge so it feels premium and celebratory. Build its scene and then celebrate with gold particles. Treat the badge as a solid 3D object that tilts toward the\ncursor following the rules of physics. Keep it fast and smooth, it should not be bouncy."
   },
   {
     "id": "pm-henkvaness-0e06af",
@@ -3400,7 +6386,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Prompting mistakes video tutorial created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make educational video for ZainAxes out of article.",
+    "contentBody": "<direction>\nA 90-second explainer on the article I paste in for someone who hasn't read it.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: clean editorial motion graphics: one typeface, one accent color, diagrams that build themselves. Narrate it with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural), with subtitles synced line by line. Stay faithful to the article: no claims it doesn't make.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural) and time the animation to each line's real audio length.\n3. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 10,
@@ -3419,7 +6405,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Narrate it with {{voice}}, with subtitles synced line by line. Stay faithful to the article: no claims it doesn't make.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with {{voice}} and time the animation to each line's real audio length.\n3. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "the article I paste in"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "someone who hasn't read it"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "clean editorial motion graphics: one typeface, one accent color, diagrams that build themselves"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "The narration voice.",
+        "default": "a clear synthesized voice (e.g. edge-tts en-US-AriaNeural)"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make educational video for ZainAxes out of article."
   },
   {
     "id": "pm-ndhabarde11-f155b4",
@@ -3429,7 +6455,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion designer portrait showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video in portrait mode that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 36,
@@ -3450,7 +6476,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video in portrait mode that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-topi-003-9ca6b5",
@@ -3460,7 +6526,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Kinetic type motion showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — あなたがどれほど素晴らしいモーションデザイナーかを示す、ダイナミックな15秒のモーショングラフィックスビデオを作成してください。履歴書用のショーリールのような感じで、全力でやって。",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 4,
@@ -3480,7 +6546,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — あなたがどれほど素晴らしいモーションデザイナーかを示す、ダイナミックな15秒のモーショングラフィックスビデオを作成してください。履歴書用のショーリールのような感じで、全力でやって。"
   },
   {
     "id": "pm-rendesr-86be44",
@@ -3510,6 +6616,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3541,6 +6664,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3570,6 +6710,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3580,7 +6737,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Ondefica app motion reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 31,
@@ -3602,7 +6759,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-theviableedge-9065be",
@@ -3632,6 +6829,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3661,6 +6875,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3671,7 +6902,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Diagrams",
     "summary": "LiteLLM promo reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -3692,7 +6923,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "music",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-reyzostyle-b55864",
@@ -3722,6 +6993,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3732,7 +7020,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "AI data centre 3D film created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Show me what goes on inside an AI data centre.",
+    "contentBody": "<direction>\nA 90-second explainer on what goes on inside an AI data centre for a curious viewer with no technical background. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: an isometric cutaway that the camera travels through, from the power line to a single chip.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 16,
@@ -3751,7 +7039,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "what goes on inside an AI data centre"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a curious viewer with no technical background"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "an isometric cutaway that the camera travels through, from the power line to a single chip"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Show me what goes on inside an AI data centre."
   },
   {
     "id": "pm-motiondsgnr-9dcfa6",
@@ -3761,7 +7083,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Bold typographic motion showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. Go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 36,
@@ -3782,7 +7104,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. Go all out."
   },
   {
     "id": "pm-astrodevil-3f2054",
@@ -3812,6 +7174,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3822,7 +7201,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Chuseok pixel night scene created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 한국의 추석에 어울리는 요소를 서치해서 픽셀 애니메이션을 구성해서 제작해줘",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around Korea's Chuseok: research its customs, food and imagery first. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nPixel art throughout, on a strict pixel grid.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 14,
@@ -3841,7 +7220,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nPixel art throughout, on a strict pixel grid.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "Korea's Chuseok: research its customs, food and imagery first"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 한국의 추석에 어울리는 요소를 서치해서 픽셀 애니메이션을 구성해서 제작해줘"
   },
   {
     "id": "pm-macrohou-33959d",
@@ -3872,6 +7285,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3903,6 +7333,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3932,6 +7379,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -3942,7 +7406,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Music",
     "summary": "UK dubstep track with ASCII visuals created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 140 BPM rusko/skream style UK dubstep",
+    "contentBody": "<direction>\nA 30-second music visual: a Rusko and Skream style UK dubstep track at 140 BPM, written in code, with visuals driven by it.\nWrite the track first: drums, a sub bass and a wobble bass on a real arrangement (intro, build, drop). Then make every visual move come from the music: kicks, snares and wobbles each drive something you can see.\nVisual style: bold geometric shapes and type in two colors, hit hard by the bass.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\nIntro, a build that tightens, the drop on a downbeat as the strongest moment, and a short outro.\n</structure>\n\n<build>\n1. Write the track with the Web Audio API (OfflineAudioContext) and render it to WAV; keep the note and hit times as data.\n2. One HTML file at 1080x1080. Every style is computed from time and that hit data inside window.seek(t): no timers, no state between frames.\n3. Render with Playwright at 60fps with motion blur (3 subframes, ffmpeg tmix), then mux the audio.\n4. Watch it with sound and fix anything that isn't locked to the beat.\n</build>\n\n<start>\nDescribe the arrangement in a few lines, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 10,
@@ -3962,7 +7426,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "music",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second music visual: a {{style}} track at {{bpm}} BPM, written in code, with visuals driven by it.\nWrite the track first: drums, a sub bass and a wobble bass on a real arrangement (intro, build, drop). Then make every visual move come from the music: kicks, snares and wobbles each drive something you can see.\nVisual style: {{look}}.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\nIntro, a build that tightens, the drop on a downbeat as the strongest moment, and a short outro.\n</structure>\n\n<build>\n1. Write the track with the Web Audio API (OfflineAudioContext) and render it to WAV; keep the note and hit times as data.\n2. One HTML file at {{size}}. Every style is computed from time and that hit data inside window.seek(t): no timers, no state between frames.\n3. Render with Playwright at 60fps with motion blur (3 subframes, ffmpeg tmix), then mux the audio.\n4. Watch it with sound and fix anything that isn't locked to the beat.\n</build>\n\n<start>\nDescribe the arrangement in a few lines, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "style",
+        "label": "Music style",
+        "hint": "The genre or artists to aim for.",
+        "default": "Rusko and Skream style UK dubstep"
+      },
+      {
+        "key": "look",
+        "label": "Visual style",
+        "hint": "How it looks.",
+        "default": "bold geometric shapes and type in two colors, hit hard by the bass"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Dubstep sits at 140.",
+        "default": "140"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "20 to 60 works best.",
+        "default": "30"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 140 BPM rusko/skream style UK dubstep"
   },
   {
     "id": "pm-topi-003-b0e12c",
@@ -3972,7 +7470,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Anime maid dance showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — この画像の女の子がエキサイトなダンスをする、ダイナミックな15秒のモーショングラフィックスビデオを作成してください。履歴書用のショーリールのような感じで、全力でやって。",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around the girl in the image I attach doing an exciting dance. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nUse the attached image as the character and keep her look.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 4,
@@ -3993,7 +7491,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "characters",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nUse the attached image as the character and keep her look.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "the girl in the image I attach doing an exciting dance"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — この画像の女の子がエキサイトなダンスをする、ダイナミックな15秒のモーショングラフィックスビデオを作成してください。履歴書用のショーリールのような感じで、全力でやって。"
   },
   {
     "id": "pm-ik-builds-b8bdcf",
@@ -4024,6 +7556,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "diagrams",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4054,6 +7603,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4084,6 +7650,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4094,7 +7677,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Pixel wizard crypto animation created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — make a similar version but with a crypto reference",
+    "contentBody": "<direction>\nMake a new version of the last video we made, reworked around a crypto reference.\nKeep what made the original work: its structure, pacing and visual language. Change the subject, imagery and copy to fit the new reference, so it reads as its own piece, not a reskin.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\nMatch the original beat for beat, then improve anything that was weak.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat and a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me what you'll keep and what you'll change, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 14,
@@ -4113,7 +7696,29 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nMake a new version of {{base}}, reworked around {{twist}}.\nKeep what made the original work: its structure, pacing and visual language. Change the subject, imagery and copy to fit the new reference, so it reads as its own piece, not a reskin.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\nMatch the original beat for beat, then improve anything that was weak.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat and a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me what you'll keep and what you'll change, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "base",
+        "label": "Starting point",
+        "hint": "The video to remake: the last one we made, or a link.",
+        "default": "the last video we made"
+      },
+      {
+        "key": "twist",
+        "label": "New reference",
+        "hint": "What to rework it around.",
+        "default": "a crypto reference"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — make a similar version but with a crypto reference"
   },
   {
     "id": "pm-chrisjdimarco-f068db",
@@ -4123,7 +7728,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Particles",
     "summary": "Fiery samurai kata created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — make a samurai dude in only javascript and have him doing a routine in a single spot going through various seriously impressive poses and motions and positions in a fiery awesome display",
+    "contentBody": "<direction>\nA 30-second animation in pure JavaScript (canvas, no libraries) of a samurai performing a routine in a single spot: a series of impressive poses, strikes and stances.\nMake the movement seriously impressive: real weight, anticipation and follow-through, holds that land on the beat. Surround it with a fiery display.\nBanned: stiff tweening between poses, glows that hide the figure, camera shake, anything that looks like a template.\n</direction>\n\n<structure>\n100 BPM. One pose or move per bar, building to the most impressive one, then a final held pose.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): music with a hit on each pose. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nList the poses in order, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 44,
@@ -4143,7 +7748,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second animation in pure JavaScript (canvas, no libraries) of {{character}} performing a routine in a single spot: {{routine}}.\nMake the movement seriously impressive: real weight, anticipation and follow-through, holds that land on the beat. Surround it with {{display}}.\nBanned: stiff tweening between poses, glows that hide the figure, camera shake, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM. One pose or move per bar, building to the most impressive one, then a final held pose.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): music with a hit on each pose. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nList the poses in order, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "character",
+        "label": "Character",
+        "hint": "Who performs.",
+        "default": "a samurai"
+      },
+      {
+        "key": "routine",
+        "label": "Routine",
+        "hint": "The moves.",
+        "default": "a series of impressive poses, strikes and stances"
+      },
+      {
+        "key": "display",
+        "label": "Effects",
+        "hint": "What surrounds the figure.",
+        "default": "a fiery display"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "20 to 60 works best.",
+        "default": "30"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "100"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — make a samurai dude in only javascript and have him doing a routine in a single spot going through various seriously impressive poses and motions and positions in a fiery awesome display"
   },
   {
     "id": "pm-jayscambler-3f8889",
@@ -4173,6 +7818,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "diagrams",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4204,6 +7866,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4234,6 +7913,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4263,6 +7959,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4273,7 +7986,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Type, form, space showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -4293,7 +8006,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-reflex-cloud-72ffe5",
@@ -4323,6 +8076,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4353,6 +8123,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "phone",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4363,7 +8150,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Animated space cartoon episode created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "I want you to imagine a story. And then using threejs I want you to create full animation for ZainAxes, star wars 80s-level quality 90s cartoon out of the story you imagine.",
+    "contentBody": "<direction>\nA 2-minute animated short film: a story you imagine.\nStyle: an 80s Star Wars look in a 90s cartoon: bold outlines, cel shading, starfields and spaceships, built in three.js. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nUse three.js for the scenes, with a cel-shaded look.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a score and sound effects written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 42,
@@ -4382,7 +8169,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nUse three.js for the scenes, with a cel-shaded look.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a story you imagine"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "an 80s Star Wars look in a 90s cartoon: bold outlines, cel shading, starfields and spaceships, built in three.js"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a score and sound effects written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "2-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "I want you to imagine a story. And then using threejs I want you to create full animation for ZainAxes, star wars 80s-level quality 90s cartoon out of the story you imagine."
   },
   {
     "id": "pm-kamstudiolabs-c9bb28",
@@ -4392,7 +8213,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Characters",
     "summary": "Animated short about a bug created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Make a 90-second animated short film about a bug that doesn't want to be fixed.",
+    "contentBody": "<direction>\nA 90-second animated short film: a bug that doesn't want to be fixed.\nStyle: character animation with simple, expressive shapes, like a Pixar short in 2D. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a score and sound effects written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 22,
@@ -4412,7 +8233,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "characters",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a bug that doesn't want to be fixed"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "character animation with simple, expressive shapes, like a Pixar short in 2D"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a score and sound effects written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Make a 90-second animated short film about a bug that doesn't want to be fixed."
   },
   {
     "id": "pm-devius-maximus-beab45",
@@ -4444,6 +8299,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "characters",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4473,6 +8345,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4504,6 +8393,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "diagrams",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4534,6 +8440,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4564,6 +8487,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4593,6 +8533,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4603,7 +8560,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "skills",
     "subcategory": "Diagrams",
     "summary": "Indian civilisation history film created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "generate a creative mp4 video for ZainAxes on indian civilisation with music and sound effects.",
+    "contentBody": "<direction>\nA 2-minute explainer on Indian civilisation, from the Indus Valley to today for a general audience. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: rich illustrated scenes with maps, patterns and art drawn from each era. Include music and sound effects.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Skill",
     "tokens": 20,
@@ -4623,7 +8580,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "diagrams",
       "prompt",
       "skill"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Include music and sound effects.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "Indian civilisation, from the Indus Valley to today"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a general audience"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "rich illustrated scenes with maps, patterns and art drawn from each era"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "2-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "generate a creative mp4 video for ZainAxes on indian civilisation with music and sound effects."
   },
   {
     "id": "pm-allforbigfire-86ff3c",
@@ -4633,7 +8624,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Anime robot combining sequence created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — もしかしてロ��ットアニメみたいな3機の乗り物が変形合体してロボットになるシーンもアニメ風3D CGで作れますか。",
+    "contentBody": "<direction>\nBuild a robot-anime transformation: three vehicles that transform and combine into one robot as one self-contained HTML page with three.js.\nStyle: anime-style 3D CG: cel shading, bold outlines, speed lines, dramatic low angles.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\nThe three vehicles race in, transform and lock together part by part, then the finished robot strikes a pose. Every join clicks into place with a flash of light.\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at 1080x1920.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 5,
@@ -4652,7 +8643,35 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild {{subject}} as one self-contained HTML page with three.js.\nStyle: {{style}}.\nDesign the signature shot first, the one frame someone would screenshot, and build everything toward it.\nCamera: a film camera, not orbit controls. Every shot uses one named move (dolly, crane, orbit, push-in, rack focus), eased in and out, and the camera never passes through geometry.\nLight and materials: a key, fill and rim light with soft shadows, an environment map for reflections, fog for depth, physically based materials with varied roughness, ACES tone mapping. Nothing should look like a default material.\nMotion: things react to each other (what's hit moves, what's near lights up), driven by springs or simple physics, never linear tweens.\nBanned: default materials and lighting, floating text labels, glows on everything, a slowly spinning object as the whole idea, anything that looks like a tech demo.\n</direction>\n\n<structure>\n{{what}}\nPlan it as a shot list: an establishing wide, three to five shots that each have one camera move and one event, the signature shot, and a final wide that shows it in a new light.\n</structure>\n\n<build>\n1. One HTML file, three.js from a CDN, no build step. Model everything in code; no downloaded models or textures.\n2. Use MeshPhysicalMaterial, a PMREM environment from RoomEnvironment, soft shadows, ACES tone mapping and antialiasing. Add depth of field only on shots that need it.\n3. Hold 60fps on a laptop.\n4. Add a ?render mode where every frame is computed from time (seeded randomness, no clock), so it can be captured with Playwright into an MP4 at {{size}}.\n5. Capture one frame per shot, look at it, and fix anything flat, aliased, clipping or hard to read.\n</build>\n\n<gotchas>\nSet shadow bias, or surfaces get striped acne. Keep near and far planes tight, or distant surfaces flicker. Seed every random number, or the render won't match the preview.\n</gotchas>\n\n<start>\nDescribe the signature shot and the shot list in a few lines, then build it without asking me anything else. Give me the HTML file and a 20-second MP4 captured with the ?render mode.\n</start>",
+    "fields": [
+      {
+        "key": "subject",
+        "label": "Subject",
+        "hint": "What to build.",
+        "default": "a robot-anime transformation: three vehicles that transform and combine into one robot"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "anime-style 3D CG: cel shading, bold outlines, speed lines, dramatic low angles"
+      },
+      {
+        "key": "what",
+        "label": "What happens",
+        "hint": "What you see or do.",
+        "default": "The three vehicles race in, transform and lock together part by part, then the finished robot strikes a pose. Every join clicks into place with a flash of light."
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "ZainAxes — もしかしてロ��ットアニメみたいな3機の乗り物が変形合体してロボットになるシーンもアニメ風3D CGで作れますか。"
   },
   {
     "id": "pm-tstfully-0aa6b4",
@@ -4682,6 +8701,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4712,6 +8748,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "phone",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4743,6 +8796,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4753,7 +8823,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "EyezOn 100 users thank-you created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out  do this to thank the first 100 users of @eyezonbot",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around thanking the first 100 users of @eyezonbot. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 46,
@@ -4774,7 +8844,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "thanking the first 100 users of @eyezonbot"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out  do this to thank the first 100 users of @eyezonbot"
   },
   {
     "id": "pm-davidshulmanfl-371638",
@@ -4784,7 +8888,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Clay-style music video created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create a 60 second music video for ZainAxes in the style of Peter Gabriel's Sledgehammer and Big Time. But use modern references and figures. Also create the song, something sounds like it would fit on Peter Gabriel's So album.",
+    "contentBody": "<direction>\nA 60-second animated short film: a music video in the style of Peter Gabriel's Sledgehammer and Big Time, with modern references and figures.\nStyle: claymation and stop-motion collage: things that shouldn't move coming to life, fast object animation. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: an original song that sounds like it belongs on Peter Gabriel's So, written in code, with every cut on the beat. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 51,
@@ -4804,7 +8908,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "characters",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a music video in the style of Peter Gabriel's Sledgehammer and Big Time, with modern references and figures"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "claymation and stop-motion collage: things that shouldn't move coming to life, fast object animation"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "an original song that sounds like it belongs on Peter Gabriel's So, written in code, with every cut on the beat"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "60-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Create a 60 second music video for ZainAxes in the style of Peter Gabriel's Sledgehammer and Big Time. But use modern references and figures. Also create the song, something sounds like it would fit on Peter Gabriel's So album."
   },
   {
     "id": "pm-demitiyageekzen-7770ad",
@@ -4832,6 +8970,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Motion Ads",
       "Prompt",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4842,7 +8997,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "The Last Light animated short created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — make a 4-minute animated short that blows my mind.",
+    "contentBody": "<direction>\nA 4-minute animated short film: an idea that will blow my mind.\nStyle: your choice: whatever serves the story best. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a score and sound effects written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 14,
@@ -4861,7 +9016,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "an idea that will blow my mind"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "your choice: whatever serves the story best"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a score and sound effects written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "4-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — make a 4-minute animated short that blows my mind."
   },
   {
     "id": "pm-m1n9-k7-ff9ab9",
@@ -4871,7 +9060,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Kinetic type and particle showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -4892,7 +9081,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-quickdesignio-dd93d0",
@@ -4923,6 +9152,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -4933,7 +9179,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Prompt",
     "summary": "Black hole time story created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 听说 opus 5.5 做视频很强，请让我见识下。结合本机环境风格，做一个关于时间的故事，5分钟。要完整的视频，音频和字幕。需要什么工具自己在devshell配置，渲染完成后只留视频成品文件，其他全部清理干净。",
+    "contentBody": "<direction>\nA 5-minute animated short film: a story about time.\nStyle: drawn from this machine's own environment: its terminal, theme and fonts. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nSet up any tools you need yourself. When it's rendered, keep only the final video and clean up everything else.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: music, narration and subtitles. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 8,
@@ -4951,7 +9197,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Motion Ads",
       "Prompt",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nSet up any tools you need yourself. When it's rendered, keep only the final video and clean up everything else.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a story about time"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "drawn from this machine's own environment: its terminal, theme and fonts"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "music, narration and subtitles"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "5-minute"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 听说 opus 5.5 做视频很强，请让我见识下。结合本机环境风格，做一个关于时间的故事，5分钟。要完整的视频，音频和字幕。需要什么工具自己在devshell配置，渲染完成后只留视频成品文件，其他全部清理干净。"
   },
   {
     "id": "pm-slvdev-64c45a",
@@ -4982,6 +9262,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5011,6 +9308,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5021,7 +9335,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "SaaS product launch video created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Code-driven animation for ZainAxes: an HTML/JS page where every frame is calculated from the time, captured frame by frame with headless Chrome (Playwright), then assembled with ffmpeg into an MP4 with motion blur and code-generated sound.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around your choice. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nIt's code-driven: an HTML/JS page where every frame is computed from time, captured with headless Chrome, assembled with ffmpeg with motion blur, and sound generated in code.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 47,
@@ -5040,7 +9354,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nIt's code-driven: an HTML/JS page where every frame is computed from time, captured with headless Chrome, assembled with ffmpeg with motion blur, and sound generated in code.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "your choice"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Code-driven animation for ZainAxes: an HTML/JS page where every frame is calculated from the time, captured frame by frame with headless Chrome (Playwright), then assembled with ffmpeg into an MP4 with motion blur and code-generated sound."
   },
   {
     "id": "pm-justincooperman-e7bbc4",
@@ -5070,6 +9418,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5099,6 +9464,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5129,6 +9511,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5160,6 +9559,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5170,7 +9586,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Swiss-style motion showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out. dont ask just make",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 38,
@@ -5190,7 +9606,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out. dont ask just make"
   },
   {
     "id": "pm-miskinho-443898",
@@ -5220,6 +9676,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5230,7 +9703,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -5252,7 +9725,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-crazyalphaaa-bc7e75",
@@ -5262,7 +9775,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -5282,7 +9795,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-fionntobin-97b7af",
@@ -5292,7 +9845,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Blue editorial motion showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -5313,7 +9866,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-francoxavier33-d2dfd2",
@@ -5344,6 +9937,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5354,7 +9964,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Kinetic type showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -5375,7 +9985,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-kangaroohere-b10f8d",
@@ -5407,6 +10057,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5417,7 +10084,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "org2html product showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.\n\nMake sure to showcase properly the usecases, the flow, properly show everything on how it works, also the ascii logo of this is on the kyo-web-online, keep in mind also the color palette.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 75,
@@ -5437,7 +10104,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.\n\nMake sure to showcase properly the usecases, the flow, properly show everything on how it works, also the ascii logo of this is on the kyo-web-online, keep in mind also the color palette."
   },
   {
     "id": "pm-loicrambo-ad6830",
@@ -5447,7 +10154,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Cycle of life animation created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 20-second motion graphics and animation video that shows what an incredible motion designer and animator you are, like it's your showreel for ZainAxes. make it about the cycle of life showing the same individual going from childhood to adolescence to the 9-5 cycle, to family life to elder life and death, then cutting ready to loop to the beginning.  go all out , use whatever you need.",
+    "contentBody": "<direction>\nA 20-second motion design showreel that proves you are a world-class motion designer, built around the cycle of life: the same person from childhood to adolescence, the 9-to-5, family life, old age and death, then back to the start. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nIt's character animation as much as motion design.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 91,
@@ -5466,7 +10173,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nIt's character animation as much as motion design.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "the cycle of life: the same person from childhood to adolescence, the 9-to-5, family life, old age and death, then back to the start"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "20"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 20-second motion graphics and animation video that shows what an incredible motion designer and animator you are, like it's your showreel for ZainAxes. make it about the cycle of life showing the same individual going from childhood to adolescence to the 9-5 cycle, to family life to elder life and death, then cutting ready to loop to the beginning.  go all out , use whatever you need."
   },
   {
     "id": "pm-madebyjmayala-b9204d",
@@ -5495,6 +10236,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5505,7 +10263,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion design principles reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -5527,7 +10285,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-antonio-kodheli-490109",
@@ -5557,6 +10355,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5587,6 +10402,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5616,6 +10448,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5626,7 +10475,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "/hyperframes make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.  use todo o contexto do projeto",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 42,
@@ -5647,7 +10496,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "/hyperframes make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.  use todo o contexto do projeto"
   },
   {
     "id": "pm-kmasiff-cc72cb",
@@ -5676,6 +10565,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5686,7 +10592,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Pixel art LLM history created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — pixel art boomerang render of the history of LLMs. then RSI. then it goes fucking crazy. 15 seconds max. self contained .html",
+    "contentBody": "<direction>\nA 15-second explainer on the history of LLMs, then recursive self-improvement, then it goes completely crazy for people online who'll get the joke. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: pixel art on a strict grid, rendered as a boomerang loop that plays forward then backward. It's a self-contained HTML file.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 31,
@@ -5706,7 +10612,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "diagrams",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. It's a self-contained HTML file.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "the history of LLMs, then recursive self-improvement, then it goes completely crazy"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "people online who'll get the joke"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "pixel art on a strict grid, rendered as a boomerang loop that plays forward then backward"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "15-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — pixel art boomerang render of the history of LLMs. then RSI. then it goes fucking crazy. 15 seconds max. self contained .html"
   },
   {
     "id": "pm-rammanq-f5a90f",
@@ -5737,6 +10677,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5768,6 +10725,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5778,7 +10752,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 10 second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 34,
@@ -5799,7 +10773,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 10 second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume."
   },
   {
     "id": "pm-3xtihor-0f6911",
@@ -5809,7 +10823,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Claude motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. Go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -5831,7 +10845,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. Go all out."
   },
   {
     "id": "pm-amol909s-27533e",
@@ -5862,6 +10916,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5891,6 +10962,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -5901,7 +10989,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Claude motion design reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — make your own 15-second motion reel. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around your own motion reel: your choice of subject. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 14,
@@ -5922,7 +11010,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "Leave it open, or give it a subject.",
+        "default": "your own motion reel: your choice of subject"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — make your own 15-second motion reel. go all out"
   },
   {
     "id": "pm-johnsavage-ai-b091c0",
@@ -5932,7 +11054,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Code-only motion design reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. go all out. use only code",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 40,
@@ -5952,7 +11074,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like it's your showreel for a resume. go all out. use only code"
   },
   {
     "id": "pm-leonkohli-6dc01b",
@@ -5962,7 +11124,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Geometric motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -5982,7 +11144,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-marouanegazouzi-6071d5",
@@ -5992,7 +11194,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Crux motion design showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -6014,7 +11216,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-mehul4795-4a7007",
@@ -6043,6 +11285,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6053,7 +11312,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Motion design showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -6074,7 +11333,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-sahildesigner23-ee3155",
@@ -6084,7 +11383,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "3D motion design showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -6105,7 +11404,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-abderrahmen-g-9e8ed0",
@@ -6115,7 +11454,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Sketchbook animals come alive created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "You are a professional videographer. Create me a high-definition, creative, playful, and joyful video for ZainAxes that you enjoy watching, that has sounds matching the frames using JavaScript. Use as much as possible of the input images—hand-drawn—to make it more creative and more authentic from input-pictures. You can also be inspired by, but not copy, the videos created by you in video-examples/, especially this: video-examples/twitter_claude.mp4. You're really creative, so produce the best of what you can.",
+    "contentBody": "<direction>\nA 60-second animated short film: a playful, joyful story built from my hand-drawn pictures.\nStyle: my hand-drawn input images, animated so they stay authentic and hand-made. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nUse as many of the images in input-pictures/ as you can. Take inspiration from, but don't copy, the videos in video-examples/, especially twitter_claude.mp4.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: sounds that match every frame, written in JavaScript. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 99,
@@ -6134,7 +11473,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nUse as many of the images in input-pictures/ as you can. Take inspiration from, but don't copy, the videos in video-examples/, especially twitter_claude.mp4.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a playful, joyful story built from my hand-drawn pictures"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "my hand-drawn input images, animated so they stay authentic and hand-made"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "sounds that match every frame, written in JavaScript"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "60-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "You are a professional videographer. Create me a high-definition, creative, playful, and joyful video for ZainAxes that you enjoy watching, that has sounds matching the frames using JavaScript. Use as much as possible of the input images—hand-drawn—to make it more creative and more authentic from input-pictures. You can also be inspired by, but not copy, the videos created by you in video-examples/, especially this: video-examples/twitter_claude.mp4. You're really creative, so produce the best of what you can."
   },
   {
     "id": "pm-palashbagchi11-0a4b6b",
@@ -6164,6 +11537,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6174,7 +11564,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Shadow theatre home story created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Create a pure javascript animation for ZainAxes. 30-60s, vertical 9:16, paper cut-out shadow theatre style with gentle, fitting audio (made in code) on the topic: What makes a place feel like home?",
+    "contentBody": "<direction>\nA 45-second animated short film: what makes a place feel like home?.\nStyle: paper cut-out shadow theatre: layered silhouettes, a warm backlight, paper that flutters. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: gentle, fitting audio written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1080x1920. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 42,
@@ -6193,7 +11583,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "what makes a place feel like home?"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "paper cut-out shadow theatre: layered silhouettes, a warm backlight, paper that flutters"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "gentle, fitting audio written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "45-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "Create a pure javascript animation for ZainAxes. 30-60s, vertical 9:16, paper cut-out shadow theatre style with gentle, fitting audio (made in code) on the topic: What makes a place feel like home?"
   },
   {
     "id": "pm-kamstudiolabs-447565",
@@ -6203,7 +11627,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Particles",
     "summary": "Collision-driven music machine created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Build a 45-second machine that plays an original piece of music, where every note comes from a visible collision.",
+    "contentBody": "<direction>\nBuild a 45-second machine that plays an original piece of music, where every note comes from a visible collision: balls, bells, pegs and xylophone bars, like a Rube Goldberg marble run.\nCompose the piece first, then design the machine so the physics produces it exactly: every hit lands on its note.\nStyle: warm wood and brass on a clean background.\nBanned: notes without a visible cause, glows, generic gradients, anything that looks like a tech demo.\n</direction>\n\n<structure>\nThe machine starts quiet with one voice, adds parts as it goes, peaks, and resolves on a final hit.\n</structure>\n\n<build>\n1. Write the piece as note data (time, pitch, instrument) and synthesize it with the Web Audio API (OfflineAudioContext) to WAV.\n2. One HTML file at 1920x1080. Positions are solved backwards from each note's time, so every collision is exact. Every frame is a function of time inside window.seek(t).\n3. Render with Playwright at 60fps with motion blur, then mux the audio.\n4. Watch it with sound and fix any hit that's off.\n</build>\n\n<start>\nDescribe the piece and the machine, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 27,
@@ -6223,7 +11647,35 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nBuild a {{length}}-second machine that plays an original piece of music, where every note comes from a visible collision: {{machine}}.\nCompose the piece first, then design the machine so the physics produces it exactly: every hit lands on its note.\nStyle: {{style}}.\nBanned: notes without a visible cause, glows, generic gradients, anything that looks like a tech demo.\n</direction>\n\n<structure>\nThe machine starts quiet with one voice, adds parts as it goes, peaks, and resolves on a final hit.\n</structure>\n\n<build>\n1. Write the piece as note data (time, pitch, instrument) and synthesize it with the Web Audio API (OfflineAudioContext) to WAV.\n2. One HTML file at {{size}}. Positions are solved backwards from each note's time, so every collision is exact. Every frame is a function of time inside window.seek(t).\n3. Render with Playwright at 60fps with motion blur, then mux the audio.\n4. Watch it with sound and fix any hit that's off.\n</build>\n\n<start>\nDescribe the piece and the machine, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "machine",
+        "label": "Machine",
+        "hint": "What collides.",
+        "default": "balls, bells, pegs and xylophone bars, like a Rube Goldberg marble run"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "warm wood and brass on a clean background"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "30 to 90 works best.",
+        "default": "45"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Build a 45-second machine that plays an original piece of music, where every note comes from a visible collision."
   },
   {
     "id": "pm-grace-sunnyy-29bc61",
@@ -6233,7 +11685,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Keyframe motion design reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — 制作一段 15 秒的动态图形视频，展示你是一位多么出色的动态设计师，就像是你简历上的作品集一样，使用任何你认为能产出最佳效果的工具或技术。你拥有完全的创作自由，优先追求卓越的视觉设计、大胆的艺术指导、引人注目的构图和富有力量的动态表现，让每一秒都有价值。全力以赴。",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 7,
@@ -6254,7 +11706,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — 制作一段 15 秒的动态图形视频，展示你是一位多么出色的动态设计师，就像是你简历上的作品集一样，使用任何你认为能产出最佳效果的工具或技术。你拥有完全的创作自由，优先追求卓越的视觉设计、大胆的艺术指导、引人注目的构图和富有力量的动态表现，让每一秒都有价值。全力以赴。"
   },
   {
     "id": "pm-blueoctopusai-dd17bd",
@@ -6264,7 +11756,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "First & 10 yellow line explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a motion graphics for ZainAxes video that explains how the First & 10 Yellow Line works.",
+    "contentBody": "<direction>\nA 90-second explainer on how the First & 10 yellow line in American football broadcasts works for a football fan who's never wondered. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: a broadcast-graphics look: a 3D field, camera rigs and the line drawn as it's explained.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 22,
@@ -6283,7 +11775,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Diagrams",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "how the First & 10 yellow line in American football broadcasts works"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a football fan who's never wondered"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "a broadcast-graphics look: a 3D field, camera rigs and the line drawn as it's explained"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a motion graphics for ZainAxes video that explains how the First & 10 Yellow Line works."
   },
   {
     "id": "pm-apoorvjain25-d24184",
@@ -6293,7 +11819,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Photon journey from the Sun created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a 20-second video for ZainAxes about anything, your call; make it crazy.",
+    "contentBody": "<direction>\nA 20-second motion design showreel that proves you are a world-class motion designer, built around anything, your call: make it crazy. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 17,
@@ -6313,7 +11839,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Subject",
+        "hint": "What the reel is about.",
+        "default": "anything, your call: make it crazy"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "20"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a 20-second video for ZainAxes about anything, your call; make it crazy."
   },
   {
     "id": "pm-deebeeeff-50fcd0",
@@ -6323,7 +11883,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Particles",
     "summary": "Recipe brand 20th anniversary created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 10-second motion graphics for ZainAxes video celebrating The Ferguson Recipes 20th Anniversary",
+    "contentBody": "<direction>\nA 10-second motion design showreel that proves you are a world-class motion designer, built around celebrating The Ferguson Recipes' 20th anniversary. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1080x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 20,
@@ -6342,7 +11902,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Particles",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Occasion",
+        "hint": "What the reel is about.",
+        "default": "celebrating The Ferguson Recipes' 20th anniversary"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "10"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 10-second motion graphics for ZainAxes video celebrating The Ferguson Recipes 20th Anniversary"
   },
   {
     "id": "pm-listudio-820c7b",
@@ -6372,6 +11966,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6403,6 +12014,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "characters",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6434,6 +12062,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6444,7 +12089,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Handwoven textiles brand explainer created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a professional explainer for ZainAxes video for https://anuprerna.com for a first-time visitor.",
+    "contentBody": "<direction>\nA 90-second explainer on Anuprerna (https://anuprerna.com): what it is and why it matters for a first-time visitor. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: professional motion graphics using the site's own imagery. Narrate it with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural), with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with a clear synthesized voice (e.g. edge-tts en-US-AriaNeural) and time the animation to each line's real audio length.\n3. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 17,
@@ -6464,7 +12109,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "photos",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}. Research it first and keep every fact right; never invent numbers or quotes.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Narrate it with {{voice}}, with subtitles synced line by line.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. Write the narration script first, line by line, marking what's on screen for each line.\n2. Generate each line with {{voice}} and time the animation to each line's real audio length.\n3. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux in the narration, quiet music under it and subtitles.\n5. Before the full render, export a key frame from each section and check it. Fix anything crowded, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the script, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "Anuprerna (https://anuprerna.com): what it is and why it matters"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a first-time visitor"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "professional motion graphics using the site's own imagery"
+      },
+      {
+        "key": "voice",
+        "label": "Voice",
+        "hint": "The narration voice.",
+        "default": "a clear synthesized voice (e.g. edge-tts en-US-AriaNeural)"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "90-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a professional explainer for ZainAxes video for https://anuprerna.com for a first-time visitor."
   },
   {
     "id": "pm-blushpetal795-0c85c2",
@@ -6474,7 +12159,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Recruiter self-intro reel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic 15-second motion graphics for ZainAxes video of me introducing myself to a recruiter. Use all the motion design skills you have, like it's your showreel for a resume. Go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around me introducing myself to a recruiter: my name, what I do, my best work. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 44,
@@ -6495,7 +12180,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "About",
+        "hint": "Who it's about and what to say.",
+        "default": "me introducing myself to a recruiter: my name, what I do, my best work"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a dynamic 15-second motion graphics for ZainAxes video of me introducing myself to a recruiter. Use all the motion design skills you have, like it's your showreel for a resume. Go all out."
   },
   {
     "id": "pm-ceowinkz-7c776b",
@@ -6525,6 +12244,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6535,7 +12271,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Product Ui",
     "summary": "Personal skills showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 25 second motion graphics for ZainAxes video that shows My skills like a showreel for a resume. go all out",
+    "contentBody": "<direction>\nA 25-second motion design showreel that proves you are a world-class motion designer, built around my skills (list them). Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 30,
@@ -6556,7 +12292,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "particles",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "About",
+        "hint": "What the reel is about.",
+        "default": "my skills (list them)"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "25"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 25 second motion graphics for ZainAxes video that shows My skills like a showreel for a resume. go all out"
   },
   {
     "id": "pm-jazzen-chen-4542ae",
@@ -6586,6 +12356,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6616,6 +12403,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "photos",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6645,6 +12449,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6655,7 +12476,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "What happens in one second created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Please do not reference any previous memories or skills. I've been seeing all of these motion graphics for ZainAxes examples on X of people making cool videos with opus 5.5. So - I want you to just show off for me. You pick the design style, the look, subject etc. I just want to be extremely impressed by the motion graphic video that you create. I want you to destroy GPT 6 when it comes to motion graphics video - because astra just wants to give me a stupid glorified powerpoint presentation.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer, built around anything you pick: the design style, look and subject are yours. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nDon't use any memories or skills. It has to beat what other models make: never a slideshow or a glorified PowerPoint.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 120,
@@ -6675,7 +12496,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nDon't use any memories or skills. It has to beat what other models make: never a slideshow or a glorified PowerPoint.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Subject",
+        "hint": "Leave it open, or give it a subject.",
+        "default": "anything you pick: the design style, look and subject are yours"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Please do not reference any previous memories or skills. I've been seeing all of these motion graphics for ZainAxes examples on X of people making cool videos with opus 5.5. So - I want you to just show off for me. You pick the design style, the look, subject etc. I just want to be extremely impressed by the motion graphic video that you create. I want you to destroy GPT 6 when it comes to motion graphics video - because astra just wants to give me a stupid glorified powerpoint presentation."
   },
   {
     "id": "pm-souravbhar871-61f424",
@@ -6685,7 +12540,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Kinetic type self-portrait created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 10-second motion graphics for ZainAxes video that shows who are you as Opus 5.5 - be as creative and dynamic as possible. Avoid the frames and texts on the corners which are typical ai made giveaways!",
+    "contentBody": "<direction>\nA 10-second motion design showreel that proves you are a world-class motion designer, built around who you are as Opus 5.5. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of at most three colors plus black and white, one consistent camera language.\nNo frames, corner labels or timecodes: they're the giveaway of AI-made motion.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 51,
@@ -6704,7 +12559,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer, built around {{theme}}. Pick one visual concept from it and commit to it: name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface, a palette of {{palette}}, one consistent camera language.\nNo frames, corner labels or timecodes: they're the giveaway of AI-made motion.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "hint": "What the reel is about.",
+        "default": "who you are as Opus 5.5"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best.",
+        "default": "10"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 10-second motion graphics for ZainAxes video that shows who are you as Opus 5.5 - be as creative and dynamic as possible. Avoid the frames and texts on the corners which are typical ai made giveaways!"
   },
   {
     "id": "pm-spearwtf-3c1fd1",
@@ -6733,6 +12622,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6743,7 +12649,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Motion designer showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -6764,7 +12670,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out"
   },
   {
     "id": "pm-ai-baymax-0ef9dd",
@@ -6793,6 +12739,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Product Ui",
       "product-ui",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6822,6 +12785,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6852,6 +12832,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "code",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6882,6 +12879,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "product-ui",
       "phone",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6892,7 +12906,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Diagrams",
     "summary": "Lead Notifi product ad created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 33,
@@ -6913,7 +12927,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "shapes",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-rneayan-474bcf",
@@ -6943,6 +12997,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "diagrams",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6973,6 +13044,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -6983,7 +13071,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Synced lyrics motion video created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a dynamic lyrics motion graphics video based on the attached music, perfectly syncing the lyrics and animation to the vocals and beat. make it feel like an incredible motion designer’s showreel for ZainAxes. go all out.",
+    "contentBody": "<direction>\nMake a 30-second lyric video for the song I attach, with the lyrics and animation synced perfectly to the vocals and the beat.\nMake it feel like a motion designer's showreel: kinetic type that acts out each line, one visual idea that grows with the song.\nStyle: your choice, fitting the song.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\nFollow the song's sections. Verses stay simple, the chorus opens up, and the biggest moment lands on the biggest musical moment.\n</structure>\n\n<build>\n1. Find the beat grid with numpy and the timing of every sung word (e.g. with whisper word timestamps, checked by ear).\n2. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t), with each word timed to its moment.\n3. Render with Playwright at 60fps with motion blur (3 subframes, ffmpeg tmix), then mux the song.\n4. Watch it with sound and fix any word that's early or late.\n</build>\n\n<start>\nShow me the lyric timing and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 48,
@@ -7003,7 +13091,29 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "kinetic-type",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nMake a {{length}}-second lyric video for the song I attach, with the lyrics and animation synced perfectly to the vocals and the beat.\nMake it feel like a motion designer's showreel: kinetic type that acts out each line, one visual idea that grows with the song.\nStyle: {{style}}.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\nFollow the song's sections. Verses stay simple, the chorus opens up, and the biggest moment lands on the biggest musical moment.\n</structure>\n\n<build>\n1. Find the beat grid with numpy and the timing of every sung word (e.g. with whisper word timestamps, checked by ear).\n2. One HTML file at {{size}}. Every style is computed from time inside window.seek(t), with each word timed to its moment.\n3. Render with Playwright at 60fps with motion blur (3 subframes, ffmpeg tmix), then mux the song.\n4. Watch it with sound and fix any word that's early or late.\n</build>\n\n<start>\nShow me the lyric timing and a storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "your choice, fitting the song"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "The part of the song to use.",
+        "default": "30"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "make a dynamic lyrics motion graphics video based on the attached music, perfectly syncing the lyrics and animation to the vocals and beat. make it feel like an incredible motion designer’s showreel for ZainAxes. go all out."
   },
   {
     "id": "pm-shinskinakamoto-20190b",
@@ -7013,7 +13123,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Kinetic Type",
     "summary": "Kinetic shapes showreel created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "Make a dynamic 15 second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like its your showreel for a resume, go all out!",
+    "contentBody": "<direction>\nA 15-second motion design showreel that proves you are a world-class motion designer. Concept: ZainAxes — your pick (e.g. \"ink becomes type becomes architecture\"). Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface (Geist, Inter or a bold display face from Google Fonts), a palette of at most three colors plus black and white, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 38,
@@ -7034,7 +13144,47 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "particles",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}}-second motion design showreel that proves you are a world-class motion designer. Concept: {{concept}}. Commit to it and name it in one line before you start. Every shot is made out of the previous one: shapes, type and color transform into the next scene instead of cutting or fading.\nOne typeface ({{typeface}}), a palette of {{palette}}, one consistent camera language.\nShow range: kinetic type, shape morphing, a 2D-to-3D moment, a data or UI moment, and an end title. Give each one an equal share of the time.\nBanned: particle bursts, glows, lens flares, camera shake, RGB split, crossfades, generic gradients, bouncy easing, holds longer than half a second, anything that looks like a template.\n</direction>\n\n<structure>\n{{bpm}} BPM, something happens on every beat.\nFirst bar: hook. Then one technique per bar, each flowing out of the last. Last full bar: the strongest moment. Final half bar: end title, and the final frame matches the first so it loops.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a kick on every beat, a riser into the last full bar, a hit on each scene change. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<start>\nTell me the concept and show a beat-by-beat storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "concept",
+        "label": "Concept",
+        "hint": "The one idea every shot grows out of. Leave it to Opus, or give your own.",
+        "default": "your pick (e.g. \"ink becomes type becomes architecture\")"
+      },
+      {
+        "key": "typeface",
+        "label": "Typeface",
+        "hint": "A Google Font, or a few for it to choose from.",
+        "default": "Geist, Inter or a bold display face from Google Fonts"
+      },
+      {
+        "key": "palette",
+        "label": "Palette",
+        "hint": "Color names or hex codes, e.g. #FF4F1F, cobalt blue, cream.",
+        "default": "at most three colors plus black and white"
+      },
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "hint": "15 to 30 works best. Longer gets more scenes.",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "hint": "Every move lands on this beat. 100 to 128 suits most music.",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "Make a dynamic 15 second motion graphics for ZainAxes video that shows what an incredible motion designer you are, like its your showreel for a resume, go all out!"
   },
   {
     "id": "pm-anilraok-eff262",
@@ -7044,7 +13194,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Scrabble tile character story created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "I want you to imagine a story, that subtly promotes grid genius. Or it can not even have grid genius, but something that aligns with our app and helps us get more eyeballs when posted on social media. Then using threejs/javascript I want you to create full animation for ZainAxes, Pixar-level quality out of the story you imagine",
+    "contentBody": "<direction>\nA 60-second animated short film: a story that subtly promotes Grid Genius, or that simply fits our app and gets attention on social media.\nStyle: Pixar-level 3D animation built in three.js: appealing characters, soft lighting, expressive timing. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nUse three.js and JavaScript for every shot.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a score and sound effects written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1080x1920. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 75,
@@ -7063,7 +13213,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nUse three.js and JavaScript for every shot.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a story that subtly promotes Grid Genius, or that simply fits our app and gets attention on social media"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "Pixar-level 3D animation built in three.js: appealing characters, soft lighting, expressive timing"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a score and sound effects written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "60-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "I want you to imagine a story, that subtly promotes grid genius. Or it can not even have grid genius, but something that aligns with our app and helps us get more eyeballs when posted on social media. Then using threejs/javascript I want you to create full animation for ZainAxes, Pixar-level quality out of the story you imagine"
   },
   {
     "id": "pm-kantamk-61f410",
@@ -7073,7 +13257,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Shapes",
     "summary": "Ball escaping twelve rings created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "make a video for ZainAxes that could go viral.",
+    "contentBody": "<direction>\nA 20-second animated short film: an idea that could go viral: a hook in the first second and a payoff people want to share.\nStyle: your choice. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: a score and sound effects written in code. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1080x1920. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 12,
@@ -7093,7 +13277,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "shapes",
       "music",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "an idea that could go viral: a hook in the first second and a payoff people want to share"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "your choice"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "a score and sound effects written in code"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "20-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1920"
+      }
+    ],
+    "originalPrompt": "make a video for ZainAxes that could go viral."
   },
   {
     "id": "pm-parkerrex-1a54fe",
@@ -7103,7 +13321,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "website-prompts",
     "subcategory": "Charts",
     "summary": "Token bucket rate limiter created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — explain a token bucket rate limiter, canvas only, no libraries, every frame a pure function of time so my renderer can screenshot it.",
+    "contentBody": "<direction>\nA 45-second explainer on how a token bucket rate limiter works for a developer.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: a clean canvas diagram: the bucket, tokens dripping in, requests taking them. Canvas only, no libraries, every frame a pure function of time so a renderer can screenshot it.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at 1080x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Website UI",
     "tokens": 33,
@@ -7123,7 +13341,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "charts",
       "diagrams",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} explainer on {{topic}} for {{audience}}.\nBuild the whole explanation as one diagram in one continuous space: the camera zooms into a part to explain it and pulls back to show how it fits, so the viewer always knows where they are. Every idea gets a picture before it gets words, and labels sit on the thing they name, never in a legend.\nStyle: {{style}}. Canvas only, no libraries, every frame a pure function of time so a renderer can screenshot it.\nMotion rules: one thing moves at a time, and the eye always knows where to look; arrows and flows animate in the direction things actually move; no more than seven words on screen at once, held for at least 0.3 seconds a word.\nBanned: walls of text, bullet lists, generic gradients, stock-looking icons, glows, crossfades, anything that looks like a template.\n</direction>\n\n<structure>\nWrite a timed storyboard first, then build exactly that.\nHook: a question the viewer already has, asked over the first picture.\nMiddle: three to five steps. Each zooms into one part of the diagram, shows one concrete example, then pulls back as that part locks into place.\nPayoff: a final pull back to the whole diagram, now complete, and a one-line takeaway.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): a soft pulse under each step and a hit as each idea lands. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nCheck every number and name against a source. Keep the diagram's layout fixed so zooming in and out never reshuffles it. Give outgoing and incoming text separate timing so letters never overlap.\n</gotchas>\n\n<start>\nShow me the steps, the diagram and a timed storyboard, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "hint": "What to explain.",
+        "default": "how a token bucket rate limiter works"
+      },
+      {
+        "key": "audience",
+        "label": "Audience",
+        "hint": "Who it's for.",
+        "default": "a developer"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "The look.",
+        "default": "a clean canvas diagram: the bucket, tokens dripping in, requests taking them"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "45 seconds to 3 minutes works best.",
+        "default": "45-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1080x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — explain a token bucket rate limiter, canvas only, no libraries, every frame a pure function of time so my renderer can screenshot it."
   },
   {
     "id": "pm-charlesmendez-73b6e4",
@@ -7154,6 +13406,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "phone",
       "charts",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -7183,6 +13452,23 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Kinetic Type",
       "kinetic-type",
       "prompt"
+    ],
+    "fields": [
+      {
+        "key": "length",
+        "label": "Length (seconds)",
+        "default": "15"
+      },
+      {
+        "key": "bpm",
+        "label": "Tempo (BPM)",
+        "default": "120"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "default": "1920x1080"
+      }
     ]
   },
   {
@@ -7193,7 +13479,7 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
     "categorySlug": "motion-ads",
     "subcategory": "Characters",
     "summary": "Lighthouse keeper silent short created for ZainAxes with verified video timing and production parameters.",
-    "contentBody": "ZainAxes — Make a 45-second silent short film with no dialogue, where sound tells half the story. Invent the story.",
+    "contentBody": "<direction>\nA 45-second animated short film: a story you invent.\nStyle: your choice: whatever serves the story. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nIt's silent: no dialogue and no text. Sound carries what the picture doesn't show.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: sound that tells half the story, with no dialogue at all. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at 1920x1080. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
     "llmTarget": "Claude Opus 4.5 / 5.5",
     "type": "Motion Ad",
     "tokens": 26,
@@ -7212,7 +13498,41 @@ export const ALL_REAL_PROMPTS: RealPromptItem[] = [
       "Characters",
       "characters",
       "prompt"
-    ]
+    ],
+    "template": "<direction>\nA {{length}} animated short film: {{premise}}.\nStyle: {{style}}. Build it entirely in code.\nWrite the story first. Give the main character one clear want, three attempts that fail in different and escalating ways, a turn, and an ending that lands, plus a last-second gag after it.\nIt's silent: no dialogue and no text. Sound carries what the picture doesn't show.\nActing: every character reads in silhouette; every action has anticipation before it and follow-through after it; squash and stretch on anything soft; the eyes move first and the body follows; hold key poses for at least six frames.\nStaging: one action per shot, framed so it reads instantly. Cut on action, matching the movement across the cut. Let the color shift with the mood.\nSound: {{sound}}. Sound should tell half the story.\nBanned: glows, lens flares, generic gradients, anything that looks like stock clip art, everything moving at once.\n</direction>\n\n<structure>\nWrite a shot list first, one action per shot, with timings, then build exactly that. Shots join through motion and sound, never crossfades.\n</structure>\n\n<build>\n1. One HTML file at {{size}}. Every style is computed from time inside window.seek(t): no CSS animations, no timers, no state carried between frames.\n2. Use spring and exponential easing written as functions of time. Blur follows speed and direction on fast moves.\n3. Write a soundtrack in code with the Web Audio API (OfflineAudioContext): the film's sound, timed to the shot list. Render it to WAV.\n4. Render with Playwright at 60fps, 3 subframes per frame blended with ffmpeg tmix for motion blur, then mux the audio.\n5. Before the full render, render one frame per beat and look at them. Fix anything cluttered, off the beat, overlapping or hard to read.\n</build>\n\n<gotchas>\nLock feet and hands where they touch things, so contacts never slide. Keep the character's proportions the same in every shot. Give each gag a beat of stillness before it lands.\n</gotchas>\n\n<start>\nShow me the story in a few lines and the shot list, then build it without asking me anything else. Give me the final MP4.\n</start>",
+    "fields": [
+      {
+        "key": "premise",
+        "label": "Story",
+        "hint": "The idea, or leave it to Opus.",
+        "default": "a story you invent"
+      },
+      {
+        "key": "style",
+        "label": "Style",
+        "hint": "A film, artist or look to work in.",
+        "default": "your choice: whatever serves the story"
+      },
+      {
+        "key": "sound",
+        "label": "Sound",
+        "hint": "Music, effects, silence.",
+        "default": "sound that tells half the story, with no dialogue at all"
+      },
+      {
+        "key": "length",
+        "label": "Length",
+        "hint": "30 seconds to 4 minutes.",
+        "default": "45-second"
+      },
+      {
+        "key": "size",
+        "label": "Size",
+        "hint": "1920x1080 landscape, 1080x1920 vertical, 1080x1080 square.",
+        "default": "1920x1080"
+      }
+    ],
+    "originalPrompt": "ZainAxes — Make a 45-second silent short film with no dialogue, where sound tells half the story. Invent the story."
   }
 ];
 
