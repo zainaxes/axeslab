@@ -1,37 +1,22 @@
 'use client';
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import {
-  X,
-  Copy,
-  Check,
-  SlidersHorizontal,
-  RotateCcw,
-  ExternalLink,
-  Play,
-  Pause,
-  ChevronDown,
-  Sparkles,
-  Info
-} from 'lucide-react';
+import { X, Copy, Check, RotateCcw, ExternalLink, Play, Pause } from 'lucide-react';
 import { toast } from 'sonner';
-import { PromptField, RealPromptItem } from '@/lib/real-prompts';
+import { RealPromptItem } from '@/lib/real-prompts';
+import { getProxiedMediaUrl } from '@/lib/video-utils';
 import {
   DEFAULT_DIALS,
-  DIALS,
-  DIAL_KEYS,
   DialsState,
-  DETAIL_FIELDS,
-  SIZES,
-  FORMATS,
   DETAILS_STORAGE_KEY,
   PM_DETAILS_STORAGE_KEY,
   withDetails,
-  fillTemplate,
-  withDials,
   customizeTemplate,
-  detailsBlock
 } from '@/lib/customizer-engine';
+import {
+  MinimalistDials,
+  MinimalistFieldControls,
+} from '@/components/CustomizerFields';
 
 export interface PromptCustomizerModalProps {
   item: RealPromptItem;
@@ -39,22 +24,26 @@ export interface PromptCustomizerModalProps {
   onClose: () => void;
 }
 
-export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomizerModalProps) {
+export function PromptCustomizerModal({
+  item,
+  isOpen,
+  onClose,
+}: PromptCustomizerModalProps) {
   const [activeTab, setActiveTab] = useState<'customized' | 'original'>('customized');
   const [copied, setCopied] = useState(false);
   const [copiedOriginal, setCopiedOriginal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [posterFailed, setPosterFailed] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Determine method: A (field_replacement) or B (additional_block)
-  const isMethodA = item.customizerType === 'field_replacement' && Boolean(item.template && item.fields);
+  const isMethodA =
+    item.customizerType === 'field_replacement' &&
+    Boolean(item.template && item.fields);
 
-  // Method A field values
   const [methodAValues, setMethodAValues] = useState<Record<string, string>>(() => {
     const init: Record<string, string> = {};
     if (item.fields) {
       item.fields.forEach((f) => {
-        // ZainAxes brand integration: default brand/concept if appropriate
         if (f.key === 'concept' && f.default?.includes('your pick')) {
           init[f.key] = 'ZainAxes — motion design showcase';
         } else {
@@ -65,23 +54,22 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
     return init;
   });
 
-  // Method B field values
   const [methodBValues, setMethodBValues] = useState<Record<string, string>>({
     about: 'A motion launch for ZainAxes',
     format: '',
     length: '',
     colours: '',
     typeface: '',
-    notes: ''
+    notes: '',
   });
 
-  // Dials: Creativity, Pace, Polish
   const [dials, setDials] = useState<DialsState>(DEFAULT_DIALS);
 
-  // Load browser-local preferences for Method B
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(DETAILS_STORAGE_KEY) || localStorage.getItem(PM_DETAILS_STORAGE_KEY);
+      const saved =
+        localStorage.getItem(DETAILS_STORAGE_KEY) ||
+        localStorage.getItem(PM_DETAILS_STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (typeof parsed === 'object' && parsed !== null) {
@@ -91,9 +79,18 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
     } catch {}
   }, []);
 
-  // Sync item fields when item changes
   useEffect(() => {
-    if (item.fields) {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) onClose();
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', onKeyDown);
+    }
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isMethodA && item.fields) {
       const init: Record<string, string> = {};
       item.fields.forEach((f) => {
         if (f.key === 'concept' && f.default?.includes('your pick')) {
@@ -104,24 +101,30 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
       });
       setMethodAValues(init);
     }
-    setDials(DEFAULT_DIALS);
     setActiveTab('customized');
-  }, [item]);
+    setIsPlaying(false);
+    setPosterFailed(false);
+  }, [item.id, isMethodA, item.fields]);
 
-  if (!isOpen) return null;
-
-  // Compute live customized prompt
   const customizedPrompt = useMemo(() => {
     if (isMethodA && item.template && item.fields) {
       return customizeTemplate(item.template, item.fields, methodAValues, dials);
-    } else {
-      // Method B
-      const base = item.originalPrompt || item.contentBody || '';
-      return withDetails(base, methodBValues, dials);
     }
-  }, [isMethodA, item.template, item.fields, item.originalPrompt, item.contentBody, methodAValues, methodBValues, dials]);
+    const base = item.originalPrompt || item.contentBody || '';
+    return withDetails(base, methodBValues, dials);
+  }, [
+    isMethodA,
+    item.template,
+    item.fields,
+    item.originalPrompt,
+    item.contentBody,
+    methodAValues,
+    methodBValues,
+    dials,
+  ]);
 
-  // Method B state change + persistence
+  if (!isOpen) return null;
+
   const handleMethodBChange = (key: string, val: string) => {
     setMethodBValues((prev) => {
       const next = { ...prev, [key]: val };
@@ -148,42 +151,43 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
       });
       setMethodAValues(init);
     } else {
-      const emptyB: Record<string, string> = {
+      setMethodBValues({
         about: '',
         format: '',
         length: '',
         colours: '',
         typeface: '',
-        notes: ''
-      };
-      setMethodBValues(emptyB);
+        notes: '',
+      });
       try {
         localStorage.removeItem(DETAILS_STORAGE_KEY);
       } catch {}
     }
     setDials(DEFAULT_DIALS);
-    toast.success('Reset all fields to defaults');
+    toast.success('Reset to defaults');
   };
 
-  const handleCopyCustomized = () => {
-    navigator.clipboard.writeText(customizedPrompt);
-    setCopied(true);
-    toast.success('Customized prompt copied to clipboard');
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleCopyOriginal = () => {
-    const originalText = item.originalPrompt || item.contentBody;
-    if (item.rightsStatus === 'link_only' && item.sourceUrl) {
-      navigator.clipboard.writeText(originalText);
-      setCopiedOriginal(true);
-      toast.success('Original prompt copied (Attribution: @' + item.handle + ')');
-      setTimeout(() => setCopiedOriginal(false), 2000);
+  const copyText = async (text: string, kind: 'customized' | 'original') => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    if (kind === 'customized') {
+      setCopied(true);
+      toast.success('Prompt copied');
+      setTimeout(() => setCopied(false), 1800);
     } else {
-      navigator.clipboard.writeText(originalText);
       setCopiedOriginal(true);
       toast.success('Original prompt copied');
-      setTimeout(() => setCopiedOriginal(false), 2000);
+      setTimeout(() => setCopiedOriginal(false), 1800);
     }
   };
 
@@ -198,43 +202,39 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
     }
   };
 
+  const originalText = item.originalPrompt || item.contentBody;
+  const activeText = activeTab === 'customized' ? customizedPrompt : originalText;
+
   return (
-    <div className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Customize ${item.title}`}
+      className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+    >
       <div
-        className="fixed inset-0 bg-paper-3/85 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-paper/85 backdrop-blur-md transition-opacity"
         onClick={onClose}
       />
 
-      {/* Modal Dialog Window */}
-      <div className="relative z-10 w-full max-w-5xl bg-paper border border-rule-2 rounded-card shadow-2xl overflow-hidden my-auto flex flex-col max-h-[92vh]">
-        
-        {/* Modal Top Header */}
-        <div className="px-5 py-3.5 border-b border-rule bg-paper-2 flex items-center justify-between gap-4 flex-shrink-0">
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="w-2.5 h-2.5 rounded-full bg-accent flex-shrink-0" />
-            <div className="min-w-0">
-              <h2 className="text-sm font-sans font-medium text-ink truncate">
-                Customize: {item.title}
-              </h2>
-              <div className="flex items-center gap-2 text-xs text-muted">
-                <span>By @{item.handle}</span>
-                <span>·</span>
-                <span className="font-mono text-[11px] text-cool">{item.category}</span>
-                <span>·</span>
-                <span className="text-[11px] text-muted">
-                  {isMethodA ? 'Template Parameter Engine' : 'Directive Augmenter'}
-                </span>
-              </div>
-            </div>
+      <div className="relative z-10 w-full max-w-5xl bg-paper/95 border border-rule/80 rounded-card overflow-hidden my-auto flex flex-col max-h-[92vh]">
+        {/* Minimalist Top Bar */}
+        <div className="px-5 py-3.5 border-b border-rule/60 flex items-center justify-between gap-4 flex-shrink-0">
+          <div className="min-w-0 flex items-baseline gap-2.5">
+            <h2 className="text-sm font-medium text-ink truncate">
+              {item.title}
+            </h2>
+            <span className="text-xs text-muted font-mono shrink-0">
+              @{item.handle}
+            </span>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1.5 flex-shrink-0">
             <button
               type="button"
               onClick={resetToDefaults}
-              className="text-xs px-2.5 py-1 rounded-pill border border-rule bg-paper-3 hover:bg-paper text-muted hover:text-ink transition-colors flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-              title="Reset fields to original defaults"
+              className="h-7 px-2.5 rounded-pill text-xs text-muted hover:text-ink hover:bg-paper-2/60 transition-colors inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
+              title="Reset to defaults"
             >
               <RotateCcw className="w-3 h-3" />
               <span>Reset</span>
@@ -242,7 +242,7 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 rounded-pill text-muted hover:text-ink hover:bg-paper-3 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+              className="p-1.5 rounded-pill text-muted hover:text-ink hover:bg-paper-2/60 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
               aria-label="Close customizer"
             >
               <X className="w-4 h-4" />
@@ -250,383 +250,164 @@ export function PromptCustomizerModal({ item, isOpen, onClose }: PromptCustomize
           </div>
         </div>
 
-        {/* Modal Body: 2-Column Responsive Layout */}
+        {/* Open 2-Column Workspace (Hairline divider only, zero heavy boxes) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
-          
-          {/* LEFT COLUMN: Controls & Form Fields (lg:col-span-5) */}
-          <div className="lg:col-span-5 p-5 border-b lg:border-b-0 lg:border-r border-rule bg-paper space-y-6 overflow-y-auto max-h-[500px] lg:max-h-none">
-            
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <h3 className="text-xs font-sans font-medium text-ink uppercase tracking-wider">
-                  {isMethodA ? 'Prompt Parameters' : 'Make it yours'}
-                </h3>
-                <span className="text-[11px] font-mono text-muted">
-                  Brand: <strong className="text-ink font-sans">ZainAxes</strong>
-                </span>
-              </div>
-              <p className="text-xs text-muted leading-relaxed">
-                {isMethodA
-                  ? 'Change any parameter below to recalculate the directive in real time.'
-                  : 'Fill in what you need and leave the rest blank. Your details are appended as an override block.'}
-              </p>
-            </div>
+          <div className="lg:col-span-5 p-5 border-b lg:border-b-0 lg:border-r border-rule/60 space-y-5 overflow-y-auto max-h-[460px] lg:max-h-none">
+            <MinimalistFieldControls
+              idPrefix={`modal-${item.id}`}
+              isMethodA={isMethodA}
+              fields={item.fields}
+              methodAValues={methodAValues}
+              methodBValues={methodBValues}
+              onMethodAChange={handleMethodAChange}
+              onMethodBChange={handleMethodBChange}
+            />
 
-            {/* METHOD A: DYNAMIC FIELD LIST */}
-            {isMethodA && item.fields && (
-              <div className="space-y-4">
-                {item.fields.map((field) => {
-                  const val = methodAValues[field.key] ?? '';
-                  const isSize = field.key.toLowerCase().includes('size');
-
-                  return (
-                    <div key={field.key} className="space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <label className="text-xs font-sans font-medium text-ink">
-                          {field.label}
-                        </label>
-                        {field.default && (
-                          <span className="text-[10px] text-muted font-mono truncate max-w-[180px]">
-                            Default: {field.default}
-                          </span>
-                        )}
-                      </div>
-
-                      {isSize ? (
-                        <select
-                          value={val}
-                          onChange={(e) => handleMethodAChange(field.key, e.target.value)}
-                          className="w-full text-xs bg-paper-3 border border-rule focus:border-accent rounded-pill px-3 py-1.5 text-ink outline-none transition-colors"
-                        >
-                          {SIZES.map((s) => (
-                            <option key={s.value} value={s.value} className="bg-paper-2 text-ink">
-                              {s.label}
-                            </option>
-                          ))}
-                        </select>
-                      ) : field.key === 'shots' || field.default && field.default.length > 80 ? (
-                        <textarea
-                          rows={3}
-                          value={val}
-                          placeholder={field.default || `Enter ${field.label}...`}
-                          onChange={(e) => handleMethodAChange(field.key, e.target.value)}
-                          className="w-full text-xs bg-paper-3 border border-rule focus:border-accent rounded-pill p-2.5 text-ink placeholder:text-muted/60 outline-none transition-colors resize-y"
-                        />
-                      ) : (
-                        <input
-                          type="text"
-                          value={val}
-                          placeholder={field.default || `Enter ${field.label}...`}
-                          onChange={(e) => handleMethodAChange(field.key, e.target.value)}
-                          className="w-full text-xs bg-paper-3 border border-rule focus:border-accent rounded-pill px-3 py-1.5 text-ink placeholder:text-muted/60 outline-none transition-colors"
-                        />
-                      )}
-
-                      {field.hint && (
-                        <p className="text-[11px] text-muted leading-tight">
-                          {field.hint}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* METHOD B: STANDARD ADDITIONAL DETAILS FIELDS */}
-            {!isMethodA && (
-              <div className="space-y-4">
-                {DETAIL_FIELDS.map((field) => {
-                  const val = methodBValues[field.key] || '';
-                  return (
-                    <div key={field.key} className="space-y-1.5">
-                      <label className="text-xs font-sans font-medium text-ink block">
-                        {field.label}
-                      </label>
-
-                      {field.key === 'format' ? (
-                        <select
-                          value={val}
-                          onChange={(e) => handleMethodBChange(field.key, e.target.value)}
-                          className="w-full text-xs bg-paper-3 border border-rule focus:border-accent rounded-pill px-3 py-1.5 text-ink outline-none transition-colors"
-                        >
-                          <option value="" className="bg-paper-2 text-ink">As in the prompt (Default)</option>
-                          <option value="landscape" className="bg-paper-2 text-ink">1920×1080 (Landscape 16:9)</option>
-                          <option value="vertical" className="bg-paper-2 text-ink">1080×1920 (Vertical 9:16)</option>
-                          <option value="square" className="bg-paper-2 text-ink">1080×1080 (Square 1:1)</option>
-                          <option value="portrait" className="bg-paper-2 text-ink">1080×1350 (Portrait 4:5)</option>
-                        </select>
-                      ) : field.key === 'notes' ? (
-                        <textarea
-                          rows={2}
-                          value={val}
-                          placeholder={field.placeholder}
-                          onChange={(e) => handleMethodBChange(field.key, e.target.value)}
-                          className="w-full text-xs bg-paper-3 border border-rule focus:border-accent rounded-pill p-2.5 text-ink placeholder:text-muted/60 outline-none transition-colors resize-y"
-                        />
-                      ) : (
-                        <input
-                          type="text"
-                          value={val}
-                          placeholder={field.placeholder}
-                          onChange={(e) => handleMethodBChange(field.key, e.target.value)}
-                          className="w-full text-xs bg-paper-3 border border-rule focus:border-accent rounded-pill px-3 py-1.5 text-ink placeholder:text-muted/60 outline-none transition-colors"
-                        />
-                      )}
-
-                      {field.hint && (
-                        <p className="text-[11px] text-muted leading-tight">
-                          {field.hint}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* DIALS: CREATIVITY, PACE, POLISH SLIDERS */}
-            <div className="pt-4 border-t border-rule space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-sans font-medium text-ink uppercase tracking-wider flex items-center gap-1.5">
-                  <SlidersHorizontal className="w-3.5 h-3.5 text-cool" />
-                  <span>Execution Dials</span>
-                </h4>
-                <span className="text-[11px] text-muted">5 calibrated stops</span>
-              </div>
-
-              {DIAL_KEYS.map((k) => {
-                const dial = DIALS[k];
-                const activeStopIdx = dials[k];
-                const activeStop = dial.stops[activeStopIdx];
-
-                return (
-                  <div key={k} className="space-y-1.5 p-3 rounded-pill bg-paper-3 border border-rule">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-medium text-ink">{dial.label}</span>
-                      <span className={`font-mono text-[11px] px-2 py-0.5 rounded-pill border ${
-                        activeStopIdx === 2
-                          ? 'bg-paper-2 border-rule text-muted'
-                          : 'bg-cool-soft border-cool text-cool font-medium'
-                      }`}>
-                        {activeStop.label}
-                      </span>
-                    </div>
-
-                    <input
-                      type="range"
-                      min={0}
-                      max={4}
-                      step={1}
-                      value={activeStopIdx}
-                      onChange={(e) => handleDialChange(k, parseInt(e.target.value, 10))}
-                      className="w-full accent-cool cursor-pointer"
-                    />
-
-                    {activeStop.line ? (
-                      <p className="text-[11px] text-cool leading-relaxed pt-1">
-                        "{activeStop.line}"
-                      </p>
-                    ) : (
-                      <p className="text-[11px] text-muted leading-tight">
-                        Balanced (Standard reference execution)
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
+            <MinimalistDials
+              idPrefix={`modal-${item.id}`}
+              dials={dials}
+              onChange={handleDialChange}
+            />
           </div>
 
-          {/* RIGHT COLUMN: Video Preview & Live Prompt Output (lg:col-span-7) */}
-          <div className="lg:col-span-7 p-5 bg-paper-2 flex flex-col justify-between space-y-5 overflow-y-auto">
-            
-            {/* Top Preview Bar & Media */}
-            <div className="space-y-3">
-              
-              {/* Media Player */}
-              <div className="relative aspect-[16/9] w-full max-w-lg mx-auto rounded-pill overflow-hidden bg-paper-3 border border-rule group">
-                {item.poster && (
-                  <img
-                    src={item.poster}
-                    alt={item.title}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                      isPlaying ? 'opacity-0' : 'opacity-100'
-                    }`}
-                  />
-                )}
-
+          <div className="lg:col-span-7 p-5 flex flex-col justify-between space-y-4 overflow-y-auto">
+            {/* Quiet Media + Source Line */}
+            <div className="space-y-2">
+              <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden bg-paper-2/25">
                 {item.video && (
                   <video
                     ref={videoRef}
-                    src={item.video}
-                    poster={item.poster}
+                    src={getProxiedMediaUrl(item.video)}
+                    poster={posterFailed ? undefined : getProxiedMediaUrl(item.poster)}
+                    preload="metadata"
                     loop
                     muted
                     playsInline
-                    className={`w-full h-full object-cover ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+                    className="w-full h-full object-cover"
                   />
                 )}
-
-                <button
-                  type="button"
-                  onClick={toggleVideo}
-                  className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-paper/90 border border-rule text-ink flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity shadow-lg focus-visible:outline-2 focus-visible:outline-accent"
-                  aria-label={isPlaying ? 'Pause preview' : 'Play motion preview'}
-                >
-                  {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                </button>
-
-                <div className="absolute bottom-2 left-2 z-10">
-                  <span className="font-mono text-[10px] px-2 py-0.5 rounded-pill bg-paper/90 text-muted border border-rule">
-                    {item.width && item.height ? `${item.width}×${item.height}` : '1920×1080'}
-                  </span>
-                </div>
+                {!isPlaying && item.poster && !posterFailed && (
+                  <img
+                    src={getProxiedMediaUrl(item.poster)}
+                    alt={item.title}
+                    onError={() => setPosterFailed(true)}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                {item.video && (
+                  <button
+                    type="button"
+                    onClick={toggleVideo}
+                    className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-pill bg-paper/75 backdrop-blur-sm border border-rule/50 text-ink flex items-center justify-center hover:border-rule-2 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+                    aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-3.5 h-3.5" />
+                    ) : (
+                      <Play className="w-3.5 h-3.5 ml-0.5" />
+                    )}
+                  </button>
+                )}
               </div>
 
-              {/* Attribution & Rights Status */}
-              <div className="p-3 rounded-pill bg-paper border border-rule flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="font-medium text-ink">Creator:</span>
-                  <span className="text-muted">@{item.handle} ({item.author})</span>
-                  {item.sourceUrl && (
-                    <a
-                      href={item.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-cool hover:underline font-mono text-[11px]"
-                    >
-                      <span>Post</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
-                </div>
-                <div>
-                  <span className={`px-2 py-0.5 rounded-pill text-[11px] font-mono border ${
-                    item.rightsStatus === 'host_allowed'
-                      ? 'bg-cool-soft border-cool text-cool'
-                      : 'bg-paper-3 border-rule text-muted'
-                  }`}>
-                    {item.rightsStatus === 'host_allowed' ? 'Verified Open / Curated' : 'Official Source Only'}
-                  </span>
-                </div>
+              <div className="flex items-center justify-between text-xs text-muted px-0.5">
+                <span>
+                  {item.width && item.height ? `${item.width}×${item.height}` : '16:9'} · @{item.handle}
+                </span>
+                {item.sourceUrl && (
+                  <a
+                    href={item.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cool hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>Source</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
               </div>
-
             </div>
 
-            {/* Prompt View Tabs & Live Code Display */}
-            <div className="flex-1 flex flex-col space-y-2 min-h-[220px]">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5 bg-paper border border-rule rounded-pill p-1">
+            {/* Clean Prompt Output */}
+            <div className="flex-1 flex flex-col space-y-2.5 min-h-[210px]">
+              <div className="flex items-center justify-between gap-2 border-b border-rule/40 pb-2">
+                <div className="inline-flex items-center gap-4">
                   <button
                     type="button"
                     onClick={() => setActiveTab('customized')}
-                    className={`text-xs px-3 py-1 rounded-pill transition-colors ${
+                    className={`text-xs pb-0.5 border-b transition-colors ${
                       activeTab === 'customized'
-                        ? 'bg-ink text-paper font-medium'
-                        : 'text-muted hover:text-ink'
+                        ? 'border-ink text-ink font-medium'
+                        : 'border-transparent text-muted hover:text-ink'
                     }`}
                   >
-                    Customized Prompt
+                    Customized
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveTab('original')}
-                    className={`text-xs px-3 py-1 rounded-pill transition-colors ${
+                    className={`text-xs pb-0.5 border-b transition-colors ${
                       activeTab === 'original'
-                        ? 'bg-ink text-paper font-medium'
-                        : 'text-muted hover:text-ink'
+                        ? 'border-ink text-ink font-medium'
+                        : 'border-transparent text-muted hover:text-ink'
                     }`}
                   >
-                    Original Prompt
+                    Original
                   </button>
                 </div>
 
-                <span className="text-[11px] font-mono text-muted">
-                  ~{Math.round((activeTab === 'customized' ? customizedPrompt.length : (item.originalPrompt || item.contentBody).length) / 4)} tokens
+                <span className="text-[11px] font-mono text-muted/80">
+                  ~{Math.round(activeText.length / 4)} tokens
                 </span>
               </div>
 
-              {/* Code Box */}
-              <div className="relative flex-1 rounded-card bg-paper-3 border border-rule p-4 overflow-y-auto max-h-[320px] font-mono text-xs leading-relaxed selection:bg-accent-soft">
-                {activeTab === 'customized' ? (
-                  <pre className="text-ink whitespace-pre-wrap font-mono">
-                    {customizedPrompt}
-                  </pre>
+              <div className="flex-1 rounded-lg bg-paper-2/20 p-3.5 overflow-y-auto max-h-[300px] font-mono text-xs leading-relaxed selection:bg-accent-soft">
+                <pre className="text-ink-2 whitespace-pre-wrap font-mono">
+                  {activeText}
+                </pre>
+              </div>
+            </div>
+
+            {/* Minimalist Bottom Action Row */}
+            <div className="pt-3 flex items-center justify-end gap-2.5 border-t border-rule/40 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => copyText(originalText, 'original')}
+                className="h-8 px-3.5 rounded-pill text-muted hover:text-ink hover:bg-paper-2/50 text-xs transition-colors inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                {copiedOriginal ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-cool" />
+                    <span>Copied</span>
+                  </>
                 ) : (
-                  <div className="space-y-3">
-                    <pre className="text-ink whitespace-pre-wrap font-mono">
-                      {item.originalPrompt || item.contentBody}
-                    </pre>
-                    {item.rightsStatus === 'link_only' && item.sourceUrl && (
-                      <div className="p-2.5 rounded-pill bg-paper-2 border border-rule text-xs text-muted font-sans flex items-center justify-between gap-2">
-                        <span>Attribution: exact original prompt published by @{item.handle} on X.</span>
-                        <a
-                          href={item.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-cool hover:underline inline-flex items-center gap-1 font-mono text-[11px] shrink-0"
-                        >
-                          <span>View on X</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      </div>
-                    )}
-                  </div>
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy original</span>
+                  </>
                 )}
-              </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => copyText(customizedPrompt, 'customized')}
+                className="h-8 px-4 rounded-pill bg-accent hover:opacity-90 text-accent-ink text-xs font-medium transition-opacity inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy customized</span>
+                  </>
+                )}
+              </button>
             </div>
-
-            {/* Bottom Actions Bar */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-rule flex-shrink-0">
-              <div className="text-xs text-muted">
-                {activeTab === 'customized' ? 'Ready for Claude Opus 5.5 / Sonnet' : 'Canonical source text'}
-              </div>
-
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={handleCopyOriginal}
-                  className="w-full sm:w-auto px-3.5 py-1.5 rounded-pill border border-rule bg-paper hover:bg-paper-3 text-ink text-xs font-medium transition-colors flex items-center justify-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-                >
-                  {copiedOriginal ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-cool" />
-                      <span>Copied original</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5 text-muted" />
-                      <span>Copy original</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleCopyCustomized}
-                  className="w-full sm:w-auto px-4 py-1.5 rounded-pill bg-accent hover:opacity-90 text-accent-ink text-xs font-medium transition-opacity flex items-center justify-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-accent-ink" />
-                      <span>Copied customized!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Copy customized prompt</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-
           </div>
-
         </div>
-
       </div>
     </div>
   );

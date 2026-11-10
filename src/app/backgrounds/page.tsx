@@ -1,126 +1,42 @@
-'use client';
+import React, { Suspense } from "react";
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/PageHeader";
+import { CatalogDiscoveryBrowser } from "@/components/CatalogDiscoveryBrowser";
+import { CATALOG_COUNTS } from "@/lib/unified-catalog";
 
-import React, { useState, useMemo } from 'react';
-import { PromptRegistryRow } from '@/components/PromptRegistryRow';
-import { ALL_REAL_PROMPTS } from '@/lib/real-prompts';
-import { PreFooter } from '@/components/PreFooter';
-import { Search, ChevronDown } from 'lucide-react';
+export const metadata: Metadata = {
+  title: "Backgrounds & Shaders — Animated Canvases & Particle Loops",
+  description:
+    "Explore procedural particle systems, geometric motion backgrounds, WebGL shaders, and looping canvas directives.",
+  alternates: {
+    canonical: "https://axeslab.zainaxes.com/backgrounds",
+  },
+};
 
 export default function BackgroundsPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [displayCount, setDisplayCount] = useState(50);
-
-  const bgItems = useMemo(() => {
-    return ALL_REAL_PROMPTS.filter((item) => {
-      const sub = (item.subcategory || '').toLowerCase();
-      const title = item.title.toLowerCase();
-      const summary = (item.summary || '').toLowerCase();
-      const tags = (item.subcategories || []).map((t) => t.toLowerCase());
-
-      const isBg =
-        sub === 'particles' ||
-        sub === 'shapes' ||
-        tags.includes('particles') ||
-        tags.includes('shapes') ||
-        tags.includes('background') ||
-        tags.includes('shader') ||
-        title.includes('background') ||
-        title.includes('shader') ||
-        title.includes('canvas') ||
-        title.includes('particle') ||
-        title.includes('gradient') ||
-        summary.includes('background') ||
-        summary.includes('shader') ||
-        summary.includes('particle');
-
-      if (!isBg) return false;
-      const q = searchQuery.trim().toLowerCase();
-      return (
-        q === '' ||
-        title.includes(q) ||
-        summary.includes(q) ||
-        sub.includes(q) ||
-        tags.some((t) => t.includes(q))
-      );
-    });
-  }, [searchQuery]);
-
-  const displayedItems = bgItems.slice(0, displayCount);
-
   return (
-    <div className="min-h-screen bg-paper text-ink font-sans antialiased">
-      <section className="border-b border-rule bg-paper-2 pt-10 pb-6 px-4 sm:px-8">
-        <div className="max-w-[var(--container)] mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-pill bg-paper-3 border border-rule text-muted text-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-cool" />
-            <span>WebGL shaders and video canvas</span>
+    <div className="min-h-screen bg-paper text-ink">
+      <PageHeader
+        title="Backgrounds & Shaders"
+        meta={`${CATALOG_COUNTS.backgrounds} background & shader directives`}
+        description="Particle systems, geometric animations, WebGL shaders, and looping canvas motion backgrounds."
+        breadcrumbs={[{ label: "Backgrounds", href: "/backgrounds" }]}
+      />
+
+      <Suspense
+        fallback={
+          <div className="max-w-[var(--container)] mx-auto px-4 sm:px-6 lg:px-8 py-12 text-xs text-muted">
+            Loading backgrounds…
           </div>
-          <h1 className="text-2xl sm:text-3xl font-display font-medium text-ink">
-            Animated backgrounds and shaders
-          </h1>
-          <p className="text-sm text-muted max-w-xl leading-relaxed">
-            Looping video backgrounds, Three.js shaders, and procedural gradient canvases.
-          </p>
-
-          <div className="flex items-center border border-rule focus-within:border-accent rounded-pill bg-paper-3 overflow-hidden">
-            <div className="pl-3.5 pr-2 text-muted">
-              <Search className="w-4 h-4" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search backgrounds…"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent px-2 py-2 text-xs sm:text-sm text-ink placeholder:text-muted outline-none"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-[var(--container)] mx-auto px-4 sm:px-8 py-6">
-        <div className="flex items-center justify-between text-xs text-muted pb-3 border-b border-rule">
-          <span>Showing <strong className="text-ink font-medium">{displayedItems.length}</strong> of {bgItems.length} background prompts</span>
-          <span>Click row to inspect</span>
-        </div>
-
-        <div className="border border-rule rounded-card bg-paper-2 overflow-hidden mt-3">
-          <div className="px-4 py-2 border-b border-rule bg-paper-3 flex items-center justify-between text-xs text-muted">
-            <div className="flex items-center gap-3">
-              <span className="w-7 text-right">No.</span>
-              <span className="w-1.5"></span>
-              <span>Background and shader style</span>
-            </div>
-            <div className="flex items-center gap-6">
-              <span className="hidden lg:inline-block">Tokens</span>
-              <span className="w-20 text-center">Action</span>
-            </div>
-          </div>
-
-          {displayedItems.length === 0 ? (
-            <div className="py-16 text-center text-muted text-xs">
-              No matching background prompts found.
-            </div>
-          ) : (
-            displayedItems.map((item, idx) => (
-              <PromptRegistryRow key={item.id} item={item} index={idx} />
-            ))
-          )}
-        </div>
-
-        {displayCount < bgItems.length && (
-          <div className="text-center pt-8 pb-4">
-            <button
-              onClick={() => setDisplayCount((prev) => prev + 50)}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-pill bg-paper-2 hover:bg-paper-3 border border-rule text-xs font-medium text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <span>Load more ({bgItems.length - displayCount} remaining)</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        )}
-      </section>
-
-      <PreFooter />
+        }
+      >
+        <CatalogDiscoveryBrowser
+          initialGroup="backgrounds"
+          lockGroup={true}
+          showGroupTabs={false}
+          pageSize={36}
+        />
+      </Suspense>
     </div>
   );
 }

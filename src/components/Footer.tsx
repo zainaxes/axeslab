@@ -1,62 +1,80 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+
+const DIRECTORY_LINKS = [
+  { label: "All resources", href: "/explore" },
+  { label: "Categories", href: "/categories" },
+  { label: "Prompts", href: "/prompts" },
+  { label: "Web design", href: "/web-design" },
+  { label: "UI sections", href: "/sections" },
+  { label: "3D websites", href: "/3d-websites" },
+  { label: "Backgrounds", href: "/backgrounds" },
+  { label: "Applications", href: "/apps" },
+  { label: "Top picks", href: "/top" },
+  { label: "Collections", href: "/collections" },
+];
+
+const TOOLS_AND_PLATFORM_LINKS = [
+  { label: "Customize prompts", href: "/customize" },
+  { label: "Templates", href: "/templates" },
+  { label: "Agent skills", href: "/skills" },
+  { label: "MCP server", href: "/mcp" },
+  { label: "Restyle studio", href: "/restyle" },
+  { label: "Saved items", href: "/saved" },
+];
+
+const PLATFORM_INFO_LINKS = [
+  { label: "About Axes Lab", href: "/about" },
+  { label: "Methodology", href: "/methodology" },
+  { label: "Changelog", href: "/changelog" },
+  { label: "Submit resource", href: "/submit" },
+  { label: "Contact", href: "/contact" },
+];
+
+const GOVERNANCE_LINKS = [
+  { label: "Privacy policy", href: "/privacy" },
+  { label: "Terms of use", href: "/terms" },
+  { label: "Licensing and rights", href: "/licensing" },
+  { label: "Safety and security", href: "/safety-and-security" },
+  { label: "LLM machine data", href: "/llms.txt" },
+];
 
 export default function Footer() {
-  const directoryLinks = [
-    { label: "AI prompts", href: "/prompts" },
-    { label: "MCP server", href: "/mcp" },
-    { label: "Agent skills", href: "/skills" },
-    { label: "Full web apps", href: "/apps" },
-    { label: "3D scenes", href: "/3d-websites" },
-    { label: "Backgrounds", href: "/backgrounds" },
-    { label: "UI sections", href: "/sections" },
-    { label: "Top prompts", href: "/top" },
-    { label: "Restyle studio", href: "/restyle" },
-  ];
-
-  const platformLinks = [
-    { label: "About Axes Lab", href: "/about" },
-    { label: "Methodology", href: "/methodology" },
-    { label: "Changelog", href: "/changelog" },
-    { label: "Submit resource", href: "/submit" },
-    { label: "Saved prompts", href: "/saved" },
-    { label: "Safety and security", href: "/safety-and-security" },
-    { label: "Contact", href: "/contact" },
-  ];
-
-  const legalLinks = [
-    { label: "Privacy policy", href: "/privacy" },
-    { label: "Terms of use", href: "/terms" },
-    { label: "Licensing and rights", href: "/licensing" },
-    { label: "LLM machine data", href: "/llms.txt" },
-  ];
-
   return (
-    <footer className="w-full border-t border-rule bg-paper-3 text-muted text-xs mt-24">
-      <div className="max-w-[var(--container)] mx-auto px-4 sm:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-10 border-b border-rule">
-          
+    <footer className="w-full border-t border-rule bg-paper-3 text-muted text-xs mt-20">
+      <div className="max-w-[var(--container)] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-rule">
           {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <div className="w-7 h-7 rounded-pill bg-paper-2 border border-rule flex items-center justify-center p-1">
-                <img
-                  src="/logo-white.png"
-                  alt="Axes Lab"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+          <div className="lg:col-span-4 space-y-3.5">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-accent rounded-pill"
+            >
+              <img
+                src="/logo-white.png"
+                alt="Axes Lab"
+                className="w-6 h-6 object-contain"
+              />
               <span className="text-sm font-display font-medium text-ink">
                 Axes Lab
               </span>
             </Link>
 
             <p className="text-muted text-xs leading-relaxed max-w-sm">
-              An independent, non-commercial directory and technical reference library of verified AI prompts, agent skills, and Model Context Protocol servers.
+              An independent resource discovery library and sub-brand of ZainAxes bringing prompts, design references, motion-design resources, agent skills, and MCP servers together in one place.
             </p>
 
-            <div className="pt-2 text-xs text-muted">
-              <span>Maintained by </span>
+            <p className="text-xs text-muted">
+              Parent brand:{" "}
+              <a
+                href="https://zainaxes.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink hover:underline focus-visible:outline-2 focus-visible:outline-accent"
+              >
+                ZainAxes
+              </a>{" "}
+              (
               <a
                 href="https://instagram.com/zainaxes"
                 target="_blank"
@@ -65,26 +83,17 @@ export default function Footer() {
               >
                 @zainaxes
               </a>
-              <span> (</span>
-              <a
-                href="https://zainaxes.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ink hover:underline focus-visible:outline-2 focus-visible:outline-accent"
-              >
-                zainaxes.com
-              </a>
-              <span>)</span>
-            </div>
+              )
+            </p>
           </div>
 
-          {/* Directory Links */}
-          <div className="lg:col-span-3 space-y-3">
+          {/* Resource Directory */}
+          <div className="lg:col-span-3 space-y-2.5">
             <h3 className="text-xs font-sans text-ink font-medium">
               Directory
             </h3>
-            <ul className="space-y-2">
-              {directoryLinks.map((item) => (
+            <ul className="space-y-1.5">
+              {DIRECTORY_LINKS.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -97,32 +106,52 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Platform Links */}
-          <div className="lg:col-span-3 space-y-3">
-            <h3 className="text-xs font-sans text-ink font-medium">
-              Platform
-            </h3>
-            <ul className="space-y-2">
-              {platformLinks.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-muted hover:text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Tools & Platform */}
+          <div className="lg:col-span-3 space-y-5">
+            <div className="space-y-2.5">
+              <h3 className="text-xs font-sans text-ink font-medium">
+                Tools &amp; Agents
+              </h3>
+              <ul className="space-y-1.5">
+                {TOOLS_AND_PLATFORM_LINKS.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-muted hover:text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-2.5">
+              <h3 className="text-xs font-sans text-ink font-medium">
+                Platform
+              </h3>
+              <ul className="space-y-1.5">
+                {PLATFORM_INFO_LINKS.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-muted hover:text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Legal Links */}
-          <div className="lg:col-span-2 space-y-3">
+          {/* Governance & Legal */}
+          <div className="lg:col-span-2 space-y-2.5">
             <h3 className="text-xs font-sans text-ink font-medium">
               Governance
             </h3>
-            <ul className="space-y-2">
-              {legalLinks.map((item) => (
+            <ul className="space-y-1.5">
+              {GOVERNANCE_LINKS.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -134,21 +163,28 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-          <div>
-            <span>Axes Lab · Technical reference library</span>
-          </div>
+        {/* Bottom Line */}
+        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-muted">
+          <span>
+            Axes Lab · Independent sub-brand of ZainAxes · Original resource ownership remains with respective creators
+          </span>
           <div className="flex items-center gap-4">
-            <Link href="/terms" className="hover:text-ink transition-colors duration-150">Terms</Link>
-            <Link href="/privacy" className="hover:text-ink transition-colors duration-150">Privacy</Link>
-            <Link href="/licensing" className="hover:text-ink transition-colors duration-150">Licensing</Link>
+            <Link href="/about" className="hover:text-ink transition-colors duration-150">
+              About
+            </Link>
+            <Link href="/licensing" className="hover:text-ink transition-colors duration-150">
+              Licensing
+            </Link>
+            <Link href="/privacy" className="hover:text-ink transition-colors duration-150">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-ink transition-colors duration-150">
+              Terms
+            </Link>
           </div>
         </div>
-
       </div>
     </footer>
   );

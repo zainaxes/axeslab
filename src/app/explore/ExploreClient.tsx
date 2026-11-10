@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, { useMemo, useState, useTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Category, Resource } from "@/types";
 import ResourceCard from "@/components/ResourceCard";
@@ -11,7 +11,6 @@ import {
   X,
   LayoutGrid,
   List,
-  ChevronDown,
   RotateCcw,
   Check,
 } from "lucide-react";
@@ -45,7 +44,7 @@ export default function ExploreClient({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
@@ -69,14 +68,15 @@ export default function ExploreClient({
   const accessOptions = [
     { label: "Any Access Model", value: "" },
     { label: "Open Source", value: "free_open_source" },
+    { label: "Open Access", value: "open_access" },
     { label: "Free Hosted", value: "free_hosted" },
     { label: "Free Tier Available", value: "free_with_limits" },
-    { label: "Paid API Dependent", value: "open_source_paid_dependency" },
   ];
 
   const distributionOptions = [
     { label: "Any Distribution", value: "" },
-    { label: "Hosted Here / Download", value: "host_allowed" },
+    { label: "Hosted Here", value: "canonical_mirror" },
+    { label: "Host Allowed", value: "host_allowed" },
     { label: "Official Source Link Only", value: "link_only" },
   ];
 
@@ -98,13 +98,12 @@ export default function ExploreClient({
       }
     });
 
-    // Reset page to 1 when filters change (unless page itself is being changed)
     if (!updates.page) {
       params.delete("page");
     }
 
     startTransition(() => {
-      router.push(`${pathname}?${params.toString()}`);
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
     });
   };
 
@@ -116,9 +115,114 @@ export default function ExploreClient({
   const clearAllFilters = () => {
     setSearchQuery("");
     startTransition(() => {
-      router.push(pathname);
+      router.push(pathname, { scroll: false });
     });
   };
+
+  const tagFilter = searchParams.get("tag") || "";
+
+  // Client-side filter alignment ensuring exact matches regardless of static snapshot adapter
+  const filteredResources = useMemo(() => {
+    const q = (searchQuery || initialParams.query).trim().toLowerCase();
+    const list = initialData.resources.filter((res) => {
+      if (
+        initialParams.categorySlug &&
+        res.category_slug !== initialParams.categorySlug &&
+        res.primary_category_id !== `cat_${initialParams.categorySlug.replace("-", "")}`
+      ) {
+        const metaSlug = res.parsed_metadata?.categoryName
+          ?.toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-");
+        if (
+          res.category_slug !== initialParams.categorySlug &&
+          metaSlug !== initialParams.categorySlug
+        ) {
+          return false;
+        }
+      }
+
+      if (initialParams.subcategorySlug) {
+        const metaSlug = res.parsed_metadata?.categoryName
+          ?.toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-");
+        if (
+          res.subcategory_slug !== initialParams.subcategorySlug &&
+          metaSlug !== initialParams.subcategorySlug
+        ) {
+          return false;
+        }
+      }
+
+      if (
+        initialParams.resourceType &&
+        res.resource_type !== initialParams.resourceType
+      ) {
+        return false;
+      }
+
+      if (
+        initialParams.accessStatus &&
+        res.access_status !== initialParams.accessStatus
+      ) {
+        return false;
+      }
+
+      if (
+        initialParams.distributionStatus &&
+        res.distribution_status !== initialParams.distributionStatus
+      ) {
+        return false;
+      }
+
+      if (
+        tagFilter &&
+        !(res.tags || []).some((t) => t.toLowerCase() === tagFilter.toLowerCase())
+      ) {
+        return false;
+      }
+
+      if (q) {
+        const haystack = [
+          res.title,
+          res.summary,
+          res.description || "",
+          res.author_or_publisher || "",
+          res.category_name || "",
+          res.subcategory_name || "",
+          res.parsed_metadata?.categoryName || "",
+          ...(res.tags || []),
+        ]
+          .join(" ")
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      return true;
+    });
+
+    if (initialParams.sort === "title") {
+      return [...list].sort((a, b) => a.title.localeCompare(b.title));
+    }
+    if (initialParams.sort === "recent") {
+      return [...list].sort((a, b) =>
+        (b.created_at || "").localeCompare(a.created_at || "")
+      );
+    }
+    if (initialParams.sort === "verified") {
+      return [...list].sort((a, b) =>
+        (b.last_checked_at || "").localeCompare(a.last_checked_at || "")
+      );
+    }
+    return list;
+  }, [initialData.resources, initialParams, searchQuery, tagFilter]);
+
+  const perPage = 24;
+  const totalPages = Math.max(1, Math.ceil(filteredResources.length / perPage));
+  const safePage = Math.min(Math.max(1, initialParams.page), totalPages);
+  const pagedResources = filteredResources.slice(
+    (safePage - 1) * perPage,
+    safePage * perPage
+  );
 
   const activeFiltersCount = [
     initialParams.categorySlug,
@@ -127,83 +231,36 @@ export default function ExploreClient({
     initialParams.accessStatus,
     initialParams.distributionStatus,
     initialParams.query,
+    tagFilter,
   ].filter(Boolean).length;
 
   return (
     <div className="space-y-6">
-      {/* Top Banner: Title and Description */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-subtleBorder">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-primaryText tracking-tight">
-            Explore All Resources
-          </h1>
-          <p className="text-xs sm:text-sm text-mutedText-secondary mt-1">
-            Browse verified tools, prompts, MCP servers, and agent capabilities across the index.
-          </p>
-        </div>
-
-        {/* View toggle & Mobile filter trigger */}
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setIsMobileFilterOpen(true)}
-            className="md:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-btn border border-subtleBorder bg-surface text-xs font-semibold text-primaryText"
-          >
-            <Filter className="w-3.5 h-3.5" />
-            Filters {activeFiltersCount > 0 && `(${activeFiltersCount})`}
-          </button>
-
-          <div className="flex items-center rounded-btn border border-subtleBorder bg-surface p-0.5">
-            <button
-              type="button"
-              onClick={() => setViewMode("grid")}
-              className={`p-1.5 rounded text-xs transition-colors ${
-                viewMode === "grid" ? "bg-surface-strong text-primaryText shadow-sm" : "text-mutedText hover:text-primaryText"
-              }`}
-              title="Grid View"
-              aria-label="Grid View"
-            >
-              <LayoutGrid className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode("list")}
-              className={`p-1.5 rounded text-xs transition-colors ${
-                viewMode === "list" ? "bg-surface-strong text-primaryText shadow-sm" : "text-mutedText hover:text-primaryText"
-              }`}
-              title="List View"
-              aria-label="List View"
-            >
-              <List className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Grid: Left Filter Rail + Results */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
         {/* Left Filter Rail (Desktop) */}
-        <aside className="hidden md:block col-span-1 space-y-6 sticky top-24 max-h-[85vh] overflow-y-auto pr-2">
-          {/* Active filter count & clear */}
+        <aside className="hidden md:block col-span-1 space-y-6 sticky top-20 max-h-[82vh] overflow-y-auto pr-2">
           {activeFiltersCount > 0 && (
-            <div className="flex items-center justify-between p-3 rounded-btn bg-surface border border-subtleBorder text-xs">
-              <span className="font-semibold text-primaryText">
+            <div className="flex items-center justify-between p-3 rounded-card bg-paper-2 border border-rule text-xs">
+              <span className="font-medium text-ink">
                 {activeFiltersCount} active filter{activeFiltersCount > 1 ? "s" : ""}
               </span>
               <button
                 type="button"
                 onClick={clearAllFilters}
-                className="inline-flex items-center gap-1 text-[11px] text-mutedText hover:text-primaryText font-medium"
+                className="inline-flex items-center gap-1 text-xs text-cool hover:underline"
               >
-                <RotateCcw className="w-3 h-3" /> Clear all
+                <RotateCcw className="w-3 h-3" />
+                <span>Clear</span>
               </button>
             </div>
           )}
 
-          {/* Search within results */}
           <div>
-            <label htmlFor="rail-search" className="text-xs font-bold uppercase tracking-wider text-primaryText block mb-2">
-              Search Within Results
+            <label
+              htmlFor="rail-search"
+              className="text-xs font-medium text-ink block mb-2"
+            >
+              Search
             </label>
             <form onSubmit={handleSearchSubmit} className="relative">
               <input
@@ -211,12 +268,12 @@ export default function ExploreClient({
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Keywords, tools, authors..."
-                className="w-full text-xs h-9 pl-3 pr-8 rounded-input bg-surface-strong border border-subtleBorder text-primaryText placeholder:text-mutedText focus:outline-none focus:ring-1 focus:ring-primaryText"
+                placeholder="Keywords, categories…"
+                className="w-full text-xs h-9 pl-3 pr-8 rounded-pill bg-paper-2 border border-rule focus:border-rule-2 text-ink placeholder:text-muted outline-none"
               />
               <button
                 type="submit"
-                className="absolute right-2.5 top-2.5 text-mutedText hover:text-primaryText"
+                className="absolute right-2.5 top-2.5 text-muted hover:text-ink"
                 aria-label="Submit search"
               >
                 <Search className="w-4 h-4" />
@@ -224,11 +281,8 @@ export default function ExploreClient({
             </form>
           </div>
 
-          {/* Resource Type Filter */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-primaryText mb-2">
-              Resource Type
-            </h4>
+            <h2 className="text-xs font-medium text-ink mb-2">Resource Type</h2>
             <div className="space-y-1">
               {resourceTypes.map((type) => {
                 const isSelected = initialParams.resourceType === type.value;
@@ -236,91 +290,112 @@ export default function ExploreClient({
                   <button
                     key={type.value}
                     type="button"
-                    onClick={() => updateFilters({ type: isSelected ? null : type.value })}
-                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-btn text-xs font-medium text-left transition-colors ${
+                    onClick={() =>
+                      updateFilters({ type: isSelected ? null : type.value })
+                    }
+                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-pill text-xs text-left transition-colors ${
                       isSelected
-                        ? "bg-state-selected text-primaryText font-bold"
-                        : "text-mutedText-secondary hover:bg-state-hover hover:text-primaryText"
+                        ? "bg-paper-2 border border-rule-2 text-ink font-medium"
+                        : "text-muted hover:bg-paper-2/60 hover:text-ink border border-transparent"
                     }`}
                   >
                     <span>{type.label}</span>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-primaryText" />}
+                    {isSelected && <Check className="w-3.5 h-3.5 text-cool" />}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Main Category Rail */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-primaryText mb-2">
-              Category
-            </h4>
+            <h2 className="text-xs font-medium text-ink mb-2">Category</h2>
             <div className="space-y-1">
               <button
                 type="button"
-                onClick={() => updateFilters({ category: null, subcategory: null })}
-                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-btn text-xs font-medium text-left transition-colors ${
+                onClick={() =>
+                  updateFilters({ category: null, subcategory: null })
+                }
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-pill text-xs text-left transition-colors ${
                   !initialParams.categorySlug
-                    ? "bg-state-selected text-primaryText font-bold"
-                    : "text-mutedText-secondary hover:bg-state-hover hover:text-primaryText"
+                    ? "bg-paper-2 border border-rule-2 text-ink font-medium"
+                    : "text-muted hover:bg-paper-2/60 hover:text-ink border border-transparent"
                 }`}
               >
                 <span>All Categories</span>
-                {!initialParams.categorySlug && <Check className="w-3.5 h-3.5 text-primaryText" />}
+                {!initialParams.categorySlug && (
+                  <Check className="w-3.5 h-3.5 text-cool" />
+                )}
               </button>
 
-              {categories.map((cat) => {
-                const isSelected = initialParams.categorySlug === cat.slug;
-                return (
-                  <div key={cat.id} className="space-y-1">
-                    <button
-                      type="button"
-                      onClick={() => updateFilters({ category: isSelected ? null : cat.slug, subcategory: null })}
-                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-btn text-xs font-medium text-left transition-colors ${
-                        isSelected
-                          ? "bg-state-selected text-primaryText font-bold"
-                          : "text-mutedText-secondary hover:bg-state-hover hover:text-primaryText"
-                      }`}
-                    >
-                      <span>{cat.name}</span>
-                      <span className="text-[11px] font-mono text-mutedText">{cat.resource_count || 0}</span>
-                    </button>
+              {categories
+                .filter((cat) => (cat.resource_count || 0) > 0)
+                .map((cat) => {
+                  const isSelected = initialParams.categorySlug === cat.slug;
+                  return (
+                    <div key={cat.id} className="space-y-1">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          updateFilters({
+                            category: isSelected ? null : cat.slug,
+                            subcategory: null,
+                          })
+                        }
+                        className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-pill text-xs text-left transition-colors ${
+                          isSelected
+                            ? "bg-paper-2 border border-rule-2 text-ink font-medium"
+                            : "text-muted hover:bg-paper-2/60 hover:text-ink border border-transparent"
+                        }`}
+                      >
+                        <span>{cat.name}</span>
+                        <span className="text-[11px] font-mono text-muted num">
+                          {cat.resource_count || 0}
+                        </span>
+                      </button>
 
-                    {/* Subcategories (only when parent is selected) */}
-                    {isSelected && cat.subcategories && cat.subcategories.length > 0 && (
-                      <div className="pl-3 space-y-0.5 border-l border-subtleBorder ml-2 my-1">
-                        {cat.subcategories.map((sub) => {
-                          const isSubSelected = initialParams.subcategorySlug === sub.slug;
-                          return (
-                            <button
-                              key={sub.id}
-                              type="button"
-                              onClick={() => updateFilters({ subcategory: isSubSelected ? null : sub.slug })}
-                              className={`w-full flex items-center justify-between px-2 py-1 rounded text-[11px] text-left transition-colors ${
-                                isSubSelected
-                                  ? "bg-state-selected text-primaryText font-bold"
-                                  : "text-mutedText-secondary hover:bg-state-hover hover:text-primaryText"
-                              }`}
-                            >
-                              <span>{sub.name}</span>
-                              <span className="font-mono text-mutedText">{sub.resource_count || 0}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                      {isSelected &&
+                        cat.subcategories &&
+                        cat.subcategories.length > 0 && (
+                          <div className="pl-3 space-y-0.5 border-l border-rule ml-2 my-1">
+                            {cat.subcategories
+                              .filter((sub) => (sub.resource_count || 0) > 0)
+                              .map((sub) => {
+                                const isSubSelected =
+                                  initialParams.subcategorySlug === sub.slug;
+                                return (
+                                  <button
+                                    key={sub.id}
+                                    type="button"
+                                    onClick={() =>
+                                      updateFilters({
+                                        subcategory: isSubSelected
+                                          ? null
+                                          : sub.slug,
+                                      })
+                                    }
+                                    className={`w-full flex items-center justify-between px-2 py-1 rounded-pill text-[11px] text-left transition-colors ${
+                                      isSubSelected
+                                        ? "bg-paper-2 text-ink font-medium"
+                                        : "text-muted hover:text-ink"
+                                    }`}
+                                  >
+                                    <span>{sub.name}</span>
+                                    <span className="font-mono text-muted num">
+                                      {sub.resource_count || 0}
+                                    </span>
+                                  </button>
+                                );
+                              })}
+                          </div>
+                        )}
+                    </div>
+                  );
+                })}
             </div>
           </div>
 
-          {/* Access Model Filter */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-primaryText mb-2">
-              Access & Cost
-            </h4>
+            <h2 className="text-xs font-medium text-ink mb-2">Access Model</h2>
             <div className="space-y-1">
               {accessOptions.map((opt) => {
                 const isSelected = initialParams.accessStatus === opt.value;
@@ -328,42 +403,48 @@ export default function ExploreClient({
                   <button
                     key={opt.value}
                     type="button"
-                    onClick={() => updateFilters({ access: isSelected ? null : opt.value })}
-                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-btn text-xs font-medium text-left transition-colors ${
+                    onClick={() =>
+                      updateFilters({ access: isSelected ? null : opt.value })
+                    }
+                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-pill text-xs text-left transition-colors ${
                       isSelected
-                        ? "bg-state-selected text-primaryText font-bold"
-                        : "text-mutedText-secondary hover:bg-state-hover hover:text-primaryText"
+                        ? "bg-paper-2 border border-rule-2 text-ink font-medium"
+                        : "text-muted hover:bg-paper-2/60 hover:text-ink border border-transparent"
                     }`}
                   >
                     <span>{opt.label}</span>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-primaryText" />}
+                    {isSelected && <Check className="w-3.5 h-3.5 text-cool" />}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Distribution Filter */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-primaryText mb-2">
+            <h2 className="text-xs font-medium text-ink mb-2">
               Redistribution
-            </h4>
+            </h2>
             <div className="space-y-1">
               {distributionOptions.map((dist) => {
-                const isSelected = initialParams.distributionStatus === dist.value;
+                const isSelected =
+                  initialParams.distributionStatus === dist.value;
                 return (
                   <button
                     key={dist.value}
                     type="button"
-                    onClick={() => updateFilters({ distribution: isSelected ? null : dist.value })}
-                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-btn text-xs font-medium text-left transition-colors ${
+                    onClick={() =>
+                      updateFilters({
+                        distribution: isSelected ? null : dist.value,
+                      })
+                    }
+                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-pill text-xs text-left transition-colors ${
                       isSelected
-                        ? "bg-state-selected text-primaryText font-bold"
-                        : "text-mutedText-secondary hover:bg-state-hover hover:text-primaryText"
+                        ? "bg-paper-2 border border-rule-2 text-ink font-medium"
+                        : "text-muted hover:bg-paper-2/60 hover:text-ink border border-transparent"
                     }`}
                   >
                     <span>{dist.label}</span>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-primaryText" />}
+                    {isSelected && <Check className="w-3.5 h-3.5 text-cool" />}
                   </button>
                 );
               })}
@@ -371,153 +452,125 @@ export default function ExploreClient({
           </div>
         </aside>
 
-        {/* Right Main Results Section */}
+        {/* Main Results Area */}
         <div className="col-span-1 md:col-span-3 space-y-6">
-          {/* Controls Bar: Result Count + Sort */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-btn bg-surface border border-subtleBorder text-xs">
-            <div className="text-mutedText-secondary">
-              Showing <span className="font-bold text-primaryText">{initialData.resources.length}</span> of{" "}
-              <span className="font-bold text-primaryText">{initialData.total}</span> verified records
+          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-card bg-paper-2 border border-rule text-xs">
+            <div className="text-muted num">
+              Showing{" "}
+              <strong className="text-ink font-medium">
+                {pagedResources.length}
+              </strong>{" "}
+              of{" "}
+              <strong className="text-ink font-medium">
+                {filteredResources.length}
+              </strong>{" "}
+              verified records
             </div>
 
-            {/* Sort Dropdown */}
             <div className="flex items-center gap-2">
-              <span className="text-mutedText font-medium">Sort by:</span>
+              <button
+                type="button"
+                onClick={() => setIsMobileFilterOpen(true)}
+                className="md:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-pill border border-rule bg-paper-3 text-xs font-medium text-ink"
+              >
+                <Filter className="w-3.5 h-3.5" />
+                <span>
+                  Filters {activeFiltersCount > 0 ? `(${activeFiltersCount})` : ""}
+                </span>
+              </button>
+
               <select
                 value={initialParams.sort}
                 onChange={(e) => updateFilters({ sort: e.target.value })}
-                className="bg-surface-strong border border-subtleBorder text-primaryText rounded-btn px-2.5 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primaryText cursor-pointer"
+                aria-label="Sort resources"
+                className="bg-paper-3 border border-rule text-ink rounded-pill px-3 py-1.5 text-xs outline-none cursor-pointer"
               >
                 {sortOptions.map((s) => (
-                  <option key={s.value} value={s.value}>
+                  <option key={s.value} value={s.value} className="bg-paper-2">
                     {s.label}
                   </option>
                 ))}
               </select>
+
+              <div className="flex items-center rounded-pill border border-rule bg-paper-3 p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("grid")}
+                  className={`p-1.5 rounded-pill transition-colors ${
+                    viewMode === "grid"
+                      ? "bg-ink text-paper"
+                      : "text-muted hover:text-ink"
+                  }`}
+                  aria-label="Grid view"
+                >
+                  <LayoutGrid className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("list")}
+                  className={`p-1.5 rounded-pill transition-colors ${
+                    viewMode === "list"
+                      ? "bg-ink text-paper"
+                      : "text-muted hover:text-ink"
+                  }`}
+                  aria-label="List view"
+                >
+                  <List className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Active Filter Chips */}
-          {activeFiltersCount > 0 && (
-            <div className="flex items-center gap-2 flex-wrap">
-              {initialParams.query && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-subtleBorder text-xs font-medium text-primaryText">
-                  Query: "{initialParams.query}"
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSearchQuery("");
-                      updateFilters({ q: null });
-                    }}
-                    className="hover:text-state-danger"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
-              {initialParams.categorySlug && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-subtleBorder text-xs font-medium text-primaryText">
-                  Category: {categories.find((c) => c.slug === initialParams.categorySlug)?.name || initialParams.categorySlug}
-                  <button
-                    type="button"
-                    onClick={() => updateFilters({ category: null, subcategory: null })}
-                    className="hover:text-state-danger"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
-              {initialParams.subcategorySlug && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-subtleBorder text-xs font-medium text-primaryText">
-                  Subcategory: {initialParams.subcategorySlug}
-                  <button
-                    type="button"
-                    onClick={() => updateFilters({ subcategory: null })}
-                    className="hover:text-state-danger"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
-              {initialParams.resourceType && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-subtleBorder text-xs font-medium text-primaryText">
-                  Type: {resourceTypes.find((t) => t.value === initialParams.resourceType)?.label}
-                  <button
-                    type="button"
-                    onClick={() => updateFilters({ type: null })}
-                    className="hover:text-state-danger"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
-              {initialParams.accessStatus && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-subtleBorder text-xs font-medium text-primaryText">
-                  Access: {accessOptions.find((a) => a.value === initialParams.accessStatus)?.label}
-                  <button
-                    type="button"
-                    onClick={() => updateFilters({ access: null })}
-                    className="hover:text-state-danger"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
-            </div>
-          )}
-
-          {/* Results Display */}
-          {initialData.resources.length > 0 ? (
+          {pagedResources.length > 0 ? (
             viewMode === "grid" ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {initialData.resources.map((res) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
+                {pagedResources.map((res) => (
                   <ResourceCard key={res.id} resource={res} />
                 ))}
               </div>
             ) : (
               <div className="space-y-3">
-                {initialData.resources.map((res) => (
+                {pagedResources.map((res) => (
                   <ResourceRow key={res.id} resource={res} />
                 ))}
               </div>
             )
           ) : (
-            /* Empty State */
-            <div className="p-12 text-center rounded-panel border border-subtleBorder bg-surface">
-              <h3 className="text-base font-bold text-primaryText mb-2">No matching resources found</h3>
-              <p className="text-xs text-mutedText-secondary max-w-sm mx-auto mb-6">
-                No published entries match the selected combination. Try clearing filters or searching
-                for related capabilities.
+            <div className="p-12 text-center rounded-card border border-rule bg-paper-2 space-y-3">
+              <h3 className="text-base font-display font-medium text-ink">
+                No matching resources found
+              </h3>
+              <p className="text-xs text-muted max-w-sm mx-auto">
+                No entries match the selected filters. Try clearing filters or searching broader terms.
               </p>
               <button
                 type="button"
                 onClick={clearAllFilters}
-                className="px-4 py-2 rounded-btn bg-state-inverse text-state-inverseText text-xs font-semibold hover:opacity-90"
+                className="px-4 py-2 rounded-pill bg-accent text-accent-ink text-xs font-medium hover:opacity-90"
               >
-                Reset All Filters
+                Reset filters
               </button>
             </div>
           )}
 
-          {/* Pagination Controls */}
-          {initialData.totalPages > 1 && (
-            <div className="flex items-center justify-between pt-6 border-t border-subtleBorder text-xs">
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between pt-6 border-t border-rule text-xs">
               <button
                 type="button"
-                disabled={initialData.page <= 1}
-                onClick={() => updateFilters({ page: initialData.page - 1 })}
-                className="px-3 py-1.5 rounded-btn border border-subtleBorder bg-surface hover:bg-state-hover disabled:opacity-40 disabled:cursor-not-allowed font-medium text-primaryText"
+                disabled={safePage <= 1}
+                onClick={() => updateFilters({ page: safePage - 1 })}
+                className="px-4 py-2 rounded-pill border border-rule bg-paper-2 hover:border-rule-2 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-ink"
               >
                 Previous
               </button>
-              <span className="text-mutedText">
-                Page {initialData.page} of {initialData.totalPages}
+              <span className="text-muted num">
+                Page {safePage} of {totalPages}
               </span>
               <button
                 type="button"
-                disabled={initialData.page >= initialData.totalPages}
-                onClick={() => updateFilters({ page: initialData.page + 1 })}
-                className="px-3 py-1.5 rounded-btn border border-subtleBorder bg-surface hover:bg-state-hover disabled:opacity-40 disabled:cursor-not-allowed font-medium text-primaryText"
+                disabled={safePage >= totalPages}
+                onClick={() => updateFilters({ page: safePage + 1 })}
+                className="px-4 py-2 rounded-pill border border-rule bg-paper-2 hover:border-rule-2 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-ink"
               >
                 Next
               </button>
@@ -526,23 +579,29 @@ export default function ExploreClient({
         </div>
       </div>
 
-      {/* Mobile Filters Drawer / Sheet */}
+      {/* Mobile Filters Sheet */}
       {isMobileFilterOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-primaryText/40 backdrop-blur-sm md:hidden">
-          <div className="w-full max-w-xs h-full bg-surface-strong p-5 overflow-y-auto border-l border-subtleBorder space-y-6">
-            <div className="flex items-center justify-between border-b border-subtleBorder pb-3">
-              <h3 className="text-sm font-bold text-primaryText">Filter Catalogue</h3>
+        <div
+          className="fixed inset-0 z-[var(--z-modal)] flex justify-end bg-paper-3/80 backdrop-blur-sm md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Filter catalogue"
+        >
+          <div className="w-full max-w-xs h-full bg-paper p-5 overflow-y-auto border-l border-rule space-y-6">
+            <div className="flex items-center justify-between border-b border-rule pb-3">
+              <h3 className="text-sm font-medium text-ink">Filter Catalogue</h3>
               <button
                 type="button"
                 onClick={() => setIsMobileFilterOpen(false)}
-                className="p-1 rounded text-mutedText hover:text-primaryText"
+                className="p-1.5 rounded-pill text-muted hover:text-ink"
+                aria-label="Close filters"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-primaryText mb-2">Resource Type</h4>
+            <div className="space-y-2">
+              <h4 className="text-xs font-medium text-ink">Resource Type</h4>
               <div className="space-y-1">
                 {resourceTypes.map((type) => (
                   <button
@@ -552,7 +611,7 @@ export default function ExploreClient({
                       updateFilters({ type: type.value || null });
                       setIsMobileFilterOpen(false);
                     }}
-                    className="w-full text-left px-2.5 py-1.5 rounded text-xs text-primaryText hover:bg-state-hover font-medium"
+                    className="w-full text-left px-3 py-1.5 rounded-pill text-xs text-ink hover:bg-paper-2"
                   >
                     {type.label}
                   </button>
@@ -560,18 +619,16 @@ export default function ExploreClient({
               </div>
             </div>
 
-            <div className="pt-4 border-t border-subtleBorder">
-              <button
-                type="button"
-                onClick={() => {
-                  clearAllFilters();
-                  setIsMobileFilterOpen(false);
-                }}
-                className="w-full py-2 rounded-btn border border-subtleBorder text-xs font-semibold text-primaryText bg-surface"
-              >
-                Reset All Filters
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                clearAllFilters();
+                setIsMobileFilterOpen(false);
+              }}
+              className="w-full py-2 rounded-pill border border-rule text-xs font-medium text-ink bg-paper-2"
+            >
+              Reset all filters
+            </button>
           </div>
         </div>
       )}

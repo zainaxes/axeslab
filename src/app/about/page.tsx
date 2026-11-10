@@ -1,139 +1,143 @@
 import React from "react";
-import { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Terminal, Layers, Cpu, ShieldCheck, ArrowRight, Compass } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { PolicyLayout } from "@/components/PolicyLayout";
 
 export const metadata: Metadata = {
-  title: "About Axes Lab — Mission & Architecture",
+  title: "About Axes Lab — Independent Resource Library by ZainAxes",
   description:
-    "An independent technical reference library and design engineering platform documenting AI prompts, agent skills, WebGL modules, and MCP servers.",
+    "Axes Lab is an independent resource discovery and reference library and a sub-brand of ZainAxes, bringing prompts, creative references, motion-design resources, and tools together in one place.",
+  alternates: {
+    canonical: "https://axeslab.zainaxes.com/about",
+  },
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-paper text-ink font-sans antialiased py-8 px-4 sm:px-8">
-      <article className="max-w-4xl mx-auto space-y-12">
-        <Breadcrumbs items={[{ label: "About Axes Lab", href: "/about" }]} />
+    <PolicyLayout
+      title="About Axes Lab"
+      subtitle="An independent resource library and a sub-brand of ZainAxes."
+      breadcrumbs={[{ label: "About", href: "/about" }]}
+    >
+      <section className="space-y-4">
+        <p className="text-ink">
+          Axes Lab is an independent resource library and a sub-brand of{" "}
+          <a
+            href="https://zainaxes.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cool hover:underline"
+          >
+            ZainAxes
+          </a>
+          . ZainAxes is an independent, private, non-government, non-commercial brand.
+        </p>
 
-        {/* Hero Header */}
-        <header className="rounded-card bg-paper-2 border border-rule p-6 sm:p-10 space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-pill bg-paper-3 border border-rule flex items-center justify-center p-2">
-              <img src="/logo-white.png" alt="Axes Lab Logo" className="w-full h-full object-contain" />
-            </div>
-            <div>
-              <span className="text-xs font-mono text-cool block">Official Directory &amp; Design Engine</span>
-              <span className="text-xs text-muted">Created by <a href="https://instagram.com/zainaxes" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">@zainaxes</a> (<a href="https://zainaxes.com" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">zainaxes.com</a>)</span>
-            </div>
-          </div>
+        <p className="text-muted">
+          Its purpose is to bring useful prompts, creative references, motion-design resources, and other tools together in one place, making it easier for people to discover what they are looking for without searching across multiple platforms.
+        </p>
 
-          <h1 className="text-3xl sm:text-4xl font-display font-medium text-ink leading-tight">
-            Crafting the next generation of AI websites and autonomous workflows
-          </h1>
-          <p className="text-sm text-muted max-w-2xl leading-relaxed">
-            Axes Lab is a free, open-access technical reference index and component platform. We give designers, engineers, and AI developers production-verified prompts, agent skills, 3D WebGL backgrounds, and Model Context Protocol (MCP) servers.
-          </p>
+        <p className="text-muted">
+          The resources collected here come from different sources and creators. Their original ownership and attribution remain with their respective owners.
+        </p>
 
-          <div className="pt-2 flex flex-wrap gap-3">
-            <Link
-              href="/prompts"
-              className="inline-flex items-center gap-2 bg-ink text-paper hover:opacity-90 font-medium text-xs sm:text-sm px-4 py-2 rounded-pill transition-opacity focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <span>Browse 375+ Directives</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/mcp"
-              className="inline-flex items-center gap-2 bg-paper-3 hover:bg-rule border border-rule text-ink font-medium text-xs sm:text-sm px-4 py-2 rounded-pill transition-colors focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <span>Connect MCP Server</span>
-            </Link>
-          </div>
-        </header>
+        <p className="text-muted">
+          Axes Lab aims to provide an accessible and consistent experience for everyone. Its purpose is to make useful resources easier to discover, not to create unnecessary barriers around access.
+        </p>
 
-        {/* Grid Pillars */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-display font-medium text-ink">What powers Axes Lab</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-5 rounded-card border border-rule bg-paper-2 space-y-3">
-              <div className="w-9 h-9 rounded-pill bg-paper-3 border border-rule flex items-center justify-center text-cool">
-                <Terminal className="w-4 h-4" />
-              </div>
-              <h3 className="text-sm font-display font-medium text-ink">Production AI Prompts</h3>
-              <p className="text-xs text-muted leading-relaxed">
-                Curated, production-tested system directives engineered for Claude 3.7 Sonnet, GPT-4.5, Gemini 2.0, DeepSeek, and Cursor. Structured with clear variables and zero guesswork.
-              </p>
-            </div>
+        <p className="text-muted">
+          We appreciate every creator, author, developer, and contributor whose work makes this collection possible.
+        </p>
+      </section>
 
-            <div className="p-5 rounded-card border border-rule bg-paper-2 space-y-3">
-              <div className="w-9 h-9 rounded-pill bg-paper-3 border border-rule flex items-center justify-center text-cool">
-                <Cpu className="w-4 h-4" />
-              </div>
-              <h3 className="text-sm font-display font-medium text-ink">Agent Skills &amp; MCP</h3>
-              <p className="text-xs text-muted leading-relaxed">
-                Standardized `SKILL.md` rules and Model Context Protocol endpoints so AI agents can inspect codebases, execute verified CLI workflows, and assemble design systems automatically.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-card border border-rule bg-paper-2 space-y-3">
-              <div className="w-9 h-9 rounded-pill bg-paper-3 border border-rule flex items-center justify-center text-cool">
-                <Layers className="w-4 h-4" />
-              </div>
-              <h3 className="text-sm font-display font-medium text-ink">Interactive 3D &amp; Motion</h3>
-              <p className="text-xs text-muted leading-relaxed">
-                Interactive WebGL canvas animations, Three.js shaders, animated gradients, and Tailwind UI components designed for production performance.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Philosophy Details */}
-        <div className="space-y-8 text-sm">
-          <section className="space-y-3 border-t border-rule pt-8">
-            <h2 className="text-lg font-display font-medium text-ink flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-cool" />
-              <span>Editorial and verification standard</span>
+      <section className="pt-6 border-t border-rule grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="rounded-card border border-rule bg-paper-2 p-5 space-y-3 flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <h2 className="text-base font-display font-medium text-ink">
+              Have a resource or prompt to contribute?
             </h2>
             <p className="text-xs text-muted leading-relaxed">
-              The artificial intelligence design space is overloaded with low-effort regurgitations and generic prompt packs. Axes Lab operates with an uncompromising standard:
+              Submit it for review and inclusion through the submission page.
             </p>
-            <ul className="list-disc pl-5 space-y-2 text-xs text-muted leading-relaxed">
-              <li><strong className="text-ink">Verified Working Code:</strong> Every prompt or component is verified to produce executable code in Next.js, React, or standard web frameworks.</li>
-              <li><strong className="text-ink">Safety and Transparency:</strong> We never bundle untrusted or obfuscated shell executions. Tools with filesystem or network permissions are explicitly identified.</li>
-              <li><strong className="text-ink">100% Free and Unlocked:</strong> No locked tiers, forced Discord invites, or subscriptions to access prompts and MCP schemas.</li>
-            </ul>
-          </section>
-
-          <section className="space-y-3 border-t border-rule pt-8">
-            <h2 className="text-lg font-display font-medium text-ink flex items-center gap-2">
-              <Compass className="w-4 h-4 text-cool" />
-              <span>Explore the ecosystem</span>
-            </h2>
-            <p className="text-xs text-muted">
-              Dive deeper into our technical documentation and governance policies:
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-2">
-              <Link href="/licensing" className="p-3.5 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors text-ink block">
-                <span className="font-medium block mb-0.5">Licensing</span>
-                <span className="text-muted text-[11px]">Usage &amp; attribution</span>
-              </Link>
-              <Link href="/safety-and-security" className="p-3.5 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors text-ink block">
-                <span className="font-medium block mb-0.5">Safety &amp; Trust</span>
-                <span className="text-muted text-[11px]">Sanitization &amp; review</span>
-              </Link>
-              <Link href="/privacy" className="p-3.5 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors text-ink block">
-                <span className="font-medium block mb-0.5">Privacy Policy</span>
-                <span className="text-muted text-[11px]">Zero tracking policy</span>
-              </Link>
-              <Link href="/terms" className="p-3.5 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors text-ink block">
-                <span className="font-medium block mb-0.5">Terms of Use</span>
-                <span className="text-muted text-[11px]">Directory agreement</span>
-              </Link>
-            </div>
-          </section>
+          </div>
+          <Link
+            href="/submit"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-cool hover:underline pt-1"
+          >
+            <span>Go to submission page</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
-      </article>
-    </div>
+
+        <div className="rounded-card border border-rule bg-paper-2 p-5 space-y-3 flex flex-col justify-between">
+          <div className="space-y-1.5">
+            <h2 className="text-base font-display font-medium text-ink">
+              Want to contribute your time, skills, or financial support?
+            </h2>
+            <p className="text-xs text-muted leading-relaxed">
+              Contact ZainAxes directly through the contact page.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-cool hover:underline pt-1"
+          >
+            <span>Go to contact page</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="pt-6 border-t border-rule space-y-4">
+        <h2 className="text-base font-display font-medium text-ink">
+          Governance &amp; Standards
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <Link
+            href="/licensing"
+            className="p-4 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors"
+          >
+            <span className="font-medium text-ink block">
+              Licensing &amp; Rights
+            </span>
+            <span className="text-muted mt-0.5 block">
+              Resource ownership, attribution, and redistribution classifications
+            </span>
+          </Link>
+          <Link
+            href="/methodology"
+            className="p-4 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors"
+          >
+            <span className="font-medium text-ink block">
+              Curation Methodology
+            </span>
+            <span className="text-muted mt-0.5 block">
+              Source hierarchy, verification rubric, and freshness checks
+            </span>
+          </Link>
+          <Link
+            href="/safety-and-security"
+            className="p-4 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors"
+          >
+            <span className="font-medium text-ink block">
+              Safety &amp; Security
+            </span>
+            <span className="text-muted mt-0.5 block">
+              Untrusted content handling and MCP permission transparency
+            </span>
+          </Link>
+          <Link
+            href="/privacy"
+            className="p-4 rounded-card border border-rule bg-paper-2 hover:border-rule-2 transition-colors"
+          >
+            <span className="font-medium text-ink block">Privacy &amp; Terms</span>
+            <span className="text-muted mt-0.5 block">
+              Local storage behavior and directory terms of use
+            </span>
+          </Link>
+        </div>
+      </section>
+    </PolicyLayout>
   );
 }

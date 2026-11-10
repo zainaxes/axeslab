@@ -1,126 +1,147 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Search, Sparkles, ArrowRight, Layers, Video, Code2 } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
+import { gsap, MOTION, useGSAP } from "@/lib/motion";
 
 interface HeroSectionProps {
   totalPublished: number;
+  onOpenSearch?: () => void;
 }
 
-export function HeroSection({ totalPublished }: HeroSectionProps) {
-  const [videoLoaded, setVideoLoaded] = useState(false);
+export function HeroSection({ totalPublished, onOpenSearch }: HeroSectionProps) {
+  const containerRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setReduceMotion(mq.matches);
+      if (videoRef.current) {
+        if (mq.matches) {
+          videoRef.current.pause();
+        } else {
+          videoRef.current.play().catch(() => {});
+        }
+      }
+    };
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from("[data-hero-reveal]", {
+          autoAlpha: 0,
+          y: 14,
+          duration: MOTION.durReveal,
+          ease: MOTION.easeOut,
+          stagger: 0.06,
+          clearProps: "transform,opacity,visibility",
+        });
+      });
+    },
+    { scope: containerRef }
+  );
+
+  const handleBrowseClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const target = document.getElementById("catalog-discovery");
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    }
+  };
 
   return (
-    <section className="relative w-full min-h-[92dvh] sm:min-h-dvh flex items-center justify-center overflow-hidden bg-paper text-ink">
-      {/* 1. Fullscreen Responsive Background Video */}
-      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none">
+    <section
+      ref={containerRef}
+      className="relative w-full min-h-[340px] sm:min-h-[380px] lg:min-h-[420px] flex items-center justify-center overflow-hidden bg-paper border-b border-rule"
+    >
+      {/* Full-bleed background video */}
+      <div
+        className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none"
+        aria-hidden="true"
+      >
         <video
-          autoPlay
+          ref={videoRef}
+          autoPlay={!reduceMotion}
           loop
           muted
           playsInline
-          webkit-playsinline="true"
-          preload="auto"
-          poster="/media/posters/interactive-discovery.webp"
-          onCanPlay={() => setVideoLoaded(true)}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
-            videoLoaded ? "opacity-60 scale-100" : "opacity-35 scale-105"
-          }`}
+          preload="metadata"
+          poster="/videos/hero-poster.jpg"
+          className="w-full h-full object-cover opacity-55"
         >
-          {/* Background Video */}
-          <source src="/videos/abstract-blue-lines-dots.mp4" type="video/mp4" />
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
 
-        {/* 2. Cybernetic Vignette & Atmospheric Fog Layers */}
-        <div className="absolute inset-0 bg-radial-[at_center_center] from-transparent via-paper/70 to-paper pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-paper/80 via-transparent to-paper pointer-events-none" />
+        {/* Subtle legibility vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-paper/75 via-paper/55 to-paper" />
       </div>
 
-      {/* 3. Centerpiece Content (Axes Lab Layout & Typography) */}
-      <div className="relative z-10 mx-auto max-w-5xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 text-center space-y-8 flex flex-col items-center">
-        {/* Top Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 rounded-pill border border-cool/30 bg-paper-2/90 px-3.5 py-1 text-xs text-cool">
-          <span className="flex h-1.5 w-1.5 rounded-full bg-cool" />
-          <span className="font-medium">Verified AI Motion & UI Directory</span>
-          <span className="text-muted">•</span>
-          <span className="text-ink">Axes Lab</span>
-        </div>
+      {/* Centered, focused hero content */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 text-center flex flex-col items-center gap-5">
+        <p
+          data-hero-reveal
+          className="inline-flex items-center gap-2 rounded-pill border border-rule bg-paper-2/85 backdrop-blur-sm px-3 py-1 text-xs text-muted"
+        >
+          <span className="text-ink font-medium">Axes Lab</span>
+          <span aria-hidden="true">·</span>
+          <span className="num">{totalPublished} verified resources</span>
+        </p>
 
-        {/* Headline */}
-        <div className="space-y-4 max-w-4xl">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl md:text-7xl leading-[1.05] text-ink">
-            Make Lovable, Bolt, Cursor & Claude build <br />
-            <span className="text-cool">
-              entire sites worth shipping.
-            </span>
-          </h1>
+        <h1
+          data-hero-reveal
+          className="text-3xl sm:text-5xl lg:text-[54px] font-display font-medium tracking-display text-ink leading-[1.06] max-w-3xl"
+        >
+          Make Lovable, Bolt, Cursor &amp; Claude build sites worth shipping.
+        </h1>
 
-          <p className="mx-auto max-w-2xl text-base sm:text-lg font-normal text-muted leading-relaxed">
-            Discover {totalPublished.toLocaleString()}+ verified AI prompts, agent skills, MCP servers, workflows, and open-source models with live video previews and copy-ready specifications.
-          </p>
-        </div>
+        <p
+          data-hero-reveal
+          className="max-w-xl text-sm sm:text-base text-ink-2/90 leading-relaxed"
+        >
+          Discover {totalPublished} website prompts, motion directives, agent skills, and UI sections with live previews and copy-ready specifications.
+        </p>
 
-        {/* Prominent Search Bar */}
-        <div className="w-full max-w-2xl pt-2">
-          <Link
-            href="/explore"
-            className="group relative flex h-16 w-full items-center justify-between rounded-card border border-rule bg-paper-2/90 px-6 backdrop-blur-xl transition-colors duration-150 hover:border-cool/50 hover:bg-paper-3 focus-visible:outline-2 focus-visible:outline-accent active:bg-paper-3"
+        <div
+          data-hero-reveal
+          className="flex flex-wrap items-center justify-center gap-3 pt-1"
+        >
+          <a
+            href="#catalog-discovery"
+            onClick={handleBrowseClick}
+            className="inline-flex items-center gap-2 h-10 px-5 rounded-pill bg-accent text-accent-ink text-sm font-medium hover:opacity-90 transition-opacity duration-150 focus-visible:outline-2 focus-visible:outline-accent"
           >
-            <div className="flex items-center gap-4 text-sm sm:text-base font-medium text-muted group-hover:text-ink">
-              <Search className="h-5 w-5 text-cool motion-safe:transition-transform motion-safe:group-hover:scale-105" />
-              <span>Search {totalPublished.toLocaleString()} prompts, skills, MCP servers…</span>
-            </div>
+            <span>Browse catalogue</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
 
-            <div className="flex items-center gap-2.5">
-              <kbd className="hidden sm:inline-flex items-center rounded-pill border border-rule bg-paper-3 px-2.5 py-1 font-mono text-xs font-medium text-muted">
+          {onOpenSearch ? (
+            <button
+              type="button"
+              onClick={onOpenSearch}
+              className="inline-flex items-center gap-2.5 h-10 px-4 rounded-pill bg-paper-2/90 border border-rule hover:border-rule-2 text-sm text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <Search className="w-4 h-4 text-muted" />
+              <span>Search library</span>
+              <kbd className="font-mono text-[11px] text-muted px-1.5 py-0.5 rounded bg-paper-3 border border-rule">
                 ⌘K
               </kbd>
-              <div className="flex h-8 w-8 items-center justify-center rounded-pill bg-ink text-paper motion-safe:transition-transform motion-safe:duration-150 group-hover:bg-cool group-hover:text-paper">
-                <ArrowRight className="h-3.5 w-3.5" />
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Live Metrics Pill Trio */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
-          <Link
-            href="/web-design"
-            className="group inline-flex items-center gap-2 rounded-pill border border-rule bg-paper-2/80 px-4 py-2 text-xs font-medium text-muted hover:text-ink hover:border-rule-2 hover:bg-paper-3 transition-colors duration-150"
-          >
-            <Code2 className="h-3.5 w-3.5 text-cool" />
-            <strong className="text-ink font-semibold">86</strong>
-            <span>Full Websites</span>
-          </Link>
-
-          <Link
-            href="/sections"
-            className="group inline-flex items-center gap-2 rounded-pill border border-rule bg-paper-2/80 px-4 py-2 text-xs font-medium text-muted hover:text-ink hover:border-rule-2 hover:bg-paper-3 transition-colors duration-150"
-          >
-            <Layers className="h-3.5 w-3.5 text-cool" />
-            <strong className="text-ink font-semibold">48</strong>
-            <span>UI Sections</span>
-          </Link>
-
-          <Link
-            href="/backgrounds"
-            className="group inline-flex items-center gap-2 rounded-pill border border-rule bg-paper-2/80 px-4 py-2 text-xs font-medium text-muted hover:text-ink hover:border-rule-2 hover:bg-paper-3 transition-colors duration-150"
-          >
-            <Video className="h-3.5 w-3.5 text-accent" />
-            <strong className="text-ink font-semibold">71</strong>
-            <span>Motion Backgrounds</span>
-          </Link>
-
-          <a
-            href="https://axeslab.zainaxes.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-pill border border-rule bg-paper-2/80 px-4 py-2 text-xs font-medium text-muted hover:text-cool hover:border-rule-2 hover:bg-paper-3 transition-colors duration-150"
-          >
-            <span>axeslab.zainaxes.com</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-cool" />
-          </a>
+            </button>
+          ) : (
+            <Link
+              href="/categories"
+              className="inline-flex items-center gap-2 h-10 px-4 rounded-pill bg-paper-2/90 border border-rule hover:border-rule-2 text-sm text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <span>Browse categories</span>
+            </Link>
+          )}
         </div>
       </div>
     </section>

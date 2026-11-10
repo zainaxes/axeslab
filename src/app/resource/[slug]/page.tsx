@@ -1,22 +1,21 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { ExternalLink, Flag } from "lucide-react";
 import { getResourceBySlug, getRelatedResources } from "@/lib/queries";
+import { ALL_UNIFIED_ITEMS, findUnifiedItemBySlug } from "@/lib/unified-catalog";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { ResourcePreviewTheater } from "@/components/ResourcePreviewTheater";
+import { SafeMediaImage } from "@/components/SafeMediaImage";
 import ResourceCard from "@/components/ResourceCard";
 import TypePreview from "@/components/TypePreview";
-import { AccessBadge, DistributionBadge, VerificationBadge, TypeBadge } from "@/components/StatusBadges";
 import {
-  ExternalLink,
-  ShieldAlert,
-  Calendar,
-  Layers,
-  Flag,
-  FileCode,
-  ShieldCheck,
-  CheckCircle2,
-} from "lucide-react";
+  AccessBadge,
+  DistributionBadge,
+  TypeBadge,
+  VerificationBadge,
+} from "@/components/StatusBadges";
 
 export const dynamic = "force-dynamic";
 
@@ -26,19 +25,47 @@ interface ResourceDetailPageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: ResourceDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ResourceDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const resource = getResourceBySlug(slug);
+  const unified = findUnifiedItemBySlug(slug);
+  if (unified) {
+    const title = `${unified.title} — ${unified.category}`;
+    const description = unified.summary || undefined;
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `https://axeslab.zainaxes.com/resource/${unified.slug}`,
+      },
+      openGraph: {
+        title: `${title} | Axes Lab`,
+        description,
+        url: `https://axeslab.zainaxes.com/resource/${unified.slug}`,
+        type: "article",
+        ...(unified.posterUrl ? { images: [{ url: unified.posterUrl }] } : {}),
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${title} | Axes Lab`,
+        description,
+      },
+    };
+  }
 
+  const resource = getResourceBySlug(slug);
   if (!resource) {
     return { title: "Resource Not Found" };
   }
 
-  const title = resource.seo_title || `${resource.title} — ${resource.resource_type.replace("_", " ").toUpperCase()}`;
-  const description = resource.seo_description || resource.summary;
+  const categoryLabel =
+    resource.category_name || resource.resource_type.replace("_", " ");
+  const title = resource.seo_title || `${resource.title} — ${categoryLabel}`;
+  const description = resource.seo_description || resource.summary || undefined;
 
   return {
-    title: `${title} | Axes Lab`,
+    title,
     description,
     alternates: {
       canonical: `https://axeslab.zainaxes.com/resource/${resource.slug}`,
@@ -57,10 +84,98 @@ export async function generateMetadata({ params }: ResourceDetailPageProps): Pro
   };
 }
 
-export default async function ResourceDetailPage({ params }: ResourceDetailPageProps) {
+export default async function ResourceDetailPage({
+  params,
+}: ResourceDetailPageProps) {
   const { slug } = await params;
-  const resource = getResourceBySlug(slug);
+  const unified = findUnifiedItemBySlug(slug);
 
+  if (unified) {
+    const relatedItems = ALL_UNIFIED_ITEMS.filter(
+      (i) =>
+        i.slug !== unified.slug &&
+        (i.categorySlug === unified.categorySlug ||
+          i.subcategory === unified.subcategory)
+    ).slice(0, 4);
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": unified.isSkill ? "SoftwareSourceCode" : "CreativeWork",
+      name: unified.title,
+      description: unified.summary,
+      url: `https://axeslab.zainaxes.com/resource/${unified.slug}`,
+      ...(unified.posterUrl ? { image: unified.posterUrl } : {}),
+      creator: {
+        "@type": "Person",
+        name: unified.author,
+      },
+      ...(unified.date ? { datePublished: unified.date } : {}),
+    };
+
+    return (
+      <div className="min-h-screen bg-paper text-ink">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
+        <div className="max-w-[var(--container)] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+          <Breadcrumbs
+            items={[
+              {
+                label: unified.category,
+                href:
+                  unified.origin === "web-library"
+                    ? `/web-design/${unified.categorySlug}`
+                    : "/prompts",
+              },
+              { label: unified.title },
+            ]}
+          />
+
+          <ResourcePreviewTheater item={unified} showPermalink={false} />
+
+          {/* Related Items */}
+          {relatedItems.length > 0 && (
+            <section className="pt-8 border-t border-rule space-y-5">
+              <h2 className="text-lg font-display font-medium text-ink">
+                Related in {unified.category}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {relatedItems.map((rel) => (
+                  <Link
+                    key={rel.id}
+                    href={`/resource/${rel.slug}`}
+                    className="group flex flex-col gap-2 focus-visible:outline-2 focus-visible:outline-accent rounded-card"
+                  >
+                    <div className="aspect-[16/10] w-full rounded-card overflow-hidden bg-paper-3 border border-rule group-hover:border-rule-2 transition-colors duration-150">
+                      <SafeMediaImage
+                        src={rel.posterUrl}
+                        alt={rel.title}
+                        fallbackLabel={rel.subcategory || rel.category}
+                        className="w-full h-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                    <div className="px-0.5">
+                      <h3 className="text-sm font-medium text-ink truncate group-hover:text-cool transition-colors duration-150">
+                        {rel.title}
+                      </h3>
+                      <p className="text-xs text-muted truncate">
+                        {rel.subcategory || rel.category} · {rel.source}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback to DB snapshot resource
+  const resource = getResourceBySlug(slug);
   if (!resource) {
     notFound();
   }
@@ -71,12 +186,13 @@ export default async function ResourceDetailPage({ params }: ResourceDetailPageP
     resource.subcategory_id,
     3
   );
-
   const metadata = resource.parsed_metadata || {};
 
-  // JSON-LD Structured Data
   let schemaType = "CreativeWork";
-  if (resource.resource_type === "mcp_server" || resource.resource_type === "tool") {
+  if (
+    resource.resource_type === "mcp_server" ||
+    resource.resource_type === "tool"
+  ) {
     schemaType = "SoftwareApplication";
   } else if (resource.resource_type === "dataset") {
     schemaType = "Dataset";
@@ -91,253 +207,219 @@ export default async function ResourceDetailPage({ params }: ResourceDetailPageP
     license: resource.license_url || resource.license_name,
     creator: {
       "@type": "Organization",
-      name: resource.author_or_publisher || "Axes Lab Verified Contributor",
+      name: resource.author_or_publisher || "Axes Lab",
     },
     datePublished: resource.published_at || resource.created_at,
     dateModified: resource.updated_at,
-    isAccessibleForFree: resource.access_status.startsWith("free") || resource.access_status.includes("open"),
   };
 
   return (
-    <div className="space-y-10">
+    <div className="min-h-screen bg-paper text-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Breadcrumbs */}
-      <Breadcrumbs
-        items={[
-          ...(resource.category_name && resource.category_slug
-            ? [{ label: resource.category_name, href: `/${resource.category_slug}` }]
-            : []),
-          ...(resource.subcategory_name && resource.category_slug && resource.subcategory_slug
-            ? [
-                {
-                  label: resource.subcategory_name,
-                  href: `/${resource.category_slug}/${resource.subcategory_slug}`,
-                },
-              ]
-            : []),
-          { label: resource.title },
-        ]}
-      />
+      <div className="max-w-[var(--container)] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+        <Breadcrumbs
+          items={[
+            ...(resource.category_name && resource.category_slug
+              ? [{ label: resource.category_name, href: `/${resource.category_slug}` }]
+              : []),
+            ...(resource.subcategory_name &&
+            resource.category_slug &&
+            resource.subcategory_slug
+              ? [
+                  {
+                    label: resource.subcategory_name,
+                    href: `/${resource.category_slug}/${resource.subcategory_slug}`,
+                  },
+                ]
+              : []),
+            { label: resource.title },
+          ]}
+        />
 
-      {/* Top Resource Hero / Metadata */}
-      <div className="border-b border-subtleBorder pb-8">
-        <div className="flex items-center gap-2 mb-3">
-          <TypeBadge type={resource.resource_type} />
-          {resource.version_label && (
-            <span className="font-mono text-xs px-2 py-0.5 rounded bg-surface border border-subtleBorder text-primaryText font-semibold">
-              {resource.version_label}
-            </span>
-          )}
-          <AccessBadge status={resource.access_status} />
-          <DistributionBadge status={resource.distribution_status} />
-        </div>
+        <header className="border-b border-rule pb-8 space-y-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <TypeBadge type={resource.resource_type} />
+            {resource.version_label && (
+              <span className="font-mono text-xs px-2 py-0.5 rounded-pill bg-paper-2 border border-rule text-ink">
+                {resource.version_label}
+              </span>
+            )}
+            <AccessBadge status={resource.access_status} />
+            <DistributionBadge status={resource.distribution_status} />
+          </div>
 
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-primaryText tracking-tight mb-3">
-          {resource.title}
-        </h1>
+          <h1 className="text-2xl sm:text-4xl font-display font-medium text-ink">
+            {resource.title}
+          </h1>
 
-        <p className="text-sm sm:text-base text-mutedText-secondary leading-relaxed max-w-3xl mb-6">
-          {resource.summary}
-        </p>
+          <p className="text-sm text-muted leading-relaxed max-w-3xl">
+            {resource.summary}
+          </p>
 
-        {/* Primary Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3">
-          {resource.canonical_url && (
-            <a
-              href={resource.canonical_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-btn bg-state-inverse text-state-inverseText font-semibold text-xs hover:opacity-90 transition-opacity"
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            {resource.canonical_url && (
+              <a
+                href={resource.canonical_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 h-9 px-4 rounded-pill bg-accent text-accent-ink font-medium text-xs hover:opacity-90 transition-opacity"
+              >
+                <span>Open Authoritative Source</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+
+            <Link
+              href={`/contact?report=${encodeURIComponent(resource.id)}`}
+              className="inline-flex items-center gap-1.5 h-9 px-4 rounded-pill bg-paper-2 border border-rule text-muted hover:text-ink hover:border-rule-2 font-medium text-xs transition-colors"
             >
-              <span>Open Authoritative Source</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          )}
+              <Flag className="w-3.5 h-3.5" />
+              <span>Report Issue / Takedown</span>
+            </Link>
+          </div>
+        </header>
 
-          <Link
-            href={`/contact?report=${encodeURIComponent(resource.id)}`}
-            className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-btn bg-surface border border-subtleBorder text-mutedText-secondary hover:text-primaryText hover:bg-state-hover font-medium text-xs transition-colors"
-          >
-            <Flag className="w-3.5 h-3.5 text-mutedText" />
-            Report Issue / Takedown
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Preview & Detailed Documentation (approx 8 cols) */}
-        <div className="lg:col-span-8 space-y-8">
-          {/* Type-Specific Interactive Content */}
-          <section>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-mutedText mb-3">
-              Resource Instructions & Content
-            </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-8 space-y-8">
             <TypePreview resource={resource} />
-          </section>
 
-          {/* Description & Technical Rationale */}
-          {resource.description && (
-            <section className="space-y-3">
-              <h2 className="text-base font-bold text-primaryText tracking-tight">
-                Overview & Practical Rationale
+            {resource.description && (
+              <section className="space-y-2">
+                <h2 className="text-base font-display font-medium text-ink">
+                  Overview
+                </h2>
+                <p className="text-sm text-muted leading-relaxed">
+                  {resource.description}
+                </p>
+              </section>
+            )}
+
+            {metadata.requirements && metadata.requirements.length > 0 && (
+              <section className="space-y-2">
+                <h2 className="text-base font-display font-medium text-ink">
+                  Runtime Requirements
+                </h2>
+                <ul className="list-disc pl-5 text-sm text-muted space-y-1">
+                  {metadata.requirements.map((req: string, i: number) => (
+                    <li key={i}>{req}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            <section className="p-5 rounded-card border border-rule bg-paper-2 space-y-2.5 text-xs text-muted leading-relaxed">
+              <h2 className="text-sm font-medium text-ink">
+                Licensing, Provenance &amp; Attribution
               </h2>
-              <div className="prose prose-sm text-xs sm:text-sm text-mutedText-secondary leading-relaxed space-y-2">
-                <p>{resource.description}</p>
-              </div>
-            </section>
-          )}
-
-          {/* Technical Requirements & Compatibility */}
-          {metadata.requirements && metadata.requirements.length > 0 && (
-            <section className="space-y-3">
-              <h2 className="text-base font-bold text-primaryText tracking-tight">
-                Runtime Requirements
-              </h2>
-              <ul className="list-disc pl-5 text-xs sm:text-sm text-mutedText-secondary space-y-1">
-                {metadata.requirements.map((req: string, i: number) => (
-                  <li key={i}>{req}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {/* Rights, Provenance & Attribution Policy */}
-          <section className="p-5 rounded-panel border border-subtleBorder bg-surface space-y-3">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-primaryText">
-              Licensing, Provenance & Attribution
-            </h2>
-            <div className="text-xs text-mutedText-secondary space-y-2 leading-relaxed">
               <p>
-                <strong>License:</strong>{" "}
+                <strong className="text-ink">License:</strong>{" "}
                 {resource.license_url ? (
                   <a
                     href={resource.license_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-primaryText underline inline-flex items-center gap-1"
+                    className="text-cool hover:underline inline-flex items-center gap-1"
                   >
-                    {resource.license_name} <ExternalLink className="w-3 h-3" />
+                    <span>{resource.license_name}</span>
+                    <ExternalLink className="w-3 h-3" />
                   </a>
                 ) : (
-                  <span className="font-semibold text-primaryText">{resource.license_name}</span>
+                  <span className="text-ink">{resource.license_name}</span>
                 )}
-                {resource.license_scope && ` (${resource.license_scope} scope)`}
               </p>
               {resource.attribution_text && (
                 <p>
-                  <strong>Attribution:</strong> {resource.attribution_text}
+                  <strong className="text-ink">Attribution:</strong>{" "}
+                  {resource.attribution_text}
                 </p>
               )}
               {resource.rights_notes && (
                 <p>
-                  <strong>Rights Notes:</strong> {resource.rights_notes}
+                  <strong className="text-ink">Rights Notes:</strong>{" "}
+                  {resource.rights_notes}
                 </p>
               )}
+            </section>
+          </div>
+
+          <aside className="lg:col-span-4 space-y-6">
+            <div className="p-5 rounded-card border border-rule bg-paper-2 space-y-3 text-xs">
+              <h3 className="text-xs font-medium text-ink border-b border-rule pb-2">
+                Metadata &amp; Provenance
+              </h3>
+
+              <dl className="space-y-2.5">
+                <div className="flex justify-between gap-2">
+                  <dt className="text-muted">Maintainer</dt>
+                  <dd className="text-ink font-medium text-right">
+                    {resource.author_or_publisher || "Axes Lab"}
+                  </dd>
+                </div>
+
+                {resource.upstream_repository && (
+                  <div className="flex justify-between gap-2">
+                    <dt className="text-muted">Repository</dt>
+                    <dd className="font-mono text-ink-2 truncate max-w-[170px]">
+                      {resource.upstream_repository}
+                    </dd>
+                  </div>
+                )}
+
+                <div className="flex justify-between gap-2">
+                  <dt className="text-muted">Verification</dt>
+                  <dd>
+                    <VerificationBadge
+                      status={resource.verification_status}
+                      lastChecked={resource.last_checked_at}
+                    />
+                  </dd>
+                </div>
+
+                {resource.source_name && (
+                  <div className="flex justify-between gap-2">
+                    <dt className="text-muted">Canonical Host</dt>
+                    <dd className="text-ink">{resource.source_name}</dd>
+                  </div>
+                )}
+              </dl>
             </div>
-          </section>
+
+            {resource.tags && resource.tags.length > 0 && (
+              <div className="p-5 rounded-card border border-rule bg-paper-2 space-y-3">
+                <h3 className="text-xs font-medium text-ink">Tags</h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {resource.tags.map((t) => (
+                    <Link
+                      key={t}
+                      href={`/explore?tag=${encodeURIComponent(t.toLowerCase())}`}
+                      className="font-mono text-[11px] px-2.5 py-1 rounded-pill bg-paper-3 border border-rule hover:border-rule-2 text-ink-2 transition-colors"
+                    >
+                      #{t}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </aside>
         </div>
 
-        {/* Right Information Rail (approx 4 cols) */}
-        <aside className="lg:col-span-4 space-y-6">
-          <div className="p-5 rounded-panel border border-subtleBorder bg-surface space-y-4 text-xs">
-            <h3 className="font-bold text-primaryText uppercase tracking-wider text-[11px] border-b border-subtleBorder pb-2">
-              Metadata & Provenance
-            </h3>
-
-            <div className="space-y-3 divide-y divide-subtleBorder/60">
-              <div className="pt-2 flex justify-between">
-                <span className="text-mutedText">Maintainer / Author</span>
-                <span className="font-semibold text-primaryText text-right">
-                  {resource.author_or_publisher || "Verified"}
-                </span>
-              </div>
-
-              {resource.upstream_repository && (
-                <div className="pt-2 flex justify-between">
-                  <span className="text-mutedText">Repository</span>
-                  <span className="font-mono text-primaryText truncate max-w-[150px]">
-                    {resource.upstream_repository}
-                  </span>
-                </div>
-              )}
-
-              <div className="pt-2 flex justify-between">
-                <span className="text-mutedText">Verification Status</span>
-                <VerificationBadge
-                  status={resource.verification_status}
-                  lastChecked={resource.last_checked_at}
-                />
-              </div>
-
-              {resource.last_checked_at && (
-                <div className="pt-2 flex justify-between">
-                  <span className="text-mutedText">Last Checked</span>
-                  <span className="font-mono text-mutedText-secondary">
-                    {new Date(resource.last_checked_at).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </span>
-                </div>
-              )}
-
-              {resource.source_name && (
-                <div className="pt-2 flex justify-between">
-                  <span className="text-mutedText">Canonical Host</span>
-                  <span className="font-semibold text-primaryText">{resource.source_name}</span>
-                </div>
-              )}
-
-              <div className="pt-2 flex justify-between">
-                <span className="text-mutedText">Redistribution</span>
-                <span className="font-medium text-primaryText">
-                  {resource.distribution_status === "host_allowed" ? "Hosted Download" : "Official Link Only"}
-                </span>
-              </div>
+        {related.length > 0 && (
+          <section className="pt-8 border-t border-rule space-y-5">
+            <h2 className="text-lg font-display font-medium text-ink">
+              Related Resources
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {related.map((rel) => (
+                <ResourceCard key={rel.id} resource={rel} />
+              ))}
             </div>
-          </div>
-
-          {/* Tags */}
-          {resource.tags && resource.tags.length > 0 && (
-            <div className="p-5 rounded-panel border border-subtleBorder bg-surface">
-              <h3 className="font-bold text-primaryText uppercase tracking-wider text-[11px] mb-3">
-                Classification Tags
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
-                {resource.tags.map((t) => (
-                  <Link
-                    key={t}
-                    href={`/explore?tag=${encodeURIComponent(t.toLowerCase())}`}
-                    className="font-mono text-[11px] px-2 py-1 rounded bg-canvas border border-subtleBorder hover:bg-state-hover text-primaryText transition-colors"
-                  >
-                    #{t}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-        </aside>
+          </section>
+        )}
       </div>
-
-      {/* Related Resources */}
-      {related.length > 0 && (
-        <section className="pt-8 border-t border-subtleBorder">
-          <h2 className="text-xl font-bold text-primaryText tracking-tight mb-4">
-            Related & Alternative Resources
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {related.map((rel) => (
-              <ResourceCard key={rel.id} resource={rel} />
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }

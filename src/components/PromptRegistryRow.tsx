@@ -215,10 +215,9 @@ export function PromptRegistryRow({ item, index }: PromptRegistryRowProps) {
             
             <div className="flex items-center gap-3">
               <a
-                href={`/?prompt=${item.slug}`}
+                href={`/resource/${item.slug}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  window.location.search = `?prompt=${item.slug}`;
                 }}
                 className="text-cool hover:underline flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-accent"
               >

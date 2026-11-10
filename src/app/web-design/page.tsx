@@ -1,112 +1,50 @@
-import React from "react";
-import { Metadata } from "next";
+import React, { Suspense } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getResources, getCategories } from "@/lib/queries";
-import { WebDesignGallery } from "@/components/WebDesignGallery";
-import { Sparkles, Layers, Video, ShieldCheck, ArrowRight } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
+import { CatalogDiscoveryBrowser } from "@/components/CatalogDiscoveryBrowser";
+import { CATALOG_COUNTS } from "@/lib/unified-catalog";
 
 export const metadata: Metadata = {
-  title: "Web Design Prompts & UI Components — Axes Lab",
+  title: "Web Design Prompts — Landing Pages & UI Components",
   description:
-    "Curated collection of production-grade web design prompts, hero sections, full landing pages, motion backgrounds, and interactive UI animations. Explore at axeslab.zainaxes.com.",
+    "Explore 137 curated website design prompts, landing pages, hero sections, SaaS interfaces, and interactive UI components with live visual previews.",
+  alternates: {
+    canonical: "https://axeslab.zainaxes.com/web-design",
+  },
 };
 
 export default function WebDesignPage() {
-  const result = getResources({
-    categorySlug: "web-design",
-    limit: 1000,
-    sort: "recent",
-  });
-
-  const categories = getCategories();
-  const webDesignCategory = categories.find((c) => c.slug === "web-design");
-
-  // Calculate category stats
-  const catCountMap = new Map<string, number>();
-  for (const r of result.resources) {
-    const meta = r.parsed_metadata || {};
-    const catName = meta.categoryName || r.subcategory_name || "General";
-    catCountMap.set(catName, (catCountMap.get(catName) || 0) + 1);
-  }
-
-  const categoryPills = Array.from(catCountMap.entries())
-    .map(([name, count]) => ({
-      name,
-      slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-      count,
-    }))
-    .sort((a, b) => b.count - a.count);
-
   return (
-    <div className="min-h-screen bg-canvas text-primaryText">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-subtleBorder bg-surface/50 px-4 py-16 backdrop-blur-xl sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full border border-subtleBorder bg-surface-strong px-3 py-1 text-xs font-mono font-medium text-primaryText">
-                <Sparkles className="h-3.5 w-3.5 text-state-success" />
-                <span>{result.resources.length} CURATED LANDING PAGES</span>
-                <span>•</span>
-                <span className="text-mutedText">WEB DESIGN & UI MOTION</span>
-              </div>
+    <div className="min-h-screen bg-paper text-ink">
+      <PageHeader
+        title="Web Design Prompts"
+        meta={`${CATALOG_COUNTS.websiteUi} curated website prompts`}
+        description="Production-grade website design prompts covering landing pages, hero sections, SaaS layouts, and UI components. Open any preview to show and copy the complete original prompt."
+        breadcrumbs={[{ label: "Web Design", href: "/web-design" }]}
+      >
+        <Link
+          href="/categories"
+          className="inline-flex items-center h-9 px-4 rounded-pill bg-paper-3 border border-rule hover:border-rule-2 text-xs font-medium text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent"
+        >
+          Browse by category
+        </Link>
+      </PageHeader>
 
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-primaryText">
-                Web Design Prompt Library
-              </h1>
-
-              <p className="text-lg text-mutedText-secondary leading-relaxed max-w-2xl">
-                Explore {result.resources.length} production-grade web design prompts with pixel-perfect visual previews, interactive videos, motion backgrounds, and copy-ready specifications. Designed & verified by Axes Lab.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-mutedText">
-                <div className="flex items-center gap-1.5">
-                  <Video className="h-4 w-4 text-primaryText" />
-                  <span>HD Video & Looping Previews</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Layers className="h-4 w-4 text-primaryText" />
-                  <span>120+ UI Design Categories</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="h-4 w-4 text-state-success" />
-                  <span>Verified by Axes Lab</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Link Card to User Site */}
-            <div className="flex flex-col rounded-2xl border border-subtleBorder bg-surface p-6 shadow-xl backdrop-blur-md lg:max-w-xs">
-              <span className="font-mono text-xs uppercase tracking-wider text-mutedText">
-                Official Hub
-              </span>
-              <h3 className="mt-1 text-base font-bold text-primaryText">
-                Axes Lab Platform
-              </h3>
-              <p className="mt-1 text-xs text-mutedText-secondary">
-                Full resource catalog, MCP agents, and developer documentation.
-              </p>
-              <a
-                href="https://axeslab.zainaxes.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center justify-between rounded-xl bg-state-inverse px-4 py-2.5 text-xs font-semibold text-state-inverseText transition-all hover:opacity-90"
-              >
-                <span>Visit axeslab.zainaxes.com</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
+      <Suspense
+        fallback={
+          <div className="max-w-[var(--container)] mx-auto px-4 sm:px-6 lg:px-8 py-12 text-xs text-muted">
+            Loading web design prompts…
           </div>
-        </div>
-      </section>
-
-      {/* Main Interactive Gallery Section */}
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <WebDesignGallery
-          resources={result.resources}
-          categories={categoryPills}
+        }
+      >
+        <CatalogDiscoveryBrowser
+          initialGroup="website-ui"
+          lockGroup={true}
+          showGroupTabs={false}
+          pageSize={36}
         />
-      </section>
+      </Suspense>
     </div>
   );
 }

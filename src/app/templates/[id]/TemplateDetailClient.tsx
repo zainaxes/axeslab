@@ -1,12 +1,24 @@
-'use client';
+"use client";
 
-import React, { useState, useRef } from 'react';
-import Link from 'next/link';
-import { TemplateItem } from '@/lib/templates-data';
-import { ArrowLeft, SlidersHorizontal, Copy, Check, Play, Pause, Sparkles } from 'lucide-react';
-import { toast } from 'sonner';
+import React, { useRef, useState } from "react";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  Check,
+  Copy,
+  Pause,
+  Play,
+  SlidersHorizontal,
+} from "lucide-react";
+import { toast } from "sonner";
+import { TemplateItem } from "@/lib/templates-data";
+import { SafeMediaImage } from "@/components/SafeMediaImage";
 
-export default function TemplateDetailClient({ template }: { template: TemplateItem }) {
+export default function TemplateDetailClient({
+  template,
+}: {
+  template: TemplateItem;
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [copied, setCopied] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -22,57 +34,62 @@ export default function TemplateDetailClient({ template }: { template: TemplateI
     }
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(template.template);
-    setCopied(true);
-    toast.success('Template prompt copied to clipboard');
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(template.template);
+      setCopied(true);
+      toast.success("Template prompt copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.info("Select the prompt text below to copy");
+    }
   };
 
   return (
-    <div className="min-h-screen bg-paper text-ink font-sans antialiased py-8 px-4 sm:px-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        
-        {/* Back navigation */}
+    <div className="min-h-screen bg-paper text-ink py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto space-y-8">
         <Link
           href="/templates"
-          className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-ink transition-colors"
+          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-pill bg-paper-2 border border-rule hover:border-rule-2 text-xs font-medium text-ink transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>All Templates</span>
+          <span>All templates</span>
         </Link>
 
-        {/* Header Block */}
-        <div className="space-y-3 border-b border-rule pb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-display font-medium text-ink">
-                {template.title}
-              </h1>
-              <p className="text-xs text-muted mt-1 max-w-xl leading-relaxed">
-                {template.description}
-              </p>
-            </div>
-
-            <Link
-              href={`/templates/${template.slug}/customize`}
-              className="self-start sm:self-auto px-4 py-2 rounded-pill bg-accent text-accent-ink text-xs font-medium hover:opacity-90 transition-opacity flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>Customize parameters</span>
-            </Link>
+        <header className="border-b border-rule pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-2 max-w-2xl">
+            <p className="text-xs font-mono text-muted">{template.model}</p>
+            <h1 className="text-2xl sm:text-4xl font-display font-medium text-ink">
+              {template.title}
+            </h1>
+            <p className="text-sm text-muted leading-relaxed">
+              {template.description}
+            </p>
           </div>
-        </div>
 
-        {/* Video Player */}
-        <div className="relative aspect-[16/9] w-full rounded-card overflow-hidden bg-paper-3 border border-rule group shadow-lg">
-          <img
-            src={template.poster}
-            alt={template.title}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-              isPlaying ? 'opacity-0' : 'opacity-100'
+          <Link
+            href={`/templates/${template.slug}/customize`}
+            className="inline-flex items-center gap-2 h-10 px-5 rounded-pill bg-accent text-accent-ink text-xs font-medium hover:opacity-90 transition-opacity shrink-0"
+          >
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Customize</span>
+          </Link>
+        </header>
+
+        <div className="relative aspect-[16/9] w-full rounded-card overflow-hidden bg-paper-3 border border-rule">
+          <div
+            className={`w-full h-full ${
+              isPlaying ? "opacity-0" : "opacity-100"
             }`}
-          />
+          >
+            <SafeMediaImage
+              src={template.poster}
+              alt={template.title}
+              fallbackLabel={template.title}
+              loading="eager"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <video
             ref={videoRef}
             src={template.video}
@@ -80,65 +97,80 @@ export default function TemplateDetailClient({ template }: { template: TemplateI
             loop
             muted
             playsInline
-            className={`w-full h-full object-cover ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover ${
+              isPlaying ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           />
 
           <button
             type="button"
             onClick={toggleVideo}
-            className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-paper/90 border border-rule text-ink flex items-center justify-center opacity-85 hover:opacity-100 transition-opacity shadow-lg focus-visible:outline-2 focus-visible:outline-accent"
-            aria-label={isPlaying ? 'Pause' : 'Play'}
+            className="absolute bottom-3 right-3 h-8 px-3 rounded-pill bg-paper/90 border border-rule hover:border-rule-2 text-xs font-medium text-ink inline-flex items-center gap-1.5 backdrop-blur-sm"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
           >
-            {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current ml-0.5" />}
+            {isPlaying ? (
+              <>
+                <Pause className="w-3.5 h-3.5" />
+                <span>Pause</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3.5 h-3.5" />
+                <span>Play</span>
+              </>
+            )}
           </button>
         </div>
 
-        {/* Fields list */}
-        <div className="space-y-3">
-          <h2 className="text-xs font-sans font-medium text-ink uppercase tracking-wider">
-            Customizable Blueprint Fields ({template.fields.length})
+        <section className="space-y-4">
+          <h2 className="text-base font-display font-medium text-ink">
+            Customizable Fields ({template.fields.length})
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {template.fields.map((f) => (
-              <div key={f.key} className="p-3.5 rounded-pill bg-paper-2 border border-rule space-y-1">
+              <div
+                key={f.key}
+                className="p-4 rounded-card bg-paper-2 border border-rule space-y-1.5"
+              >
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium text-ink">{f.label}</span>
-                  <code className="text-[10px] font-mono text-cool bg-paper-3 px-1.5 py-0.5 rounded border border-rule">
-                    {'{{' + f.key + '}}'}
+                  <code className="font-mono text-[11px] text-cool">
+                    {`{{${f.key}}}`}
                   </code>
                 </div>
-                <p className="text-[11px] text-muted leading-tight">{f.hint}</p>
-                <div className="pt-1 text-[11px] text-muted font-mono truncate">
-                  Default: <span className="text-ink font-sans">{f.default}</span>
-                </div>
+                <p className="text-xs text-muted">{f.hint}</p>
+                <p className="text-[11px] font-mono text-ink-2 truncate pt-1">
+                  Default: {f.default}
+                </p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Full Template Prompt Text */}
-        <div className="space-y-3 pt-4 border-t border-rule">
+        <section className="space-y-3 pt-4 border-t border-rule">
           <div className="flex items-center justify-between">
-            <h2 className="text-xs font-sans font-medium text-ink uppercase tracking-wider">
-              Full Canonical Template Prompt
+            <h2 className="text-base font-display font-medium text-ink">
+              Template Prompt
             </h2>
             <button
               type="button"
               onClick={handleCopy}
-              className="text-xs px-3 py-1 rounded-pill bg-paper-3 border border-rule hover:bg-paper-2 text-ink flex items-center gap-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+              className="h-8 px-3 rounded-pill bg-paper-2 border border-rule hover:border-rule-2 text-xs text-ink flex items-center gap-1.5"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-cool" /> : <Copy className="w-3.5 h-3.5 text-muted" />}
-              <span>{copied ? 'Copied' : 'Copy blueprint'}</span>
+              {copied ? (
+                <Check className="w-3.5 h-3.5 text-cool" />
+              ) : (
+                <Copy className="w-3.5 h-3.5 text-muted" />
+              )}
+              <span>{copied ? "Copied" : "Copy template"}</span>
             </button>
           </div>
 
-          <pre className="p-4 rounded-card bg-paper-3 border border-rule font-mono text-xs text-ink leading-relaxed whitespace-pre-wrap selection:bg-accent-soft max-h-96 overflow-y-auto">
+          <pre className="p-4 sm:p-5 rounded-card bg-paper-3 border border-rule font-mono text-xs text-ink leading-relaxed whitespace-pre-wrap select-all max-h-[500px] overflow-y-auto">
             {template.template}
           </pre>
-        </div>
-
+        </section>
       </div>
     </div>
   );
 }
-

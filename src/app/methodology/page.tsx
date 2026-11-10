@@ -1,103 +1,111 @@
 import React from "react";
-import { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import type { Metadata } from "next";
+import { PolicyLayout } from "@/components/PolicyLayout";
 
 export const metadata: Metadata = {
-  title: "Curation Methodology & Inclusion Standards | Axes Lab",
+  title: "Curation Methodology & Inclusion Standards",
   description:
-    "How Axes Lab inspects, verifies, and maintains AI prompts, agent skills, and MCP servers.",
+    "How Axes Lab inspects, verifies, and documents prompts, agent skills, and MCP servers.",
+  alternates: {
+    canonical: "https://axeslab.zainaxes.com/methodology",
+  },
 };
 
 export default function MethodologyPage() {
   return (
-    <article className="max-w-3xl mx-auto py-4 space-y-8">
-      <Breadcrumbs items={[{ label: "Curation Methodology", href: "/methodology" }]} />
-
-      <header className="border-b border-subtleBorder pb-6">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-primaryText tracking-tight mb-2">
-          Curation Methodology & Inclusion Standards
-        </h1>
-        <p className="text-xs sm:text-sm text-mutedText">
-          Last revised: 31 October 2026 • Quality and Standards Committee
+    <PolicyLayout
+      title="Curation Methodology & Inclusion Standards"
+      subtitle="How Axes Lab evaluates provenance, documentation clarity, and rights boundaries."
+      lastUpdated="Last revised: 31 October 2026 · Quality & Standards"
+      breadcrumbs={[{ label: "Methodology", href: "/methodology" }]}
+    >
+      <section className="space-y-3">
+        <h2 className="text-lg font-display font-medium text-ink">
+          1. Source Hierarchy
+        </h2>
+        <p className="text-muted">
+          Before listing a resource, provenance is established using a clear source hierarchy:
         </p>
-      </header>
+        <ol className="list-decimal pl-5 space-y-1.5 text-muted">
+          <li>
+            <strong className="text-ink">Official Primary Source:</strong> The creator&apos;s repository, upstream post, or project documentation.
+          </li>
+          <li>
+            <strong className="text-ink">Maintainer-Controlled Distribution:</strong> Release tags, signed package manifests, and official registries.
+          </li>
+          <li>
+            <strong className="text-ink">Curated Discovery Indexes:</strong> Candidate discovery leads verified back to primary creator records.
+          </li>
+        </ol>
+      </section>
 
-      <div className="prose prose-sm text-primaryText leading-relaxed space-y-6 text-xs sm:text-sm">
-        <section className="space-y-3">
-          <h2 className="text-lg font-bold text-primaryText tracking-tight">1. Source Hierarchy</h2>
-          <p className="text-mutedText-secondary leading-relaxed">
-            Before adding any resource, our editorial team establishes provenance using an authoritative
-            source hierarchy:
-          </p>
-          <ol className="list-decimal pl-5 space-y-1 text-mutedText-secondary">
-            <li><strong>Official Primary Source:</strong> The creator's repository, official MCP registry, or project documentation.</li>
-            <li><strong>Maintainer-Controlled Distribution:</strong> Release tags, signed package manifests, and official container registries.</li>
-            <li><strong>Reputable Curated Indexes:</strong> Verified community lists used solely as candidate discovery leads.</li>
-          </ol>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-lg font-bold text-primaryText tracking-tight">2. Quality Review Rubric</h2>
-          <p className="text-mutedText-secondary leading-relaxed">
-            Every entry is evaluated against six explicit criteria:
-          </p>
-          <div className="border border-subtleBorder rounded-panel overflow-hidden">
+      <section className="space-y-3 pt-4 border-t border-rule">
+        <h2 className="text-lg font-display font-medium text-ink">
+          2. Quality Review Rubric
+        </h2>
+        <div className="border border-rule rounded-card bg-paper-2 overflow-hidden">
+          <div className="overflow-x-auto">
             <table className="w-full text-xs text-left">
-              <thead className="bg-surface border-b border-subtleBorder font-semibold text-primaryText">
+              <thead className="bg-paper-3 border-b border-rule text-ink">
                 <tr>
-                  <th className="p-3">Dimension</th>
-                  <th className="p-3">Weight</th>
-                  <th className="p-3">Evaluation Scope</th>
+                  <th className="p-3.5 font-medium">Dimension</th>
+                  <th className="p-3.5 font-medium">Weight</th>
+                  <th className="p-3.5 font-medium">Evaluation Scope</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-subtleBorder/60 text-mutedText-secondary">
+              <tbody className="divide-y divide-rule text-muted">
                 <tr>
-                  <td className="p-3 font-semibold text-primaryText">Practical Utility</td>
-                  <td className="p-3">25%</td>
-                  <td className="p-3">Solves a genuine engineering or creative task without synthetic hype.</td>
+                  <td className="p-3.5 font-medium text-ink">Practical Utility</td>
+                  <td className="p-3.5 font-mono num">25%</td>
+                  <td className="p-3.5">Addresses a genuine design or engineering task cleanly.</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-primaryText">Documentation Quality</td>
-                  <td className="p-3">20%</td>
-                  <td className="p-3">Clear setup instructions, parameter explanations, and reproduction examples.</td>
+                  <td className="p-3.5 font-medium text-ink">Documentation Quality</td>
+                  <td className="p-3.5 font-mono num">20%</td>
+                  <td className="p-3.5">Clear setup instructions, parameters, and examples.</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-primaryText">Source Health & Maintenance</td>
-                  <td className="p-3">15%</td>
-                  <td className="p-3">Active commits, responsive maintenance, or clear stable architecture status.</td>
+                  <td className="p-3.5 font-medium text-ink">Source Health</td>
+                  <td className="p-3.5 font-mono num">15%</td>
+                  <td className="p-3.5">Accessible upstream source and stable architecture.</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-primaryText">Compatibility Clarity</td>
-                  <td className="p-3">15%</td>
-                  <td className="p-3">Explicit client (Claude, Cursor, Copilot) or model runtime verification.</td>
+                  <td className="p-3.5 font-medium text-ink">Compatibility Clarity</td>
+                  <td className="p-3.5 font-mono num">15%</td>
+                  <td className="p-3.5">Explicit client or model runtime details where verified.</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-primaryText">Provenance & Rights</td>
-                  <td className="p-3">15%</td>
-                  <td className="p-3">Reviewed license text, clear ownership, and clean redistribution boundaries.</td>
+                  <td className="p-3.5 font-medium text-ink">Provenance &amp; Rights</td>
+                  <td className="p-3.5 font-mono num">15%</td>
+                  <td className="p-3.5">Clear creator attribution, license, and distribution status.</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-primaryText">Security Transparency</td>
-                  <td className="p-3">10%</td>
-                  <td className="p-3">Explicit disclosure of filesystem access, network calls, and credentials.</td>
+                  <td className="p-3.5 font-medium text-ink">Security Transparency</td>
+                  <td className="p-3.5 font-mono num">10%</td>
+                  <td className="p-3.5">Disclosure of filesystem, network, and command access.</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="space-y-3">
-          <h2 className="text-lg font-bold text-primaryText tracking-tight">3. Verification & Freshness Cadence</h2>
-          <p className="text-mutedText-secondary leading-relaxed">
-            We track three distinct timestamps on every resource:
-          </p>
-          <ul className="list-disc pl-5 space-y-1.5 text-mutedText-secondary">
-            <li><strong>Upstream Source Update:</strong> When the maintainer last pushed commits or released a version.</li>
-            <li><strong>Last Checked Date:</strong> When our editorial process verified the links and terms.</li>
-            <li><strong>Record Modified Date:</strong> When our catalog entry was updated.</li>
-          </ul>
-        </section>
-      </div>
-    </article>
+      <section className="space-y-3 pt-4 border-t border-rule">
+        <h2 className="text-lg font-display font-medium text-ink">
+          3. Verification &amp; Freshness Timestamps
+        </h2>
+        <ul className="list-disc pl-5 space-y-1.5 text-muted">
+          <li>
+            <strong className="text-ink">Upstream Source Update:</strong> When the maintainer last updated or published the resource.
+          </li>
+          <li>
+            <strong className="text-ink">Last Checked Date:</strong> When links and rights metadata were last inspected.
+          </li>
+          <li>
+            <strong className="text-ink">Record Modified Date:</strong> When the library entry itself was last updated.
+          </li>
+        </ul>
+      </section>
+    </PolicyLayout>
   );
 }

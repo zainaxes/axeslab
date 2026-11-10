@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
 
+const token = (cssVar: string) =>
+  `color-mix(in oklch, var(${cssVar}) calc(<alpha-value> * 100%), transparent)`;
+
 const config: Config = {
   darkMode: "class",
   content: [
@@ -10,23 +13,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "var(--color-paper)",
-        "paper-2": "var(--color-paper-2)",
-        "paper-3": "var(--color-paper-3)",
-        ink: "var(--color-ink)",
-        "ink-2": "var(--color-ink-2)",
-        muted: "var(--color-muted)",
-        rule: "var(--color-rule)",
-        "rule-2": "var(--color-rule-2)",
-        accent: "var(--color-accent)",
-        "accent-ink": "var(--color-accent-ink)",
-        "accent-soft": "var(--color-accent-soft)",
-        cool: "var(--color-cool)",
-        "cool-soft": "var(--color-cool-soft)",
-        ok: "var(--color-ok)",
-        "ok-soft": "var(--color-ok-soft)",
-        bad: "var(--color-bad)",
-        "bad-soft": "var(--color-bad-soft)",
+        paper: token("--color-paper"),
+        "paper-2": token("--color-paper-2"),
+        "paper-3": token("--color-paper-3"),
+        ink: token("--color-ink"),
+        "ink-2": token("--color-ink-2"),
+        muted: token("--color-muted"),
+        rule: token("--color-rule"),
+        "rule-2": token("--color-rule-2"),
+        accent: token("--color-accent"),
+        "accent-ink": token("--color-accent-ink"),
+        "accent-soft": token("--color-accent-soft"),
+        cool: token("--color-cool"),
+        "cool-soft": token("--color-cool-soft"),
+        ok: token("--color-ok"),
+        "ok-soft": token("--color-ok-soft"),
+        bad: token("--color-bad"),
+        "bad-soft": token("--color-bad-soft"),
       },
       fontFamily: {
         sans: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],

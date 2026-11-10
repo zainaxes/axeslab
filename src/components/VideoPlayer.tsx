@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Play } from "lucide-react";
 import {
   getYouTubeEmbedUrl,
   getYouTubeThumbnailUrl,
@@ -8,7 +9,6 @@ import {
   getProxiedMediaUrl,
   getCategoryFallbackPoster,
 } from "@/lib/video-utils";
-import { Play } from "lucide-react";
 
 interface VideoPlayerProps {
   posterUrl?: string;
@@ -35,16 +35,18 @@ export function VideoPlayer({
 
   const isYT = isYouTubeUrl(youtubeUrl);
   const ytThumb = isYT ? getYouTubeThumbnailUrl(youtubeUrl) : null;
-  const rawPoster = posterUrl || ytThumb || getCategoryFallbackPoster(categoryName, title);
+  const rawPoster =
+    posterUrl || ytThumb || getCategoryFallbackPoster(categoryName, title);
   const effectivePoster = rawPoster ? getProxiedMediaUrl(rawPoster) : undefined;
   const effectiveVideo = videoUrl ? getProxiedMediaUrl(videoUrl) : undefined;
 
-  // 1. YouTube Facade (Lightweight click-to-load)
   if (isYT && youtubeUrl) {
     if (isPlayingYouTube) {
       const ytEmbed = getYouTubeEmbedUrl(youtubeUrl, true);
       return (
-        <div className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}>
+        <div
+          className={`relative w-full overflow-hidden rounded-card bg-paper-3 border border-rule ${aspectRatio} ${className}`}
+        >
           <iframe
             src={ytEmbed || ""}
             title={title}
@@ -59,47 +61,41 @@ export function VideoPlayer({
     return (
       <div
         onClick={() => setIsPlayingYouTube(true)}
-        className={`group relative w-full cursor-pointer overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}
+        className={`group relative w-full cursor-pointer overflow-hidden rounded-card bg-paper-3 border border-rule ${aspectRatio} ${className}`}
       >
-        {effectivePoster ? (
+        {effectivePoster && (
           <img
             src={effectivePoster}
             alt={title}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover"
           />
-        ) : (
-          <div className="h-full w-full bg-zinc-900" />
         )}
 
-        {/* Ambient Overlay & Play Facade Button */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] transition-colors group-hover:bg-black/20">
+        <div className="absolute inset-0 flex items-center justify-center bg-paper-3/45 transition-colors group-hover:bg-paper-3/30">
           <button
             type="button"
             aria-label={`Play video for ${title}`}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-black shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-white"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-paper/90 border border-rule-2 text-ink transition-colors"
           >
-            <Play className="ml-1 h-6 w-6 fill-current" />
+            <Play className="ml-0.5 h-5 w-5 fill-current" />
           </button>
-        </div>
-
-        <div className="absolute bottom-3 left-3 rounded-md bg-black/70 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-white backdrop-blur-md">
-          Click to Play Video
         </div>
       </div>
     );
   }
 
-  // 2. Standard MP4 / WebM with preload="none" (Zero initial network overhead)
   if (effectiveVideo) {
     return (
-      <div className={`relative w-full overflow-hidden rounded-xl bg-black ${aspectRatio} ${className}`}>
+      <div
+        className={`relative w-full overflow-hidden rounded-card bg-paper-3 border border-rule ${aspectRatio} ${className}`}
+      >
         <video
           src={effectiveVideo}
           poster={effectivePoster}
           controls={controls}
           playsInline
-          preload="none"
+          preload="metadata"
           className="h-full w-full object-cover"
         >
           Your browser does not support the video tag.
@@ -108,10 +104,11 @@ export function VideoPlayer({
     );
   }
 
-  // 3. Fallback to lightweight poster
   if (effectivePoster) {
     return (
-      <div className={`relative w-full overflow-hidden rounded-xl bg-black/5 dark:bg-white/5 ${aspectRatio} ${className}`}>
+      <div
+        className={`relative w-full overflow-hidden rounded-card bg-paper-3 border border-rule ${aspectRatio} ${className}`}
+      >
         <img
           src={effectivePoster}
           alt={title}
@@ -123,8 +120,10 @@ export function VideoPlayer({
   }
 
   return (
-    <div className={`flex items-center justify-center rounded-xl bg-black/5 font-mono text-xs text-black/40 dark:bg-white/5 dark:text-white/40 ${aspectRatio} ${className}`}>
-      Media Preview Coming Soon
+    <div
+      className={`flex items-center justify-center rounded-card bg-paper-3 border border-rule font-mono text-xs text-muted ${aspectRatio} ${className}`}
+    >
+      Preview unavailable
     </div>
   );
 }

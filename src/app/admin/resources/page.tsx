@@ -109,10 +109,10 @@ export default function AdminResourcesPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-subtleBorder pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-rule pb-4">
         <div>
-          <h1 className="text-xl font-bold text-primaryText tracking-tight">Resource Manager</h1>
-          <p className="text-xs text-mutedText-secondary">
+          <h1 className="text-xl font-medium text-ink tracking-tight">Resource Manager</h1>
+          <p className="text-xs text-muted">
             Inspect, quarantine, or update publication status of catalogue records.
           </p>
         </div>
@@ -120,29 +120,29 @@ export default function AdminResourcesPage() {
         <button
           type="button"
           onClick={fetchResources}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-btn bg-surface border border-subtleBorder hover:bg-state-hover text-xs font-semibold text-primaryText"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-pill bg-paper-2 border border-rule hover:border-rule-2 text-xs font-medium text-ink transition-colors"
         >
-          <RefreshCw className="w-3.5 h-3.5" /> Refresh
+          <RefreshCw className="w-3.5 h-3.5" />
+          <span>Refresh</span>
         </button>
       </div>
 
-      {/* Filter & Search Bar */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-mutedText absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-muted absolute left-3 top-2.5" />
           <input
             type="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search resources by title or slug..."
-            className="w-full text-xs h-9 pl-9 pr-3 rounded-input bg-surface-strong border border-subtleBorder text-primaryText placeholder:text-mutedText focus:outline-none focus:ring-1 focus:ring-primaryText"
+            className="w-full text-xs h-9 pl-9 pr-3 rounded-pill bg-paper-2 border border-rule text-ink placeholder:text-muted focus:outline-none focus:border-accent"
           />
         </div>
 
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="h-9 px-3 rounded-input bg-surface border border-subtleBorder text-xs text-primaryText focus:outline-none focus:ring-1 focus:ring-primaryText cursor-pointer"
+          className="h-9 px-3 rounded-pill bg-paper-2 border border-rule text-xs text-ink focus:outline-none focus:border-accent cursor-pointer"
         >
           <option value="all">All Types</option>
           <option value="prompt">Prompts</option>
@@ -157,7 +157,7 @@ export default function AdminResourcesPage() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="h-9 px-3 rounded-input bg-surface border border-subtleBorder text-xs text-primaryText focus:outline-none focus:ring-1 focus:ring-primaryText cursor-pointer"
+          className="h-9 px-3 rounded-pill bg-paper-2 border border-rule text-xs text-ink focus:outline-none focus:border-accent cursor-pointer"
         >
           <option value="all">All Statuses</option>
           <option value="published">Published</option>
@@ -167,11 +167,10 @@ export default function AdminResourcesPage() {
         </select>
       </div>
 
-      {/* Table */}
-      <div className="rounded-panel border border-subtleBorder bg-surface-strong overflow-hidden">
+      <div className="rounded-card border border-rule bg-paper-2 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
-            <thead className="bg-surface border-b border-subtleBorder text-mutedText font-semibold uppercase text-[11px]">
+            <thead className="bg-paper-3 border-b border-rule text-muted font-mono uppercase text-[11px]">
               <tr>
                 <th className="p-3">Resource</th>
                 <th className="p-3">Type</th>
@@ -180,25 +179,25 @@ export default function AdminResourcesPage() {
                 <th className="p-3">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-subtleBorder/60">
+            <tbody className="divide-y divide-rule">
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-mutedText">
+                  <td colSpan={5} className="p-8 text-center text-muted">
                     Loading records...
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-mutedText">
+                  <td colSpan={5} className="p-8 text-center text-muted">
                     No matching records found.
                   </td>
                 </tr>
               ) : (
                 filtered.map((res) => (
-                  <tr key={res.id} className="hover:bg-surface/50 transition-colors">
+                  <tr key={res.id} className="hover:bg-paper-3/60 transition-colors">
                     <td className="p-3 max-w-[280px]">
-                      <div className="font-bold text-primaryText truncate mb-0.5">{res.title}</div>
-                      <div className="font-mono text-[10px] text-mutedText truncate">
+                      <div className="font-medium text-ink truncate mb-0.5">{res.title}</div>
+                      <div className="font-mono text-[11px] text-muted truncate">
                         slug: {res.slug}
                       </div>
                     </td>
@@ -207,19 +206,19 @@ export default function AdminResourcesPage() {
                     </td>
                     <td className="p-3 whitespace-nowrap space-y-1">
                       <AccessBadge status={res.access_status} />
-                      <div className="text-[11px] font-mono text-mutedText">{res.license_name}</div>
+                      <div className="text-[11px] font-mono text-muted">{res.license_name}</div>
                     </td>
                     <td className="p-3 whitespace-nowrap">
                       <select
                         value={res.status}
                         disabled={updatingId === res.id}
                         onChange={(e) => handleStatusChange(res.id, e.target.value)}
-                        className={`text-xs px-2 py-1 rounded border font-semibold cursor-pointer ${
+                        className={`text-xs px-2.5 py-1 rounded-pill border font-mono cursor-pointer bg-paper-3 ${
                           res.status === "published"
-                            ? "bg-surface text-state-success border-state-success/40"
+                            ? "text-ok border-ok/40"
                             : res.status === "quarantined"
-                            ? "bg-surface text-state-danger border-state-danger/40"
-                            : "bg-surface text-state-warning border-state-warning/40"
+                            ? "text-bad border-bad/40"
+                            : "text-accent border-accent/40"
                         }`}
                       >
                         <option value="published">published</option>
@@ -228,11 +227,11 @@ export default function AdminResourcesPage() {
                         <option value="quarantined">quarantined</option>
                       </select>
                     </td>
-                    <td className="p-3 whitespace-nowrap space-x-2">
+                    <td className="p-3 whitespace-nowrap space-x-3">
                       <button
                         type="button"
                         onClick={() => openVideoEditor(res)}
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-primaryText hover:underline"
+                        className="inline-flex items-center gap-1 text-[11px] font-mono text-cool hover:underline"
                         title="Edit YouTube / video URL"
                       >
                         Video
@@ -240,7 +239,7 @@ export default function AdminResourcesPage() {
                       <Link
                         href={`/resource/${res.slug}`}
                         target="_blank"
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-primaryText hover:underline"
+                        className="inline-flex items-center gap-1 text-[11px] font-mono text-ink hover:underline"
                       >
                         Preview <ExternalLink className="w-3 h-3" />
                       </Link>
@@ -253,25 +252,24 @@ export default function AdminResourcesPage() {
         </div>
       </div>
 
-      {/* Video Mapping Modal */}
       {editingVideoSlug && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-lg rounded-2xl border border-subtleBorder bg-surface-strong p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-subtleBorder pb-3">
-              <h3 className="text-sm font-bold text-primaryText">
-                Configure Video for: <span className="font-mono text-xs">{editingVideoSlug}</span>
+        <div className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4 bg-paper/80 backdrop-blur-sm">
+          <div className="w-full max-w-lg rounded-card border border-rule-2 bg-paper-2 p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-rule pb-3">
+              <h3 className="text-sm font-medium text-ink">
+                Configure Video: <span className="font-mono text-xs text-muted">{editingVideoSlug}</span>
               </h3>
               <button
                 type="button"
                 onClick={() => setEditingVideoSlug(null)}
-                className="text-xs text-mutedText hover:text-primaryText"
+                className="text-xs text-muted hover:text-ink px-2 py-1"
               >
-                ✕
+                Close
               </button>
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-primaryText">
+              <label className="text-xs font-medium text-ink block">
                 YouTube URL, Video ID, or Direct MP4 Link
               </label>
               <input
@@ -279,25 +277,25 @@ export default function AdminResourcesPage() {
                 value={videoInput}
                 onChange={(e) => setVideoInput(e.target.value)}
                 placeholder="e.g. https://www.youtube.com/watch?v=... or dQw4w9WgXcQ"
-                className="w-full text-xs h-9 px-3 rounded-input bg-surface border border-subtleBorder text-primaryText focus:outline-none focus:ring-1 focus:ring-primaryText font-mono"
+                className="w-full text-xs h-9 px-3 rounded-pill bg-paper-3 border border-rule text-ink focus:outline-none focus:border-accent font-mono"
               />
-              <p className="text-[11px] text-mutedText leading-relaxed">
-                Paste any YouTube watch link, short link (youtu.be), or video ID. Leaving it empty will use the default video preview.
+              <p className="text-[11px] text-muted leading-relaxed">
+                Paste any YouTube watch link, short link, or video ID. Leave empty to use the fallback media preview.
               </p>
             </div>
 
             {videoSaveMsg && (
-              <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+              <div className="text-xs font-mono text-ok">
                 {videoSaveMsg}
               </div>
             )}
 
-            <div className="flex items-center justify-end gap-2 pt-2 border-t border-subtleBorder">
+            <div className="flex items-center justify-end gap-2 pt-3 border-t border-rule">
               <button
                 type="button"
                 disabled={savingVideo}
                 onClick={() => setEditingVideoSlug(null)}
-                className="px-3 py-1.5 text-xs font-medium rounded-btn bg-surface border border-subtleBorder hover:bg-state-hover text-mutedText-secondary"
+                className="px-3.5 py-1.5 text-xs font-medium rounded-pill bg-paper-3 border border-rule hover:border-rule-2 text-muted hover:text-ink"
               >
                 Cancel
               </button>
@@ -305,7 +303,7 @@ export default function AdminResourcesPage() {
                 type="button"
                 disabled={savingVideo}
                 onClick={handleSaveVideo}
-                className="px-4 py-1.5 text-xs font-bold rounded-btn bg-state-inverse text-state-inverseText hover:opacity-90 disabled:opacity-50"
+                className="px-4 py-1.5 text-xs font-medium rounded-pill bg-accent text-accent-ink hover:opacity-90 disabled:opacity-50"
               >
                 {savingVideo ? "Saving..." : "Save Video"}
               </button>
