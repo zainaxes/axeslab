@@ -1,19 +1,23 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Terminal } from "lucide-react";
 import { toast } from "sonner";
+
+const ENDPOINT_URL = "https://axeslab.zainaxes.com/api/mcp";
+const INSTALL_ALL_CMD = `npx add-mcp ${ENDPOINT_URL} --name axeslab`;
+const CLAUDE_CODE_CMD = `claude mcp add --transport http axeslab ${ENDPOINT_URL}`;
+const REMOTE_BRIDGE_CMD = `npx -y mcp-remote ${ENDPOINT_URL}`;
 
 const CONFIGS = [
   {
-    title: "Claude Desktop",
-    file: "claude_desktop_config.json",
+    title: "Cursor · Windsurf · VS Code · Antigravity",
+    file: "mcp.json / mcp_config.json",
     content: JSON.stringify(
       {
         mcpServers: {
           axeslab: {
-            command: "npx",
-            args: ["-y", "axeslab-mcp@latest"],
+            url: ENDPOINT_URL,
           },
         },
       },
@@ -22,14 +26,14 @@ const CONFIGS = [
     ),
   },
   {
-    title: "Cursor & Windsurf",
-    file: "mcp.json",
+    title: "Claude Desktop (stdio bridge)",
+    file: "claude_desktop_config.json",
     content: JSON.stringify(
       {
         mcpServers: {
           axeslab: {
             command: "npx",
-            args: ["-y", "axeslab-mcp@latest"],
+            args: ["-y", "mcp-remote", ENDPOINT_URL],
           },
         },
       },
@@ -39,26 +43,33 @@ const CONFIGS = [
   },
 ];
 
+const EXAMPLE_PROMPTS = [
+  'Use the "Interactive Discovery" prompt from axeslab',
+  'Build a hero section using the "Asme" prompt from axeslab',
+  'Fetch the "Bold Studio" prompt from axeslab and scaffold it',
+  'Customize "Claude motion designer showreel" for my brand using axeslab',
+];
+
 const MCP_TOOLS = [
-  {
-    name: "axeslab_search_templates",
-    description:
-      "Search Axes Lab UI templates and motion prompts by query, topic, or category.",
-  },
   {
     name: "axeslab_get_prompt",
     description:
-      "Retrieve the complete prompt and specification instructions for a resource slug.",
+      "Retrieve the full verbatim specification for any prompt by name, title, or slug across all 377 updated prompts, motion directives, templates, and skills.",
+  },
+  {
+    name: "axeslab_search_templates",
+    description:
+      "Search across all 377 website UI prompts, motion prompts, UI sections, 3D sites, apps, backgrounds, templates, and skills.",
   },
   {
     name: "axeslab_list_categories",
     description:
-      "List available design categories with active resource counts.",
+      "List every active design category across Website UI and Motion collections with exact item counts.",
   },
   {
     name: "axeslab_generate_scaffold",
     description:
-      "Return framework implementation notes and exact specifications for a slug.",
+      "Return framework implementation notes and exact specifications for any prompt name or slug.",
   },
   {
     name: "axeskit_list_asset_categories",
@@ -68,65 +79,85 @@ const MCP_TOOLS = [
   {
     name: "axeskit_get_design_guidelines",
     description:
-      "Retrieve AxesKit UI/UX design tokens, typography pairings, and motion defaults.",
+      "Retrieve Axes Lab Console / AxesKit design tokens, typography pairings, and motion defaults.",
   },
 ];
 
-export function McpClient() {
+export function McpClient({ totalPrompts }: { totalPrompts: number }) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const handleCopy = async (text: string, id: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopiedId(id);
-      toast.success("Copied to clipboard");
-      setTimeout(() => setCopiedId(null), 2000);
     } catch {
-      toast.info("Select the snippet to copy");
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
     }
+    setCopiedId(id);
+    toast.success("Copied to clipboard");
+    setTimeout(() => setCopiedId(null), 1800);
   };
 
   return (
     <div className="max-w-[var(--container)] mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
-      {/* CLI Quick Start & Streamable HTTP Endpoint */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Primary One-Command Installer + Streamable HTTP URL */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="p-5 rounded-card bg-paper-2 border border-rule space-y-3">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-medium text-ink">Quick start via CLI</span>
+          <div className="flex items-center justify-between gap-2 text-xs">
+            <span className="font-medium text-ink flex items-center gap-1.5">
+              <Terminal className="w-3.5 h-3.5 text-cool" />
+              <span>Install in any coding agent (Cursor, Claude, Windsurf, Codex, VS Code)</span>
+            </span>
             <button
               type="button"
-              onClick={() => handleCopy("npx axeslab-mcp@latest", "cli")}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill bg-paper-3 border border-rule hover:border-rule-2 text-ink"
+              onClick={() => handleCopy(INSTALL_ALL_CMD, "install-all")}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill bg-accent text-accent-ink font-medium hover:opacity-90 shrink-0"
             >
-              {copiedId === "cli" ? (
+              {copiedId === "install-all" ? (
                 <>
-                  <Check className="w-3 h-3 text-cool" />
+                  <Check className="w-3 h-3" />
                   <span>Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3 h-3 text-muted" />
+                  <Copy className="w-3 h-3" />
                   <span>Copy</span>
                 </>
               )}
             </button>
           </div>
           <pre className="p-3.5 rounded-pill bg-paper-3 border border-rule text-cool font-mono text-xs overflow-x-auto select-all">
-            npx axeslab-mcp@latest
+            {INSTALL_ALL_CMD}
           </pre>
-        </div>
-
-        <div className="p-5 rounded-card bg-paper-2 border border-rule space-y-3">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-medium text-ink">
-              Streamable HTTP Endpoint
+          <div className="flex items-center justify-between gap-2 pt-1 text-xs">
+            <span className="text-muted font-mono truncate">
+              Claude Code: <span className="text-ink-2">{CLAUDE_CODE_CMD}</span>
             </span>
             <button
               type="button"
-              onClick={() =>
-                handleCopy("https://axeslab.zainaxes.com/api/mcp", "http")
-              }
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill bg-paper-3 border border-rule hover:border-rule-2 text-ink"
+              onClick={() => handleCopy(CLAUDE_CODE_CMD, "claude-code")}
+              className="text-cool hover:underline font-mono shrink-0"
+            >
+              {copiedId === "claude-code" ? "Copied" : "Copy"}
+            </button>
+          </div>
+        </div>
+
+        <div className="p-5 rounded-card bg-paper-2 border border-rule space-y-3">
+          <div className="flex items-center justify-between gap-2 text-xs">
+            <span className="font-medium text-ink">
+              Remote MCP URL (Streamable HTTP · {totalPrompts} prompts live)
+            </span>
+            <button
+              type="button"
+              onClick={() => handleCopy(ENDPOINT_URL, "http")}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill bg-paper-3 border border-rule hover:border-rule-2 text-ink shrink-0"
             >
               {copiedId === "http" ? (
                 <>
@@ -142,15 +173,57 @@ export function McpClient() {
             </button>
           </div>
           <pre className="p-3.5 rounded-pill bg-paper-3 border border-rule text-ink-2 font-mono text-xs overflow-x-auto select-all">
-            https://axeslab.zainaxes.com/api/mcp
+            {ENDPOINT_URL}
           </pre>
+          <div className="flex items-center justify-between gap-2 pt-1 text-xs">
+            <span className="text-muted font-mono truncate">
+              Stdio proxy: <span className="text-ink-2">{REMOTE_BRIDGE_CMD}</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => handleCopy(REMOTE_BRIDGE_CMD, "bridge")}
+              className="text-cool hover:underline font-mono shrink-0"
+            >
+              {copiedId === "bridge" ? "Copied" : "Copy"}
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Configuration Files */}
+      {/* Ask by Name */}
+      <section className="space-y-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-lg font-display font-medium text-ink">
+            Use any prompt by name
+          </h2>
+          <span className="text-xs text-muted">
+            Supports MCP tools, native <span className="font-mono text-ink-2">prompts/get</span>, and <span className="font-mono text-ink-2">resources/read</span>
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {EXAMPLE_PROMPTS.map((example, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => handleCopy(example, `ex-${idx}`)}
+              className="text-left p-3.5 rounded-card bg-paper-2 border border-rule hover:border-rule-2 transition-colors flex items-center justify-between gap-3"
+            >
+              <span className="font-mono text-xs text-ink-2 truncate">
+                {example}
+              </span>
+              <span className="text-[11px] font-mono text-cool shrink-0">
+                {copiedId === `ex-${idx}` ? "Copied" : "Copy"}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Client JSON Configuration Files */}
       <section className="space-y-4">
         <h2 className="text-lg font-display font-medium text-ink">
-          Client Configuration Files
+          Manual Client Configuration
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
